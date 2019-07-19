@@ -15,6 +15,14 @@ import {
   routes
 } from "@utils/routes";
 
+let reactGa;
+if (IN_BROWSER) {
+  reactGa = require("react-ga");
+  reactGa.initialize("UA-60624235-8", {
+    debug: IS_DEV
+  });
+}
+
 const logo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -80,10 +88,13 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
+    reactGa.pageview(router.pathname);
+
     const startProgress = () => NProgress.start();
 
     let timer;
-    const stopProgress = () => {
+    const stopProgress = pathname => {
+      reactGa.pageview(pathname);
       clearTimeout(timer);
       NProgress.done();
     };
