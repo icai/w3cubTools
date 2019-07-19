@@ -7,7 +7,6 @@ import StorageManager from "./local_storage_manager";
 import KeyboardInputManager from "./keyboard_input_manager";
 import Grid from "./grid";
 import { Tile } from "./tile";
-import "./index.less";
 
 let storageManager;
 if (__CLIENT__) {

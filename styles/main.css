@@ -435,3 +435,10 @@ template {
 .clearfix:after {
   clear: both;
 }
+
+.rt-from fieldset {
+  padding: 0;
+}
+.rt-from legend {
+  font-size: 20px;
+}

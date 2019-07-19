@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 import { Container } from "next/app";
+import Head from "next/head";
 import { Button, Text, Pane, Popover, Link, Heading } from "evergreen-ui";
 import Navigator from "@components/Navigator";
 import "@styles/main.css";
@@ -128,6 +129,9 @@ export default function App({ Component, pageProps }) {
             margin-top: 30px;
             background: #f2f2f2;
             padding: 30px 15px;
+            font-size: 15px;
+            font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial,
+              sans-serif;
           }
 
           .sitemap ul > li {
@@ -146,10 +150,13 @@ export default function App({ Component, pageProps }) {
           }
         `}
       </style>
-      <title>
-        {activeRoute && (activeRoute.title || activeRoute.searchTerm)}
-      </title>
-      <meta name="description" content={activeRoute && activeRoute.desc} />
+      <Head>
+        <title>
+          {activeRoute && (activeRoute.title || activeRoute.searchTerm)}
+        </title>
+        <meta name="description" content={activeRoute && activeRoute.desc} />
+      </Head>
+
       <Pane
         display="flex"
         alignItems="center"

@@ -4,12 +4,24 @@ import find from "lodash/find";
 
 export const categorizedRoutes = [
   {
+    category: "NetWork",
+    content: [
+      {
+        label: "Curl builder",
+        path: "/curl-builder",
+        title: "Online curl command line builder",
+        desc: "Online curl command line builder"
+      }
+    ]
+  },
+  {
     category: "Game",
     content: [
       {
         label: "Game 2048",
         path: "/g2048",
-        title: "Game 2048"
+        title: "Game 2048",
+        desc: "Game 2048"
       }
     ]
   },
