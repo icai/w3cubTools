@@ -4,6 +4,16 @@ import find from "lodash/find";
 
 export const categorizedRoutes = [
   {
+    category: "Game",
+    content: [
+      {
+        label: "Game 2048",
+        path: "/g2048",
+        title: "Game 2048"
+      }
+    ]
+  },
+  {
     category: "SVG",
     content: [
       {

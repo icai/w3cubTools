@@ -48,3 +48,6 @@ declare module "@workers/svgr.worker" {
 
 declare const IN_BROWSER: boolean;
 declare const IS_DEV: boolean;
+
+declare const __CLIENT__: boolean;
+declare const __DEV__: boolean;
