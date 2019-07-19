@@ -51,3 +51,5 @@ declare const IS_DEV: boolean;
 
 declare const __CLIENT__: boolean;
 declare const __DEV__: boolean;
+declare const importScripts: void;
+declare const Babel;

@@ -152,6 +152,13 @@ export const categorizedRoutes = [
     category: "JavaScript",
     content: [
       {
+        label: "Deobfuscate Code",
+        path: "/js-deobfuscate",
+        title: "Deobfuscate Code",
+        packageName: "babel-plugin-deobfuscate",
+        packageUrl: "https://www.npmjs.com/package/babel-plugin-deobfuscate"
+      },
+      {
         label: "to JSON",
         path: "/js-object-to-json",
         desc: "An online REPL for converting JS Object to JSON."

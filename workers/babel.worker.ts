@@ -1,4 +1,4 @@
-import { transform } from "@babel/standalone";
+// import { transform } from "@babel/standalone";
 import jsonToProptypes from "babel-plugin-json-to-proptypes";
 import jsonToMobxTree from "@assets/vendor/babel-plugin-js-to-mobx-state-tree";
 import { merge } from "lodash";
@@ -6,6 +6,8 @@ import { prettify } from "@utils/prettify";
 import { BabelTransforms } from "@constants/babelTransforms";
 import objStylesToTemplate from "babel-plugin-object-styles-to-template";
 import babelFlowToTs from "babel-plugin-flow-to-typescript";
+
+declare const self;
 
 const _self: any = self;
 
@@ -25,7 +27,7 @@ async function handleJsonToProptypes(value, id) {
     code = merge({}, ...code);
   }
 
-  const result = transform(`const propTypes = ${JSON.stringify(code)}`, {
+  const result = Babel.transform(`const propTypes = ${JSON.stringify(code)}`, {
     plugins: [jsonToProptypes]
   }).code;
 
@@ -40,7 +42,7 @@ async function handleJsonToProptypes(value, id) {
 function objectStylesToTemplate(value, id, settings) {
   _self.postMessage({
     id,
-    payload: transform(value, {
+    payload: Babel.transform(value, {
       plugins: [[objStylesToTemplate, settings]]
     }).code
   });
@@ -49,7 +51,7 @@ function objectStylesToTemplate(value, id, settings) {
 function flowToTS(value, id) {
   _self.postMessage({
     id,
-    payload: transform(value, {
+    payload: Babel.transform(value, {
       plugins: [babelFlowToTs]
     }).code
   });
@@ -58,14 +60,26 @@ function flowToTS(value, id) {
 function jsonToMobx(value, id) {
   _self.postMessage({
     id,
-    payload: transform(`const myModel = ${value}`, {
+    payload: Babel.transform(`const myModel = ${value}`, {
       plugins: [jsonToMobxTree]
+    }).code
+  });
+}
+
+function deobfuscateCode(value, id) {
+  importScripts("https://bundle.run/babel-plugin-deobfuscate@0.0.3");
+  _self.postMessage({
+    id,
+    payload: Babel.transform(value, {
+      plugins: [self.babelPluginDeobfuscate]
     }).code
   });
 }
 
 _self.onmessage = ({ data: { id, payload } }: { data: Data }) => {
   const { value, type, settings } = payload;
+
+  importScripts("https://unpkg.com/@babel/standalone@7.5.4");
 
   try {
     if (type === BabelTransforms.JSON_TO_PROPTYPES) {
@@ -76,6 +90,8 @@ _self.onmessage = ({ data: { id, payload } }: { data: Data }) => {
       flowToTS(value, id);
     } else if (type === BabelTransforms.JSON_TO_MOBX_TREE) {
       jsonToMobx(value, id);
+    } else if (type === BabelTransforms.JS_DEOBFUSCATE) {
+      deobfuscateCode(value, id);
     }
   } catch (e) {
     if (IS_DEV) {
