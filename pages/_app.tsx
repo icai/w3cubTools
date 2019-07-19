@@ -18,7 +18,7 @@ import {
 let reactGa;
 if (IN_BROWSER) {
   reactGa = require("react-ga");
-  reactGa.initialize("UA-60624235-8", {
+  reactGa.initialize("UA-71174418-1", {
     debug: IS_DEV
   });
 }

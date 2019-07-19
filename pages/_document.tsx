@@ -20,7 +20,7 @@ function trackingScript() {
   gtag("js", new Date());
 
   // @ts-ignore
-  gtag("config", "UA-60624235-8");
+  gtag("config", "UA-71174418-1");
 }
 
 export default class MyDocument extends Document<DocumentProps> {
@@ -56,7 +56,7 @@ export default class MyDocument extends Document<DocumentProps> {
 
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-60624235-8"
+            src="https://www.googletagmanager.com/gtag/js?id=UA-71174418-1"
           />
           <script>
             <>{IN_BROWSER && trackingScript()}</>
