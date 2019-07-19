@@ -11,6 +11,12 @@ export const categorizedRoutes = [
         path: "/curl-builder",
         title: "Online curl command line builder",
         desc: "Online curl command line builder"
+      },
+      {
+        label: "Web Colors",
+        path: "/web-color",
+        title: "Web Colors",
+        desc: "Web Colors"
       }
     ]
   },

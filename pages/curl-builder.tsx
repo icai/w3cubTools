@@ -78,7 +78,7 @@ const schema = {
     }
   },
   formData: {
-    endpoint: "https://www.google.com/"
+    endpoint: "https://github.com/"
   }
 };
 
@@ -175,7 +175,7 @@ export default class extends Component<any, any> {
               rows={6}
               placeholder="result"
               value={result}
-              defaultValue={result}
+              onChange={() => {}}
               onClick={this.onSelect}
               style={{ fontSize: "20px" }}
             />
