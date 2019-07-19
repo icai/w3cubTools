@@ -292,7 +292,6 @@ export default function({
 
         {hasCopy && (
           <Button
-            appearance="primary"
             marginRight={10}
             iconBefore="duplicate"
             onClick={copyValue}
@@ -303,7 +302,7 @@ export default function({
         )}
 
         {hasPrettier && (
-          <Button appearance="primary" onClick={prettify} height={28}>
+          <Button onClick={prettify} height={28}>
             Prettify
           </Button>
         )}

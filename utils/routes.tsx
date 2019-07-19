@@ -8,7 +8,7 @@ export const categorizedRoutes = [
     content: [
       {
         label: "to JSX",
-        path: "/",
+        path: "/svg-to-jsx",
         packageName: "@svgr/core",
         packageUrl: "https://github.com/smooth-code/svgr",
         title: "Transform | A polyglot web converter."
@@ -244,6 +244,7 @@ export interface Route {
   path: string;
   label: string;
   desc: string;
+  beta?: boolean;
 }
 
 export const routes = flatten(
