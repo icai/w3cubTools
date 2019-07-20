@@ -137,12 +137,6 @@ export default class extends Component<any, any> {
     const { result, schema, uiSchema, formData } = this.state;
     return (
       <Fragment>
-        <Head>
-          <link
-            rel="stylesheet"
-            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          />
-        </Head>
         <style jsx>
           {`
             .rt-from fieldset {

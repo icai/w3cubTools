@@ -155,6 +155,10 @@ export default function App({ Component, pageProps }) {
           {activeRoute && (activeRoute.title || activeRoute.searchTerm)}
         </title>
         <meta name="description" content={activeRoute && activeRoute.desc} />
+        <link
+          rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        />
       </Head>
 
       <Pane
