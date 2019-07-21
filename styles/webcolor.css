@@ -1,4 +1,4 @@
-.SafeCorCent-down {
+.color-tabs {
   width: 1170px;
   font-size: 12px;
   background: #fff none repeat scroll 0% 0%;
@@ -7,44 +7,44 @@
   list-style: none;
 }
 
-.SafeCorCent-down li {
+.color-tabs li {
   line-height: 30px;
   cursor: pointer;
   text-align: left;
   float: left;
 }
 
-.SafeCorCent-down li a {
+.color-tabs li a {
   color: #747d87;
   display: inline-block;
   padding: 0px 10px;
 }
 
-.SafeCorCent-down li a:hover {
+.color-tabs li a:hover {
   text-decoration: none;
   background: #f5f5f5;
   color: #747d87;
 }
 
-.SafeCorCent-down li.bg-blue03 a {
+.color-tabs li.bg-blue03 a {
   color: #fff;
 }
 
-.SafeCorCent-down li.bg-blue03 a:hover {
+.color-tabs li.bg-blue03 a:hover {
   color: #fff;
   background-color: #55a7e3;
 }
 
-.pusmall .SafeCorCent-down {
+.pusmall .color-tabs {
   width: 980px;
 }
 
-.ColorCentWrap {
+.color-box {
   padding-left: 15px;
   overflow: hidden;
 }
 
-.ColorCentWrap h2 {
+.color-box h2 {
   padding-bottom: 10px;
   margin-bottom: 10px;
   text-align: right;

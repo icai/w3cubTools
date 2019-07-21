@@ -54,12 +54,14 @@ export default class MyDocument extends Document<DocumentProps> {
           {hydrationScript}
           <NextScript />
 
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-71174418-1"
-          />
+          {!__DEV__ && (
+            <script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=UA-71174418-1"
+            />
+          )}
           <script>
-            <>{IN_BROWSER && trackingScript()}</>
+            <>{!__DEV__ && IN_BROWSER && trackingScript()}</>
           </script>
         </body>
       </html>
