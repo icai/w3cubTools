@@ -49,9 +49,9 @@ const logo2 = (
   <svg
     version="1.1"
     viewBox="0 0 512 512"
-    fill="#fff"
-    width="50px"
-    height="50px"
+    fill="#000"
+    width="40px"
+    height="40px"
   >
     <path d="M506.192 69.175a8.467 8.467 0 0 0-2.484-5.754l-6.336-6.336-.033-.034a8.476 8.476 0 0 0-5.765-2.487c-18.12-9.377-41.377-7.396-57.28 6.389l-16.881 14.634a8.513 8.513 0 0 0-1.721 2.047l-27.584 45.944-16.833 5.611a8.503 8.503 0 0 0-3.323 14.076l7.401 7.401-82.355 82.355c-.208.208-.364.446-.547.669h-79.93v-59.505h34.003a8.501 8.501 0 0 0 8.501-8.501v-8.501h17.002v8.501a8.501 8.501 0 0 0 8.501 8.501h42.504a8.501 8.501 0 0 0 8.501-8.501V89.178a8.501 8.501 0 0 0-8.501-8.501h-42.504a8.501 8.501 0 0 0-8.501 8.501v8.501h-17.002v-8.501a8.501 8.501 0 0 0-8.501-8.501h-110.51c-2.486 0-61.191.102-87.695 8.937-27.19 9.063-45.206 27.676-45.96 28.465a8.503 8.503 0 0 0-1.675 9.216 8.503 8.503 0 0 0 7.818 5.16c.498 0 50.023.084 74.041 7.362 23.049 6.985 47.134 31.545 47.37 31.789a8.498 8.498 0 0 0 6.1 2.58h8.501v59.505H51.005a8.501 8.501 0 0 0-8.501 8.501V395.23c0 37.485 30.485 67.981 67.958 67.981h297.62c37.473 0 67.96-30.497 67.96-67.981V242.191a8.501 8.501 0 0 0-8.501-8.501h-105.74l48.287-48.288 7.404 7.404a8.496 8.496 0 0 0 7.963 2.262 8.502 8.502 0 0 0 6.112-5.586l5.614-16.845 46.642-28.167a8.485 8.485 0 0 0 2.042-1.724l14.05-16.279c13.732-15.911 15.671-39.174 6.277-57.292zm-366.695 88.009c-7.424-7.122-29.362-26.771-52.024-33.638-15.102-4.576-38.065-6.566-55.355-7.429 5.994-3.792 13.303-7.618 21.574-10.374 23.896-7.965 81.739-8.065 82.32-8.065h102.009v8.501a8.501 8.501 0 0 0 8.501 8.501h34.003a8.501 8.501 0 0 0 8.501-8.501v-8.501h25.502v59.505h-25.502v-8.501a8.501 8.501 0 0 0-8.501-8.501h-34.003a8.501 8.501 0 0 0-8.501 8.501v8.501H139.497zm56.021 17.001v59.505h-34.003v-59.505h34.003zm263.524 76.507V395.23c0 28.11-22.86 50.98-50.959 50.98h-297.62c-28.099 0-50.957-22.87-50.957-50.98V250.692h399.536zM338.41 233.039c-.202.203-.354.434-.532.652h-21.507l71.004-71.002 10.692 10.693-59.657 59.657zm148.635-117.678l-13.166 15.255-48.166 29.087a8.498 8.498 0 0 0-3.671 4.59l-2.254 6.766-18.83-18.83-7.571-7.572-.006-.005-3.682-3.682 6.766-2.255a8.502 8.502 0 0 0 4.601-3.689l28.505-47.478 15.858-13.747c12.033-10.427 30.369-10.719 42.85-1.315 9.415 12.489 9.153 30.837-1.234 42.875z" />
     <polygon
@@ -160,16 +160,18 @@ export default function App({ Component, pageProps }) {
           href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         />
       </Head>
-
       <Pane
         display="flex"
         alignItems="center"
         flexDirection="row"
         is="header"
-        height={63}
-        backgroundColor="#5e57a6"
+        height={48}
+        backgroundColor="#fff"
         paddingRight={"3%"}
         paddingLeft={"4%"}
+        css={{
+          "box-shadow": "0 2px 2px 0 rgba(0,0,0,.1), 0 1px 0 0 rgba(0,0,0,.1)"
+        }}
       >
         <Pane
           flex={1}
@@ -181,53 +183,9 @@ export default function App({ Component, pageProps }) {
         </Pane>
 
         <Pane>
-          <Popover
-            content={() => (
-              <Pane padding={20} width={400}>
-                <Heading marginBottom={10} size={400}>
-                  Your Data is always with you.
-                </Heading>
-
-                <Text size={400}>
-                  This website is static which means no data goes to the server.
-                  Everything is done on the client side. The code of this
-                  website is open source which you can find{" "}
-                  <Link size={400} href="https://github.com/ritz078/transform">
-                    on GitHub
-                  </Link>
-                </Text>
-              </Pane>
-            )}
-          >
-            <Button
-              appearance="minimal"
-              height={40}
-              css={{
-                color: "#fff !important"
-              }}
-            >
-              Privacy
-            </Button>
-          </Popover>
-          <Button
-            appearance="minimal"
-            height={40}
-            className="transform-changelog"
-            css={{
-              color: "#fff !important"
-            }}
-          >
-            Changelog
-          </Button>
-          <a href="https://github.com/ritz078/transform" target="_blank">
-            <Button
-              appearance="minimal"
-              height={40}
-              css={{
-                color: "#fff !important"
-              }}
-            >
-              GitHub
+          <a href="https://docs.w3cub.com/" target="_blank">
+            <Button appearance="minimal" height={40}>
+              W3cubDocs
             </Button>
           </a>
         </Pane>

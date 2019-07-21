@@ -1,9 +1,6 @@
 // <script src="https://unpkg.com/react-jsonschema-form/dist/react-jsonschema-form.js"></script>
 
 import React, { Fragment, Component } from "react";
-import { Pane } from "evergreen-ui";
-import Form from "react-jsonschema-form";
-import Head from "next/head";
 import hexRgb from "@utils/hexrgb";
 import colors from "@constants/color.json";
 import "@styles/webcolor.css";
@@ -23,7 +20,7 @@ export default class extends Component<any, any> {
       };
     })
   };
-  switchTab = (e, id) => {
+  switchTab = id => {
     this.setState({
       active: id
     });
@@ -47,8 +44,8 @@ export default class extends Component<any, any> {
                   <a
                     href="javascript:"
                     data-val={item.id + "_colors"}
-                    onClick={e => {
-                      this.switchTab(e, item.id);
+                    onClick={() => {
+                      this.switchTab(item.id);
                     }}
                   >
                     {item.title}

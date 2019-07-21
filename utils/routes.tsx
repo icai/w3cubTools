@@ -4,6 +4,36 @@ import find from "lodash/find";
 
 export const categorizedRoutes = [
   {
+    category: "Encoding",
+    content: [
+      {
+        label: "Deobfuscate",
+        path: "/js-deobfuscate",
+        title: "Deobfuscate Code"
+        // packageName: "babel-plugin-deobfuscate",
+        // packageUrl: "https://www.npmjs.com/package/babel-plugin-deobfuscate"
+      },
+      {
+        label: "Escape and Unescape",
+        path: "/escape",
+        title: "Escape and Unescape",
+        desc: "Escape and Unescape"
+      },
+      {
+        label: "Unicode to Chinese Ascii",
+        path: "/unicode-to-ascii",
+        title: "Unicode to Chinese Ascii",
+        desc: "Unicode to Chinese Ascii"
+      },
+      {
+        label: "Web Colors",
+        path: "/web-color",
+        title: "Web Colors",
+        desc: "Web Colors"
+      }
+    ]
+  },
+  {
     category: "NetWork",
     content: [
       {
@@ -169,13 +199,6 @@ export const categorizedRoutes = [
   {
     category: "JavaScript",
     content: [
-      {
-        label: "Deobfuscate Code",
-        path: "/js-deobfuscate",
-        title: "Deobfuscate Code",
-        packageName: "babel-plugin-deobfuscate",
-        packageUrl: "https://www.npmjs.com/package/babel-plugin-deobfuscate"
-      },
       {
         label: "to JSON",
         path: "/js-object-to-json",

@@ -19,14 +19,9 @@ declare namespace hexRgb {
     blue: number;
     alpha: number;
   }
-
-  type RgbaTuple = [number, number, number, number];
 }
 
-declare function hexRgb(hex: string): hexRgb.RgbaObject;
-declare function hexRgb(hex: string, options: hexRgb.Options): hexRgb.RgbaTuple;
-
-export default function(hex: string, options: Options = {}) {
+export default function(hex: string): hexRgb.RgbaObject {
   if (
     typeof hex !== "string" ||
     nonHexChars.test(hex) ||
@@ -57,7 +52,5 @@ export default function(hex: string, options: Options = {}) {
   const green = (num >> 8) & 255;
   const blue = num & 255;
 
-  return options.format === "array"
-    ? [red, green, blue, alpha]
-    : { red, green, blue, alpha };
+  return { red, green, blue, alpha };
 }

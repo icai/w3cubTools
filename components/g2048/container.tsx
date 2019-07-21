@@ -39,7 +39,7 @@ export default class Container extends Component<any, any> {
 
   render() {
     return (
-      <div className="container">
+      <div className="g-container">
         <Heading score={this.state.score} best={this.state.best} />
         <AboveGame />
         <GameContainer
