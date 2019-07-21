@@ -3,7 +3,7 @@
 import React, { Fragment, Component } from "react";
 import hexRgb from "@utils/hexrgb";
 import colors from "@constants/color.json";
-import css from "@styles/webcolor.css";
+import "@styles/webcolor.css";
 
 export default class extends Component<any, any> {
   state = {
@@ -31,9 +31,10 @@ export default class extends Component<any, any> {
       <Fragment>
         <div className="color-box pt10">
           <ul className="color-tabs" style={{ border: 0 }}>
-            {colors.map(item => {
+            {colors.map((item, ix) => {
               return (
                 <li
+                  key={ix}
                   style={{
                     background:
                       item.id == this.state.active

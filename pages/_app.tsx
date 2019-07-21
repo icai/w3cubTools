@@ -123,33 +123,6 @@ export default function App({ Component, pageProps }) {
 
   return (
     <Container>
-      <style jsx>
-        {`
-          .sitemap {
-            margin-top: 30px;
-            background: #f2f2f2;
-            padding: 30px 15px;
-            font-size: 15px;
-            font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial,
-              sans-serif;
-          }
-
-          .sitemap ul > li {
-            list-style: none;
-            float: left;
-            margin-left: 10px;
-          }
-
-          .sitemap ul > li > span {
-            color: rgb(35, 67, 97);
-          }
-          .sitemap .item {
-            color: rgb(66, 90, 112);
-            color: #666;
-            text-decoration: none;
-          }
-        `}
-      </style>
       <Head>
         <title>
           {activeRoute && (activeRoute.title || activeRoute.searchTerm)}

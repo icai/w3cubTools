@@ -137,16 +137,6 @@ export default class extends Component<any, any> {
     const { result, schema, uiSchema, formData } = this.state;
     return (
       <Fragment>
-        <style jsx>
-          {`
-            .rt-from fieldset {
-              padding: 0;
-            }
-            .rt-from legend {
-              font-size: 20px;
-            }
-          `}
-        </style>
         <Pane
           className="rt-from"
           display="block"

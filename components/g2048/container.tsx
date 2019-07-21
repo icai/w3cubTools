@@ -213,9 +213,10 @@ export default class Container extends Component<any, any> {
 
   // Save all tile positions and remove merger info
   prepareTiles() {
-    // @ts-ignore
     this.grid.eachCell(function(
+      // @ts-ignore
       x: any,
+      // @ts-ignore
       y: any,
       tile: { mergedFrom: null; savePosition: () => void }
     ) {

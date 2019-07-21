@@ -1,3 +1,4 @@
+//@ts-ignore
 import { Pane, Alert, Textarea } from "evergreen-ui";
 import EditorPanel, { EditorPanelProps } from "@components/EditorPanel";
 import * as React from "react";
@@ -43,21 +44,21 @@ export interface ConversionLayoutProps {
 const ConversionPanel: React.FunctionComponent<
   ConversionLayoutProps
 > = function({
-  splitEditorProps,
-  editorProps,
-  resultEditorProps,
+  // splitEditorProps,
+  // editorProps,
+  // resultEditorProps,
   transformer,
-  splitLanguage,
-  splitTitle,
-  editorLanguage,
-  editorTitle,
-  resultLanguage,
-  resultTitle,
-  settings,
+  // splitLanguage,
+  // splitTitle,
+  // editorLanguage,
+  // editorTitle,
+  // resultLanguage,
+  // resultTitle,
+  // settings,
   flexDirection = "row",
   layoutHeight = "500px",
-  defaultValue,
-  splitEditorDefaultValue
+  defaultValue
+  // splitEditorDefaultValue
 }) {
   // const [value, setValue] = useData(editorDefaultValue || editorLanguage);
   // const [splitValue, setSplitValue] = useData(
