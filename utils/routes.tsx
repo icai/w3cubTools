@@ -15,7 +15,8 @@ export const categorizedRoutes = [
         label: "MD5 encode",
         path: "/md5-encode",
         title: "MD5 encode",
-        desc: "MD5 encode"
+        desc: "MD5 encode",
+        scripts: ["/static/crypto/sha1.js", "/static/crypto/md5.js"]
       },
       {
         label: "SHA encode",
@@ -56,6 +57,29 @@ export const categorizedRoutes = [
     ]
   },
   {
+    category: "Images",
+    content: [
+      {
+        label: "Image to Base64",
+        path: "/image-to-base64",
+        title: "Image convert to base64 html code online",
+        desc: "Image convert to base64 html code online"
+      },
+      {
+        label: "Base64 to Image",
+        path: "/base64-to-image",
+        title: "Image base64 to image online",
+        desc: "Image base64 to image online"
+      },
+      {
+        label: "Image converter",
+        path: "/image-converter",
+        title: "Image convert to png,jpg,...",
+        desc: "Image convert to png,jpg,..."
+      }
+    ]
+  },
+  {
     category: "Tools",
     content: [
       {
@@ -72,12 +96,6 @@ export const categorizedRoutes = [
         path: "/web-color",
         title: "Web Colors",
         desc: "Web Colors"
-      },
-      {
-        label: "Image Base64",
-        path: "/image-base64",
-        title: "Image convert to base64 html tag,css code online",
-        desc: "Image convert to base64 html tag,css code onlines"
       },
       {
         label: "程序员老黄历",

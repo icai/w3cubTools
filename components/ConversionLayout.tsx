@@ -35,6 +35,7 @@ export interface ConversionLayoutProps {
   editorProps?: Partial<EditorPanelProps>;
   resultEditorProps?: Partial<EditorPanelProps>;
   transformer?: Transformer;
+  resultRender?: Transformer;
   defaultSplitValue?: string;
   settings?: any;
   flexDirection?: "row" | "column";
@@ -49,6 +50,7 @@ const ConversionPanel: React.FunctionComponent<
   // editorProps,
   // resultEditorProps,
   transformer,
+  resultRender,
   // splitLanguage,
   // splitTitle,
   // editorLanguage,
@@ -157,6 +159,8 @@ const ConversionPanel: React.FunctionComponent<
     };
   }
 
+  const resultSt = resultRender ? { border: "2px solid #ccc" } : {};
+  const resultOptions = { ...childProps };
   return (
     <>
       <Pane {...flexProps}>
@@ -179,14 +183,23 @@ const ConversionPanel: React.FunctionComponent<
                 setResult
               })}
             </Pane>
-            <Pane {...childProps}>
-              <Textarea
-                height="100%"
-                id="textarea-2"
-                placeholder="Textarea placeholder..."
-                value={result}
-                onChange={e => setResult(e.target.value)}
-              />
+            <Pane {...resultOptions} style={resultSt}>
+              {resultRender &&
+                resultRender({
+                  value,
+                  result,
+                  setValue,
+                  setResult
+                })}
+              {!resultRender && (
+                <Textarea
+                  height="100%"
+                  id="textarea-2"
+                  placeholder="Textarea placeholder..."
+                  value={result}
+                  onChange={e => setResult(e.target.value)}
+                />
+              )}
             </Pane>
           </>
         )}

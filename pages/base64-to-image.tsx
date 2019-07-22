@@ -1,12 +1,14 @@
 import ConversionLayout from "@components/ConversionLayout";
 import * as React from "react";
 import { Button } from "evergreen-ui";
+import decode from "@utils/crypto";
 
 export default function() {
   return (
     <ConversionLayout
-      flexDirection="column"
-      transformer={({ value, setResult, setValue }) => {
+      layoutHeight="700px"
+      flexDirection="row"
+      transformer={({ value, setResult, result, setValue }) => {
         return (
           <>
             <Button
@@ -15,19 +17,28 @@ export default function() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(CryptoJS.md5(value))}
+              onClick={() => {
+                var str = value.trim();
+                // data:image/png;base64
+                if (str.substring(0, 4) != "data") {
+                  str = "data:image/png;base64," + str;
+                }
+                setResult(str);
+              }}
             >
-              MD5 Encode
+              Generate Image
             </Button>
             <Button
+              is="a"
               marginRight={10}
               height={40}
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(CryptoJS.SHA1(value))}
+              download="cbimage.jpg"
+              href={result}
             >
-              SHA1 Encode
+              Download Image
             </Button>
             <Button
               marginRight={10}
@@ -47,7 +58,24 @@ export default function() {
           </>
         );
       }}
-      defaultValue="https://www.google.com/"
+      defaultValue=""
+      resultRender={({ result }) => {
+        if (result) {
+          return (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%"
+              }}
+            >
+              <img src={result} className="" />
+            </div>
+          );
+        }
+        return null;
+      }}
     />
   );
 }
