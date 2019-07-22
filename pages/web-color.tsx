@@ -6,19 +6,23 @@ import colors from "@constants/color.json";
 import "@styles/webcolor.css";
 
 export default class extends Component<any, any> {
+  static getInitialProps(props) {
+    return {
+      colors: colors.map(color => {
+        return {
+          ...color,
+          datas: color.datas.map(item => {
+            return {
+              color: item.color,
+              rgb: hexRgb(item.color)
+            };
+          })
+        };
+      })
+    };
+  }
   state = {
-    active: "all",
-    colors: colors.map(color => {
-      return {
-        ...color,
-        datas: color.datas.map(item => {
-          return {
-            color: item.color,
-            rgb: hexRgb(item.color)
-          };
-        })
-      };
-    })
+    active: "all"
   };
   switchTab = id => {
     this.setState({
@@ -26,10 +30,10 @@ export default class extends Component<any, any> {
     });
   };
   render() {
-    const { colors } = this.state;
+    const { colors } = this.props;
     return (
       <Fragment>
-        <div className="color-box pt10">
+        <div className="color-box">
           <ul className="color-tabs" style={{ border: 0 }}>
             {colors.map((item, ix) => {
               return (
@@ -63,12 +67,12 @@ export default class extends Component<any, any> {
                   display: item.id == this.state.active ? "block" : "none"
                 }}
                 id={item.id + "_colors"}
-                className="row swatches"
+                className="color-row"
               >
                 <h2>{item.title}</h2>
                 {item.datas.map((color, ci) => {
                   return (
-                    <div className="color col" key={"c" + ci}>
+                    <div className="color color-col" key={"c" + ci}>
                       <span
                         className="swatch"
                         style={{ backgroundColor: color.color }}

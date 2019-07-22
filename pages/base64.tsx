@@ -1,10 +1,12 @@
 import ConversionLayout from "@components/ConversionLayout";
 import * as React from "react";
 import { Button } from "evergreen-ui";
+import decode from "@utils/crypto";
 
 export default function() {
   return (
     <ConversionLayout
+      flexDirection="column"
       transformer={({ value, setResult, result, setValue }) => {
         return (
           <>
@@ -14,9 +16,9 @@ export default function() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(escape(value))}
+              onClick={() => setResult(decode.base64_encode(value))}
             >
-              Escape加密
+              Base64 Encode
             </Button>
             <Button
               marginRight={10}
@@ -24,9 +26,9 @@ export default function() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(unescape(value))}
+              onClick={() => setResult(decode.base64_decode(value))}
             >
-              Unescape解密
+              Base64 Decode
             </Button>
             <Button
               marginRight={10}
@@ -39,7 +41,7 @@ export default function() {
                 setValue(result);
               }}
             >
-              内容交换
+              Content Exchange
             </Button>
             <Button
               marginRight={10}
@@ -54,12 +56,11 @@ export default function() {
                 setValue("");
               }}
             >
-              清空结果
+              Empty All
             </Button>
           </>
         );
       }}
-      editorTitle="JS Object"
       defaultValue="https://www.google.com/"
     />
   );

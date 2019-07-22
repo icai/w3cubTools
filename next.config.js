@@ -20,6 +20,7 @@ const config = {
 
     config.plugins.push(
       new webpack.DefinePlugin({
+        __HASHVERSION__: "20190722",
         "process.env.DEV": JSON.stringify(options.dev),
         IN_BROWSER: !options.isServer,
         IS_DEV: options.dev,

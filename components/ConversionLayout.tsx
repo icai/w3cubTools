@@ -34,11 +34,12 @@ export interface ConversionLayoutProps {
   splitEditorDefaultValue?: string;
   editorProps?: Partial<EditorPanelProps>;
   resultEditorProps?: Partial<EditorPanelProps>;
-  transformer: Transformer;
+  transformer?: Transformer;
   defaultSplitValue?: string;
   settings?: any;
   flexDirection?: "row" | "column";
   layoutHeight?: string;
+  children?: React.ReactNode;
 }
 
 const ConversionPanel: React.FunctionComponent<
@@ -57,7 +58,8 @@ const ConversionPanel: React.FunctionComponent<
   // settings,
   flexDirection = "row",
   layoutHeight = "500px",
-  defaultValue
+  defaultValue,
+  children
   // splitEditorDefaultValue
 }) {
   // const [value, setValue] = useData(editorDefaultValue || editorLanguage);
@@ -158,32 +160,37 @@ const ConversionPanel: React.FunctionComponent<
   return (
     <>
       <Pane {...flexProps}>
-        <Pane {...childProps}>
-          <Textarea
-            height="100%"
-            id="textarea-1"
-            placeholder="Textarea placeholder..."
-            value={value}
-            onChange={e => setValue(e.target.value)}
-          />
-        </Pane>
-        <Pane {...controlProps}>
-          {transformer({
-            value,
-            result,
-            setValue,
-            setResult
-          })}
-        </Pane>
-        <Pane {...childProps}>
-          <Textarea
-            height="100%"
-            id="textarea-2"
-            placeholder="Textarea placeholder..."
-            value={result}
-            onChange={e => setResult(e.target.value)}
-          />
-        </Pane>
+        {!children && (
+          <>
+            <Pane {...childProps}>
+              <Textarea
+                height="100%"
+                id="textarea-1"
+                placeholder="Textarea placeholder..."
+                value={value}
+                onChange={e => setValue(e.target.value)}
+              />
+            </Pane>
+            <Pane {...controlProps}>
+              {transformer({
+                value,
+                result,
+                setValue,
+                setResult
+              })}
+            </Pane>
+            <Pane {...childProps}>
+              <Textarea
+                height="100%"
+                id="textarea-2"
+                placeholder="Textarea placeholder..."
+                value={result}
+                onChange={e => setResult(e.target.value)}
+              />
+            </Pane>
+          </>
+        )}
+        {children && children}
       </Pane>
 
       {message && (

@@ -58,7 +58,7 @@
   text-align: center;
 }
 
-.col {
+.color-col {
   width: 14.2%;
   _width: 14.5%;
   padding: 0px 1% 1% 0px;
@@ -68,7 +68,7 @@
   overflow: hidden;
 }
 
-.swatches {
+.color-row {
   overflow: hidden;
 }
 

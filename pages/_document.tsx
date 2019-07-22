@@ -37,7 +37,6 @@ export default class MyDocument extends Document<DocumentProps> {
 
   render() {
     const { css, hydrationScript } = this.props;
-
     return (
       <html>
         <Head>

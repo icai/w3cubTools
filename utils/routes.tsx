@@ -4,6 +4,34 @@ import find from "lodash/find";
 
 export const categorizedRoutes = [
   {
+    category: "Hash",
+    content: [
+      {
+        label: "Base64 code",
+        path: "/base64",
+        title: "Base64 code"
+      },
+      {
+        label: "MD5 encode",
+        path: "/md5-encode",
+        title: "MD5 encode",
+        desc: "MD5 encode"
+      },
+      {
+        label: "SHA encode",
+        path: "/sha-encode",
+        title: "SHA encode",
+        desc: "SHA encode",
+        scripts: [
+          "/static/crypto/sha1.js",
+          "/static/crypto/sha256.js",
+          "/static/crypto/sha512.js"
+        ]
+      }
+    ]
+  },
+
+  {
     category: "Encoding",
     content: [
       {
@@ -14,39 +42,57 @@ export const categorizedRoutes = [
         // packageUrl: "https://www.npmjs.com/package/babel-plugin-deobfuscate"
       },
       {
-        label: "Escape and Unescape",
-        path: "/escape",
-        title: "Escape and Unescape",
-        desc: "Escape and Unescape"
+        label: "Url Encode",
+        path: "/urlencode",
+        title: "Url encode",
+        desc: "Url Escape, Unescape, encodeURI, decodeURI ..."
       },
       {
         label: "Unicode to Chinese Ascii",
         path: "/unicode-to-ascii",
         title: "Unicode to Chinese Ascii",
         desc: "Unicode to Chinese Ascii"
-      },
-      {
-        label: "Web Colors",
-        path: "/web-color",
-        title: "Web Colors",
-        desc: "Web Colors"
       }
     ]
   },
   {
-    category: "NetWork",
+    category: "Tools",
     content: [
       {
         label: "Curl builder",
         path: "/curl-builder",
         title: "Online curl command line builder",
-        desc: "Online curl command line builder"
+        desc: "Online curl command line builder",
+        links: [
+          "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        ]
       },
       {
         label: "Web Colors",
         path: "/web-color",
         title: "Web Colors",
         desc: "Web Colors"
+      },
+      {
+        label: "Image Base64",
+        path: "/image-base64",
+        title: "Image convert to base64 html tag,css code online",
+        desc: "Image convert to base64 html tag,css code onlines"
+      },
+      {
+        label: "程序员老黄历",
+        path: "/huangli",
+        title: "程序员老黄历",
+        desc: "程序员老黄历",
+        links: ["/static/css/huangli.css"]
+      },
+      {
+        label: "程序员求签",
+        path: "/qiuqian",
+        title: "程序员求签",
+        desc: "程序员求签",
+        links: ["/static/css/qiuqian.css"],
+        scripts: ["//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"]
       }
     ]
   },
