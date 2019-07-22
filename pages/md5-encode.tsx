@@ -15,7 +15,7 @@ export default function() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(CryptoJS.md5(value))}
+              onClick={() => setResult(CryptoJS.MD5(value))}
             >
               MD5 Encode
             </Button>

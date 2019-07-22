@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 /**
  * RegEx escaping
  */
@@ -344,7 +344,7 @@ const D3 = {
       RFC2045Decode2IN = /=([0-9A-F]{2})/gim, // the RFC states against decoding lower case encodings, but following apparent PHP behavior
       // RFC2045Decode2IN = /=([0-9A-F]{2})/gm,
 
-      RFC2045Decode2OUT = function(sMatch, sHex) {
+      RFC2045Decode2OUT = function(_sMatch, sHex) {
         return String.fromCharCode(parseInt(sHex, 16));
       };
     return str
