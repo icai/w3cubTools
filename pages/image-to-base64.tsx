@@ -8,7 +8,7 @@ export default function() {
     display: "flex",
     flexDirection: "column" as any,
     flex: "1",
-    flexWrap: "wrap",
+    flexWrap: "wrap" as any,
     height: "100%"
   };
 

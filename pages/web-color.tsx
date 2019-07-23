@@ -6,7 +6,7 @@ import colors from "@constants/color.json";
 import "@styles/webcolor.css";
 
 export default class extends Component<any, any> {
-  static getInitialProps(props) {
+  static getInitialProps() {
     return {
       colors: colors.map(color => {
         return {

@@ -1,7 +1,6 @@
 import ConversionLayout from "@components/ConversionLayout";
 import * as React from "react";
 import { Button } from "evergreen-ui";
-import decode from "@utils/crypto";
 
 export default function() {
   return (
@@ -35,7 +34,7 @@ export default function() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              download="cbimage.jpg"
+              download="image.jpg"
               href={result}
             >
               Download Image

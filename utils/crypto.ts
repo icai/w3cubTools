@@ -238,7 +238,7 @@ const D3 = {
 
     return tmp_str;
   },
-  htmlspecialchars: function(string, quote_style, charset, double_encode) {
+  htmlspecialchars: function(string, quote_style, _charset, double_encode) {
     var optTemp = 0,
       i = 0,
       noquotes = false;

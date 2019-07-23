@@ -8,6 +8,7 @@ declare module "evergreen-ui" {
     className?: string;
     css?: any;
     is?: any;
+    style?: any;
   }
 
   export class Pane extends React.PureComponent<PaneProps> {}
@@ -30,6 +31,7 @@ declare module "evergreen-ui" {
     href?: string;
     onClick?: () => void;
     css?: any;
+    download?: string;
   }
   export class Button extends React.PureComponent<ButtonProps> {}
 
