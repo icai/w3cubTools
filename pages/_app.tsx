@@ -210,3 +210,13 @@ export default function App({ Component, pageProps }) {
     </Container>
   );
 }
+
+App.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {};
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+
+  return { pageProps };
+};

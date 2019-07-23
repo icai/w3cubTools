@@ -1,6 +1,7 @@
 import ConversionPanel, { Transformer } from "@components/ConversionPanel";
 import { useCallback } from "react";
 import * as React from "react";
+//@ts-ignore
 import { frame } from "jsonld";
 
 export default function() {

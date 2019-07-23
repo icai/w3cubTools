@@ -398,21 +398,28 @@ export interface Route {
 }
 
 export const routes = flatten(
-  categorizedRoutes.map(a =>
-    // @ts-ignore
-    a.content.map(x => {
-      const _label =
-        a.category.toLowerCase() !== "others"
-          ? `${a.category} ${x.label}`
-          : x.label;
-      return {
-        ...x,
-        category: a.category,
-        searchTerm: _label,
-        desc: x.desc || `An online Repl to convert ${_label}`
-      };
+  categorizedRoutes
+    .map(a =>
+      // @ts-ignore
+      a.content.map(x => {
+        const _label =
+          a.category.toLowerCase() !== "others"
+            ? `${a.category} ${x.label}`
+            : x.label;
+        return {
+          ...x,
+          category: a.category,
+          searchTerm: _label,
+          desc: x.desc || `An online Repl to convert ${_label}`
+        };
+      })
+    )
+    .concat({
+      label: "Transform",
+      path: "/",
+      title: "Transform | A polyglot web converter.",
+      desc: "Transform | A polyglot web converter."
     })
-  )
 );
 
 export function activeRouteData(pathname) {
