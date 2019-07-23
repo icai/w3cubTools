@@ -40,6 +40,7 @@ export interface ConversionPanelProps {
   editorSettingsElement?: EditorPanelProps["settingElement"];
   resultSettingsElement?: EditorPanelProps["settingElement"];
   settings?: any;
+  layoutHeight?: string;
 }
 
 const ConversionPanel: React.FunctionComponent<
@@ -59,7 +60,8 @@ const ConversionPanel: React.FunctionComponent<
   settings,
   editorDefaultValue,
   splitEditorDefaultValue,
-  resultSettingsElement
+  resultSettingsElement,
+  layoutHeight
 }) {
   const [value, setValue] = useData(editorDefaultValue || editorLanguage);
   const [splitValue, setSplitValue] = useData(
@@ -109,6 +111,15 @@ const ConversionPanel: React.FunctionComponent<
     transform();
   }, [splitValue, value, splitTitle, settings]);
 
+  if (
+    splitTitle ||
+    editorProps.previewElement ||
+    resultEditorProps.previewElement
+  ) {
+    layoutHeight = "700px";
+  } else {
+    layoutHeight = "500px";
+  }
   return (
     <>
       <Pane
@@ -116,7 +127,7 @@ const ConversionPanel: React.FunctionComponent<
         flexDirection="row"
         overflow="hidden"
         flex={1}
-        height={"calc(100vh - 40px)"}
+        height={layoutHeight}
         css={{
           border: "1px solid #E4E7EB"
         }}
