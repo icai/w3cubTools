@@ -13,25 +13,25 @@ interface Data {
 
 const _self = self as any;
 
-_self.onmessage = ({
+const window = self;
+// declare const window;
+
+_self.onmessage = async ({
   data: {
     payload: { value, language },
     id
   }
 }: Data) => {
-  (async function() {
-    try {
-      const payload = await prettify(language, value);
-
-      _self.postMessage({
-        id,
-        payload
-      });
-    } catch (e) {
-      _self.postMessage({
-        id,
-        err: e.message
-      });
-    }
-  })();
+  try {
+    const payload = await prettify(language, value);
+    _self.postMessage({
+      id,
+      payload
+    });
+  } catch (e) {
+    _self.postMessage({
+      id,
+      err: e.message
+    });
+  }
 };

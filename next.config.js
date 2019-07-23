@@ -71,6 +71,7 @@ const config = {
     return config;
   },
   enableSvg: true,
+  // cssModules: true,
   target: "server"
 };
 

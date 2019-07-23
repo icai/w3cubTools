@@ -7,6 +7,7 @@ import React, {
 } from "react";
 //@ts-ignore
 import { Button, Pane, FilePicker, Textarea } from "evergreen-ui";
+import "@styles/huangli.css";
 
 export default function() {
   /*
@@ -464,11 +465,11 @@ export default function() {
             {star((random(iday, 6) % 5) + 1)}
           </span>
         </div>
-        {/* <div className="adlink">
-          <a href="//jsrun.net/v2qKp" target="_blank">
+        <div className="adlink">
+          <a href="/qiuqian" target="_self">
             想求签？
-            </a>
-        </div> */}
+          </a>
+        </div>
         <div className="comment">
           <ul>
             <li>

@@ -101,15 +101,13 @@ export const categorizedRoutes = [
         label: "程序员老黄历",
         path: "/huangli",
         title: "程序员老黄历",
-        desc: "程序员老黄历",
-        links: ["/static/css/huangli.css"]
+        desc: "程序员老黄历"
       },
       {
         label: "程序员求签",
         path: "/qiuqian",
         title: "程序员求签",
         desc: "程序员求签",
-        links: ["/static/css/qiuqian.css"],
         scripts: ["//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"]
       }
     ]

@@ -118,10 +118,9 @@ export default function App({ Component, pageProps }) {
     };
   }, []);
 
-  renderHeadWay();
+  // renderHeadWay();
 
   const activeRoute = activeRouteData(router.pathname);
-  // console.info(router);
 
   return (
     <Container>
@@ -149,7 +148,7 @@ export default function App({ Component, pageProps }) {
         paddingRight={"3%"}
         paddingLeft={"4%"}
         css={{
-          "box-shadow": "0 2px 2px 0 rgba(0,0,0,.1), 0 1px 0 0 rgba(0,0,0,.1)"
+          boxShadow: "0 2px 2px 0 rgba(0,0,0,.1), 0 1px 0 0 rgba(0,0,0,.1)"
         }}
       >
         <Pane
