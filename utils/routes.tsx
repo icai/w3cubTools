@@ -1,7 +1,11 @@
 import React from "react";
 import flatten from "lodash/flatten";
 import find from "lodash/find";
-
+import { ucfirst } from "@utils/escape";
+const alias = {
+  js: "javaScript",
+  csharp: "C#"
+};
 export const categorizedRoutes = [
   {
     category: "Hash",
@@ -48,6 +52,17 @@ export const categorizedRoutes = [
         title: "Url encode",
         desc: "Url Escape, Unescape, encodeURI, decodeURI ..."
       },
+      ...["html", "xml", "json", "js", "java", "csharp", "csv", "sql"].map(
+        item => {
+          const name = ucfirst(alias[item] || item);
+          return {
+            label: `${name} Escape Unescape`,
+            path: `/${item}-escape-unescape`,
+            title: `${name} Escape/Unescape`,
+            desc: `${name} Escape/Unescape`
+          };
+        }
+      ),
       {
         label: "Unicode to Chinese Ascii",
         path: "/unicode-to-ascii",

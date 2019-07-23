@@ -26,12 +26,13 @@ declare module "evergreen-ui" {
     disabled?: boolean;
     theme?: any;
     className?: string;
-    children: React.ReactChild;
+    children: React.ReactChild | any;
     is?: string;
     href?: string;
     onClick?: () => void;
     css?: any;
     download?: string;
+    whiteSpace?: string;
   }
   export class Button extends React.PureComponent<ButtonProps> {}
 
