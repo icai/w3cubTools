@@ -113,8 +113,8 @@ const ConversionPanel: React.FunctionComponent<
 
   if (
     splitTitle ||
-    editorProps.previewElement ||
-    resultEditorProps.previewElement
+    (editorProps && editorProps.previewElement) ||
+    (resultEditorProps && resultEditorProps.previewElement)
   ) {
     layoutHeight = "700px";
   } else {

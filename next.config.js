@@ -5,9 +5,11 @@ const webpack = require("webpack");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const withLess = require("@zeit/next-less");
 const withFonts = require("next-fonts");
+const path = require("path");
 
 const config = {
   webpack(config, options) {
+    const defaultLoaders = options.defaultLoaders;
     config.node = {
       fs: "empty",
       module: "empty",
@@ -55,6 +57,42 @@ const config = {
       })
     );
 
+    // config.module.rules.push(
+    //   {
+    //     test: /\.css$/,
+    //     use: [
+    //       defaultLoaders.babel,
+    //       {
+    //         loader: require('styled-jsx/webpack').loader,
+    //         options: {
+    //           type: 'global'
+    //         }
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     test: /\.svg$/,
+    //     use: [
+    //       {
+    //         loader: '@svgr/webpack'
+    //       }
+    //     ]
+    //   }
+    // )
+    // config.module.rules.push({
+    //   test: /\.less$/,
+    //   use: [
+    //     defaultLoaders.babel,
+    //     {
+    //       loader: require('styled-jsx/webpack').loader,
+    //       options: {
+    //         type: 'scoped'
+    //       }
+    //     },
+    //     'less-loader'
+    //   ]
+    // })
+
     config.module.rules.unshift({
       test: /\.worker\.ts/,
       use: {
@@ -67,6 +105,17 @@ const config = {
     });
 
     config.output.globalObject = `this`;
+
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      "@styles": path.join(__dirname, "styles"),
+      "@components": path.join(__dirname, "components"),
+      "@constants": path.join(__dirname, "constants"),
+      "@workers": path.join(__dirname, "workers"),
+      "@utils": path.join(__dirname, "utils"),
+      "@hooks": path.join(__dirname, "hooks"),
+      "@assets": path.join(__dirname, "assets")
+    };
 
     return config;
   },
