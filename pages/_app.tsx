@@ -19,7 +19,7 @@ import Scripts from "@components/Scripts";
 import Links from "@components/Links";
 
 let reactGa;
-if (IN_BROWSER) {
+if (IN_BROWSER && !IS_DEV) {
   reactGa = require("react-ga");
   reactGa.initialize("UA-71174418-1", {
     debug: IS_DEV
@@ -91,13 +91,13 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    reactGa.pageview(router.pathname);
+    reactGa && reactGa.pageview(router.pathname);
 
     const startProgress = () => NProgress.start();
 
     let timer;
     const stopProgress = pathname => {
-      reactGa.pageview(pathname);
+      reactGa && reactGa.pageview(pathname);
       clearTimeout(timer);
       NProgress.done();
     };
@@ -137,7 +137,9 @@ export default function App({ Component, pageProps }) {
         {activeRoute && activeRoute.scripts && (
           <Scripts scripts={activeRoute.scripts} />
         )}
+        <meta name="viewport" content="width=1024" />
       </Head>
+
       <Pane
         display="flex"
         alignItems="center"
@@ -159,7 +161,6 @@ export default function App({ Component, pageProps }) {
         >
           <NextLink href="/">{logo2}</NextLink>
         </Pane>
-
         <Pane>
           <a href="https://docs.w3cub.com/" target="_blank">
             <Button appearance="minimal" height={40}>
@@ -209,13 +210,3 @@ export default function App({ Component, pageProps }) {
     </Container>
   );
 }
-
-App.getInitialProps = async ({ Component, ctx }) => {
-  let pageProps = {};
-
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
-
-  return { pageProps };
-};

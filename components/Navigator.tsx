@@ -1,6 +1,6 @@
-import React, { useCallback, Fragment, useEffect } from "react";
-import { Heading, Pane, Text, Autocomplete, SearchInput } from "evergreen-ui";
-import { categorizedRoutes, Route, routes } from "@utils/routes";
+import React, { Fragment } from "react";
+import { Heading, Pane, Text } from "evergreen-ui";
+import { categorizedRoutes, Route } from "@utils/routes";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import SearchBox from "@components/Searchbox";

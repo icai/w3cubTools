@@ -1,11 +1,11 @@
 import ConversionPanel from "@components/ConversionPanel";
 import { useCallback } from "react";
 import * as React from "react";
-import gs from "generate-schema";
+import { jsonToSchema } from "@walmartlabs/json-to-simple-graphql-schema/lib";
 
 export default function() {
   const transformer = useCallback(({ value }) => {
-    return gs.mysql(JSON.parse(value));
+    return jsonToSchema({ jsonInput: value }).value;
   }, []);
 
   return (
@@ -13,8 +13,8 @@ export default function() {
       transformer={transformer}
       editorTitle="JSON"
       editorLanguage="json"
-      resultTitle="MySQL Schema"
-      resultLanguage={"sql"}
+      resultTitle="GraphQL"
+      resultLanguage={"graphql"}
     />
   );
 }

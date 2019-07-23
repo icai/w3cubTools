@@ -163,6 +163,13 @@ export const categorizedRoutes = [
         path: "/json-to-flow"
       },
       {
+        label: "to GraphQL",
+        path: "/json-to-graphql",
+        packageName: "@walmartlabs/json-to-simple-graphql-schema",
+        packageUrl:
+          "https://github.com/walmartlabs/json-to-simple-graphql-schema"
+      },
+      {
         label: "to TypeScript",
         path: "/json-to-typescript"
       },
@@ -220,6 +227,10 @@ export const categorizedRoutes = [
         path: "/json-to-yaml",
         packageName: "json2yaml",
         packageUrl: "https://github.com/jeffsu/json2yaml"
+      },
+      {
+        label: "to JSDoc",
+        path: "/json-to-jsdoc"
       }
     ]
   },
@@ -273,61 +284,80 @@ export const categorizedRoutes = [
     content: [
       {
         label: "to TypeScript",
-        path: "/graphql-to-typescript",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-typescript"
       },
       {
         label: "to Flow",
-        path: "/graphql-to-flow",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-flow"
       },
       {
         label: "to JAVA",
-        path: "/graphql-to-java",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-java"
       },
       {
         label: "to Resolvers Signature",
-        path: "/graphql-to-resolvers-signature",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-resolvers-signature"
       },
 
       {
         label: "to Introspection JSON",
-        path: "/graphql-to-introspection-json",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-introspection-json"
       },
 
       {
         label: "to Schema AST",
-        path: "/graphql-to-schema-ast",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-schema-ast"
       },
       {
         label: "to Fragment Matcher",
-        path: "/graphql-to-fragment-matcher",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-fragment-matcher"
       },
       {
         label: "to Components",
-        path: "/graphql-to-components",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-components"
       },
       {
         label: "to TypeScript MongoDB",
-        path: "/graphql-to-typescript-mongodb",
-        packageUrl: "https://github.com/dotansimha/graphql-code-generator",
-        packageName: "graphql-code-generator"
+        path: "/graphql-to-typescript-mongodb"
       }
-    ]
+    ].map(x => ({
+      ...x,
+      packageUrl: "https://github.com/dotansimha/graphql-code-generator",
+      packageName: "graphql-code-generator"
+    }))
+  },
+  {
+    category: "JSON-LD",
+    content: [
+      {
+        label: "to N-Quads",
+        path: "/jsonld-to-nquads"
+      },
+      {
+        label: "to Expanded",
+        path: "/jsonld-to-expanded"
+      },
+      {
+        label: "to Compacted",
+        path: "/jsonld-to-compacted"
+      },
+      {
+        label: "to Flattened",
+        path: "/jsonld-to-flattened"
+      },
+      {
+        label: "to Framed",
+        path: "/jsonld-to-framed"
+      },
+      {
+        label: "to Normalized",
+        path: "jsonld-to-normalized"
+      }
+    ].map(x => ({
+      ...x,
+      packageName: "jsonld",
+      packageUrl: "https://github.com/digitalbazaar/jsonld.js"
+    }))
   },
   {
     category: "Others",
