@@ -1,5 +1,3 @@
-const withTypescript = require("@zeit/next-typescript");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const withCSS = require("@zeit/next-css");
 const webpack = require("webpack");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
@@ -16,9 +14,6 @@ const config = {
       net: "mock",
       tls: "mock"
     };
-
-    if (options.isServer && options.dev)
-      config.plugins.push(new ForkTsCheckerWebpackPlugin());
 
     config.plugins.push(
       new webpack.DefinePlugin({
@@ -104,7 +99,14 @@ const config = {
       }
     });
 
-    config.output.globalObject = `this`;
+    config.output.globalObject = 'typeof self !== "object" ? self : this';
+
+    // Temporary fix for https://github.com/zeit/next.js/issues/8071
+    config.plugins.forEach(plugin => {
+      if (plugin.definitions && plugin.definitions["typeof window"]) {
+        delete plugin.definitions["typeof window"];
+      }
+    });
 
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -124,4 +126,4 @@ const config = {
   target: "server"
 };
 
-module.exports = withCSS(withLess(withFonts(withTypescript(config))));
+module.exports = withCSS(withLess(withFonts(config)));
