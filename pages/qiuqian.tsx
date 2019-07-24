@@ -1,6 +1,5 @@
 import ConversionLayout from "@components/ConversionLayout";
 import React, { useState, useCallback } from "react";
-import "@styles/qiuqian.css";
 
 export default function() {
   /*
@@ -207,6 +206,100 @@ export default function() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        .q-container {
+          width: 480px;
+          margin: 0 auto 50px;
+          font-size: 10pt;
+          font-family: "Consolas", "Microsoft Yahei", Arial, sans-serif;
+        }
+
+        .info {
+          text-align: center;
+          color: #dc143c;
+          font-size: 9pt;
+        }
+
+        .info strong {
+          background: crimson;
+          color: white;
+          padding: 0 3px;
+          margin: 0 1px;
+        }
+
+        .q-container > .title {
+          color: #bbb;
+          font-weight: bold;
+          margin-bottom: 10px;
+          background: #555;
+          padding: 5px 15px;
+          font-size: 120%;
+        }
+
+        .date {
+          font-size: 17pt;
+          font-weight: bold;
+          line-height: 30pt;
+          text-align: center;
+          border-bottom: 1px solid #999;
+        }
+
+        .check_luck {
+          padding-top: 10px;
+        }
+
+        .selecttable {
+          width: 100%;
+        }
+
+        .selecttable td {
+          text-align: center;
+          padding: 10px 0;
+          margin: 1px;
+          background: #ccc;
+          cursor: pointer;
+          width: 20%;
+          border-radius: 2px;
+        }
+
+        .selecttable td:hover {
+          background: #aaa;
+        }
+
+        .selecttable td.selected {
+          background: #333;
+          color: #fff;
+        }
+
+        .roll {
+          height: 200px;
+          border: 1px solid #faa;
+          margin-top: 10px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .card {
+          background: #ffffff;
+          text-align: center;
+          line-height: 200px;
+          border-top: 1px solid #faa;
+          position: absolute;
+          top: 201px;
+          width: 100%;
+        }
+
+        .card .title {
+          font-size: 70pt;
+          font-weight: bold;
+        }
+
+        .card.clickable {
+          background: crimson;
+          color: #ffffff;
+          cursor: pointer;
+        }
+      `}</style>
     </ConversionLayout>
   );
 }

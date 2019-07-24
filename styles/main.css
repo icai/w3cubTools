@@ -255,6 +255,10 @@ legend {
   float: left;
 }
 
+.fr {
+  float: right !important;
+}
+
 .mainlayout {
   padding: 50px 4%;
 }
