@@ -1,5 +1,6 @@
 import ConversionLayout from "@components/ConversionLayout";
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
+import Tween from "rc-tween-one";
 
 export default function() {
   /*
@@ -70,25 +71,16 @@ export default function() {
   var selectedEvent = null;
 
   // TODO 概率分布
-  function getNextCardText() {
+  function getNextCardText(slidecount) {
     return pickRandomWithRate(timeseed + selectedEvent, slidecount);
   }
 
-  function showCard(selector, duration, complete?) {
-    $(selector).animate(
-      {
-        top: "-1px"
-      },
-      duration,
-      "swing",
-      complete
-    );
-  }
-
-  var tail,
-    slidecount = 0;
+  const [selected, setSelected] = useState(-1);
+  const [actived, setActived] = useState(false);
+  const [queues, setQueues] = useState([]);
 
   function slide() {
+    let slidecount = queues.length;
     if (slidecount > 35) {
       return;
     }
@@ -104,21 +96,8 @@ export default function() {
         : slidecount > 15
         ? 150
         : 100;
-    var cardInfo = getNextCardText();
-    var card = $(
-      '<div class="card">' +
-        '<div class="title">' +
-        cardInfo.title +
-        "</div>" +
-        '<div class="desc">' +
-        cardInfo.desc +
-        "</div>" +
-        "</div>"
-    );
-    tail.after(card);
-    tail = card;
-    slidecount++;
-    showCard(card, duration, slide);
+    var cardInfo = getNextCardText(slidecount);
+    setQueues([...queues, { ...cardInfo, duration }]);
   }
 
   const qiuEvents = [
@@ -144,24 +123,22 @@ export default function() {
     }
   ];
 
-  const onClickRun = useCallback(() => {
-    slidecount = 0;
-    tail = $("div.card.clickable");
+  const onQueueEnd = function() {
     slide();
-  }, []);
+  };
 
-  // const {x} = useContext(Context)
-  const [selected, setSelected] = useState(-1);
+  const onClickRun = () => {
+    setQueues([]);
+    setActived(false);
+    slide();
+  };
 
   const handleQiu = (event: number, index: number) => {
     selectedEvent = event;
     setSelected(index);
-    $("div.card.clickable")
-      .nextAll()
-      .remove();
-    showCard("div.card.clickable", 300);
+    setActived(true);
+    setQueues([]);
   };
-
   return (
     <ConversionLayout flexDirection="column" layoutHeight="700px">
       <div className="q-container">
@@ -201,103 +178,127 @@ export default function() {
           <div className="card" style={{ top: "-1px", fontSize: "20pt" }}>
             请点击所求之事
           </div>
-          <div className="card clickable" onClick={onClickRun}>
-            <div className="title">求</div>
-          </div>
+          {actived && (
+            <Tween
+              className="card clickable"
+              componentProps={{
+                className: "card clickable",
+                onClick: onClickRun
+              }}
+              animation={{ top: "-1px", duration: 300 }}
+            >
+              <div className="title">求</div>
+            </Tween>
+          )}
+          {queues.map((item, index) => {
+            return (
+              <Tween
+                className="card"
+                componentProps={{ className: "card" }}
+                key={index}
+                animation={{
+                  top: "-1px",
+                  duration: item.duration,
+                  onComplete: onQueueEnd
+                }}
+              >
+                <div
+                  className="title"
+                  dangerouslySetInnerHTML={{ __html: item.title }}
+                ></div>
+              </Tween>
+            );
+          })}
         </div>
       </div>
-      <style jsx>{`
+      <style jsx global>{`
         .q-container {
           width: 480px;
           margin: 0 auto 50px;
           font-size: 10pt;
           font-family: "Consolas", "Microsoft Yahei", Arial, sans-serif;
-        }
+          > .title {
+            color: #bbb;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: #555;
+            padding: 5px 15px;
+            font-size: 120%;
+          }
+          .info {
+            text-align: center;
+            color: #dc143c;
+            font-size: 9pt;
+          }
 
-        .info {
-          text-align: center;
-          color: #dc143c;
-          font-size: 9pt;
-        }
+          .info strong {
+            background: crimson;
+            color: white;
+            padding: 0 3px;
+            margin: 0 1px;
+          }
 
-        .info strong {
-          background: crimson;
-          color: white;
-          padding: 0 3px;
-          margin: 0 1px;
-        }
+          .date {
+            font-size: 17pt;
+            font-weight: bold;
+            line-height: 30pt;
+            text-align: center;
+            border-bottom: 1px solid #999;
+          }
 
-        .q-container > .title {
-          color: #bbb;
-          font-weight: bold;
-          margin-bottom: 10px;
-          background: #555;
-          padding: 5px 15px;
-          font-size: 120%;
-        }
+          .check_luck {
+            padding-top: 10px;
+          }
 
-        .date {
-          font-size: 17pt;
-          font-weight: bold;
-          line-height: 30pt;
-          text-align: center;
-          border-bottom: 1px solid #999;
-        }
+          .selecttable {
+            width: 100%;
+          }
 
-        .check_luck {
-          padding-top: 10px;
-        }
+          .selecttable td {
+            text-align: center;
+            padding: 10px 0;
+            margin: 1px;
+            background: #ccc;
+            cursor: pointer;
+            width: 20%;
+            border-radius: 2px;
+          }
 
-        .selecttable {
-          width: 100%;
-        }
+          .selecttable td:hover {
+            background: #aaa;
+          }
 
-        .selecttable td {
-          text-align: center;
-          padding: 10px 0;
-          margin: 1px;
-          background: #ccc;
-          cursor: pointer;
-          width: 20%;
-          border-radius: 2px;
-        }
+          .selecttable td.selected {
+            background: #333;
+            color: #fff;
+          }
 
-        .selecttable td:hover {
-          background: #aaa;
-        }
+          .roll {
+            height: 200px;
+            border: 1px solid #faa;
+            margin-top: 10px;
+            overflow: hidden;
+            position: relative;
+          }
 
-        .selecttable td.selected {
-          background: #333;
-          color: #fff;
-        }
-
-        .roll {
-          height: 200px;
-          border: 1px solid #faa;
-          margin-top: 10px;
-          overflow: hidden;
-          position: relative;
-        }
-
-        .card {
-          background: #ffffff;
-          text-align: center;
-          line-height: 200px;
-          border-top: 1px solid #faa;
-          position: absolute;
-          top: 201px;
-          width: 100%;
-        }
-
-        .card .title {
-          font-size: 70pt;
-          font-weight: bold;
-        }
-
-        .card.clickable {
-          background: crimson;
-          color: #ffffff;
-          cursor: pointer;
+          .card {
+            background: #ffffff;
+            text-align: center;
+            line-height: 200px;
+            border-top: 1px solid #faa;
+            position: absolute;
+            top: 201px;
+            width: 100%;
+          }
+          .card .title {
+            font-size: 70pt;
+            font-weight: bold;
+          }
+          .card.clickable {
+            background: crimson;
+            color: #ffffff;
+            cursor: pointer;
+          }
         }
       `}</style>
     </ConversionLayout>

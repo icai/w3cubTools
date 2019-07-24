@@ -337,44 +337,6 @@ export default function() {
     return result;
   }
 
-  // 添加预定义事件
-  // function pickSpecials() {
-  //   var specialSize = [0, 0];
-
-  //   for (var i = 0; i < specials.length; i++) {
-  //     var special = specials[i];
-
-  //     if (iday == special.date) {
-  //       if (special.type == 'good') {
-  //         specialSize[0]++;
-  //         addToGood({ name: special.name, good: special.description });
-  //       } else {
-  //         specialSize[1]++;
-  //         addToBad({ name: special.name, bad: special.description });
-  //       }
-  //     }
-  //   }
-  //   return specialSize;
-  // }
-  // 生成今日运势
-  // function pickTodaysLuck() {
-  //   var _activities = filter(activities);
-
-  //   var numGood = random(iday, 98) % 3 + 2;
-  //   var numBad = random(iday, 87) % 3 + 2;
-  //   var eventArr = pickRandomActivity(_activities, numGood + numBad);
-
-  //   // var specialSize = pickSpecials();
-
-  //   for (var i = 0; i < numGood; i++) {
-  //     addToGood(eventArr[i]);
-  //   }
-
-  //   for (var i = 0; i < numBad; i++) {
-  //     addToBad(eventArr[numGood + i]);
-  //   }
-  // }
-
   var _activities = filter(activities);
   var numGood = (random(iday, 98) % 3) + 2;
   var numBad = (random(iday, 87) % 3) + 2;

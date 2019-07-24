@@ -131,8 +131,7 @@ export const categorizedRoutes = [
         label: "程序员求签",
         path: "/qiuqian",
         title: "程序员求签",
-        desc: "程序员求签",
-        scripts: ["//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"]
+        desc: "程序员求签"
       }
     ]
   },
