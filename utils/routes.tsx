@@ -98,10 +98,22 @@ export const categorizedRoutes = [
     category: "Tools",
     content: [
       {
+        label: "Math Worksheets",
+        path: "/math-calc",
+        title: "Online Math Worksheets, Printable",
+        desc: "Online Math Worksheets, Printable"
+      },
+      {
         label: "Curl builder",
         path: "/curl-builder",
         title: "Online curl command line builder",
         desc: "Online curl command line builder"
+      },
+      {
+        label: "Cron Generator",
+        path: "/cron-gen",
+        title: "Online Cron Generator",
+        desc: "Online Cron Generator"
       },
       {
         label: "Web Colors",

@@ -161,7 +161,7 @@ export default function App({ Component, pageProps }) {
         >
           <NextLink href="/">{logo2}</NextLink>
         </Pane>
-        <Pane>
+        <Pane className="hidden-print">
           <a href="https://docs.w3cub.com/" target="_blank">
             <Button appearance="minimal" height={40}>
               W3cubDocs
@@ -179,9 +179,8 @@ export default function App({ Component, pageProps }) {
         {/* { router.pathname != '/' && <Navigator />} */}
         <Component {...pageProps} />
       </Pane>
-
       {router.pathname != "/" && (
-        <div className="sitemap">
+        <div className="sitemap hidden-print">
           {categorizedRoutes.map((route, i) => {
             return (
               <Fragment key={i + 1}>
@@ -207,6 +206,31 @@ export default function App({ Component, pageProps }) {
           })}
         </div>
       )}
+      <style jsx global>{`
+        .sitemap {
+          margin-top: 30px;
+          background: #f2f2f2;
+          padding: 30px 15px;
+          font-size: 15px;
+          font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial,
+            sans-serif;
+        }
+
+        .sitemap ul > li {
+          list-style: none;
+          float: left;
+          margin-left: 10px;
+        }
+
+        .sitemap ul > li > span {
+          color: rgb(35, 67, 97);
+        }
+        .sitemap .item {
+          color: rgb(66, 90, 112);
+          color: #666;
+          text-decoration: none;
+        }
+      `}</style>
     </Container>
   );
 }
