@@ -137,7 +137,7 @@ export default function() {
         <div className="exam">
           {pages.map((item, index) => {
             return (
-              <div key={index}>
+              <div className="page" key={index}>
                 <ul className="questions">
                   {item.questions.map(({ A, operator, B }, ix) => {
                     return (
@@ -168,7 +168,7 @@ export default function() {
               display: block;
               width: 880px;
               padding: 30px 0 0 0;
-              font-size: 20px;
+              font-size: 21px;
               margin: 0 auto;
             }
             .form.widget {
@@ -180,7 +180,8 @@ export default function() {
 
             .question {
               display: inline-block;
-              width: 198px;
+              width: 220px;
+              height: 50px;
               border: 1px solid #ccc;
               border-collapse: collapse;
               border-radius: 5px;

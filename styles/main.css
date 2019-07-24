@@ -255,8 +255,15 @@ legend {
   float: left;
 }
 
+.mainlayout {
+  padding: 50px 4%;
+}
+
 @media print {
   .hidden-print {
     display: none !important;
+  }
+  .mainlayout {
+    padding: 0 !important;
   }
 }

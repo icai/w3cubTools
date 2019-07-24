@@ -149,6 +149,7 @@ export default function App({ Component, pageProps }) {
         backgroundColor="#fff"
         paddingRight={"3%"}
         paddingLeft={"4%"}
+        className="hidden-print"
         css={{
           boxShadow: "0 2px 2px 0 rgba(0,0,0,.1), 0 1px 0 0 rgba(0,0,0,.1)"
         }}
@@ -161,7 +162,7 @@ export default function App({ Component, pageProps }) {
         >
           <NextLink href="/">{logo2}</NextLink>
         </Pane>
-        <Pane className="hidden-print">
+        <Pane>
           <a href="https://docs.w3cub.com/" target="_blank">
             <Button appearance="minimal" height={40}>
               W3cubDocs
@@ -169,13 +170,7 @@ export default function App({ Component, pageProps }) {
           </a>
         </Pane>
       </Pane>
-      <Pane
-        display="flex"
-        flexDirection="row"
-        css={{
-          padding: "50px 4%"
-        }}
-      >
+      <Pane display="flex" flexDirection="row" className="mainlayout">
         {/* { router.pathname != '/' && <Navigator />} */}
         <Component {...pageProps} />
       </Pane>
@@ -206,7 +201,7 @@ export default function App({ Component, pageProps }) {
           })}
         </div>
       )}
-      <style jsx global>{`
+      <style jsx>{`
         .sitemap {
           margin-top: 30px;
           background: #f2f2f2;
