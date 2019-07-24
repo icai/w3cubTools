@@ -348,9 +348,7 @@ export default function() {
   return (
     <ConversionLayout flexDirection="column" layoutHeight="700px">
       <div className="lunar-container">
-        <div className="title">
-          程序员老黄历<sup>beta</sup>
-        </div>
+        <div className="title">程序员老黄历</div>
         <div className="date">{getTodayString()}</div>
         <div className="good">
           <div className="title">
@@ -428,9 +426,6 @@ export default function() {
         </div>
         <div className="comment">
           <ul>
-            <li>
-              本老黄历尚处于beta阶段，作者随时会修改，所以如果上午看到的内容跟下午不同，请勿惊慌；
-            </li>
             <li>本老黄历仅面向程序员；</li>
             <li>本老黄历内容是程序生成的，因为只有这样程序员才会信。</li>
           </ul>
@@ -438,7 +433,7 @@ export default function() {
       </div>
       <style jsx>{`
         .lunar-container {
-          width: 450px;
+          width: 480px;
           margin: 0 auto 50px;
           display: block;
           font-family: "Consolas", "Microsoft Yahei", Arial, sans-serif;
@@ -464,8 +459,7 @@ export default function() {
           font-weight: bold;
           margin-bottom: 10px;
           background: #eee;
-          border: 1px solid #ddd;
-          border-radius: 4px;
+
           padding: 10pt;
           margin-top: 10pt;
         }
