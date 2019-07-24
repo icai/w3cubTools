@@ -98,6 +98,16 @@ export default function() {
 
   const rightctrl = hideFrom ? "widget" : "";
 
+  const styles = {
+    button: {
+      margin: "10px auto",
+      width: "150px",
+      height: "35px",
+      font: "20px/25px Verdana Arial",
+      borderRadius: "5px",
+      display: "block"
+    }
+  };
   return (
     <ConversionLayout flexDirection="column" layoutHeight="auto">
       <Pane
@@ -108,22 +118,21 @@ export default function() {
         <div className={"form hidden-print " + rightctrl}>
           {lists.map((el, ix) => {
             return (
-              <Button
-                css={{
-                  margin: "10px auto",
-                  width: "150px",
-                  height: "35px",
-                  font: "20px/25px Verdana Arial",
-                  borderRadius: "5px",
-                  display: "block"
-                }}
-                key={ix}
-                onClick={() => onClick(el)}
-              >
+              <Button css={styles.button} key={ix} onClick={() => onClick(el)}>
                 {el}
               </Button>
             );
           })}
+          {hideFrom && (
+            <Button
+              css={styles.button}
+              onClick={() => {
+                window.print();
+              }}
+            >
+              Print Page
+            </Button>
+          )}
         </div>
         <div className="exam">
           {pages.map((item, index) => {
