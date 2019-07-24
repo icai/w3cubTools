@@ -101,10 +101,7 @@ export const categorizedRoutes = [
         label: "Curl builder",
         path: "/curl-builder",
         title: "Online curl command line builder",
-        desc: "Online curl command line builder",
-        links: [
-          "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-        ]
+        desc: "Online curl command line builder"
       },
       {
         label: "Web Colors",

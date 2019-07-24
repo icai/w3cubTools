@@ -158,6 +158,10 @@ declare module "evergreen-ui" {
     target: HTMLInputElement & EventTarget;
   }
 
+  export interface HTMLTextAreaEvent extends Event {
+    target: HTMLTextAreaElement & EventTarget;
+  }
+
   export interface TextInputProps extends TextProps {
     required?: boolean;
     disabled?: boolean;
@@ -173,7 +177,31 @@ declare module "evergreen-ui" {
     value?: string;
   }
 
+  export interface TextareaProps extends TextProps {
+    id?: string;
+    height?: string;
+    required?: boolean;
+    disabled?: boolean;
+    isInvalid?: boolean;
+    spellCheck?: boolean;
+    grammarly?: boolean;
+    placeholder?: string;
+    appearance?: Appearance;
+    width?: string | number;
+    theme?: any;
+    className?: string;
+    onChange: (e: HTMLTextAreaEvent) => void;
+    onClick?: (e: any) => void;
+    name?: string;
+    value?: string;
+    style?: object;
+  }
+
   export class TextInput extends React.PureComponent<TextInputProps> {}
+
+  export class Textarea extends React.PureComponent<TextareaProps> {}
+
+  export class Checkbox extends React.PureComponent<any> {}
 
   export interface TooltipProps {
     appearance?: Appearance;
