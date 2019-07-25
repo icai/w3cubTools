@@ -40,7 +40,6 @@ export default class MyDocument extends Document<DocumentProps> {
             name="google-site-verification"
             content="bjJSOEahdert-7mwVScrwTTUVR3nSe0bEj5YjevUNn0"
           /> */}
-          />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
