@@ -39,7 +39,7 @@ export default function() {
     "大吉",
     "吉",
     "小吉",
-    "&nbsp;",
+    "平",
     "小凶",
     "凶",
     "大凶",

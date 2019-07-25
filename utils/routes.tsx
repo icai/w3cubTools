@@ -8,6 +8,33 @@ const alias = {
 };
 export const categorizedRoutes = [
   {
+    category: "Math",
+    content: [
+      {
+        label: "Math Worksheets",
+        path: "/math-calc",
+        title: "Online Math Worksheets, Printable",
+        desc: "Online Math Worksheets, Printable"
+      },
+      {
+        label: "Calculator",
+        path: "/calculator",
+        title: "Online Calculator",
+        desc: "Online Calculator"
+      }
+    ]
+  },
+  {
+    category: "Css",
+    content: [
+      {
+        label: "Base64 code",
+        path: "/base64",
+        title: "Base64 code"
+      }
+    ]
+  },
+  {
     category: "Hash",
     content: [
       {
@@ -97,12 +124,6 @@ export const categorizedRoutes = [
   {
     category: "Tools",
     content: [
-      {
-        label: "Math Worksheets",
-        path: "/math-calc",
-        title: "Online Math Worksheets, Printable",
-        desc: "Online Math Worksheets, Printable"
-      },
       {
         label: "Curl builder",
         path: "/curl-builder",
@@ -275,7 +296,7 @@ export const categorizedRoutes = [
     ]
   },
   {
-    category: "CSS",
+    category: "CSS Converter",
     content: [
       {
         label: "to JS Objects",

@@ -126,7 +126,8 @@ export default function App({ Component, pageProps }) {
     <Container>
       <Head>
         <title>
-          {activeRoute && (activeRoute.title || activeRoute.searchTerm)}
+          {activeRoute && (activeRoute.title || activeRoute.searchTerm)} -
+          W3cubTools
         </title>
         <meta name="description" content={activeRoute && activeRoute.desc} />
 
