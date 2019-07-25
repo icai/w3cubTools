@@ -4,6 +4,9 @@ const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const withLess = require("@zeit/next-less");
 const withFonts = require("next-fonts");
 const path = require("path");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true"
+});
 
 const config = {
   webpack(config, options) {
@@ -25,7 +28,7 @@ const config = {
         __DEV__: options.dev
       }),
       new MonacoWebpackPlugin({
-        output: "../../static",
+        output: "../../static/monaco",
         languages: [
           "json",
           "typescript",
@@ -41,7 +44,8 @@ const config = {
           "graphql",
           "scala",
           "plaintext",
-          "java"
+          "java",
+          "pug"
         ],
         features: [
           "folding",
@@ -119,6 +123,8 @@ const config = {
       "@assets": path.join(__dirname, "assets")
     };
 
+    config.output.webassemblyModuleFilename = "static/wasm/[modulehash].wasm";
+
     return config;
   },
   enableSvg: true,
@@ -126,4 +132,4 @@ const config = {
   target: "server"
 };
 
-module.exports = withCSS(withLess(withFonts(config)));
+module.exports = withBundleAnalyzer(withCSS(withLess(withFonts(config))));
