@@ -25,6 +25,23 @@ export const categorizedRoutes = [
     ]
   },
   {
+    category: "Game",
+    content: [
+      {
+        label: "Game 2048",
+        path: "/g2048",
+        title: "Game 2048",
+        desc: "Game 2048"
+      },
+      {
+        label: "Gobang Game",
+        path: "/gobang",
+        title: "Gobang Game with computer",
+        desc: "Gobang Game with computer"
+      }
+    ]
+  },
+  {
     category: "Css",
     content: [
       {
@@ -153,17 +170,6 @@ export const categorizedRoutes = [
         path: "/qiuqian",
         title: "程序员求签",
         desc: "程序员求签"
-      }
-    ]
-  },
-  {
-    category: "Game",
-    content: [
-      {
-        label: "Game 2048",
-        path: "/g2048",
-        title: "Game 2048",
-        desc: "Game 2048"
       }
     ]
   },
