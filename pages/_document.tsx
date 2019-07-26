@@ -60,10 +60,10 @@ export default class MyDocument extends Document<DocumentProps> {
           <link rel="manifest" href="/static/site.webmanifest" />
           <meta
             property="og:title"
-            content="Transform | A polyglot web converter"
+            content="W3cubTools | All Free, Collections of Tools For Developers and Their family"
           />
-          <meta property="og:image" content="/static/transform.png" />
-          <meta property="og:url" content="https://transform.tools" />
+          <meta property="og:image" content="/static/logo.png" />
+          <meta property="og:url" content="https://tools.w3cub.com" />
           <meta name="twitter:card" content="summary_large_image" />
           <style dangerouslySetInnerHTML={{ __html: css }} />
           {styles || null}

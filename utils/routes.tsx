@@ -180,8 +180,7 @@ export const categorizedRoutes = [
         label: "to JSX",
         path: "/svg-to-jsx",
         packageName: "@svgr/core",
-        packageUrl: "https://github.com/smooth-code/svgr",
-        title: "Transform | A polyglot web converter."
+        packageUrl: "https://github.com/smooth-code/svgr"
       },
       {
         label: "to React Native",
@@ -212,7 +211,7 @@ export const categorizedRoutes = [
       {
         label: "to React PropTypes",
         path: "/json-to-proptypes",
-        title: "Transform | All important transforms at one place."
+        title: "W3cubTools | All important transforms at one place."
       },
       {
         label: "to Flow",
@@ -485,10 +484,12 @@ export const routes = flatten(
       })
     )
     .concat({
-      label: "Transform",
+      label: "W3cubTools",
       path: "/",
-      title: "Transform | A polyglot web converter.",
-      desc: "Transform | A polyglot web converter."
+      title:
+        "W3cubTools | All Free, Collections of Tools For Developers and Their family",
+      desc:
+        "W3cubTools | All Free, Collections of Tools For Developers and Their family"
     })
 );
 
