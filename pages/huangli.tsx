@@ -344,12 +344,28 @@ export default function() {
 
   const [goods, setGoods] = useState(eventArr.slice(0, numGood));
   const [bads, setBads] = useState(eventArr.slice(numGood));
+  const [todaystr, setToday] = useState(getTodayString());
+  const [direction, setDirection] = useState(
+    directions[random(iday, 2) % directions.length]
+  );
+  const [drink, setDrink] = useState(pickRandom(drinks, 2).join("，"));
+  const [starscore, setStarScore] = useState(star((random(iday, 6) % 5) + 1));
+
+  //
+  useLayoutEffect(() => {
+    setToday(getTodayString());
+    setGoods(eventArr.slice(0, numGood));
+    setBads(eventArr.slice(numGood));
+    setDirection(directions[random(iday, 2) % directions.length]);
+    setDrink(pickRandom(drinks, 2).join("，"));
+    setStarScore(star((random(iday, 6) % 5) + 1));
+  }, []);
 
   return (
     <ConversionLayout flexDirection="column" layoutHeight="700px">
       <div className="lunar-container">
         <div className="title">程序员老黄历</div>
-        <div className="date">{getTodayString()}</div>
+        <div className="date">{todaystr}</div>
         <div className="good">
           <div className="title">
             <table>
@@ -402,22 +418,16 @@ export default function() {
         <div className="split" />
         <div className="line-tip">
           <strong>座位朝向：</strong>面向
-          <span className="direction_value">
-            {directions[random(iday, 2) % directions.length]}
-          </span>
+          <span className="direction_value">{direction}</span>
           写程序，BUG 最少。
         </div>
         <div className="line-tip">
           <strong>今日宜饮：</strong>
-          <span className="drink_value">
-            {pickRandom(drinks, 2).join("，")}
-          </span>
+          <span className="drink_value">{drink}</span>
         </div>
         <div className="line-tip">
           <strong>女神亲近指数：</strong>
-          <span className="goddes_value">
-            {star((random(iday, 6) % 5) + 1)}
-          </span>
+          <span className="goddes_value">{starscore}</span>
         </div>
         <div className="adlink">
           <a href="/qiuqian" target="_self">

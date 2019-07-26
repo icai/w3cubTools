@@ -199,11 +199,13 @@ export default function App({ Component, pageProps }) {
                   {(route.content as Route[]).map((a: Route) => {
                     return (
                       <li key={a.path}>
-                        <a href={a.path} key={route.category + a.label}>
-                          <a className="item">
-                            {a.label}{" "}
-                            {a.beta && <span className="beta">Beta</span>}
-                          </a>
+                        <a
+                          href={a.path}
+                          className="item"
+                          key={route.category + a.label}
+                        >
+                          {a.label}{" "}
+                          {a.beta && <span className="beta">Beta</span>}
                         </a>
                       </li>
                     );
