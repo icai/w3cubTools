@@ -28,16 +28,16 @@ export const categorizedRoutes = [
     category: "Game",
     content: [
       {
-        label: "Game 2048",
+        label: "2048 Game",
         path: "/g2048",
-        title: "Game 2048",
-        desc: "Game 2048"
+        title: "2048 Game",
+        desc: "2048 Game"
       },
       {
-        label: "Gobang Game",
-        path: "/gobang",
-        title: "Gobang Game with computer",
-        desc: "Gobang Game with computer"
+        label: "Gomoku Game",
+        path: "/gomoku",
+        title: "Gomoku Game with computer",
+        desc: "Gomoku Game with computer"
       }
     ]
   },

@@ -1,6 +1,6 @@
 import Calculator from "@components/Calculator";
 import ConversionLayout from "@components/ConversionLayout";
-import { Pane } from "evergreen-ui";
+import { Pane, Button, IconButton } from "evergreen-ui";
 import { useLayoutEffect } from "react";
 import {
   LINE_COLOR,
@@ -22,7 +22,6 @@ export default function() {
     var chess = document.getElementById("canvas") as HTMLCanvasElement;
     //获取权限
     var context = chess.getContext("2d");
-
     //画棋盘
     var drawChessBoard = function() {
       //线条颜色
@@ -321,11 +320,56 @@ export default function() {
       >
         <canvas id="canvas" width={LAYOUT_SIZE} height={LAYOUT_SIZE}></canvas>
       </Pane>
+      <div className="control">
+        <div className="inner">
+          {/* <Button
+                marginRight={10}
+                height={40}
+                width="100%"
+                margin="5px"
+                display="block"
+                whiteSpace="nowrap"
+            >Start Game</Button> */}
+          <IconButton
+            marginBottom={16}
+            height={40}
+            icon="refresh"
+            onClick={() => {
+              location.reload();
+            }}
+          />
+          {/* <Button
+                marginRight={10}
+                height={40}
+                width="100%"
+                margin="5px"
+                display="block"
+                whiteSpace="nowrap"
+                onClick={()=> {}}
+            >New Game</Button> */}
+        </div>
+      </div>
       <style jsx>
         {`
           canvas {
             box-shadow: -2px -2px 2px #efefef, 5px 5px 5px #b9b9b9;
             background-color: #c19b6c;
+          }
+          .control {
+            position: fixed;
+            right: 10px;
+            top: 20%;
+
+            .inner {
+              display: flex;
+              flex-direction: column;
+              margin: 35px 35px 0 0;
+              font-size: 40px;
+              align-items: center;
+              flex: 0 0 5%;
+              flex-wrap: wrap;
+              height: 100%;
+            }
           }
         `}
       </style>
