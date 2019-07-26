@@ -173,7 +173,7 @@ export default function App({ Component, pageProps }) {
           paddingRight={"3%"}
           className="logo-transform"
         >
-          <NextLink href="/">{logo2}</NextLink>
+          <a href="/">{logo2}</a>
         </Pane>
         <Pane>
           <a href="https://docs.w3cub.com/" target="_blank">
@@ -199,12 +199,12 @@ export default function App({ Component, pageProps }) {
                   {(route.content as Route[]).map((a: Route) => {
                     return (
                       <li key={a.path}>
-                        <NextLink href={a.path} key={route.category + a.label}>
+                        <a href={a.path} key={route.category + a.label}>
                           <a className="item">
                             {a.label}{" "}
                             {a.beta && <span className="beta">Beta</span>}
                           </a>
-                        </NextLink>
+                        </a>
                       </li>
                     );
                   })}

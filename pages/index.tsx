@@ -14,12 +14,13 @@ export default function() {
                 {(route.content as Route[]).map((a: Route) => {
                   return (
                     <li key={a.path}>
-                      <Link href={a.path} key={route.category + a.label}>
-                        <a className="item">
-                          {a.label}{" "}
-                          {a.beta && <span className="beta">Beta</span>}
-                        </a>
-                      </Link>
+                      <a
+                        className="item"
+                        href={a.path}
+                        key={route.category + a.label}
+                      >
+                        {a.label} {a.beta && <span className="beta">Beta</span>}
+                      </a>
                     </li>
                   );
                 })}
