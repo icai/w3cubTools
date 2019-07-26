@@ -3,7 +3,6 @@ const webpack = require("webpack");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const withLess = require("@zeit/next-less");
 const withFonts = require("next-fonts");
-const withMDX = require("@zeit/next-mdx");
 const path = require("path");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
@@ -104,6 +103,12 @@ const config = {
       }
     });
 
+    config.module.rules.unshift({
+      test: /\.md$/,
+      exclude: /node_modules/,
+      use: [defaultLoaders.babel, "markdown-to-react-loader"]
+    });
+
     config.output.globalObject = 'typeof self !== "object" ? self : this';
 
     // Temporary fix for https://github.com/zeit/next.js/issues/8071
@@ -134,6 +139,4 @@ const config = {
   target: "server"
 };
 
-module.exports = withBundleAnalyzer(
-  withCSS(withLess(withFonts(withMDX(config))))
-);
+module.exports = withBundleAnalyzer(withCSS(withLess(withFonts(config))));

@@ -43,6 +43,9 @@ export default class ResultPanel extends React.Component {
             text-align: right;
             padding: 0px 30px;
             line-height: 80px;
+            border: 1px solid #e3e7e9;
+            border-right: 0;
+            border-bottom: 0;
 
             .last-row {
               flex: 1;

@@ -183,7 +183,7 @@ export default function App({ Component, pageProps }) {
           </a>
         </Pane>
       </Pane>
-      <Pane display="flex" flexDirection="row" className="mainlayout">
+      <Pane className="mainlayout">
         {/* { router.pathname != '/' && <Navigator />} */}
         <Component {...pageProps} />
       </Pane>

@@ -197,12 +197,12 @@ export default class ButtonPanel extends React.Component {
         <style jsx>{`
           .button-panel {
             flex: 5;
+            margin-right: 1px;
             .button {
               cursor: pointer;
               position: relative;
               margin: 0;
               padding: 0;
-              box-shadow: inset 1px 1px 0 0 #e3e7e9;
               border: none;
               background-color: #fafafa;
               font-size: 30px;
@@ -210,6 +210,9 @@ export default class ButtonPanel extends React.Component {
               text-align: center;
               color: #979ca4;
               overflow: hidden;
+              border: 1px solid #e3e7e9;
+              margin-top: -1px;
+              margin-right: -1px;
               &:before {
                 content: "";
                 position: absolute;

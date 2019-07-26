@@ -93,6 +93,7 @@ export default class Calculator extends React.Component {
             height: 100%;
             display: flex;
             flex-direction: column;
+            box-shadow: -2px -2px 2px #efefef, 5px 5px 5px #ccc;
           }
         `}</style>
       </div>

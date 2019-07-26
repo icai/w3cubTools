@@ -46,6 +46,8 @@ declare module "@workers/svgr.worker" {
   export default WebpackWorker;
 }
 
+declare module "*.md";
+
 declare const IN_BROWSER: boolean;
 declare const IS_DEV: boolean;
 declare const __HASHVERSION__: string;

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Language, useData } from "@hooks/useData";
 import { useRouter } from "next/router";
 import { activeRouteData } from "@utils/routes";
+import Mdloader from "@components/Mdloader";
 
 function getEditorLanguage(lang: Language) {
   const mapping = {
@@ -64,6 +65,7 @@ const ConversionPanel: React.FunctionComponent<
   children
   // splitEditorDefaultValue
 }) {
+  console.info();
   // const [value, setValue] = useData(editorDefaultValue || editorLanguage);
   // const [splitValue, setSplitValue] = useData(
   //   splitEditorDefaultValue || splitLanguage
@@ -74,6 +76,8 @@ const ConversionPanel: React.FunctionComponent<
   const [result, setResult] = useState("");
   const [message, setMessage] = useState("");
   const router = useRouter();
+  console.info(router);
+
   //const route = activeRouteData(router.pathname);
   // let packageDetails;
 
@@ -205,7 +209,8 @@ const ConversionPanel: React.FunctionComponent<
         )}
         {children && children}
       </Pane>
-
+      <div className="clearfix"></div>
+      <Mdloader />
       {message && (
         <Alert
           paddingY={15}
