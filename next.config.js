@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const withLess = require("@zeit/next-less");
 const withFonts = require("next-fonts");
+const withMDX = require("@zeit/next-mdx");
 const path = require("path");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
@@ -114,6 +115,7 @@ const config = {
 
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
+      "@md": path.join(__dirname, "md"),
       "@styles": path.join(__dirname, "styles"),
       "@components": path.join(__dirname, "components"),
       "@constants": path.join(__dirname, "constants"),
@@ -132,4 +134,6 @@ const config = {
   target: "server"
 };
 
-module.exports = withBundleAnalyzer(withCSS(withLess(withFonts(config))));
+module.exports = withBundleAnalyzer(
+  withCSS(withLess(withFonts(withMDX(config))))
+);
