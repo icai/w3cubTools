@@ -1,4 +1,3 @@
-import Calculator from "@components/Calculator";
 import ConversionLayout from "@components/ConversionLayout";
 import { Pane, Button, IconButton } from "evergreen-ui";
 import { useLayoutEffect } from "react";

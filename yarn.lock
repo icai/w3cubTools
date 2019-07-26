@@ -798,7 +798,7 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.5.5":
+"@babel/runtime@^7.5.4", "@babel/runtime@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.5.tgz#74fba56d35efbeca444091c7850ccd494fd2f132"
   integrity sha512-28QvEGyQyNkB0/m2B4FU7IEZGK2NUrcMtT6BZEFALTguLk+AUT6ofsHtPk5QyjAdUkpMJ+/Em+quwz4HOt30AQ==
@@ -3246,6 +3246,11 @@ cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
+
+d3-array@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
+  integrity sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==
 
 d@1:
   version "1.0.1"
@@ -8105,6 +8110,16 @@ rdf-canonize@^1.0.2:
   dependencies:
     node-forge "^0.8.1"
     semver "^5.6.0"
+
+react-compound-slider@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-compound-slider/-/react-compound-slider-2.2.0.tgz#d79adb60d3b42fb2f2e6a88d7630795244a434a2"
+  integrity sha512-HFYKtbL1MZyrBrK29Y7KBRU2INnPqX0yODdcWd539sif7eLPoG2uEULloga2ju7l7zcIWzJcehO12WrieHDIiA==
+  dependencies:
+    "@babel/runtime" "^7.5.4"
+    d3-array "^1.2.4"
+    prop-types "^15.7.2"
+    warning "^3.0.0"
 
 react-dom@^16.8.6:
   version "16.8.6"

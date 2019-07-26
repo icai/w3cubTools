@@ -10,6 +10,7 @@
     "start": "next start",
     "format": "prettier --write '**/*.ts' '**/*.tsx'",
     "build": "next build",
+    "bp": "next build && next export",
     "now-build": "next build",
     "postinstall": "patch-package",
     "build:analyze": "ANALYZE=true yarn build"
@@ -74,6 +75,7 @@
     "qrcode.react": "^0.9.3",
     "rc-tween-one": "^2.4.1",
     "react": "^16.8.6",
+    "react-compound-slider": "^2.2.0",
     "react-dom": "^16.8.6",
     "react-ga": "^2.6.0",
     "react-jsonschema-form": "^1.7.0",
