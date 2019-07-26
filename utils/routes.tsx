@@ -108,10 +108,10 @@ export const categorizedRoutes = [
         }
       ),
       {
-        label: "Unicode to Chinese Ascii",
+        label: "Unicode to Ascii",
         path: "/unicode-to-ascii",
-        title: "Unicode to Chinese Ascii",
-        desc: "Unicode to Chinese Ascii"
+        title: "Unicode to Ascii",
+        desc: "Unicode to Ascii"
       }
     ]
   },
