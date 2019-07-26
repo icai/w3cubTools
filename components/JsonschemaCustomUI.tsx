@@ -11,7 +11,6 @@ import {
 export class KeyValueComponent extends React.Component<any, any> {
   constructor(props) {
     super(props);
-    console.info(props);
     this.state = { ...props.formData };
   }
 

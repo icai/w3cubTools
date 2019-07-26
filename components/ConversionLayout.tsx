@@ -65,7 +65,6 @@ const ConversionPanel: React.FunctionComponent<
   children
   // splitEditorDefaultValue
 }) {
-  console.info();
   // const [value, setValue] = useData(editorDefaultValue || editorLanguage);
   // const [splitValue, setSplitValue] = useData(
   //   splitEditorDefaultValue || splitLanguage
@@ -76,7 +75,6 @@ const ConversionPanel: React.FunctionComponent<
   const [result, setResult] = useState("");
   const [message, setMessage] = useState("");
   const router = useRouter();
-  console.info(router);
 
   //const route = activeRouteData(router.pathname);
   // let packageDetails;
