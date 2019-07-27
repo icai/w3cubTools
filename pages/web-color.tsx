@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import hexRgb from "@utils/hexrgb";
 import allcolors from "@constants/color.json";
+import Mdloader from "@components/Mdloader";
 
 export default function() {
   const state = {
@@ -83,6 +84,7 @@ export default function() {
           );
         })}
       </div>
+      <Mdloader />
       <style jsx>{`
         .color-tabs {
           width: 1170px;

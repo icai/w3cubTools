@@ -12,6 +12,8 @@ import {
   TextAreaField
 } from "@components/JsonschemaCustomUI";
 
+import Mdloader from "@components/Mdloader";
+
 const schema = {
   schema: {
     title: "Online curl command line builder",
@@ -176,6 +178,7 @@ export default class extends Component<any, any> {
             </fieldset>
           </Form>
         </Pane>
+        <Mdloader />
       </Fragment>
     );
   }
