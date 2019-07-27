@@ -23,6 +23,17 @@ export default function MDloader() {
           padding="20px"
           className="markdown-body"
         >
+          <span className="edit">
+            <span>[</span>
+            <a
+              href={`https://github.com/w3cub/w3cubtools-md/blob/master${router.pathname}.md`}
+              target="_blank"
+              title="Edit Description Page"
+            >
+              edit
+            </a>
+            <span>]</span>
+          </span>
           <MD />
         </Pane>
       )}

@@ -963,6 +963,16 @@
   padding-left: 128px !important;
 }
 
+.markdown-body {
+  position: relative;
+}
+
+.markdown-body .edit {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
 @media print {
   .markdown-body {
     display: none;
