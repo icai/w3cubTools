@@ -140,7 +140,7 @@ export default function() {
     setQueues([]);
   };
   return (
-    <ConversionLayout flexDirection="column" layoutHeight="700px">
+    <ConversionLayout flexDirection="column" layoutHeight="auto">
       <div className="q-container">
         <div className="title">程序员求签</div>
         <div className="info">

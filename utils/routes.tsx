@@ -42,7 +42,7 @@ export const categorizedRoutes = [
     ]
   },
   {
-    category: "Charts",
+    category: "Chart",
     content: [
       {
         label: "Web Colors",

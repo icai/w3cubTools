@@ -362,7 +362,7 @@ export default function() {
   }, []);
 
   return (
-    <ConversionLayout flexDirection="column" layoutHeight="700px">
+    <ConversionLayout flexDirection="column" layoutHeight="auto">
       <div className="lunar-container">
         <div className="title">程序员老黄历</div>
         <div className="date">{todaystr}</div>
