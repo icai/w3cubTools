@@ -42,6 +42,23 @@ export const categorizedRoutes = [
     ]
   },
   {
+    category: "Charts",
+    content: [
+      {
+        label: "Web Colors",
+        path: "/web-color",
+        title: "Web Colors Chart",
+        desc: "Web Colors Chart"
+      },
+      {
+        label: "HTML Entities",
+        path: "/html-entities",
+        title: "Character Entity Reference Chart",
+        desc: "Character Entity Reference Chart"
+      }
+    ]
+  },
+  {
     category: "Css",
     content: [
       {
@@ -152,12 +169,6 @@ export const categorizedRoutes = [
         path: "/cron-gen",
         title: "Online Cron Generator",
         desc: "Online Cron Generator"
-      },
-      {
-        label: "Web Colors",
-        path: "/web-color",
-        title: "Web Colors",
-        desc: "Web Colors"
       },
       {
         label: "程序员老黄历",
