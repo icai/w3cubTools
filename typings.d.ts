@@ -48,6 +48,8 @@ declare module "@workers/svgr.worker" {
 
 declare module "*.md";
 
+declare module "*.wiki";
+
 declare const IN_BROWSER: boolean;
 declare const IS_DEV: boolean;
 declare const __HASHVERSION__: string;

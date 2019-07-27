@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { activeRouteData } from "@utils/routes";
 import PrettierWorker from "@workers/prettier.worker";
 import { getWorker } from "@utils/workerWrapper";
+import Mdloader from "@components/Mdloader";
 
 let prettierWorker;
 
@@ -208,6 +209,8 @@ const ConversionPanel: React.FunctionComponent<
           />
         </Pane>
       </Pane>
+      <div className="clearfix"></div>
+      <Mdloader />
 
       {message && (
         <Alert

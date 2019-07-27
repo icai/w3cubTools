@@ -109,6 +109,12 @@ const config = {
       use: [defaultLoaders.babel, "markdown-to-react-loader"]
     });
 
+    // config.module.rules.unshift({
+    //   test: /\.wiki$/,
+    //   exclude: /node_modules/,
+    //   use: [defaultLoaders.babel, "markdown-to-react-loader", require.resolve('./loaders/jira2md.js')]
+    // });
+
     config.output.globalObject = 'typeof self !== "object" ? self : this';
 
     // Temporary fix for https://github.com/zeit/next.js/issues/8071

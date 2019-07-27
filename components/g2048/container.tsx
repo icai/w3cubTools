@@ -28,7 +28,7 @@ export default class Container extends Component<any, any> {
     this.keepPlayingfn = this.keepPlayingfn.bind(this);
   }
   componentWillMount() {
-    this.setup();
+    __CLIENT__ && this.setup();
   }
   componentDidMount() {
     this.inputManager = new KeyboardInputManager();
@@ -40,21 +40,18 @@ export default class Container extends Component<any, any> {
   render() {
     return (
       <div className="g-container">
-        <Heading score={this.state.score} best={this.state.best} />
-        <AboveGame />
-        <GameContainer
-          size={this.props.size}
-          tiles={this.state.tiles}
-          won={this.state.won}
-          over={this.state.over}
-        />
-        {/* <p className="game-explanation">
-          <strong className="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
-        </p>
-        <hr />
-        <p>
-          Created by <a href="http://www.emeraldion.it" target="_blank">Claudio Procida</a>. A clone of <a href="https://gabrielecirulli.github.io/2048/" target="_blank">2048</a> by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli</a> written using <a href="https://facebook.github.io/react" target="_blank">React</a>.
-        </p> */}
+        {__CLIENT__ && (
+          <>
+            <Heading score={this.state.score} best={this.state.best} />
+            <AboveGame />
+            <GameContainer
+              size={this.props.size}
+              tiles={this.state.tiles}
+              won={this.state.won}
+              over={this.state.over}
+            />
+          </>
+        )}
       </div>
     );
   }
