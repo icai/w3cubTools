@@ -51,6 +51,12 @@ export const categorizedRoutes = [
         desc: "Web Colors Chart"
       },
       {
+        label: "Gradient Colors",
+        path: "/gradient-color",
+        title: "Gradient Colors Collection Palette",
+        desc: "Gradient Colors Collection Palette"
+      },
+      {
         label: "HTML Entities",
         path: "/html-entities",
         title: "Character Entity Reference Chart",
