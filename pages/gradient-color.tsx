@@ -1,111 +1,52 @@
 import gradients from "@constants/gradients.json";
 import { Icon, toaster } from "evergreen-ui";
+import AnglePicker from "@components/Gradient/AnglePicker";
+import { useState } from "react";
 
-export default function Gradient() {
-  var backgroundImage = "background-image: ";
-  var gradientType = "linear-gradient( 135deg, ";
-  var gradientStart = " 10%, ";
-  var gradientEnd = " 100%)";
-
-  var copyCode = function(event) {
-    var eventColorFrom = event.currentTarget.dataset.colorFrom;
-    var eventColorTo = event.currentTarget.dataset.colorTo;
-    var eventResult =
-      backgroundImage +
-      gradientType +
-      eventColorFrom +
-      gradientStart +
-      eventColorTo +
-      gradientEnd +
-      ";";
-    function dynamicNode() {
-      var node = document.createElement("pre");
-      node.style.position = "fixed";
-      node.style.fontSize = "0px";
-      node.textContent = eventResult;
-      return node;
-    }
-
-    var node = dynamicNode();
-    document.body.appendChild(node);
-
-    var selection = getSelection();
-    selection.removeAllRanges();
-    var range = document.createRange();
-    range.selectNodeContents(node);
-    selection.addRange(range);
-    document.execCommand("copy");
-    selection.removeAllRanges();
-    document.body.removeChild(node);
-    toaster.success("CSS3 Code Copied! 👍", {
-      duration: 2000
-    });
-  };
-  var bgDownload = function(event) {
-    //Grab Palette
-    var eventColorFrom = event.currentTarget.dataset.colorFrom;
-    var eventColorTo = event.currentTarget.dataset.colorTo;
-    var canvas = document.createElement("canvas") as HTMLCanvasElement;
-    canvas.width = 1000;
-    canvas.height = 1000;
-    var ctx = canvas.getContext("2d");
-    var tempGradient = ctx.createLinearGradient(0, 0, 1000, 1000);
-    tempGradient.addColorStop(0, eventColorFrom);
-    tempGradient.addColorStop(1, eventColorTo);
-    ctx.fillStyle = tempGradient;
-    ctx.fillRect(0, 0, 1000, 1000);
-    var dataURL = canvas.toDataURL();
-    event.currentTarget.href = dataURL;
-    var fileName =
-      "gradient-" + eventColorFrom.slice(1, 7) + "-" + eventColorTo.slice(1, 7);
-    event.currentTarget.setAttribute("download", fileName);
-  };
+function GradientItem({ item, copyCode, bgDownload }) {
+  const [angle, setAngle] = useState(135);
   return (
-    <div className="ch-paper">
-      {gradients.map((item, ix) => {
-        return (
-          <div className="ch-gradient-brick" key={ix}>
-            <div
-              className="ch-gradient"
-              style={{
-                backgroundImage: `linear-gradient(135deg, ${item[0]} 10%, ${item[1]} 100%)`
-              }}
-            >
-              <div className="ch-actions">
-                <a
-                  className="ch-code"
-                  data-color-from={item[0]}
-                  data-color-to={item[1]}
-                  onClick={copyCode}
-                >
-                  <Icon icon="code" color="white" />
-                </a>
-                <a
-                  className="ch-grab"
-                  data-color-from={item[0]}
-                  data-color-to={item[1]}
-                  onClick={bgDownload}
-                >
-                  <Icon icon="download" color="white" />
-                </a>
-              </div>
-            </div>
-            <div className="ch-colors">
-              <span className="ch-color-from">{item[0]}</span>
-              <span className="ch-color-to" style={{ color: item[1] }}>
-                {item[1]}
-              </span>
-            </div>
-          </div>
-        );
-      })}
+    <div className="ch-gradient-brick">
+      <div
+        className="ch-gradient"
+        style={{
+          backgroundImage: `linear-gradient(${angle}deg, ${item[0]} 10%, ${item[1]} 100%)`
+        }}
+      >
+        <div className="ch-actions">
+          <AnglePicker
+            className="ch-angle"
+            callback={(c: number) => {
+              setAngle(c);
+            }}
+          ></AnglePicker>
+          <a
+            className="ch-code"
+            data-color-angle={angle}
+            data-color-from={item[0]}
+            data-color-to={item[1]}
+            onClick={copyCode}
+          >
+            <Icon icon="code" color="white" />
+          </a>
+          <a
+            className="ch-grab"
+            data-color-angle={angle}
+            data-color-from={item[0]}
+            data-color-to={item[1]}
+            onClick={bgDownload}
+          >
+            <Icon icon="download" color="white" />
+          </a>
+        </div>
+      </div>
+      <div className="ch-colors">
+        <span className="ch-color-from">{item[0]}</span>
+        <span className="ch-color-to" style={{ color: item[1] }}>
+          {item[1]}
+        </span>
+      </div>
       <style jsx>{`
-        .ch-paper {
-          text-align: center;
-          margin: 0px auto;
-          font-family: "Source Sans Pro", sans-serif;
-          line-height: 1.3;
-        }
         .ch-gradient-brick {
           width: 180px;
           display: inline-block;
@@ -140,6 +81,11 @@ export default function Gradient() {
         .ch-gradient-brick:hover .ch-actions {
           display: block;
           animation: micro-move 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ch-actions :global(.ch-angle) {
+          top: -95px;
+          right: -25px;
         }
 
         .ch-code,
@@ -201,6 +147,103 @@ export default function Gradient() {
           color: #929197;
           display: block;
           padding: 0px;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+export default function Gradient() {
+  var backgroundImage = "background-image: ";
+  var gradientStart = " 10%, ";
+  var gradientEnd = " 100%)";
+
+  var copyCode = function(event) {
+    var eventColorFrom = event.currentTarget.dataset.colorFrom;
+    var eventColorTo = event.currentTarget.dataset.colorTo;
+    var eventColorAngle = event.currentTarget.dataset.colorAngle;
+    var gradientType = `linear-gradient( ${eventColorAngle}deg, `;
+    var eventResult =
+      backgroundImage +
+      gradientType +
+      eventColorFrom +
+      gradientStart +
+      eventColorTo +
+      gradientEnd +
+      ";";
+    function dynamicNode() {
+      var node = document.createElement("pre");
+      node.style.position = "fixed";
+      node.style.fontSize = "0px";
+      node.textContent = eventResult;
+      return node;
+    }
+
+    var node = dynamicNode();
+    document.body.appendChild(node);
+
+    var selection = getSelection();
+    selection.removeAllRanges();
+    var range = document.createRange();
+    range.selectNodeContents(node);
+    selection.addRange(range);
+    document.execCommand("copy");
+    selection.removeAllRanges();
+    document.body.removeChild(node);
+    toaster.success("CSS3 Code Copied! 👍", {
+      duration: 2000
+    });
+  };
+  var bgDownload = function(event) {
+    //Grab Palette
+    var eventColorFrom = event.currentTarget.dataset.colorFrom;
+    var eventColorTo = event.currentTarget.dataset.colorTo;
+    var eventColorAngle = event.currentTarget.dataset.colorAngle;
+    var canvas = document.createElement("canvas") as HTMLCanvasElement;
+    canvas.width = 1000;
+    canvas.height = 1000;
+    var ctx = canvas.getContext("2d");
+
+    const maxLength = Math.sqrt(
+      canvas.width * canvas.width + canvas.height * canvas.height
+    );
+
+    var angle = eventColorAngle;
+    var tempGradient = ctx.createLinearGradient(
+      canvas.width / 2 + Math.cos(angle) * maxLength * 0.5,
+      canvas.height / 2 + Math.sin(angle) * maxLength * 0.5,
+      canvas.width / 2 - Math.cos(angle) * maxLength * 0.5,
+      canvas.height / 2 - Math.sin(angle) * maxLength * 0.5
+    );
+    // var tempGradient = ctx.createLinearGradient(0, 0, 1000, 1000);
+    tempGradient.addColorStop(0, eventColorFrom);
+    tempGradient.addColorStop(1, eventColorTo);
+    ctx.fillStyle = tempGradient;
+    ctx.fillRect(0, 0, 1000, 1000);
+    var dataURL = canvas.toDataURL();
+    event.currentTarget.href = dataURL;
+    var fileName =
+      "gradient-" + eventColorFrom.slice(1, 7) + "-" + eventColorTo.slice(1, 7);
+    event.currentTarget.setAttribute("download", fileName);
+  };
+  return (
+    <div className="ch-paper">
+      {gradients.map((item, ix) => {
+        return (
+          <GradientItem
+            item={item}
+            key={ix}
+            copyCode={copyCode}
+            bgDownload={bgDownload}
+          ></GradientItem>
+        );
+      })}
+      <style jsx>{`
+        .ch-paper {
+          text-align: center;
+          margin: 0px auto;
+          font-family: "Source Sans Pro", sans-serif;
+          line-height: 1.3;
         }
       `}</style>
     </div>
