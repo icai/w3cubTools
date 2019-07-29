@@ -64,16 +64,16 @@ export const categorizedRoutes = [
       }
     ]
   },
-  {
-    category: "Css",
-    content: [
-      {
-        label: "Base64 code",
-        path: "/base64",
-        title: "Base64 code"
-      }
-    ]
-  },
+  // {
+  //   category: "Css",
+  //   content: [
+  //     {
+  //       label: "Base64 code",
+  //       path: "/base64",
+  //       title: "Base64 code"
+  //     }
+  //   ]
+  // },
   {
     category: "Hash",
     content: [
@@ -504,9 +504,9 @@ export const routes = flatten(
       label: "W3cubTools",
       path: "/",
       title:
-        "W3cubTools | All Free, Collections of Tools For Developers and Their family",
+        "W3cubTools | All Free, Collections of Tools For Developers and Family",
       desc:
-        "W3cubTools | All Free, Collections of Tools For Developers and Their family"
+        "W3cubTools | All Free, Collections of Tools For Developers and Family"
     })
 );
 

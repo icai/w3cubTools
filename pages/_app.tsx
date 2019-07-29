@@ -99,7 +99,8 @@ function renderHeadWay() {
   })("https://cdn.headwayapp.co/widget.js");
 }
 
-export default function App({ Component, pageProps }) {
+export default function App(props) {
+  const { Component, pageProps } = props;
   const router = useRouter();
 
   useEffect(() => {
@@ -133,13 +134,15 @@ export default function App({ Component, pageProps }) {
   // renderHeadWay();
 
   const activeRoute = activeRouteData(router.pathname);
+  console.info(props);
 
   return (
     <Container>
       <Head>
         <title>
-          {activeRoute && (activeRoute.title || activeRoute.searchTerm)} -
-          W3cubTools
+          {(activeRoute && (activeRoute.title || activeRoute.searchTerm)) ||
+            props.title}{" "}
+          - W3cubTools
         </title>
         <meta name="description" content={activeRoute && activeRoute.desc} />
 
@@ -216,6 +219,37 @@ export default function App({ Component, pageProps }) {
           })}
         </div>
       )}
+      <footer className="footer ">
+        <div className="footer-logo">{logo2}</div>
+        <div className="wrap">
+          <div className="nav">
+            <a href="http://">Privacy Policy</a>
+            <a
+              href="https://github.com/w3cub/w3cubtools-md/issues"
+              target="_blank"
+              className="mr-5"
+            >
+              Issues
+            </a>
+            <a
+              href="https://github.com/w3cub/w3cubtools-md"
+              className=""
+              target="_blank"
+            >
+              Improve descriptions
+            </a>
+            <a href="/about#donate" className="">
+              Donate Me
+            </a>
+            <a href="/about" className="">
+              About W3cubTools
+            </a>
+          </div>
+        </div>
+        <div className="copy">
+          Copyright © {new Date().getFullYear()} W3cub All Rights Reserved.
+        </div>
+      </footer>
       <style jsx>{`
         .sitemap {
           margin-top: 30px;
@@ -240,6 +274,33 @@ export default function App({ Component, pageProps }) {
           color: #666;
           text-decoration: none;
         }
+        .footer {
+          background-color: #f4f4f4;
+          padding: 20px 4% 50px;
+          line-height: 30px;
+          text-align: center;
+          box-shadow: 0px -1px 1px #dcdada;
+          .wrap {
+            width: 1024px;
+            margin: auto;
+          }
+          .nav {
+            padding-bottom: 20px;
+          }
+          .nav a {
+            padding-right: 8px;
+            margin-right: 8px;
+            color: #000;
+            text-decoration: none;
+          }
+          .copy {
+            border-top: 1px solid #d3d3d3;
+            padding: 20px;
+          }
+          .footer-logo {
+            position: absolute;
+          }
+        }
       `}</style>
     </Container>
   );
@@ -251,6 +312,13 @@ App.getInitialProps = async ({ Component, ctx }) => {
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
+  let exts = {} as any;
+  if (Component.title) {
+    exts.title = Component.title;
+  }
+  if (Component.description) {
+    exts.description = Component.description;
+  }
 
-  return { pageProps };
+  return { pageProps, ...exts };
 };
