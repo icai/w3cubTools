@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import cronstrue from "cronstrue/i18n";
 import Cron from "cron-converter";
 import valueHints from "./valueHints";
-import "./crontab-input.less";
+// import "./crontab-input.less";
 import locales from "./locales";
 
 class CrontabInput extends Component {
@@ -13,7 +13,11 @@ class CrontabInput extends Component {
     isValid: true,
     selectedPartIndex: -1,
     nextSchedules: [],
-    nextExpanded: false
+    nextExpanded: false,
+    seleted: {
+      selectedPart: -1,
+      selectedDirectly: false
+    }
   };
   inputRef;
 
@@ -27,8 +31,8 @@ class CrontabInput extends Component {
   clearCaretPosition() {
     this.lastCaretPosition = -1;
     this.setState({
-      selectedPartIndex: -1,
-      highlightedExplanation: this.highlightParsed(-1)
+      selectedPartIndex: -1
+      // highlightedExplanation: this.highlightParsed(-1)
     });
   }
 
@@ -117,8 +121,10 @@ class CrontabInput extends Component {
     let parsed;
     let highlightedExplanation;
     try {
-      parsed = cronstrue.parse(this.props.value, { locale: this.props.locale });
-      highlightedExplanation = "";
+      parsed = cronstrue.toString(this.props.value, {
+        locale: this.props.locale
+      });
+      highlightedExplanation = parsed;
     } catch (e) {
       highlightedExplanation = e.toString();
       isValid = false;
@@ -131,9 +137,9 @@ class CrontabInput extends Component {
       },
       () => {
         if (isValid) {
-          this.setState({
-            highlightedExplanation: this.highlightParsed(-1)
-          });
+          // this.setState({
+          //   highlightedExplanation: this.highlightParsed(-1)
+          // });
         }
         if (callback) {
           callback();
@@ -160,7 +166,7 @@ class CrontabInput extends Component {
     this.lastCaretPosition = caretPosition;
     if (caretPosition === -1) {
       this.setState({
-        highlightedExplanation: this.highlightParsed(-1),
+        // highlightedExplanation: this.highlightParsed(-1),
         selectedPartIndex: -1
       });
       return;
@@ -168,7 +174,7 @@ class CrontabInput extends Component {
     let textBeforeCaret = this.props.value.substring(0, caretPosition);
     let selectedPartIndex = textBeforeCaret.split(" ").length - 1;
     this.setState({
-      highlightedExplanation: this.highlightParsed(selectedPartIndex),
+      // highlightedExplanation: this.highlightParsed(selectedPartIndex),
       selectedPartIndex
     });
   }
@@ -186,6 +192,38 @@ class CrontabInput extends Component {
         });
       });
     }
+  }
+
+  selectPart(index) {
+    const me = this;
+    this.setState({
+      selectedPartIndex: index
+    });
+    let e = {
+      selectedPart: index + 1,
+      text: this.props.value
+    };
+    let t = this.state.seleted;
+    let inputRef = this.inputRef;
+    setTimeout(function() {
+      return (function(e, t) {
+        if (
+          e.selectedPart &&
+          e.selectedPart !== t.selectedPart &&
+          !e.selectedDirectly
+        ) {
+          var n = e.text.split(" ").slice(0, e.selectedPart),
+            r = n.pop().length,
+            o = n.join(" ").length;
+          0 < o && (o += 1);
+          var a = inputRef;
+          (a.selectionStart = o), (a.selectionEnd = o + r), a.focus();
+        }
+        me.setState({
+          ["seleted.selectedPart"]: index + 1
+        });
+      })(e, t);
+    }, 0);
   }
 
   render() {
@@ -225,37 +263,38 @@ class CrontabInput extends Component {
             </span>
           )}
         </div>
+        <div className="cron-wrap">
+          <input
+            type="text"
+            className={"cron-input " + (!this.state.isValid ? "error" : "")}
+            value={this.props.value}
+            ref={ref => {
+              this.inputRef = ref;
+            }}
+            onMouseUp={e => {
+              this.onCaretPositionChange();
+            }}
+            onKeyUp={e => {
+              this.onCaretPositionChange();
+            }}
+            onBlur={e => {
+              this.clearCaretPosition();
+            }}
+            onChange={e => {
+              let parts = e.target.value.split(" ").filter(_ => _);
+              if (parts.length !== 5) {
+                this.props.onChange(e.target.value);
+                this.setState({
+                  parsed: {},
+                  isValid: false
+                });
+                return;
+              }
 
-        <input
-          type="text"
-          className={"cron-input " + (!this.state.isValid ? "error" : "")}
-          value={this.props.value}
-          ref={ref => {
-            this.inputRef = ref;
-          }}
-          onMouseUp={e => {
-            this.onCaretPositionChange();
-          }}
-          onKeyUp={e => {
-            this.onCaretPositionChange();
-          }}
-          onBlur={e => {
-            this.clearCaretPosition();
-          }}
-          onChange={e => {
-            let parts = e.target.value.split(" ").filter(_ => _);
-            if (parts.length !== 5) {
               this.props.onChange(e.target.value);
-              this.setState({
-                parsed: {},
-                isValid: false
-              });
-              return;
-            }
-
-            this.props.onChange(e.target.value);
-          }}
-        />
+            }}
+          />
+        </div>
 
         <div className="parts">
           {[
@@ -271,6 +310,9 @@ class CrontabInput extends Component {
                 "part " +
                 (this.state.selectedPartIndex === index ? "selected" : "")
               }
+              onClick={() => {
+                this.selectPart(index);
+              }}
             >
               {unit}
             </div>
@@ -289,6 +331,98 @@ class CrontabInput extends Component {
             )}
           </div>
         )}
+        <style jsx>{`
+          @primary: rgb(24, 144, 255);
+          @error: red;
+          @gray: #aaa;
+          .crontab-input {
+            .explanation {
+              text-align: center;
+              margin: 16px 0 8px;
+              font-size: 40px;
+              color: @primary;
+              min-height: 3em;
+              span {
+                background: transparent;
+                color: inherit;
+                &.active {
+                  text-decoration: underline;
+                }
+              }
+            }
+
+            .next {
+              a {
+                text-decoration: underline;
+                cursor: pointer;
+              }
+              font-size: 0.9em;
+              opacity: 0.6;
+              margin-bottom: 6px;
+              line-height: 1.5;
+            }
+
+            .cron-wrap {
+              width: 680px;
+              margin: auto;
+            }
+
+            .cron-input {
+              font-family: "Courier New", Courier, monospace;
+              font-size: 60px;
+              text-align: center;
+              width: 100%;
+              border-radius: 100px;
+              border: 1px solid @primary;
+              outline: none;
+              padding-top: 8px;
+              height: 70px;
+              &.error {
+                border: 1px solid @error;
+              }
+            }
+
+            .parts {
+              margin-top: 3px;
+              .part {
+                display: inline-block;
+                width: 100px;
+                text-align: center;
+                cursor: pointer;
+                &.selected {
+                  font-weight: bold;
+                  color: @primary;
+                }
+              }
+            }
+
+            .allowed-values {
+              margin-top: 12px;
+              height: 180px;
+              .value {
+                display: flex;
+                width: 400px;
+                margin: auto;
+                .value,
+                .key {
+                  border-bottom: 1px dashed @gray;
+                  padding: 4px;
+                }
+                .key {
+                  flex: 0;
+                  flex-basis: 100px;
+                  text-align: right;
+                  font-weight: bold;
+                  padding-right: 20px;
+                }
+                .value {
+                  flex: 1;
+                }
+              }
+            }
+            text-align: center;
+          }
+        `}</style>
       </div>
     );
   }
