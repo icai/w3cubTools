@@ -2,16 +2,26 @@ import CrontabInput from "@components/CrontabInput";
 import ConversionLayout from "@components/ConversionLayout";
 import React, { useCallback, useState, Fragment, useLayoutEffect } from "react";
 import { Button, Pane, FilePicker, Textarea } from "evergreen-ui";
+import invert from "lodash/invert";
 
 export default function() {
   const [crons, setCrons] = useState({ value1: "* * * * *" });
-  const onChange = (obj: object) => {
+  const onChange = (obj: any) => {
     setCrons({
       ...crons,
       ...obj
     });
+    let parts = obj.value1.split(" ").filter(_ => _);
+
+    if (parts.length == 5) {
+      if (examvK[obj.value1]) {
+        location.hash = "#" + examvK[obj.value1];
+      } else {
+        location.hash = "#/" + obj.value1.trim().replace(/\s+/g, "_");
+      }
+    }
   };
-  let examples = {
+  const examples = {
     "/every-minute": "* * * * *",
     "/every-1-minute": "* * * * *",
     "/every-2-minutes": "*/2 * * * *",
@@ -83,7 +93,7 @@ export default function() {
     "/every-6-months": "0 0 1 */6 *",
     "/every-year": "0 0 1 1 *"
   };
-
+  const examvK = invert(examples);
   let items = [];
   for (const key in examples) {
     items.push(
@@ -104,6 +114,13 @@ export default function() {
     let path = location.hash.slice(1);
     if (examples[path]) {
       onChange({ value1: examples[path] });
+    } else if (/_/.test(path)) {
+      onChange({
+        value1: path
+          .replace(/^\//, "")
+          .split("_")
+          .join(" ")
+      });
     }
   }, []);
   return (
