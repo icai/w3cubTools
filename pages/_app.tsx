@@ -223,7 +223,7 @@ export default function App(props) {
         <div className="footer-logo">{logo2}</div>
         <div className="wrap">
           <div className="nav">
-            <a href="http://">Privacy Policy</a>
+            <a href="/privacy-policy">Privacy Policy</a>
             <a
               href="https://github.com/w3cub/w3cubtools-md/issues"
               target="_blank"
