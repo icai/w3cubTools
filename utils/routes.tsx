@@ -157,7 +157,10 @@ export const categorizedRoutes = [
         label: "Image converter",
         path: "/image-converter",
         title: "Image convert to png,jpg,...",
-        desc: "Image convert to png,jpg,..."
+        desc: "Image convert to png,jpg,...",
+        scripts: [
+          "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
+        ]
       }
     ]
   },
