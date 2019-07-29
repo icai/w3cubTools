@@ -134,7 +134,6 @@ export default function App(props) {
   // renderHeadWay();
 
   const activeRoute = activeRouteData(router.pathname);
-  console.info(props);
 
   return (
     <Container>
