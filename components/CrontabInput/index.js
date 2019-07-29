@@ -122,7 +122,8 @@ class CrontabInput extends Component {
     let highlightedExplanation;
     try {
       parsed = cronstrue.toString(this.props.value, {
-        locale: this.props.locale
+        locale: this.props.locale,
+        use24HourTimeFormat: true
       });
       highlightedExplanation = parsed;
     } catch (e) {
