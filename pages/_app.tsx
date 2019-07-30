@@ -186,7 +186,6 @@ export default function App(props) {
         </Pane>
       </Pane>
       <Pane className="mainlayout">
-        {/* { router.pathname != '/' && <Navigator />} */}
         <Component {...pageProps} />
       </Pane>
       {router.pathname != "/" && (
@@ -304,19 +303,18 @@ export default function App(props) {
     </Container>
   );
 }
+App.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {};
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+  let exts = {} as any;
+  if (Component.title) {
+    exts.title = Component.title;
+  }
+  if (Component.description) {
+    exts.description = Component.description;
+  }
 
-// App.getInitialProps = async ({ Component, ctx }) => {
-//   let pageProps = {};
-//   if (Component.getInitialProps) {
-//     pageProps = await Component.getInitialProps(ctx);
-//   }
-//   let exts = {} as any;
-//   if (Component.title) {
-//     exts.title = Component.title;
-//   }
-//   if (Component.description) {
-//     exts.description = Component.description;
-//   }
-
-//   return { pageProps, ...exts };
-// };
+  return { pageProps, ...exts };
+};
