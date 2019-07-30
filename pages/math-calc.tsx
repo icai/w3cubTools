@@ -118,14 +118,18 @@ export default function() {
         <div className={"form hidden-print " + rightctrl}>
           {lists.map((el, ix) => {
             return (
-              <Button css={styles.button} key={ix} onClick={() => onClick(el)}>
+              <Button
+                style={styles.button}
+                key={ix}
+                onClick={() => onClick(el)}
+              >
                 {el}
               </Button>
             );
           })}
           {hideFrom && (
             <Button
-              css={styles.button}
+              style={styles.button}
               onClick={() => {
                 window.print();
               }}
@@ -176,6 +180,7 @@ export default function() {
               right: 20px;
               top: 50%;
               margin-top: -150px;
+              z-index: 1;
             }
 
             .question {

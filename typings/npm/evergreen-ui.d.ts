@@ -31,6 +31,7 @@ declare module "evergreen-ui" {
     href?: string;
     onClick?: () => void;
     css?: any;
+    style?: any;
     download?: string;
     whiteSpace?: string;
   }
