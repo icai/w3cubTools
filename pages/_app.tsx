@@ -305,19 +305,18 @@ export default function App(props) {
   );
 }
 
-App.getInitialProps = async ({ Component, ctx }) => {
-  let pageProps = {};
+// App.getInitialProps = async ({ Component, ctx }) => {
+//   let pageProps = {};
+//   if (Component.getInitialProps) {
+//     pageProps = await Component.getInitialProps(ctx);
+//   }
+//   let exts = {} as any;
+//   if (Component.title) {
+//     exts.title = Component.title;
+//   }
+//   if (Component.description) {
+//     exts.description = Component.description;
+//   }
 
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
-  let exts = {} as any;
-  if (Component.title) {
-    exts.title = Component.title;
-  }
-  if (Component.description) {
-    exts.description = Component.description;
-  }
-
-  return { pageProps, ...exts };
-};
+//   return { pageProps, ...exts };
+// };
