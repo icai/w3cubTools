@@ -238,7 +238,7 @@ export default function App(props) {
               Improve descriptions
             </a>
             <a href="/about#donate" className="">
-              Donate Me
+              Donate
             </a>
             <a href="/about" className="">
               About
