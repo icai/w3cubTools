@@ -217,7 +217,7 @@ export default function App(props) {
           })}
         </div>
       )}
-      <footer className="footer ">
+      <footer className="footer hidden-print">
         <div className="footer-logo">{logo2}</div>
         <div className="wrap">
           <div className="nav">
