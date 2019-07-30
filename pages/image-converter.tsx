@@ -149,8 +149,8 @@ export default function() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 20px;
-          border-width: 2px;
+          padding: 70px;
+          border-width: 5px;
           border-radius: 2px;
           border-color: #eeeeee;
           border-style: dashed;

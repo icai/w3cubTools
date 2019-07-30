@@ -241,7 +241,7 @@ export default function App(props) {
               Donate Me
             </a>
             <a href="/about" className="">
-              About W3cubTools
+              About
             </a>
           </div>
         </div>
