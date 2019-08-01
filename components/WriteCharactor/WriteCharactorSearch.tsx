@@ -1,9 +1,11 @@
 import { SearchInput, Pane } from "evergreen-ui";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function(props) {
   const [char, setChar] = useState("");
-
+  useEffect(() => {
+    setChar(props.char);
+  }, [props.char]);
   return (
     <>
       <SearchInput

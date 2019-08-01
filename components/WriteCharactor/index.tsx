@@ -12,6 +12,7 @@ export default function(props) {
     slug = slug.slice(0, 1);
     if (slug && props.dict[slug]) {
       paths = JSON.parse(JSON.stringify(props.dict[slug]));
+      location.hash = "#/" + slug;
     } else {
       paths = [];
     }
@@ -99,7 +100,6 @@ export default function(props) {
           return;
         }
         ctx.lineCap = "round";
-        // set some style
         ctx.lineWidth = 15;
         ctx.strokeStyle = "#000";
         ctx.beginPath();
@@ -121,12 +121,18 @@ export default function(props) {
     }
   };
   useEffect(() => {
+    let path = decodeURIComponent(location.hash.slice(2));
+    onSearch(path);
     time = new Date().getTime();
     draw(time);
   }, [char]);
+
   return (
     <Pane>
-      <WriteCharactorSearch onSearch={onSearch}></WriteCharactorSearch>
+      <WriteCharactorSearch
+        char={char}
+        onSearch={onSearch}
+      ></WriteCharactorSearch>
       <Pane className="clearfix" paddingTop={100}>
         <canvas id="canvas" width={LAYOUT_SIZE} height={LAYOUT_SIZE}></canvas>
       </Pane>
