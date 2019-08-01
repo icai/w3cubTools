@@ -64,16 +64,17 @@ export const categorizedRoutes = [
       }
     ]
   },
-  // {
-  //   category: "Css",
-  //   content: [
-  //     {
-  //       label: "Base64 code",
-  //       path: "/base64",
-  //       title: "Base64 code"
-  //     }
-  //   ]
-  // },
+  {
+    category: "Word",
+    content: [
+      {
+        label: "中文笔顺",
+        path: "/write-chinese",
+        title: "How to write Chinese(笔顺)",
+        desc: "How to write Chinese(中文笔顺)"
+      }
+    ]
+  },
   {
     category: "Hash",
     content: [
