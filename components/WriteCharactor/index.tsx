@@ -15,6 +15,11 @@ export default function(props) {
       location.hash = "#/" + slug;
     } else {
       paths = [];
+      if (window.history.pushState) {
+        window.history.pushState("", "/", window.location.pathname);
+      } else {
+        window.location.hash = "";
+      }
     }
     setChar(slug);
   };
@@ -121,12 +126,14 @@ export default function(props) {
     }
   };
   useEffect(() => {
-    let path = decodeURIComponent(location.hash.slice(2));
-    onSearch(path);
     time = new Date().getTime();
     draw(time);
   }, [char]);
 
+  useEffect(() => {
+    let path = decodeURIComponent(location.hash.slice(2));
+    onSearch(path);
+  }, []);
   return (
     <Pane>
       <WriteCharactorSearch
