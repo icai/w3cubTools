@@ -2,10 +2,13 @@ var ghpages = require("gh-pages");
 ghpages.publish(
   "out",
   {
-    branch: "master",
+    branch: "gh-pages",
+    dotfiles: true,
     repo: "git@github.com:w3cub/w3cubTools-alpha.git"
   },
   err => {
-    console.log(err);
+    if (err) {
+      console.log(err);
+    }
   }
 );
