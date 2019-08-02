@@ -1,8 +1,10 @@
 import ConversionLayout from "@components/ConversionLayout";
 import React, { useEffect, useState } from "react";
 import { Button, Pane } from "evergreen-ui";
+import JSZip from "jszip";
 import { useDropzone } from "react-dropzone";
 import uniqBy from "lodash/uniqBy";
+import { getDate } from "@utils/utils";
 
 export default function() {
   const controlProps = {
@@ -11,12 +13,9 @@ export default function() {
     flex: "0 0 5%",
     flexWrap: "wrap" as any,
     height: "100%",
-    padding: "10px"
+    padding: "0px"
   };
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
-    accept: "image/*"
-  });
-
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
   const [accFiles, setAccFiles] = useState([]);
 
   const files = accFiles.map((file: any) => (
@@ -31,38 +30,43 @@ export default function() {
       __DEV__ && console.info(e);
     }
   };
-  const saveImageTo = type => {
-    accFiles.forEach(file => {
-      const reader = new FileReader();
-      reader.onabort = () => console.log("file reading was aborted");
-      reader.onerror = () => console.log("file reading has failed");
-      reader.onload = () => {
-        var image = new Image();
-        image.onload = function() {
-          var canvas = document.createElement("canvas") as HTMLCanvasElement;
-          canvas.width = image.width;
-          canvas.height = image.height;
-          canvas.getContext("2d").drawImage(image, 0, 0);
-          canvas.toBlob(function(blob) {
-            var lparenIdx = file.name.lastIndexOf(".");
-            if (-1 != lparenIdx) {
-              var fileName = file.name.substring(0, lparenIdx) + "." + type;
-            } else {
-              fileName = file.name + "." + type;
-            }
-            fileDownloadCB(blob, fileName);
-          }, "type/" + type);
+  const saveImageTo = () => {
+    var zip = new JSZip();
+
+    const proList = accFiles.map(file => {
+      return new Promise(function(resolve) {
+        const reader = new FileReader();
+        reader.onabort = () => console.log("file reading was aborted");
+        reader.onerror = () => console.log("file reading has failed");
+        reader.onload = () => {
+          //   console.info(reader.result);
+          zip.file(file.name, reader.result, { binary: true });
+          resolve();
         };
-        image.src = reader.result as any;
-      };
-      reader.readAsDataURL(file);
+        reader.readAsBinaryString(file);
+      });
+    });
+    let time = getDate();
+    proList.push(
+      new Promise(function(resolve) {
+        zip.file(
+          "readme.md",
+          "Thinks using " + window.location.href + `\n\nGenerate at ${time}`
+        );
+        resolve();
+      })
+    );
+    Promise.all(proList).then(() => {
+      zip.generateAsync({ type: "blob" }).then(function(content) {
+        // see FileSaver.js
+        saveAs(content, `w3cubtools.genzip.${time}.zip`);
+      });
     });
   };
 
   useEffect(() => {
     setAccFiles(uniqBy([...accFiles, ...acceptedFiles], "name"));
   }, [acceptedFiles]);
-
   return (
     <ConversionLayout flexDirection="column" layoutHeight="auto">
       <div className="ibox-section">
@@ -82,52 +86,17 @@ export default function() {
       </div>
       <Pane {...controlProps}>
         <Button
-          marginRight={10}
-          height={40}
-          margin="5px"
+          marginTop={20}
+          height={100}
+          width="100%"
+          fontSize="30px"
           display="block"
           whiteSpace="nowrap"
           onClick={() => {
-            saveImageTo("jpg");
+            saveImageTo();
           }}
         >
-          Convert to JPG
-        </Button>
-        <Button
-          marginRight={10}
-          height={40}
-          margin="5px"
-          display="block"
-          whiteSpace="nowrap"
-          onClick={() => {
-            saveImageTo("png");
-          }}
-        >
-          Convert to PNG
-        </Button>
-        <Button
-          marginRight={10}
-          height={40}
-          margin="5px"
-          display="block"
-          whiteSpace="nowrap"
-          onClick={() => {
-            saveImageTo("gif");
-          }}
-        >
-          Convert to GIF
-        </Button>
-        <Button
-          marginRight={10}
-          height={40}
-          margin="5px"
-          display="block"
-          whiteSpace="nowrap"
-          onClick={() => {
-            saveImageTo("bmp");
-          }}
-        >
-          Convert to BMP
+          Convert to Zip File
         </Button>
       </Pane>
       <style jsx global>{`

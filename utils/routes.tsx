@@ -181,6 +181,15 @@ export const categorizedRoutes = [
         desc: "Online Cron Generator"
       },
       {
+        label: "Zip Compressor",
+        path: "/zip-online",
+        title: "Online Zip Compressor, faster",
+        desc: "Online Zip Compressor, faster",
+        scripts: [
+          "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
+        ]
+      },
+      {
         label: "程序员老黄历",
         path: "/huangli",
         title: "程序员老黄历",
