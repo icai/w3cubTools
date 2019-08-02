@@ -3,6 +3,7 @@ export:
 	npm run export
 	cp ./CNAME out/
 	cp ./.nojekyll out/
+	npm run deploy
 
 commit:
 	cd out
