@@ -42,23 +42,6 @@ export const categorizedRoutes = [
     ]
   },
   {
-    category: "Fortune",
-    content: [
-      {
-        label: "程序员老黄历",
-        path: "/huangli",
-        title: "程序员老黄历, 据说很灵",
-        desc: "程序员老黄历, 程序员日常迷信系列"
-      },
-      {
-        label: "程序员求签",
-        path: "/qiuqian",
-        title: "程序员求签, 求出好运程",
-        desc: "程序员求签, 程序员日常迷信系列"
-      }
-    ]
-  },
-  {
     category: "Chart",
     content: [
       {
@@ -120,7 +103,6 @@ export const categorizedRoutes = [
       }
     ]
   },
-
   {
     category: "Encoding",
     content: [
@@ -214,6 +196,23 @@ export const categorizedRoutes = [
         scripts: [
           "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
         ]
+      }
+    ]
+  },
+  {
+    category: "Fortune",
+    content: [
+      {
+        label: "程序员老黄历",
+        path: "/huangli",
+        title: "程序员老黄历, 据说很灵",
+        desc: "程序员老黄历, 程序员日常迷信系列"
+      },
+      {
+        label: "程序员求签",
+        path: "/qiuqian",
+        title: "程序员求签, 求出好运程",
+        desc: "程序员求签, 程序员日常迷信系列"
       }
     ]
   },
