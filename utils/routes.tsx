@@ -38,6 +38,18 @@ export const categorizedRoutes = [
         path: "/gomoku",
         title: "Gomoku Game with computer",
         desc: "Gomoku Game with computer"
+      },
+      {
+        label: "程序员老黄历",
+        path: "/huangli",
+        title: "程序员老黄历, 据说很灵",
+        desc: "程序员老黄历, 程序员日常迷信系列"
+      },
+      {
+        label: "程序员求签",
+        path: "/qiuqian",
+        title: "程序员求签, 求出好运程",
+        desc: "程序员求签, 程序员日常迷信系列"
       }
     ]
   },
@@ -190,16 +202,13 @@ export const categorizedRoutes = [
         ]
       },
       {
-        label: "程序员老黄历",
-        path: "/huangli",
-        title: "程序员老黄历",
-        desc: "程序员老黄历"
-      },
-      {
-        label: "程序员求签",
-        path: "/qiuqian",
-        title: "程序员求签",
-        desc: "程序员求签"
+        label: "UnZip Files",
+        path: "/unzip-online",
+        title: "Online unZip, uncompress files faster",
+        desc: "Online unZip, uncompress files faster",
+        scripts: [
+          "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
+        ]
       }
     ]
   },
