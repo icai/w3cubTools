@@ -23,16 +23,9 @@ export default function() {
       {file.path} - {file.size} bytes
     </li>
   ));
-  const fileDownloadCB = (blob: Blob, name: string) => {
-    try {
-      saveAs(blob, name);
-    } catch (e) {
-      __DEV__ && console.info(e);
-    }
-  };
-  const saveImageTo = () => {
-    var zip = new JSZip();
 
+  const convertZip = () => {
+    var zip = new JSZip();
     const proList = accFiles.map(file => {
       return new Promise(function(resolve) {
         const reader = new FileReader();
@@ -93,7 +86,7 @@ export default function() {
           display="block"
           whiteSpace="nowrap"
           onClick={() => {
-            saveImageTo();
+            convertZip();
           }}
         >
           Convert to Zip File

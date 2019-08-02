@@ -38,7 +38,12 @@ export const categorizedRoutes = [
         path: "/gomoku",
         title: "Gomoku Game with computer",
         desc: "Gomoku Game with computer"
-      },
+      }
+    ]
+  },
+  {
+    category: "Fortune",
+    content: [
       {
         label: "程序员老黄历",
         path: "/huangli",

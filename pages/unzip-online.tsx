@@ -1,10 +1,11 @@
 import ConversionLayout from "@components/ConversionLayout";
 import React, { useEffect, useState } from "react";
-import { Button, Pane } from "evergreen-ui";
+import { Button, Pane, Checkbox } from "evergreen-ui";
 import JSZip from "jszip";
 import { useDropzone } from "react-dropzone";
 import uniqBy from "lodash/uniqBy";
 import { getDate } from "@utils/utils";
+import { access } from "fs";
 
 export default function() {
   const controlProps = {
@@ -15,57 +16,66 @@ export default function() {
     height: "100%",
     padding: "0px"
   };
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    multiple: false,
+    accept: "application/zip"
+  });
+  var zip = new JSZip();
+
   const [accFiles, setAccFiles] = useState([]);
 
+  const setCheckState = (name, state) => {
+    let news = accFiles.map(item => {
+      if (item.name == name) {
+        item.checked = state;
+      }
+      return item;
+    });
+    setAccFiles(news);
+  };
+
   const files = accFiles.map((file: any) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
+    <li
+      key={file.name}
+      style={{ verticalAlign: "top", lineHeight: "30px", display: "block" }}
+    >
+      <Checkbox
+        checked={file.checked}
+        label={`${file.name} - ${file._data.uncompressedSize} bytes`}
+        onChange={e => setCheckState(file.name, e.target.checked)}
+      />
     </li>
   ));
-  const fileDownloadCB = (blob: Blob, name: string) => {
-    try {
-      saveAs(blob, name);
-    } catch (e) {
-      __DEV__ && console.info(e);
-    }
-  };
-  const saveImageTo = () => {
-    var zip = new JSZip();
-
-    const proList = accFiles.map(file => {
-      return new Promise(function(resolve) {
-        const reader = new FileReader();
-        reader.onabort = () => console.log("file reading was aborted");
-        reader.onerror = () => console.log("file reading has failed");
-        reader.onload = () => {
-          //   console.info(reader.result);
-          zip.file(file.name, reader.result, { binary: true });
-          resolve();
-        };
-        reader.readAsBinaryString(file);
+  const saveFileTo = () => {
+    accFiles
+      .filter(item => item.checked)
+      .forEach(function(item) {
+        let filename = item.name;
+        item.async("blob").then(function(fileData) {
+          saveAs(fileData, filename);
+        });
       });
-    });
-    let time = getDate();
-    proList.push(
-      new Promise(function(resolve) {
-        zip.file(
-          "readme.md",
-          "Thinks using " + window.location.href + `\n\nGenerate at ${time}`
-        );
-        resolve();
-      })
-    );
-    Promise.all(proList).then(() => {
-      zip.generateAsync({ type: "blob" }).then(function(content) {
-        // see FileSaver.js
-        saveAs(content, `w3cubtools.genzip.${time}.zip`);
-      });
-    });
   };
-
   useEffect(() => {
-    setAccFiles(uniqBy([...accFiles, ...acceptedFiles], "name"));
+    if (!acceptedFiles.length) {
+      return;
+    }
+    zip
+      .loadAsync(acceptedFiles[0], {
+        checkCRC32: true
+      }) // 1) read the Blob
+      .then(function(zip) {
+        let acFiles = [];
+        zip.forEach(function(_relativePath, zipEntry) {
+          if (zipEntry._data.uncompressedSize > 100) {
+            zipEntry.checked = true;
+          } else {
+            zipEntry.checked = false;
+          }
+          acFiles.push(zipEntry);
+        });
+        setAccFiles(acFiles);
+      });
   }, [acceptedFiles]);
   return (
     <ConversionLayout flexDirection="column" layoutHeight="auto">
@@ -93,10 +103,10 @@ export default function() {
           display="block"
           whiteSpace="nowrap"
           onClick={() => {
-            saveImageTo();
+            saveFileTo();
           }}
         >
-          Convert to Zip File
+          Download selected unzip Files
         </Button>
       </Pane>
       <style jsx global>{`
