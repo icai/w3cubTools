@@ -5,6 +5,9 @@ import WriteCharactorSearch from "@components/WriteCharactor/WriteCharactorSearc
 let time = 0;
 let reqFrame;
 let paths = [];
+const BOARD_CELL_SIZE = 298;
+const BOARD_SIZE = 3;
+const PADDING = 2;
 export default function(props) {
   const LAYOUT_SIZE = props.size || 600;
   const [char, setChar] = useState("");
@@ -30,20 +33,27 @@ export default function(props) {
     var canvas = document.getElementById("canvas") as HTMLCanvasElement;
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 4;
     //画田字格
     var drawBoard = function() {
       ctx.setLineDash([]);
-      ctx.strokeStyle = "red";
-      for (var i = 0; i < 3; i++) {
+      ctx.strokeStyle = "red"; // red
+      for (var i = 0; i < BOARD_SIZE; i++) {
         ctx.beginPath();
-        ctx.moveTo(0 + i * 300, 0);
-        ctx.lineTo(0 + i * 300, 300 * 3 - 0);
+        ctx.moveTo(PADDING + i * BOARD_CELL_SIZE, PADDING);
+        ctx.lineTo(
+          PADDING + i * BOARD_CELL_SIZE,
+          BOARD_CELL_SIZE * BOARD_SIZE - PADDING
+        );
         ctx.stroke();
-        ctx.moveTo(0, 0 + i * 300);
-        ctx.lineTo(300 * 3 - 0, 0 + i * 300);
+        ctx.moveTo(PADDING, PADDING + i * BOARD_CELL_SIZE);
+        ctx.lineTo(
+          BOARD_CELL_SIZE * BOARD_SIZE - PADDING,
+          PADDING + i * BOARD_CELL_SIZE
+        );
         ctx.stroke();
       }
+
       // X
       ctx.beginPath();
       ctx.setLineDash([5, 15]);
