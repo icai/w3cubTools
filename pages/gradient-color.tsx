@@ -191,7 +191,7 @@ export default function Gradient() {
     selection.removeAllRanges();
     document.body.removeChild(node);
     toaster.success("CSS3 Code Copied! 👍", {
-      duration: 2000
+      duration: 2
     });
   };
   var bgDownload = function(event) {
