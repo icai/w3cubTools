@@ -60,7 +60,7 @@ export default class MyDocument extends Document<DocumentProps> {
           <link rel="manifest" href="/static/site.webmanifest" />
           <meta
             property="og:title"
-            content="W3cubTools | All Free, Collections of Tools For Developers and Their family"
+            content="W3cubTools | All Free, Collections of Tools For Developers and family"
           />
           <meta property="og:image" content="/static/logo.png" />
           <meta property="og:url" content="https://tools.w3cub.com" />
