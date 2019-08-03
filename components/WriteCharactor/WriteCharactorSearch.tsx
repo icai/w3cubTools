@@ -10,14 +10,14 @@ export default function(props) {
     <>
       <SearchInput
         placeholder="Input Charactor"
-        position={"absolute"}
         onChange={e => {
           setChar(e.target.value);
           props.onSearch(e.target.value);
         }}
         value={char}
         width={"600px"}
-        marginX="auto"
+        display="block"
+        margin={"auto"}
         height={40}
         marginBottom={10}
       />

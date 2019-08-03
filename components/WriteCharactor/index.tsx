@@ -72,7 +72,6 @@ export default function(props) {
     drawBoard();
     const drawWord = thepaths => {
       if (startTime !== time) {
-        paths = [];
         return;
       }
       var vertices = [];
