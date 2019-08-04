@@ -4,6 +4,7 @@ import Mdloader from "@components/Mdloader";
 import { SearchInput, Pane, toaster } from "evergreen-ui";
 import { useState, useEffect } from "react";
 import { createFuzzyList } from "@utils/fuzzyScore";
+import copy from "@utils/copy";
 let lists = [];
 if (__CLIENT__) {
   lists = createFuzzyList(mimes);
@@ -32,26 +33,12 @@ export default function() {
     setData(sorted);
   }, [query]);
   var copyCode = function(item) {
-    function dynamicNode() {
-      var node = document.createElement("pre");
-      node.style.position = "fixed";
-      node.style.fontSize = "0px";
-      node.textContent = "." + item[0] + " " + item[1];
-      return node;
+    const isCopied = copy("." + item[0] + " " + item[1]);
+    if (isCopied) {
+      toaster.success("Code Copied! 👍", {
+        duration: 2
+      });
     }
-    var node = dynamicNode();
-    document.body.appendChild(node);
-    var selection = getSelection();
-    selection.removeAllRanges();
-    var range = document.createRange();
-    range.selectNodeContents(node);
-    selection.addRange(range);
-    document.execCommand("copy");
-    selection.removeAllRanges();
-    document.body.removeChild(node);
-    toaster.success("Code Copied! 👍", {
-      duration: 2
-    });
   };
   return (
     <Pane margin="auto" width="800px">

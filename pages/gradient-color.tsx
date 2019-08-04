@@ -2,6 +2,7 @@ import gradients from "@constants/gradients.json";
 import { Icon, toaster } from "evergreen-ui";
 import AnglePicker from "@components/Gradient/AnglePicker";
 import { useState } from "react";
+import copy from "@utils/copy";
 
 function GradientItem({ item, copyCode, bgDownload }) {
   const [angle, setAngle] = useState(135);
@@ -171,28 +172,13 @@ export default function Gradient() {
       eventColorTo +
       gradientEnd +
       ";";
-    function dynamicNode() {
-      var node = document.createElement("pre");
-      node.style.position = "fixed";
-      node.style.fontSize = "0px";
-      node.textContent = eventResult;
-      return node;
+
+    const isCopied = copy(eventResult);
+    if (isCopied) {
+      toaster.success("CSS3 Code Copied! 👍", {
+        duration: 2
+      });
     }
-
-    var node = dynamicNode();
-    document.body.appendChild(node);
-
-    var selection = getSelection();
-    selection.removeAllRanges();
-    var range = document.createRange();
-    range.selectNodeContents(node);
-    selection.addRange(range);
-    document.execCommand("copy");
-    selection.removeAllRanges();
-    document.body.removeChild(node);
-    toaster.success("CSS3 Code Copied! 👍", {
-      duration: 2
-    });
   };
   var bgDownload = function(event) {
     //Grab Palette
