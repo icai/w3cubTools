@@ -5,7 +5,9 @@ import ShareButton from "@components/ShareButton";
 export default function() {
   const [shareall, setShareAll] = useState(false);
   return (
-    <div className={"share-widget " + (shareall ? "share-all" : "")}>
+    <div
+      className={"share-widget hidden-print " + (shareall ? "share-all" : "")}
+    >
       <ShareButton
         sites={[
           "facebook",
