@@ -333,6 +333,23 @@ legend {
   text-align: center;
 }
 
+.share-widget {
+  position: fixed;
+  right: 25px;
+  top: 30%;
+  width: 40px;
+  z-index: 1001;
+}
+.share-widget .social-share {
+  height: 240px;
+  overflow: hidden;
+}
+
+.share-widget.share-all .social-share {
+  height: auto;
+  overflow: auto;
+}
+
 @keyframes react-calculator-click {
   0% {
     transform: scale(1);

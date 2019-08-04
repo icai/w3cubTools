@@ -9,6 +9,7 @@ declare module "evergreen-ui" {
     css?: any;
     is?: any;
     style?: any;
+    onClick?: any;
   }
 
   export class Pane extends React.PureComponent<PaneProps> {}
@@ -26,7 +27,7 @@ declare module "evergreen-ui" {
     disabled?: boolean;
     theme?: any;
     className?: string;
-    children: React.ReactChild | any;
+    children?: React.ReactChild | any;
     is?: string;
     href?: string;
     onClick?: () => void;
@@ -34,6 +35,8 @@ declare module "evergreen-ui" {
     style?: any;
     download?: string;
     whiteSpace?: string;
+    href?: string;
+    target?: string;
   }
   export class Button extends React.PureComponent<ButtonProps> {}
 
@@ -106,7 +109,7 @@ declare module "evergreen-ui" {
   export interface PopoverProps {
     position?: Position;
     isShown?: boolean;
-    content: (args: { close: () => void }) => JSX.Element;
+    content: ((args: { close: () => void }) => JSX.Element) | JSX.Element;
     children: JSX.Element;
     display?: string;
     minWidth?: number;
@@ -115,6 +118,7 @@ declare module "evergreen-ui" {
     animationDuration?: number;
     onOpen?: () => void;
     onClose?: () => void;
+    innerRef?: () => void;
     onOpenComplete?: () => void;
     onCloseComplete?: () => void;
     bringFocusInside?: boolean;

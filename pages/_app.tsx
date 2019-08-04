@@ -17,6 +17,7 @@ import {
 } from "@utils/routes";
 import Scripts from "@components/Scripts";
 import Links from "@components/Links";
+import ShareWidget from "@components/ShareButton/Widget";
 
 let reactGa;
 if (IN_BROWSER && !IS_DEV) {
@@ -185,6 +186,7 @@ export default function App(props) {
           </a>
         </Pane>
       </Pane>
+      <ShareWidget></ShareWidget>
       <Pane className="mainlayout">
         <Component {...pageProps} />
       </Pane>

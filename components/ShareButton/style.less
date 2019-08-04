@@ -1,0 +1,168 @@
+@import "variables";
+
+@font-face {
+  font-family: "@{icomoon-font-family}";
+  src: url("@{icomoon-font-path}/@{icomoon-font-family}.ttf?smrq5k")
+      format("truetype"),
+    url("@{icomoon-font-path}/@{icomoon-font-family}.woff?smrq5k")
+      format("woff"),
+    url("@{icomoon-font-path}/@{icomoon-font-family}.svg?smrq5k#@{icomoon-font-family}")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "@{icomoon-font-family}" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  position: relative;
+  text-decoration: none;
+  margin: 4px;
+  display: inline-block;
+  outline: none;
+}
+
+.social-share-icon {
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  border-radius: 50%;
+  line-height: 32px;
+  border: 1px solid #666;
+  color: #666;
+  text-align: center;
+  vertical-align: middle;
+  transition: background 0.6s ease-out 0s;
+
+  &:hover {
+    background: #666;
+    color: #fff;
+  }
+}
+
+.icon-digg {
+  &:before {
+    content: @icon-digg;
+  }
+  color: #2a2a2a;
+  border-color: #2a2a2a;
+
+  &:hover {
+    background: #2a2a2a;
+  }
+}
+.icon-gmail {
+  &:before {
+    content: @icon-gmail;
+  }
+  color: #d14836;
+  border-color: #d14836;
+
+  &:hover {
+    background: #d14836;
+  }
+}
+.icon-line {
+  &:before {
+    content: @icon-line;
+  }
+  color: #00c300;
+  border-color: #00c300;
+
+  &:hover {
+    background: #00c300;
+  }
+}
+.icon-reddit {
+  &:before {
+    content: @icon-reddit;
+  }
+  color: #ff4500;
+  border-color: #ff4500;
+
+  &:hover {
+    background: #ff4500;
+  }
+}
+.icon-facebook {
+  &:before {
+    content: @icon-facebook;
+  }
+  color: #44619d;
+  border-color: #44619d;
+
+  &:hover {
+    background: #44619d;
+  }
+}
+.icon-twitter {
+  &:before {
+    content: @icon-twitter;
+  }
+  color: #55acee;
+  border-color: #55acee;
+
+  &:hover {
+    background: #55acee;
+  }
+}
+.icon-qzone {
+  &:before {
+    content: @icon-qzone;
+  }
+  color: #fdbe3d;
+  border-color: #fdbe3d;
+
+  &:hover {
+    background: #fdbe3d;
+  }
+}
+.icon-douban {
+  &:before {
+    content: @icon-douban;
+  }
+  color: #33b045;
+  border-color: #33b045;
+
+  &:hover {
+    background: #33b045;
+  }
+}
+.icon-weibo {
+  color: #ff763b;
+  border-color: #ff763b;
+  &:before {
+    content: @icon-weibo;
+  }
+  &:hover {
+    background: #ff763b;
+  }
+}
+
+.icon-linkedin {
+  &:before {
+    content: @icon-linkedin;
+  }
+  color: #0077b5;
+  border-color: #0077b5;
+
+  &:hover {
+    background: #0077b5;
+  }
+}

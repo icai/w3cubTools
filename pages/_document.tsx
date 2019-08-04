@@ -64,7 +64,7 @@ export default class MyDocument extends Document<DocumentProps> {
           />
           <meta property="og:image" content="/static/logo.png" />
           <meta property="og:url" content="https://tools.w3cub.com" />
-          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:card" content="/static/logo.png" />
           <style dangerouslySetInnerHTML={{ __html: css }} />
           {styles || null}
         </Head>

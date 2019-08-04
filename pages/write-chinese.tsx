@@ -14,7 +14,7 @@ const commonWords = `的一是在不了有和人这中大为上个国我以要�
 export default function() {
   const [char, setChar] = useState("");
   const onSearch = slug => {
-    if (slug == char) {
+    if (char && slug == char) {
       location.reload();
     }
     cancelAnimationFrame(reqFrame);
