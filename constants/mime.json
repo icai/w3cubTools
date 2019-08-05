@@ -109,7 +109,6 @@
   ["dl", "video/dl"],
   ["dl", "video/x-dl"],
   ["doc", "application/msword"],
-  ["doc", "application/msword"],
   [
     "docx",
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
