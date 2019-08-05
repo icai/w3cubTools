@@ -22,7 +22,7 @@ import ShareWidget from "@components/ShareButton/Widget";
 let reactGa;
 if (IN_BROWSER && !IS_DEV) {
   reactGa = require("react-ga");
-  reactGa.initialize("UA-71174418-1", {
+  reactGa.initialize("UA-145146877-1", {
     debug: IS_DEV
   });
 }

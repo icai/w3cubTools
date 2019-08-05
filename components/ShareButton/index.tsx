@@ -39,8 +39,8 @@ export default function(props) {
       // wechat: `javascript:`,
       douban: `http://shuo.douban.com/!service/share?href=${url}&name=${title}&text=${description}&image=${image}&starid=0&aid=0&style=11`,
       linkedin: `http://www.linkedin.com/shareArticle?mini=true&ro=true&title=${title}&url=${url}&summary=${summary}&source=${source}&armin=armin`,
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-      twitter: `https://twitter.com/intent/tweet?text=${title}&url=${url}&via=${origin}`
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}&href=${url}&quote=${title}`,
+      twitter: `https://twitter.com/intent/tweet?text=${title}%20${url}&url=${url}&via=${origin}`
     };
     if (templates[name]) {
       e.currentTarget.href = templates[name];
