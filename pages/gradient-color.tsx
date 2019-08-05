@@ -20,6 +20,7 @@ function GradientItem({ item, copyCode, bgDownload }) {
             callback={(c: number) => {
               setAngle(c);
             }}
+            angle={angle}
           ></AnglePicker>
           <a
             className="ch-code"
@@ -189,17 +190,44 @@ export default function Gradient() {
     canvas.width = 1000;
     canvas.height = 1000;
     var ctx = canvas.getContext("2d");
-
-    const maxLength = Math.sqrt(
-      canvas.width * canvas.width + canvas.height * canvas.height
-    );
-
-    var angle = eventColorAngle;
+    var angle = Math.abs(eventColorAngle - 450) % 360;
+    function degreetoPoint(a, b, c) {
+      var d,
+        e,
+        f,
+        g,
+        h = Math.atan(b / a),
+        i = a / 2,
+        j = b / 2;
+      c = Math.abs((360 - c) * (Math.PI / 180));
+      var k = Math.abs(c - Math.PI) < h,
+        l = c > 2 * Math.PI - h || c < h,
+        m = Math.abs(c - Math.PI / 2) <= Math.abs(Math.PI / 2 - h),
+        n = Math.abs(c - (3 * Math.PI) / 2) <= Math.abs(Math.PI / 2 - h),
+        o = (k ? -1 : 0) + (l ? 1 : 0),
+        p = (n ? -1 : 0) + (m ? 1 : 0);
+      return (
+        o
+          ? ((d = i + (a / 2) * o), (e = j + (a / 2) * (Math.tan(c) * o)))
+          : ((d = i + (b / 2) * (p / Math.tan(c))), (e = j + (b / 2) * p)),
+        (d = Math.round(d)),
+        (e = Math.round(e)),
+        (f = a - d),
+        (g = b - e),
+        {
+          x0: f,
+          y0: g,
+          x1: d,
+          y1: e
+        }
+      );
+    }
+    const points = degreetoPoint(canvas.width, canvas.width, angle);
     var tempGradient = ctx.createLinearGradient(
-      canvas.width / 2 + Math.cos(angle) * maxLength * 0.5,
-      canvas.height / 2 + Math.sin(angle) * maxLength * 0.5,
-      canvas.width / 2 - Math.cos(angle) * maxLength * 0.5,
-      canvas.height / 2 - Math.sin(angle) * maxLength * 0.5
+      points.x0,
+      points.y0,
+      points.x1,
+      points.y1
     );
     // var tempGradient = ctx.createLinearGradient(0, 0, 1000, 1000);
     tempGradient.addColorStop(0, eventColorFrom);
