@@ -10,6 +10,7 @@ export default function() {
     function randRange(low, high) {
       // @ts-ignore
       return parseInt(
+        // @ts-ignore
         parseInt(low, 16) +
           Math.random() * (parseInt(high, 16) - parseInt(low, 16)),
         16
