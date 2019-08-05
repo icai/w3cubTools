@@ -88,12 +88,30 @@ export const categorizedRoutes = [
     ]
   },
   {
+    category: "Random",
+    content: [
+      {
+        label: "Random Hex",
+        path: "/random-hex",
+        title: "Random Hex Generator",
+        desc: "Random Hex string Generator"
+      },
+      {
+        label: "Random Mac",
+        path: "/random-mac",
+        title: "Random Mac Generator",
+        desc: "Random Mac address Generator"
+      }
+    ]
+  },
+  {
     category: "Hash",
     content: [
       {
         label: "Base64 code",
         path: "/base64",
-        title: "Base64 code"
+        title: "Base64 encode, base64 decode",
+        desc: "Base64 encode, base64 decode"
       },
       {
         label: "MD5 encode",
@@ -116,7 +134,7 @@ export const categorizedRoutes = [
     ]
   },
   {
-    category: "Encoding",
+    category: "Encode",
     content: [
       {
         label: "Deobfuscate",
