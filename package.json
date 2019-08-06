@@ -12,6 +12,7 @@
     "build": "next build",
     "export": "next export",
     "deploy": "node scripts/gh-pages.js",
+    "sitemap": "node scripts/sitemap.js",
     "now-build": "next build",
     "postinstall": "patch-package",
     "build:analyze": "ANALYZE=true yarn build"
@@ -71,6 +72,7 @@
     "monaco-editor": "^0.17.1",
     "next": "^9.0.2",
     "next-fonts": "^0.17.0",
+    "nextjs-sitemap-generator": "^0.1.1",
     "nprogress": "^0.2.0",
     "postcss": "^7.0.17",
     "postcss-js": "^2.0.2",

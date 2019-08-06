@@ -3297,7 +3297,7 @@ data-uri-to-buffer@2:
   dependencies:
     "@types/node" "^8.0.7"
 
-date-fns@^1.27.2:
+date-fns@^1.27.2, date-fns@^1.30.1:
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
@@ -7019,6 +7019,13 @@ next@^9.0.2:
     webpack-hot-middleware "2.25.0"
     webpack-sources "1.3.0"
     worker-farm "1.7.0"
+
+nextjs-sitemap-generator@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/nextjs-sitemap-generator/-/nextjs-sitemap-generator-0.1.1.tgz#996366c0ec0f551670bd6bf54af6700e7e794307"
+  integrity sha512-oNPQpVSxNjPGSYDTM/UBLa7QzJjo5Dq7Rh4Sgupfm2DJRNdo6zR6FOHU939em37yccWU8qSpWqFllrrLVOSWTQ==
+  dependencies:
+    date-fns "^1.30.1"
 
 nice-try@^1.0.4:
   version "1.0.5"
