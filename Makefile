@@ -3,6 +3,6 @@ export:
 	npm run export
 	cp ./CNAME out/
 	cp ./.nojekyll out/
-	npm run deploy
 	npm run sitemap
+	npm run deploy
 

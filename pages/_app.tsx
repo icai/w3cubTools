@@ -281,7 +281,6 @@ export default function App(props) {
           text-align: center;
           box-shadow: 0px -1px 1px #dcdada;
           .wrap {
-            width: 1024px;
             margin: auto;
           }
           .nav {
@@ -299,6 +298,13 @@ export default function App(props) {
           }
           .footer-logo {
             position: absolute;
+          }
+        }
+        @media (max-width: 768px) {
+          .footer {
+            .footer-logo {
+              display: none;
+            }
           }
         }
       `}</style>
