@@ -226,6 +226,13 @@ export const categorizedRoutes = [
         scripts: [
           "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
         ]
+      },
+      {
+        label: "Vue to React",
+        path: "/vue-to-react",
+        title: "Vue to React Online Converter",
+        desc: "Vue to React Online Converter",
+        scripts: ["https://bundle.run/@w3cub/vue-to-react@1.1.2"]
       }
     ]
   },

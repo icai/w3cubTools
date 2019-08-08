@@ -115,14 +115,16 @@ const ConversionPanel: React.FunctionComponent<
     transform();
   }, [splitValue, value, splitTitle, settings]);
 
-  if (
-    splitTitle ||
-    (editorProps && editorProps.previewElement) ||
-    (resultEditorProps && resultEditorProps.previewElement)
-  ) {
-    layoutHeight = "700px";
-  } else {
-    layoutHeight = "500px";
+  if (!layoutHeight) {
+    if (
+      splitTitle ||
+      (editorProps && editorProps.previewElement) ||
+      (resultEditorProps && resultEditorProps.previewElement)
+    ) {
+      layoutHeight = "700px";
+    } else {
+      layoutHeight = "500px";
+    }
   }
   return (
     <>
