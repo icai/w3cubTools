@@ -65,6 +65,7 @@ export default function() {
       transformer={transformer}
       editorTitle="Vue"
       editorLanguage="html"
+      editorDefaultValue={"vue"}
       editorSettingsElement={getSettingsElement}
       settings={settings}
       resultTitle="React"
