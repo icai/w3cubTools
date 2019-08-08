@@ -394,7 +394,7 @@ export const categorizedRoutes = [
       },
       {
         label: "to OpenAPI Schema",
-        path: "json-schema-to-openapi-schema",
+        path: "/json-schema-to-openapi-schema",
         packageName: "json-schema-to-openapi-schema",
         packageUrl: "https://github.com/wework/json-schema-to-openapi-schema"
       }
@@ -559,7 +559,7 @@ export const routes = flatten(
           ...x,
           category: a.category,
           searchTerm: _label,
-          desc: x.desc || `An online Repl to convert ${_label}`
+          desc: x.desc || `Online convert ${_label}, automatically faster`
         };
       })
     )
