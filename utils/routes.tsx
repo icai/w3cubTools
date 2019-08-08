@@ -232,7 +232,7 @@ export const categorizedRoutes = [
         path: "/vue-to-react",
         title: "Vue to React Online Converter",
         desc: "Vue to React Online Converter",
-        scripts: ["https://bundle.run/@w3cub/vue-to-react@1.1.2"]
+        scripts: ["https://bundle.run/@w3cub/vue-to-react@1.2.1"]
       }
     ]
   },
