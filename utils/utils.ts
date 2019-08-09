@@ -28,3 +28,31 @@ export const getDate = function() {
   }
   return "" + date.getFullYear() + arr.join("");
 };
+
+const v = [
+  ["āáǎà", "a"],
+  ["ēéěè", "e"],
+  ["īíǐì", "i"],
+  ["ōóǒò", "o"],
+  ["ūúǔù", "u"],
+  ["ǘǚǜ", "v"]
+];
+const h = [["āēīōū", 1], ["áéíóúǘ", 2], ["ǎěǐǒǔǚ", 3], ["àèìòùǜ", 4]];
+
+// guó => guo2
+export const converttoNoTone = s => {
+  v.forEach(it => {
+    s = s.replace(new RegExp("([" + it[0] + "])", "g"), (_a, s1) => {
+      return it[1] + s1;
+    });
+  });
+  h.forEach(it => {
+    s = s.replace(
+      new RegExp("([a-z]*)?([" + it[0] + "])([a-z]*)?", "g"),
+      (_a, s1, _s2, s3) => {
+        return (s1 || "") + (s3 || "") + it[1];
+      }
+    );
+  });
+  return s;
+};

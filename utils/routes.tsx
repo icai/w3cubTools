@@ -83,7 +83,8 @@ export const categorizedRoutes = [
         label: "Chinese Stroke",
         path: "/write-chinese",
         title: "How to write Chinese(笔顺)",
-        desc: "How to write Chinese, Chinese Stroke(中文笔顺)"
+        desc: "How to write Chinese, Chinese Stroke(中文笔顺)",
+        scripts: ["/static/dict/pinyin.js"]
       }
     ]
   },

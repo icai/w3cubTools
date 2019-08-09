@@ -64,3 +64,5 @@ declare const $;
 declare const saveAs: (a, b) => void;
 
 declare const _w3cub_vueToReact: (a, b) => string;
+
+declare const transPinyin: (a) => string;
