@@ -44,10 +44,14 @@ export default function() {
     }
     cancelAnimationFrame(reqFrame);
     paths = [];
-    slug = slug.slice(0, 1);
-    if (slug && chinese[slug]) {
-      paths = JSON.parse(JSON.stringify(chinese[slug]));
-      location.hash = "#/" + slug;
+
+    if (slug) {
+      slug = slug.slice(0, 1);
+      if (chinese[slug]) {
+        paths = JSON.parse(JSON.stringify(chinese[slug]));
+        location.hash = "#/" + slug;
+        setChar(slug);
+      }
     } else {
       paths = [];
       if (window.history.pushState) {
@@ -55,8 +59,22 @@ export default function() {
       } else {
         window.location.hash = "";
       }
+      setChar("");
     }
-    setChar(slug);
+  };
+
+  const toTop = () => {
+    try {
+      // trying to use new API - https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
+    } catch (error) {
+      // just a fallback for older browsers
+      window.scrollTo(0, 0);
+    }
   };
   const draw = startTime => {
     if (!__CLIENT__) {
@@ -238,7 +256,10 @@ export default function() {
               className="word"
               key={word}
               onClick={() => {
-                onSearch(word);
+                toTop();
+                setTimeout(() => {
+                  onSearch(word);
+                }, 500);
               }}
             >
               {word}
