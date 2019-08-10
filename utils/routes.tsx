@@ -97,7 +97,7 @@ export const categorizedRoutes = [
         label: "Japanese 五十音図",
         path: "/japanese-syllabary",
         title: "五十音図, ごじゅうおんず, 五十音图, Hiragana",
-        desc: "五十音図, ごじゅうおんず, 五十音图, Hiragana Stroke"
+        desc: "五十音図, ごじゅうおんず, 五十音图, Hiragana"
       }
     ]
   },
