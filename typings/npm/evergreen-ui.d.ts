@@ -8,11 +8,28 @@ declare module "evergreen-ui" {
     className?: string;
     css?: any;
     is?: any;
+    id?: any;
+    role?: any;
     style?: any;
     onClick?: any;
+    onMouseEnter?: any;
   }
 
   export class Pane extends React.PureComponent<PaneProps> {}
+
+  export interface TablistProps extends PaneProps {}
+
+  export class Tablist extends React.PureComponent<TablistProps> {}
+
+  export interface TabProps extends PaneProps {
+    id?: string;
+    onSelect?: () => void;
+    isSelected?: boolean;
+  }
+
+  export class Tab extends React.PureComponent<TabProps> {}
+
+  export class Paragraph extends React.PureComponent<PaneProps> {}
 
   type Intent = "none" | "success" | "warning" | "danger";
   type Appearance = "minimal" | "primary" | "default";
