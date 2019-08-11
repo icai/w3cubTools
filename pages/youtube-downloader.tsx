@@ -31,10 +31,12 @@ export default function() {
   };
 
   const formatUrl = (url, title) => {
-    url = url
-      .replace(/\/[^\/]+\.googlevideo\.com/, "/redirector.googlevideo.com")
-      .replace("&cms_redirect=yes", "")
-      .replace("&redirect_counter=1", "");
+    url = url.replace(
+      /\/[^\/]+\.googlevideo\.com/,
+      "/redirector.googlevideo.com"
+    );
+    //   .replace("&cms_redirect=yes", "")
+    //   .replace("&redirect_counter=1", "");
     // .replace('&gir=yes', '').replace('gir%2C', '');
     url = url + `&title=${title}`;
     return url;
