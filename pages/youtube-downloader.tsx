@@ -6,9 +6,6 @@ import React, {
 } from "react";
 import { Pane } from "evergreen-ui";
 import WriteCharactorSearch from "@components/WriteCharactor/WriteCharactorSearch";
-import { async } from "q";
-import { replace } from "formik";
-
 export default function() {
   const [char, setChar] = useState("");
   const [title, setTitle] = useState("");
@@ -35,9 +32,6 @@ export default function() {
       /\/[^\/]+\.googlevideo\.com/,
       "/redirector.googlevideo.com"
     );
-    //   .replace("&cms_redirect=yes", "")
-    //   .replace("&redirect_counter=1", "");
-    // .replace('&gir=yes', '').replace('gir%2C', '');
     url = url + `&title=${title}`;
     return url;
   };
@@ -90,7 +84,7 @@ export default function() {
           </Pane>
         )}
         {char && (
-          <table className="mimes">
+          <table className="ytable">
             <tbody>
               <tr>
                 <th className="separateColor" style={{ width: "30%" }}>
@@ -110,7 +104,7 @@ export default function() {
                         target="_blank"
                         style={{ position: "relative" }}
                       >
-                        download{" "}
+                        download
                         {ix == 0 && (
                           <sup style={{ position: "absolute", color: "red" }}>
                             hot
@@ -136,7 +130,7 @@ export default function() {
         )}
       </div>
       <style jsx>{`
-        .mimes {
+        .ytable {
           font: 1em Monaco;
           text-align: center;
           border: 1px solid #ccc;
@@ -144,24 +138,24 @@ export default function() {
           border-spacing: 0;
           width: 100%;
         }
-        .mimes tr > th,
-        .mimes tr > td {
+        .ytable tr > th,
+        .ytable tr > td {
           border: 1px solid #ddd;
           padding: 8px;
           line-height: 1.428571429;
           vertical-align: top;
           border-top: 1px solid #ddd;
         }
-        .mimes tr > th {
+        .ytable tr > th {
           border-bottom-width: 2px;
           padding: 12px 8px;
         }
 
-        .mimes tr:nth-of-type(odd) {
+        .ytable tr:nth-of-type(odd) {
           background-color: #f9f9f9;
         }
 
-        .mimes tr:hover td {
+        .ytable tr:hover td {
           background-color: #f5f5f5;
         }
       `}</style>

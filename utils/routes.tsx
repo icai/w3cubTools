@@ -48,8 +48,7 @@ export const categorizedRoutes = [
         label: "Youtube Downloader",
         path: "/youtube-downloader",
         title: "YouTube Downloader",
-        desc:
-          "Online download videos from YouTube for FREE to PC, mobile. Supports downloading all formats: MP4, 3GP, WebM, HD videos, convert YouTube to MP3, M4A."
+        desc: "Online download videos from YouTube for FREE to PC mobile"
       }
     ]
   },
@@ -526,7 +525,7 @@ export const categorizedRoutes = [
       },
       {
         label: "to Normalized",
-        path: "jsonld-to-normalized"
+        path: "/jsonld-to-normalized"
       }
     ].map(x => ({
       ...x,

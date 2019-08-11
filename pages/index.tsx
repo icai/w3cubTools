@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
-import Link from "next/link";
 import { categorizedRoutes, Route } from "@utils/routes";
 
 export default function() {
   return (
-    <Fragment>
+    <>
       <div className="nav">
         {categorizedRoutes.map((route, i) => {
           return (
@@ -53,12 +52,10 @@ export default function() {
             padding: 0.5em 1.25em;
             font-weight: 700;
           }
-
           .item:hover {
             background: #fff;
             color: #764abc;
           }
-
           .beta {
             background-color: #666;
             border-radius: 2px;
@@ -70,6 +67,6 @@ export default function() {
           }
         }
       `}</style>
-    </Fragment>
+    </>
   );
 }
