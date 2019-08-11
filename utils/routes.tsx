@@ -42,6 +42,18 @@ export const categorizedRoutes = [
     ]
   },
   {
+    category: "Video",
+    content: [
+      {
+        label: "Youtube Downloader",
+        path: "/youtube-downloader",
+        title: "YouTube Downloader",
+        desc:
+          "Online download videos from YouTube for FREE to PC, mobile. Supports downloading all formats: MP4, 3GP, WebM, HD videos, convert YouTube to MP3, M4A."
+      }
+    ]
+  },
+  {
     category: "Chart",
     content: [
       {
