@@ -72,6 +72,7 @@ export default function() {
   }
 
   const [hideFrom, setHideFrom] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [pages, setPages] = useState([]);
 
   function insertPage(operators, nums) {
@@ -101,7 +102,7 @@ export default function() {
   const styles = {
     button: {
       margin: "10px auto",
-      width: "150px",
+      width: "180px",
       height: "35px",
       font: "20px/25px Verdana Arial",
       borderRadius: "5px",
@@ -128,14 +129,24 @@ export default function() {
             );
           })}
           {hideFrom && (
-            <Button
-              style={styles.button}
-              onClick={() => {
-                window.print();
-              }}
-            >
-              Print Page
-            </Button>
+            <>
+              <Button
+                style={styles.button}
+                onClick={() => {
+                  window.print();
+                }}
+              >
+                Print Page
+              </Button>
+              <Button
+                style={styles.button}
+                onClick={() => {
+                  setShowResult(!showResult);
+                }}
+              >
+                Toggle Result
+              </Button>
+            </>
           )}
         </div>
         <div className="exam">
@@ -150,6 +161,17 @@ export default function() {
                         <span className="O">{operator}</span>
                         <span className="B">{B}</span>
                         <span className="O">=</span>
+                        {showResult && (
+                          <span className="X">
+                            {eval(
+                              "(" +
+                                (A + "" + operator + "" + B)
+                                  .replace("×", "*")
+                                  .replace("÷", "/") +
+                                ")"
+                            )}
+                          </span>
+                        )}
                       </div>
                     );
                   })}
@@ -177,9 +199,9 @@ export default function() {
             }
             .form.widget {
               position: fixed;
-              right: 20px;
+              right: 80px;
               top: 50%;
-              margin-top: -150px;
+              margin-top: -230px;
               z-index: 1;
             }
 
@@ -207,10 +229,15 @@ export default function() {
             }
 
             .A,
-            .B {
+            .B,
+            .X {
               width: 40px;
               display: inline-block;
               text-align: center;
+            }
+
+            .X {
+              color: green;
             }
 
             .O {
