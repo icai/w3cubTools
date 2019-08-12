@@ -14,13 +14,18 @@ export const categorizedRoutes = [
         label: "Math Worksheets",
         path: "/math-calc",
         title: "Online Math Worksheets, Printable",
-        desc: "Online Math Worksheets, Printable"
+        desc:
+          "Online Math Worksheets, Free math worksheets 1 to 100 for kids and primary school students, easy to print and download. No sign-up required.",
+        keywords:
+          "math worksheets, download math worksheets,print math worksheets, math worksheets testing"
       },
       {
         label: "Calculator",
         path: "/calculator",
         title: "Online Calculator",
-        desc: "Online Calculator"
+        desc:
+          "Online Calculator, A Free Online Calculator, Quick and Keyboard Easy.",
+        keywords: "calculator, beautiful calculator, easy use calculator"
       }
     ]
   },
@@ -31,13 +36,17 @@ export const categorizedRoutes = [
         label: "2048 Game",
         path: "/g2048",
         title: "2048 Game",
-        desc: "2048 Game"
+        desc:
+          "2048 Game online play. No sign-up required. No download required.",
+        keywords: "2048 game, the popular 2048 came, 2048 online, 2048 "
       },
       {
         label: "Gomoku Game",
         path: "/gomoku",
         title: "Gomoku Game with computer",
-        desc: "Gomoku Game with computer"
+        desc: "Gomoku Game with computer, train your gomoku skills",
+        keywords:
+          "gomoku Game, gobang game, gomoku with computer, gomoku skills"
       }
     ]
   },
@@ -48,7 +57,9 @@ export const categorizedRoutes = [
         label: "Youtube Downloader",
         path: "/youtube-downloader",
         title: "YouTube Downloader",
-        desc: "Online download videos from YouTube for FREE to PC mobile"
+        desc: "Online download videos from YouTube for FREE to PC, mobile",
+        keywords:
+          "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader"
       }
     ]
   },
@@ -59,31 +70,42 @@ export const categorizedRoutes = [
         label: "Web Colors",
         path: "/web-color",
         title: "Web Colors Chart",
-        desc: "Web Colors Chart"
+        desc:
+          "Web Colors Chart, web safe colors for web developers, web designers",
+        keywords:
+          "web safe colors, web colors chart, beautiful web colors chart"
       },
       {
         label: "Open Color",
         path: "/open-color",
         title: "Open color schemes",
-        desc: "Open color schemes"
+        desc:
+          "Open color schemes for web developers, web designers, easy use open color schemes.",
+        keywords: "open color schemes, open color charts"
       },
       {
         label: "Gradient Colors",
         path: "/gradient-color",
         title: "Gradient Colors Collection Palette",
-        desc: "Gradient Colors Collection Palette"
+        desc:
+          "Gradient Colors Collection Palette, easy to preview and download. No sign-up required.",
+        keywords:
+          "Gradient Colors, beautiful Gradient colors, download gradient background"
       },
       {
         label: "HTML Entities",
         path: "/html-entities",
         title: "Character Entity Reference Chart",
-        desc: "Character Entity Reference Chart"
+        desc:
+          "Character Entity Reference Chart, show you the character entity in one screen. easy to search and copy.",
+        keywords: "HTML Entities, Character Entities, character Entity Chart"
       },
       {
         label: "MIME Types",
         path: "/mime-list",
         title: "Complete List of MIME Types, Searchable",
-        desc: "Complete List of MIME Types, Searchable"
+        desc: "Complete List of MIME Types, easy to search and copy.",
+        keywords: "mime types, find mime types"
       }
     ]
   },
@@ -94,21 +116,27 @@ export const categorizedRoutes = [
         label: "Chinese Stroke",
         path: "/write-chinese",
         title: "How to write Chinese(笔顺)",
-        desc: "How to write Chinese, Chinese Stroke(中文笔顺)",
+        desc:
+          "How to write Chinese, Chinese Stroke(中文笔顺), tell you how to write chinese, and voice to speak",
+        keywords: "chinese stroke, write chinese, speak chinese",
         scripts: ["/static/dict/pinyin.js"]
       },
       {
         label: "中文转拼音",
         path: "/chinese-to-pinyin",
         title: "中文转拼音，在线速查，朗读",
-        desc: "中文转拼音，在线速查，朗读发音",
+        desc:
+          "中文转拼音，在线速查，朗读发音, 点击功能按钮进行转换，快速转换无延时，请求朗读功能有惊喜",
+        keywords: "中文转拼音, 在线速查, 朗读发音",
         scripts: ["/static/dict/pinyin.js"]
       },
       {
         label: "Japanese 五十音図",
         path: "/japanese-syllabary",
         title: "五十音図, ごじゅうおんず, 五十音图, Hiragana",
-        desc: "五十音図, ごじゅうおんず, 五十音图, Hiragana"
+        desc:
+          "This tool help you learn Japanese syllabary 五十音図, ごじゅうおんず, 五十音图, Hiragana",
+        keywords: "learn Japanese, 五十音図, ごじゅうおんず, 五十音图, Hiragana"
       }
     ]
   },
@@ -119,13 +147,19 @@ export const categorizedRoutes = [
         label: "Random Hex",
         path: "/random-hex",
         title: "Random Hex Generator",
-        desc: "Random Hex string Generator"
+        desc:
+          "online Random Hex string Generator. This tools help you generate the random hex string, you can setting the string len and how many time you generate",
+        keywords:
+          "random generate string, Random Hex, Random Hex Generator, random"
       },
       {
         label: "Random Mac",
         path: "/random-mac",
         title: "Random Mac Generator",
-        desc: "Random Mac address Generator"
+        desc:
+          "online Random Mac address Generator. This tools help you generate the random hex string, you can setting the string len and how many time you generate.",
+        keywords:
+          "random generate Mac address, Random mac address, Random Mac address Generator, random"
       }
     ]
   },
@@ -136,25 +170,32 @@ export const categorizedRoutes = [
         label: "Base64 code",
         path: "/base64",
         title: "Base64 encode, base64 decode",
-        desc: "Base64 encode, base64 decode"
+        desc:
+          "This tools help you generate base64 encode string, base64 decode string. fast and easy to use.",
+        keywords:
+          "Base64 encode, Base64 decode, Base64 string generator, base64 decode recover"
       },
       {
         label: "MD5 encode",
         path: "/md5-encode",
         title: "MD5 encode",
-        desc: "MD5 encode",
-        scripts: ["/static/crypto/sha1.js", "/static/crypto/md5.js"]
+        desc:
+          "This tool help you generate MD5 encode string and sha1 encode string, fast and easy to use.",
+        scripts: ["/static/crypto/sha1.js", "/static/crypto/md5.js"],
+        keywords: "MD5 encode, sha1 encode, hex generator"
       },
       {
         label: "SHA encode",
         path: "/sha-encode",
         title: "SHA encode",
-        desc: "SHA encode",
+        desc:
+          "This tool help you generate SHA encode, support sha1, sha256, sha512",
         scripts: [
           "/static/crypto/sha1.js",
           "/static/crypto/sha256.js",
           "/static/crypto/sha512.js"
-        ]
+        ],
+        keywords: "sha1 encode, sha256 encode, sha512 encode, hex generator"
       }
     ]
   },
@@ -164,7 +205,10 @@ export const categorizedRoutes = [
       {
         label: "Deobfuscate",
         path: "/js-deobfuscate",
-        title: "Deobfuscate Code"
+        title: "Deobfuscate Code",
+        desc:
+          "This tool help you deobfuscate the javaScript code by javaScript obfuscator. use AST transformation to implemented",
+        keywords: "deobfuscate, ast deobfuscate, javaScript obfuscator crack"
         // packageName: "babel-plugin-deobfuscate",
         // packageUrl: "https://www.npmjs.com/package/babel-plugin-deobfuscate"
       },
@@ -172,7 +216,10 @@ export const categorizedRoutes = [
         label: "Url Encode",
         path: "/urlencode",
         title: "Url encode",
-        desc: "Url Escape, Unescape, encodeURI, decodeURI ..."
+        desc:
+          "This tool help use handle the Url Escape, Unescape, encodeURI, decodeURI, encodeURIComponent, decodeURIComponment, in one screen, easy to use and copy the result",
+        keywords:
+          "url Escape, urlUnescape, url encodeURI, url decodeURI, url encodeURIComponent, url decodeURIComponment"
       },
       ...["html", "xml", "json", "js", "java", "csharp", "csv", "sql"].map(
         item => {
@@ -181,7 +228,8 @@ export const categorizedRoutes = [
             label: `${name} Escape Unescape`,
             path: `/${item}-escape-unescape`,
             title: `${name} Escape/Unescape`,
-            desc: `${name} Escape/Unescape`
+            desc: `This tool help you Escape ${name} code and Unescape ${name} code`,
+            keywords: `${name} Escape, ${name} Unescape, code converter`
           };
         }
       ),
@@ -189,7 +237,8 @@ export const categorizedRoutes = [
         label: "Unicode to Ascii",
         path: "/unicode-to-ascii",
         title: "Unicode to Ascii",
-        desc: "Unicode to Ascii"
+        desc: "you can use this tool converting Unicode to Ascii",
+        keywords: "Unicode, Ascii, Unicode converter"
       }
     ]
   },
@@ -200,19 +249,27 @@ export const categorizedRoutes = [
         label: "Image to Base64",
         path: "/image-to-base64",
         title: "Image convert to base64 html code online",
-        desc: "Image convert to base64 html code online"
+        desc:
+          "This tool help you convert Image to base64 html code, faster and easy to copy",
+        keywords:
+          "Image converter, Image base64 converter, Image base64 html converter"
       },
       {
         label: "Base64 to Image",
         path: "/base64-to-image",
         title: "Image base64 to image online",
-        desc: "Image base64 to image online"
+        desc: "This tool help you convert Image base64 to image online",
+        keywords:
+          "Image converter, Image base64 converter, Image base64 html converter"
       },
       {
         label: "Image converter",
         path: "/image-converter",
-        title: "Image convert to png,jpg,...",
-        desc: "Image convert to png,jpg,...",
+        title: "Image convert to png, jpg, gif, bmp",
+        desc:
+          "This tool help you convert the images to png, jpg, gif, bmp, free online, faster, No sign-up required.",
+        keywords:
+          "Image converter, Picture format converter, png format converter, jpg format converter, gif format converter, bmp format converter",
         scripts: [
           "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
         ]
@@ -226,25 +283,34 @@ export const categorizedRoutes = [
         label: "Meta Tag Generator",
         path: "/meta-tag-generator",
         title: "Online Meta Tag Generator, Support facebook and twitter",
-        desc: "Online Meta Tag Generator, Support facebook and twitter"
+        desc:
+          "This tool help you generate the html website Meta Tag, support social media eg. facebook and twitter. No sign-up required.",
+        keywords:
+          "meta tag generator, make meta tag, html meta tag, meta tag copy"
       },
       {
         label: "Curl builder",
         path: "/curl-builder",
         title: "Online curl command line builder",
-        desc: "Online curl command line builder"
+        desc:
+          "This tool help you build the curl command line. No sign-up required.",
+        keywords: "curl command builder, curl command generator"
       },
       {
         label: "Cron Generator",
         path: "/cron-gen",
         title: "Online Cron Generator",
-        desc: "Online Cron Generator"
+        desc:
+          "This tool help you generate cron schedule expressions, easy to use. No sign-up required.",
+        keywords: "crontab, cron generator, cron examples"
       },
       {
         label: "Zip Compressor",
         path: "/zip-online",
         title: "Online Zip Compressor, faster",
-        desc: "Online Zip Compressor, faster",
+        desc:
+          "This tool help you compress the Zip file, use browser capability implemented, easy to use, no need to download, faster",
+        keywords: "zip compressor, online zip compressor, compress zip",
         scripts: [
           "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
         ]
@@ -253,7 +319,9 @@ export const categorizedRoutes = [
         label: "UnZip Files",
         path: "/unzip-online",
         title: "Online unZip, uncompress files faster",
-        desc: "Online unZip, uncompress files faster",
+        desc:
+          "This tool help you uncompress the zip files, use browser capability implemented, easy to use, no need to download, faster",
+        keywords: "unzip, online zip uncompresser, uncompress zip",
         scripts: [
           "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
         ]
@@ -262,7 +330,9 @@ export const categorizedRoutes = [
         label: "Vue to React",
         path: "/vue-to-react",
         title: "Vue to React Online Converter",
-        desc: "Vue to React Online Converter",
+        desc:
+          "This tool help you convert Vue  code to React code Online Converter, use AST transformation to implemented.",
+        keywords: "vue to react converter, react converter, vue converter",
         scripts: ["/static/bundle/vue-to-react@1.2.1.js"]
       }
     ]
@@ -274,13 +344,17 @@ export const categorizedRoutes = [
         label: "程序员老黄历",
         path: "/huangli",
         title: "程序员老黄历, 据说很灵",
-        desc: "程序员老黄历, 程序员日常迷信系列"
+        desc:
+          "程序员老黄历查询，通用版本程序员老黄历示例, react版程序员老黄历, react程序员老黄历原理，react程序员老黄历实现",
+        keywords: "程序员老黄历, 程序员老黄历示例， react"
       },
       {
         label: "程序员求签",
         path: "/qiuqian",
         title: "程序员求签, 求出好运程",
-        desc: "程序员求签, 程序员日常迷信系列"
+        desc:
+          "程序员求签, 通用版本程序员求签示例, react版程序员求签, react程序员求签原理，react程序员求签实现",
+        keywords: "程序员求签, 程序员求签示例，react"
       }
     ]
   },
