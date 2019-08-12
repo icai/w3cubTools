@@ -196,6 +196,7 @@ declare module "evergreen-ui" {
     theme?: any;
     className?: string;
     onChange: (e: HTMLInputEvent) => void;
+    onFocus?: (e: any) => void;
     name?: string;
     value?: string;
   }
@@ -215,6 +216,7 @@ declare module "evergreen-ui" {
     className?: string;
     onChange: (e: HTMLTextAreaEvent) => void;
     onClick?: (e: any) => void;
+    onFocus?: (e: any) => void;
     name?: string;
     value?: string;
     style?: object;
@@ -258,6 +260,15 @@ declare module "evergreen-ui" {
 
   export class Icon extends React.PureComponent<IconProps> {}
 
+  export interface TagInputProps extends TextInputProps {
+    height?: number;
+    appearance?: Appearance;
+    inputProps?: any;
+    values?: any;
+  }
+
+  export class TagInput extends React.PureComponent<TagInputProps> {}
+
   export interface SearchInputProps extends TextInputProps {
     height?: number;
     appearance?: Appearance;
@@ -292,6 +303,15 @@ declare module "evergreen-ui" {
   }
 
   export class Badge extends React.PureComponent<BadgeProps> {}
+
+  export interface SideSheetProps extends EnhancerProps {
+    isShown?: boolean;
+    theme?: any;
+    position?: Position;
+    onCloseComplete?: () => void;
+  }
+
+  export class SideSheet extends React.PureComponent<SideSheetProps> {}
 
   export class Link extends React.PureComponent<
     HeadingProps & { href: string; target?: string }

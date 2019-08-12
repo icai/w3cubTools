@@ -223,6 +223,12 @@ export const categorizedRoutes = [
     category: "Tools",
     content: [
       {
+        label: "Meta Tag Generator",
+        path: "/meta-tag-generator",
+        title: "Online Meta Tag Generator, Support facebook and twitter",
+        desc: "Online Meta Tag Generator, Support facebook and twitter"
+      },
+      {
         label: "Curl builder",
         path: "/curl-builder",
         title: "Online curl command line builder",
@@ -592,9 +598,9 @@ export const routes = flatten(
       label: "W3cubTools",
       path: "/",
       title:
-        "W3cubTools | All Free, Collections of Tools For Developers and Family",
+        "W3cubTools | all free, collections of tools for developers and family",
       desc:
-        "W3cubTools | All Free, Collections of Tools For Developers and Family"
+        "Provide tools for developers and their family, to improve using HTML, Meta Tag, React, CSS, JavaScript, Color, SQL, SVG, GraphQL, JSON, Chinese, Japanese, Math and Game skills."
     })
 );
 

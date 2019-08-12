@@ -98,7 +98,7 @@ button:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 fieldset {
-  padding: 0.35em 0.75em 0.625em;
+  padding: 0;
 }
 legend {
   box-sizing: border-box;
@@ -247,12 +247,43 @@ legend {
   border-bottom: 1px solid #e5e5e5;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #505458;
+}
+
 .pull-right {
   float: right;
 }
 
 .pull-left {
   float: left;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 }
 
 .fr {
@@ -338,7 +369,7 @@ legend {
   right: 25px;
   top: 30%;
   width: 40px;
-  z-index: 1001;
+  z-index: 18;
 }
 .share-widget .social-share {
   height: 240px;

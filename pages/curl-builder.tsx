@@ -16,7 +16,7 @@ import Mdloader from "@components/Mdloader";
 
 const schema = {
   schema: {
-    title: "Online curl command line builder",
+    // title: "Online curl command line builder",
     type: "object",
     properties: {
       method: {
@@ -159,6 +159,7 @@ export default class extends Component<any, any> {
             margin: "auto"
           }}
         >
+          <h1>Online curl command line builder</h1>
           <Form
             schema={schema}
             uiSchema={uiSchema}
