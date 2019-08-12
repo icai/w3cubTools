@@ -220,11 +220,9 @@ export default function() {
                                 {state.yin[ix][li][wi]}
                               </Text>
                               <div className="voice-ico">
-                                <VoiceComponent
-                                  color="#fff"
-                                  width="30"
-                                  height="30"
-                                ></VoiceComponent>
+                                <svg>
+                                  <use xlinkHref="#icon-voice" />
+                                </svg>
                               </div>
                             </Pane>
                           ))}
@@ -236,6 +234,14 @@ export default function() {
               </Pane>
             ))}
           </Pane>
+          <div style={{ display: "none" }}>
+            <VoiceComponent
+              id="icon-voice"
+              color="#fff"
+              width="30"
+              height="30"
+            ></VoiceComponent>
+          </div>
         </Pane>
       </Pane>
 
@@ -255,6 +261,10 @@ export default function() {
             align-items: center;
             opacity: 0.5;
             display: none;
+            > svg {
+              width: 30px;
+              height: 30px;
+            }
           }
           &:hover {
             .voice-ico {

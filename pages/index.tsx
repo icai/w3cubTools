@@ -18,7 +18,7 @@ export default function() {
                         href={a.path}
                         key={route.category + a.label}
                       >
-                        {a.label} {a.beta && <span className="beta">Beta</span>}
+                        {a.label}
                       </a>
                     </li>
                   );
