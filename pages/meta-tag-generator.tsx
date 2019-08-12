@@ -110,7 +110,6 @@ const rootSchema = {
     },
     image: {
       "ui:options": {
-        width: "780px",
         accept: "image/*"
       }
     },
@@ -376,9 +375,9 @@ export default function() {
         {previewContent}
       </SideSheet>
       <Pane
-        className="container"
         display="block"
         css={{
+          width: "780px",
           padding: "0px 50px",
           margin: "auto"
         }}
