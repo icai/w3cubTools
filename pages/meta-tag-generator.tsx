@@ -180,31 +180,31 @@ export default function() {
   };
   const getResult = ({ formData }) => {
     const result = `
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>${formData.title}</title>
-    <meta name="title" content="${formData.title}">
-    <meta name="description" content="${formData.description}">
+    <meta name="title" content="${formData.title}" />
+    <meta name="description" content="${formData.description}" />
     ${formData.keywords &&
-      `<meta name="keywords" content="${formData.keywords}">`}
+      `<meta name="keywords" content="${formData.keywords}" />`}
     ${formData.ua &&
-      `<meta http-equiv="X-UA-Compatible" content="${formData.ua}">`}
-    ${formData.author && `<meta name="author" content="${formData.author}">`}
+      `<meta http-equiv="X-UA-Compatible" content="${formData.ua}" />`}
+    ${formData.author && `<meta name="author" content="${formData.author}" />`}
     ${formData.viewport &&
-      `<meta name="viewport" content="${formData.viewport}">`}
-    <meta name="renderer" content="webkit">
+      `<meta name="viewport" content="${formData.viewport}" />`}
+    <meta name="renderer" content="webkit" />
     ${getHeadersString()}
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="${formData.url}">
-    <meta property="og:title" content=${formData.title}">
-    <meta property="og:description" content="${formData.description}">
-    <meta property="og:image" content="https://tools.w3cub.com/assets/meta-tag-logo.png">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="${formData.url}">
-    <meta property="twitter:title" content="${formData.title}">
-    <meta property="twitter:description" content="${formData.description}">
-    <meta property="twitter:image" content="https://tools.w3cub.com/assets/meta-tag-logo.png">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="${formData.url}"/>
+    <meta property="og:title" content="${formData.title}"/>
+    <meta property="og:description" content="${formData.description}"/>
+    <meta property="og:image" content="https://tools.w3cub.com/assets/meta-tag-logo.png"/>
+
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="${formData.url}"/>
+    <meta property="twitter:title" content="${formData.title}"/>
+    <meta property="twitter:description" content="${formData.description}"/>
+    <meta property="twitter:image" content="https://tools.w3cub.com/assets/meta-tag-logo.png"/>
     `;
     setState({
       result,

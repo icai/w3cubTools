@@ -135,17 +135,16 @@ export default function App(props) {
   // renderHeadWay();
 
   const activeRoute = activeRouteData(router.pathname);
-
+  const title =
+    ((activeRoute && (activeRoute.title || activeRoute.searchTerm)) ||
+      props.title) + " - W3cubTools";
+  const description = activeRoute && activeRoute.desc;
   return (
     <Container>
       <Head>
-        <title>
-          {(activeRoute && (activeRoute.title || activeRoute.searchTerm)) ||
-            props.title}{" "}
-          - W3cubTools
-        </title>
-        <meta name="description" content={activeRoute && activeRoute.desc} />
-
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
         {activeRoute && activeRoute.links && (
           <Links links={activeRoute.links} />
         )}
@@ -154,6 +153,38 @@ export default function App(props) {
           <Scripts scripts={activeRoute.scripts} />
         )}
         <meta name="viewport" content="width=1024" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="author" content="W3cubTools" />
+        <meta name="renderer" content="webkit" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tools.w3cub.com/" />
+        <meta
+          property="og:title"
+          content="W3cubTools | all free, collections of tools for developers and family"
+        />
+        <meta
+          property="og:description"
+          content="Provide tools for developers and their family, to improve using HTML, Meta Tag, React, CSS, JavaScript, Color, SQL, SVG, GraphQL, JSON, Chinese, Japanese, Math and Game skills."
+        />
+        <meta
+          property="og:image"
+          content="https://tools.w3cub.com/static/logo.png"
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://tools.w3cub.com/" />
+        <meta
+          property="twitter:title"
+          content="W3cubTools | all free, collections of tools for developers and family"
+        />
+        <meta
+          property="twitter:description"
+          content="Provide tools for developers and their family, to improve using HTML, Meta Tag, React, CSS, JavaScript, Color, SQL, SVG, GraphQL, JSON, Chinese, Japanese, Math and Game skills."
+        />
+        <meta
+          property="twitter:image"
+          content="https://tools.w3cub.com/static/logo.png"
+        />
       </Head>
 
       <Pane

@@ -36,10 +36,6 @@ export default class MyDocument extends Document<DocumentProps> {
       <html>
         <Head>
           <meta charSet="utf-8" />
-          {/* <meta
-            name="google-site-verification"
-            content="bjJSOEahdert-7mwVScrwTTUVR3nSe0bEj5YjevUNn0"
-          /> */}
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -58,13 +54,6 @@ export default class MyDocument extends Document<DocumentProps> {
             href="/static/favicon-16x16.png"
           />
           <link rel="manifest" href="/static/site.webmanifest" />
-          <meta
-            property="og:title"
-            content="W3cubTools | All Free, Collections of Tools For Developers and family"
-          />
-          <meta property="og:image" content="/static/logo.png" />
-          <meta property="og:url" content="https://tools.w3cub.com" />
-          <meta name="twitter:card" content="/static/logo.png" />
           <style dangerouslySetInnerHTML={{ __html: css }} />
           {styles || null}
         </Head>
