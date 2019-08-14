@@ -150,13 +150,13 @@ export default class FramesModal extends React.PureComponent {
         isShown={this.state.open}
         width={"max-content"}
         topOffset="30px"
-        title="图片转化结果"
+        title="Image conversion results"
         onCloseComplete={() => this.setState({ open: false })}
         hasFooter={false}
       >
         <Divide />
         <div className="output-options">
-          <label htmlFor="color">文字颜色:</label>
+          <label htmlFor="color">Text Color:</label>
           <input
             type="color"
             id="color"
@@ -164,7 +164,7 @@ export default class FramesModal extends React.PureComponent {
             value={this.state.color}
             onChange={this.setColor}
           />
-          <label htmlFor="color">背景颜色:</label>
+          <label htmlFor="color">Background Color:</label>
           <input
             type="color"
             id="bgColor"
@@ -173,7 +173,7 @@ export default class FramesModal extends React.PureComponent {
             onChange={this.setBgColor}
           />
           <Button className="save-btn" onClick={this.savePic}>
-            保存为图片
+            Save as Image
           </Button>
         </div>
         <Divide />

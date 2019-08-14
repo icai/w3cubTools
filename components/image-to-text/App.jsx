@@ -32,6 +32,22 @@ export default class App extends React.Component {
     this.setState({ rawImage, file });
   };
 
+  setDemoImage = async () => {
+    const res = await fetch("/static/demo.png");
+    const value = await res.blob();
+    function blobToFile(theBlob, fileName) {
+      //A Blob() is almost a File() - it's just missing the two properties below which we will add
+      theBlob.lastModifiedDate = new Date();
+      theBlob.name = fileName;
+      return theBlob;
+    }
+    const file = blobToFile(value, "demo.png");
+    this.imagePreview.current.previewImage(file);
+    this.setState({
+      transformWidth: 600
+    });
+  };
+
   setTransformType = ev => {
     this.setState({
       transformType: ev.target.value
@@ -143,6 +159,14 @@ export default class App extends React.Component {
           </Button>
         </Row>
         <Divide />
+        <div style={{ margin: "auto", marginTop: "15px", textAlign: "center" }}>
+          <Button height={40} whiteSpace="nowrap" onClick={this.setDemoImage}>
+            Demo Image
+            <span style={{ display: "none" }}>
+              Welcome to GZ https://www.youtube.com/watch?v=DpRpahhJoJE
+            </span>
+          </Button>
+        </div>
         <Row>
           <ImagePreviewUpload
             file={this.state.file}
