@@ -61,7 +61,7 @@ function gif(div, frames, props, cb) {
   const gif = new GIF({
     quality: 10,
     workers: 2,
-    workerScript: "./js/gif.worker.js",
+    workerScript: "/static/js/gif.worker.js",
     width,
     height
   });
