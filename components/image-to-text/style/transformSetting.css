@@ -1,0 +1,19 @@
+.transform-setting label {
+  display: block;
+  font-size: 14px;
+  margin: 5px 0;
+}
+/* 
+.transform-setting select,
+.transform-setting input {
+  background-color: transparent;
+  padding: 6px 10px;
+  border-radius: 3px;
+  border: 1px solid #999;
+  outline: none;
+}
+
+.transform-setting select:focus,
+.transform-setting input:focus {
+  border: 1px solid #333;
+} */

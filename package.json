@@ -52,6 +52,7 @@
     "flow-to-ts": "gist:3f49c8bd7a2b71429dcae28f2c2d1d97",
     "formik": "^1.5.8",
     "generate-schema": "^2.6.0",
+    "gif.js": "^0.2.0",
     "gofmt.js": "^0.0.2",
     "graphql": "^14.4.2",
     "graphql-tools": "^4.0.5",

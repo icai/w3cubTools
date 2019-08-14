@@ -1,0 +1,53 @@
+.modal-loading {
+  text-align: center;
+  min-height: 250px;
+  line-height: 250px;
+}
+
+.output-options {
+  overflow: hidden;
+  padding: 10px 20px;
+}
+
+.output-options > * {
+  margin-right: 10px;
+}
+
+.output-options label {
+  font-size: 13px;
+  color: #333;
+}
+
+.play-delay-input {
+  width: 40px;
+  padding: 6px 10px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid #999;
+  outline: none;
+}
+
+.save-btn {
+  float: right;
+  margin-right: 0;
+}
+
+.output-text-wrapper {
+  padding: 20px;
+}
+
+.output-text-block {
+  max-height: calc(100vh - 260px);
+  max-width: 90vw;
+  width: max-content;
+  margin: 0 auto;
+  font-size: 12px;
+  line-height: 12px;
+  border: 1px solid #333;
+  overflow: auto;
+}
+
+.output-text-block pre {
+  margin: 0;
+  padding: 0;
+}

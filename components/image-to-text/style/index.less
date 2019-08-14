@@ -1,0 +1,111 @@
+.imt-container {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  color: #333;
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .clear {
+    float: none;
+    overflow: hidden;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .btn {
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: #333;
+    border: 1px solid #333;
+    background-color: transparent;
+    transition: all 0.05s ease 0s;
+  }
+
+  .btn:hover {
+    border: 1px solid #000;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn:active {
+    background-color: rgb(255, 200, 100);
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 5px rgb(255, 255, 255);
+    color: #fff;
+  }
+
+  .divide {
+    display: block;
+    height: 0px;
+    border-bottom: 1px solid #666;
+  }
+}
+
+.transform-size-input {
+  width: 160px;
+}
+
+.transform-placeholder-input {
+  width: 160px;
+}
+
+.transform-settings-wrapper {
+  margin: 20px auto;
+  max-width: 700px;
+  justify-content: space-between;
+}
+
+.helps {
+  width: 620px;
+  margin: auto;
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+}
+
+@media screen and (max-width: 675px) {
+  .transform-settings-wrapper {
+    flex-direction: column;
+    margin: 0.5rem 1rem;
+  }
+  .transform-settings-wrapper > * {
+    margin: 0.5rem 0;
+  }
+  .transform-settings-wrapper .btn {
+    padding: 7px 15px;
+  }
+  header h1 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .helps {
+    margin: 0 10px;
+    text-align: left;
+  }
+}
+
+.copyright {
+  font-size: 12px;
+  color: #999;
+}
+.copyright a {
+  color: #999;
+}
+.copyright a:hover {
+  color: #333;
+}

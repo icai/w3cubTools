@@ -273,6 +273,15 @@ export const categorizedRoutes = [
         scripts: [
           "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
         ]
+      },
+      {
+        label: "Image to Ascii Art",
+        path: "/image-to-text",
+        title: "online image to ascii art code, 在线图片转字符画",
+        desc:
+          "This tool help you convert Image to ascii art code online. 在线图片转字符画",
+        keywords:
+          "Image ascii art, Image ascii art converter, Image ascii converter"
       }
     ]
   },
