@@ -282,6 +282,20 @@ export const categorizedRoutes = [
           "This tool help you convert Image to ascii art code online. 在线图片转字符画",
         keywords:
           "Image ascii art, Image ascii art converter, Image ascii converter"
+      },
+      {
+        label: "Long Weibo",
+        path: "/long-weibo",
+        title: "Long Social Post Generator",
+        desc:
+          "This tool help you generate the long text social post Image. generate long weibo, long facebook, long twitter",
+        keywords:
+          "long weibo, long text weibo, long text image weibo,long text social post",
+        scripts: [
+          "/static/bundle/ckeditor5-build-classic@12.3.1.js",
+          "/static/bundle/ckeditor5-react@1.1.3.js",
+          "/static/bundle/html2canvas.min.js"
+        ]
       }
     ]
   },

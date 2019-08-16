@@ -65,6 +65,10 @@ declare const saveAs: (a, b) => void;
 
 declare const _w3cub_vueToReact: (a, b) => string;
 
+declare const _ckeditor_ckeditor5BuildClassic: any;
+declare const _ckeditor_ckeditor5React: any;
+declare const html2canvas: any;
+
 declare const transPinyin: (a) => string;
 
 declare const window = {

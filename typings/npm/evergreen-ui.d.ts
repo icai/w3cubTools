@@ -47,7 +47,7 @@ declare module "evergreen-ui" {
     children?: React.ReactChild | any;
     is?: string;
     href?: string;
-    onClick?: () => void;
+    onClick?: (event?) => void;
     css?: any;
     style?: any;
     download?: string;
@@ -242,7 +242,7 @@ declare module "evergreen-ui" {
 
   export interface SwitchProps extends EnhancerProps {
     checked?: boolean;
-    onChange: (e: Event) => void;
+    onChange: (e: any) => void;
     name?: string;
   }
 
