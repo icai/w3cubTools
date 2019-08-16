@@ -44,6 +44,7 @@ const doImages = () => {
     .querySelector(".ck.ck-content")
     .getElementsByTagName("img");
   [].slice.call(images).forEach((item, _i) => {
+    item.removeAttribute("srcset");
     if (/^(https?\:)?\/\//.test(item.src)) {
       proxyToDataUrl(item.src, url => {
         item.src = url;
@@ -93,16 +94,20 @@ export default function() {
     }).then(canvas => {
       el.className = data; //old className - Jquery: $(target).removeClass("html2canvasreset");
       setOpen(true);
+      canvas.id = "imgcanvas";
       let div = document.getElementById("cnavas");
-      var imgUri = canvas.toDataURL();
-      setImgUri(imgUri);
       if (div) {
         div.append(canvas);
       }
     });
   };
+  const downloadImage = _event => {
+    let canvas = document.getElementById("imgcanvas") as HTMLCanvasElement;
+    canvas.toBlob(function(blob) {
+      saveAs(blob, "longweibo.png");
+    });
+  };
   const [open, setOpen] = useState(false);
-  const [imgUri, setImgUri] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   return (
@@ -130,12 +135,7 @@ export default function() {
         hasFooter={false}
       >
         <div>
-          <Button
-            is="a"
-            className="save-btn"
-            href={imgUri}
-            download="logtexttiamge.png"
-          >
+          <Button className="save-btn" onClick={downloadImage}>
             Save as Image
           </Button>
           <div id="cnavas"></div>
