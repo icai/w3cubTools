@@ -13,18 +13,26 @@ export default function() {
   const [thumbnail, setThumbnail] = useState({} as any);
   const [res, setRes] = useState({} as any);
   const onSearch = async slug => {
-    const fetchingUrl = `https://ytinfo.benjaminlowry.com/${slug}`;
-    const res = await fetch(fetchingUrl);
-    const value = (await res.json()) as any;
-    setChar(slug);
-    if (value && value.formats) {
-      setRes(value);
-      setThumbnail(value.player_response.videoDetails.thumbnail.thumbnails[2]);
-      setTitle(value.player_response.videoDetails.title);
-      setContent(value.formats.filter(item => item.container == "mp4") as Array<
-        object
-      >);
-    }
+    try {
+      if (slug) {
+        const fetchingUrl = `http://api-yt.w3cub.com/${slug}`;
+        const res = await fetch(fetchingUrl);
+        const value = (await res.json()) as any;
+        setChar(slug);
+        if (value && value.formats) {
+          setRes(value);
+          setThumbnail(
+            value.player_response.videoDetails.thumbnail.thumbnails[2]
+          );
+          setTitle(value.player_response.videoDetails.title);
+          setContent(value.formats.filter(
+            item => item.container == "mp4"
+          ) as Array<object>);
+        }
+      } else {
+        setChar(slug);
+      }
+    } catch (err) {}
   };
 
   const formatUrl = (url, title) => {
