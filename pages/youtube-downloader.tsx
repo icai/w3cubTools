@@ -15,7 +15,7 @@ export default function() {
   const onSearch = async slug => {
     try {
       if (slug) {
-        const fetchingUrl = `http://api-yt.w3cub.com/${slug}`;
+        const fetchingUrl = `https://api-yt.w3cub.com/${slug}`;
         const res = await fetch(fetchingUrl);
         const value = (await res.json()) as any;
         setChar(slug);
