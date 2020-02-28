@@ -4,7 +4,7 @@ ghpages.publish(
   {
     branch: "gh-pages",
     dotfiles: true,
-    repo: "git@github.com:w3cub/w3cubTools-alpha.git"
+    repo: "https://github.com/w3cub/w3cubTools-alpha.git"
   },
   err => {
     if (err) {
