@@ -146,6 +146,50 @@ function unLink(url) {
   return link || (link = makeLink("adurl", url)), link;
 }
 
+function shuffle(str) {
+  var a = str.split(""),
+    a = a.map((it, index) => {
+      return { value: it, index: index.toString(32) };
+    }),
+    n = a.length;
+  for (var i = n - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i];
+    a[i] = a[j];
+    a[j] = tmp;
+  }
+  return (
+    a.map(item => item.value).join("") +
+    " // " +
+    a.map(item => item.index).join(",")
+  );
+}
+
+function escapeShuffle(str) {
+  return shuffle(str);
+}
+
+function unEscapeShuffle(str) {
+  if (~str.indexOf(" // ")) {
+    let strAll = str.split(" // ");
+    str = strAll[0].split("");
+    let sortkey = strAll[1].split(",");
+    str = str
+      .map((item, index) => {
+        return {
+          index: parseInt(sortkey[index], 32) || 0,
+          value: item
+        };
+      })
+      .sort((v1, v2) => {
+        return v1.index - v2.index;
+      })
+      .map(v => v.value)
+      .join("");
+  }
+  return str;
+}
+
 export function escape(type, value) {
   let v = value;
   if ("html" == type || "xml" == type) {
@@ -160,6 +204,8 @@ export function escape(type, value) {
     v = escapeCSV(v);
   } else if ("un" == type) {
     v = unLink(v);
+  } else if ("shuffle" == type) {
+    v = escapeShuffle(v);
   }
   return v;
 }
@@ -175,6 +221,8 @@ export function unescape(type, value) {
     r = unEscapeSQL(r);
   } else if ("csv" == type) {
     r = unEscapeCSV(r);
+  } else if ("shuffle" == type) {
+    r = unEscapeShuffle(r);
   }
   return r;
 }

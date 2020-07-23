@@ -54,7 +54,7 @@ export const categorizedRoutes = [
     category: "Video",
     content: [
       {
-        label: "微博秒拍视频视频下载",
+        label: "Video Download",
         path: "https://weibomiaopai.com/",
         title: "YouTube Downloader",
         desc: "Online download videos from YouTube for FREE to PC, mobile",
@@ -123,19 +123,18 @@ export const categorizedRoutes = [
       {
         label: "Chinese Stroke",
         path: "/write-chinese",
-        title: "How to write Chinese(笔顺)",
+        title: "How to write Chinese",
         desc:
-          "How to write Chinese, Chinese Stroke(中文笔顺), tell you how to write chinese, and voice to speak",
+          "How to write Chinese, Chinese Stroke, tell you how to write chinese, and voice to speak",
         keywords: "chinese stroke, write chinese, speak chinese",
         scripts: ["/static/dict/pinyin.js"]
       },
       {
-        label: "中文转拼音",
+        label: "Chinese to Pinyin",
         path: "/chinese-to-pinyin",
-        title: "中文转拼音，在线速查，朗读",
-        desc:
-          "中文转拼音，在线速查，朗读发音, 点击功能按钮进行转换，快速转换无延时，请求朗读功能有惊喜",
-        keywords: "中文转拼音, 在线速查, 朗读发音",
+        title: "Chinese convert to Pinyin，searchable，readable",
+        desc: "Chinese convert to Pinyin, searchable，readable",
+        keywords: "Chinese Pinyin",
         scripts: ["/static/dict/pinyin.js"]
       },
       {
@@ -168,6 +167,13 @@ export const categorizedRoutes = [
           "online Random Mac address Generator. This tools help you generate the random hex string, you can setting the string len and how many time you generate.",
         keywords:
           "random generate Mac address, Random mac address, Random Mac address Generator, random"
+      },
+      {
+        label: "Shuffle Twitter",
+        path: "/shuffle-twitter",
+        title: "Shuffle Twitter",
+        desc: "Shuffle Twitter, help you bypass censorship.",
+        keywords: "Shuffle Twitter, Shuffle weibo, spread accessible channel"
       }
     ]
   },
@@ -382,7 +388,7 @@ export const categorizedRoutes = [
     category: "Fortune",
     content: [
       {
-        label: "程序员老黄历",
+        label: "Programmer Calenar",
         path: "/huangli",
         title: "程序员老黄历, 据说很灵",
         desc:
@@ -390,9 +396,9 @@ export const categorizedRoutes = [
         keywords: "程序员老黄历, 程序员老黄历示例， react"
       },
       {
-        label: "程序员求签",
+        label: "Programmer Divination",
         path: "/qiuqian",
-        title: "程序员求签, 求出好运程",
+        title: "Programmer Divination chinese version",
         desc:
           "程序员求签, 通用版本程序员求签示例, react版程序员求签, react程序员求签原理，react程序员求签实现",
         keywords: "程序员求签, 程序员求签示例，react"

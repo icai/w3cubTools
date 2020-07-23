@@ -172,7 +172,7 @@ const ConversionPanel: React.FunctionComponent<
               <Textarea
                 height="100%"
                 id="textarea-1"
-                placeholder="Input content"
+                placeholder="typing your content"
                 value={value}
                 onChange={e => setValue(e.target.value)}
               />
@@ -197,7 +197,7 @@ const ConversionPanel: React.FunctionComponent<
                 <Textarea
                   height="100%"
                   id="textarea-2"
-                  placeholder="Your results"
+                  placeholder="get your result"
                   value={result}
                   onChange={e => setResult(e.target.value)}
                 />
