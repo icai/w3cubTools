@@ -39,13 +39,12 @@ const logo = (
   </svg>
 );
 
-function renderHeadWay() {
-  if (!IN_BROWSER) return;
+export default class extends App {
+  timer: any;
 
-  const HW_config = {
-    selector: ".transform-changelog", // CSS selector where to inject the badge
-    account: "J0B24x",
-    trigger: ".transform-changelog"
+  private stopProgress = () => {
+    clearTimeout(this.timer);
+    NProgress.done();
   };
 
   (function(src) {

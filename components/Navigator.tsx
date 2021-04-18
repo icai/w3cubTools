@@ -74,12 +74,23 @@ export default function() {
         })}
       </Pane>
 
-      <Pane paddingY={15} background="#f6f6f6" borderTop>
-        <Heading size={400} textAlign="center">
+      <Pane borderTop>
+        <a href="https://www.buymeacoffee.com/ritz078" target="_blank">
+          <img
+            src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png"
+            alt="Buy Me A Coffee"
+            style={{
+              height: 40,
+              display: "block",
+              margin: "10px auto 0"
+            }}
+          />
+        </a>
+        <Heading size={400} paddingY={15} textAlign="center">
           Created by{" "}
-          <Link href="https://twitter.com/ritz078">
-            <a target="_blank">@ritz078</a>
-          </Link>
+          <a href="https://twitter.com/ritz078" target="_blank">
+            @ritz078
+          </a>
         </Heading>
       </Pane>
     </Pane>

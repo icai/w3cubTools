@@ -212,7 +212,80 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "guilhermesteves",
+      "name": "Guilherme Esteves",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2166045?v=4",
+      "profile": "https://guilhermeesteves.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "p-racoon",
+      "name": "Prasham Ashesh",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13845070?v=4",
+      "profile": "https://github.com/p-racoon",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jamesgeorge007",
+      "name": "James George",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/25279263?v=4",
+      "profile": "https://ghuser.io/jamesgeorge007",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ChaitanyaGadodia",
+      "name": "Chaitanya Gadodia",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/10559670?v=4",
+      "profile": "https://chaitanyagadodia.github.io/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "miklosme",
+      "name": "Miklos Megyes",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/8769273?v=4",
+      "profile": "https://miklos.dev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Rishabh-Rathod",
+      "name": "Rishabh Rathod",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/23132741?v=4",
+      "profile": "https://github.com/Rishabh-Rathod",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "agent515",
+      "name": "agent515",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46898603?v=4",
+      "profile": "https://github.com/agent515",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jfsiii",
+      "name": "John Schulz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57655?v=4",
+      "profile": "http://JFSIII.org",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }

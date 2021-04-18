@@ -512,6 +512,10 @@ export const categorizedRoutes = [
         packageUrl: "https://github.com/mholt/json-to-go"
       },
       {
+        label: "to Go Bson",
+        path: "/json-to-go-bson"
+      },
+      {
         label: "to YAML",
         path: "/json-to-yaml",
         packageName: "json2yaml",
@@ -548,7 +552,13 @@ export const categorizedRoutes = [
         label: "to OpenAPI Schema",
         path: "/json-schema-to-openapi-schema",
         packageName: "json-schema-to-openapi-schema",
-        packageUrl: "https://github.com/wework/json-schema-to-openapi-schema"
+        packageUrl: "https://github.com/openapi-contrib/json-schema-to-openapi-schema"
+      },
+      {
+        label: "to Protobuf",
+        path: "json-schema-to-protobuf",
+        packageName: "jsonschema-protobuf",
+        packageUrl: "https://github.com/okdistribute/jsonschema-protobuf"
       }
     ]
   },
@@ -567,6 +577,12 @@ export const categorizedRoutes = [
         packageUrl:
           "https://github.com/satya164/babel-plugin-object-styles-to-template",
         packageName: "babel-plugin-object-styles-to-template"
+      },
+      {
+        label: "to TailwindCSS",
+        path: "/css-to-tailwind",
+        packageUrl: "https://github.com/miklosme/css-to-tailwind",
+        packageName: "css-to-tailwind"
       }
     ]
   },
@@ -661,13 +677,44 @@ export const categorizedRoutes = [
     }))
   },
   {
-    category: "Others",
+    category: "TypeScript",
+    content: [
+      {
+        label: "to Flow",
+        path: "/typescript-to-flow",
+        packageName: "flowgen",
+        packageUrl: "https://github.com/joarwilk/flowgen"
+      },
+      {
+        label: "to TypeScript Declaration",
+        path: "/typescript-to-typescript-declaration"
+      },
+      {
+        label: "to JSON Schema",
+        path: "/typescript-to-json-schema",
+        packageName: "ts-json-schema-generator",
+        packageUrl: "https://github.com/vega/ts-json-schema-generator"
+      }
+    ]
+  },
+  {
+    category: "Flow",
     iconName: "",
     content: [
       {
-        label: "Flow to Typescript",
+        label: "to TypeScript",
         path: "/flow-to-typescript"
       },
+      {
+        label: "to TypeScript Declaration",
+        path: "/flow-to-typescript-declaration"
+      }
+    ]
+  },
+  {
+    category: "Others",
+    iconName: "",
+    content: [
       {
         label: "XML to JSON",
         path: "/xml-to-json",

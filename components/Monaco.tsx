@@ -1,7 +1,18 @@
 import React from "react";
-import { editor } from "monaco-editor";
+import { editor, languages } from "monaco-editor";
 import { Pane } from "evergreen-ui";
 import { lightEditor } from "@utils/theme";
+
+languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+  noSemanticValidation: true,
+  noSyntaxValidation: true
+});
+
+languages.css.cssDefaults.setDiagnosticsOptions({
+  lint: {
+    unknownAtRules: "ignore"
+  } as any
+});
 
 // @ts-ignore
 self.MonacoEnvironment = {
@@ -160,7 +171,7 @@ export default React.memo(
   ({
     innerRef,
     ...props
-  }: MonacoProps & { innerRef: React.RefObject<MonacoEditor> }) => (
+  }: MonacoProps & { innerRef?: React.RefObject<MonacoEditor> }) => (
     <MonacoEditor {...props} ref={innerRef} />
   )
 );

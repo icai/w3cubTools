@@ -7,3 +7,5 @@ dist
 static/monaco
 out
 /loaders
+public/static/monaco/*.worker.js.map
+.tool-versions

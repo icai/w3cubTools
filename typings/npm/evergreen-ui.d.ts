@@ -80,6 +80,14 @@ declare module "evergreen-ui" {
         description?: string;
       }
     ) => void;
+    danger: (
+      text: string,
+      options?: {
+        id?: string | number;
+        duration?: number;
+        description?: string;
+      }
+    ) => void;
     closeAll: () => void;
   };
 
@@ -116,7 +124,7 @@ declare module "evergreen-ui" {
   type TextSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 
   export interface HeadingProps extends EnhancerProps {
-    size: TextSize;
+    size?: TextSize;
     is?: string;
     onClick?: () => void;
   }
@@ -320,7 +328,46 @@ declare module "evergreen-ui" {
   export interface SelectProps extends EnhancerProps {
     value: string;
     onChange: (e) => void;
+    name?: string;
+    defaultValue?: string | number;
   }
 
   export class Select extends React.PureComponent<SelectProps> {}
+
+  export interface TabProps extends TextProps {
+    onSelect?(): void;
+    isSelected?: boolean;
+    disabled?: boolean;
+    appearance?: DefaultAppearance;
+  }
+
+  export class Tab extends React.PureComponent<TabProps> {}
+
+  export type TablistProps = React.ComponentPropsWithoutRef<typeof Box>;
+
+  export class Tablist extends React.PureComponent<TablistProps> {}
+
+  export type TabNavigationProps = BoxProps<"nav">;
+
+  export class TabNavigation extends React.PureComponent<TabNavigationProps> {}
+
+  export interface TagInputProps
+    extends Omit<React.ComponentPropsWithoutRef<typeof Box>, "onChange"> {
+    addOnBlur?: boolean;
+    className?: string;
+    disabled?: boolean;
+    height?: number;
+    inputProps?: TextProps;
+    inputRef?: (input: HTMLInputElement | null) => void;
+    onAdd?: (values: string[]) => void | false;
+    onBlur?: (event: React.FocusEvent) => void;
+    onChange?: (values: string[]) => void | false;
+    onFocus?: (event: React.FocusEvent) => void;
+    onInputChange?: (event: React.ChangeEvent) => void;
+    onRemove?: (value: string | React.ReactNode, index: number) => void;
+    separator?: string;
+    tagSubmitKey?: "enter" | "space";
+    tagProps?: any;
+    values?: string[];
+  }
 }

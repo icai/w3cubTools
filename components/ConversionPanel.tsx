@@ -44,9 +44,7 @@ export interface ConversionPanelProps {
   layoutHeight?: string;
 }
 
-const ConversionPanel: React.FunctionComponent<
-  ConversionPanelProps
-> = function({
+const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function({
   splitEditorProps,
   editorProps,
   resultEditorProps,
@@ -107,6 +105,7 @@ const ConversionPanel: React.FunctionComponent<
         setResult(prettyResult);
         setMessage("");
       } catch (e) {
+        console.error(e);
         setMessage(e.message);
       }
       toggleUpdateSpinner(false);
