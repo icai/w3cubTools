@@ -1,10 +1,15 @@
 import React, { useEffect, Fragment } from "react";
 import { Container } from "next/app";
-import Head from "next/head";
-import { Button, Text, Pane, Popover, Link, Heading } from "evergreen-ui";
-import Navigator from "@components/Navigator";
+import { Button, Pane } from "evergreen-ui";
+
 import "@styles/main.css";
+import "@styles/app.scss";
+import "@styles/sharebutton/style.scss";
+import "@styles/markdown.css";
+
 import NProgress from "nprogress";
+import Head from "next/head";
+import Router from "next/router";
 import { useRouter } from "next/router";
 import {
   activeRouteData,
@@ -16,13 +21,13 @@ import Scripts from "@components/Scripts";
 import Links from "@components/Links";
 import ShareWidget from "@components/ShareButton/Widget";
 
-let reactGa;
-if (IN_BROWSER && !IS_DEV) {
-  reactGa = require("react-ga");
-  reactGa.initialize("UA-145146877-1", {
-    debug: IS_DEV
-  });
-}
+// let reactGa;
+// if (IN_BROWSER && !IS_DEV) {
+//   reactGa = require("react-ga");
+//   reactGa.initialize("UA-145146877-1", {
+//     debug: IS_DEV
+//   });
+// }
 
 const logo = (
   <svg
@@ -39,55 +44,34 @@ const logo = (
   </svg>
 );
 
-export default class extends App {
-  timer: any;
 
-  private stopProgress = () => {
-    clearTimeout(this.timer);
-    NProgress.done();
-  };
-
-  (function(src) {
-    const tag = document.createElement("script");
-    tag.async = false;
-    tag.src = src;
-    document.getElementsByTagName("body")[0].appendChild(tag);
-
-    tag.onload = () => {
-      // @ts-ignore
-      window.Headway.init(HW_config);
-    };
-  })("https://cdn.headwayapp.co/widget.js");
-}
-
-export default function App(props) {
+export default function EApp(props) {
   const { Component, pageProps } = props;
   const router = useRouter();
-
   useEffect(() => {
-    reactGa && reactGa.pageview(router.pathname);
+    // reactGa && reactGa.pageview(router.pathname);
 
     const startProgress = () => NProgress.start();
 
     let timer;
-    const stopProgress = pathname => {
-      reactGa && reactGa.pageview(pathname);
+    const stopProgress = () => {
+      // reactGa && reactGa.pageview(pathname);
       clearTimeout(timer);
       NProgress.done();
     };
 
     const showProgressBar = () => {
       timer = setTimeout(startProgress, 300);
-      router.events.on("routeChangeComplete", stopProgress);
-      router.events.on("routeChangeError", stopProgress);
+      Router.events.on("routeChangeComplete", stopProgress);
+      Router.events.on("routeChangeError", stopProgress);
     };
 
     router.events.on("routeChangeStart", showProgressBar);
 
     return () => {
-      router.events.off("routeChangeComplete", stopProgress);
-      router.events.off("routeChangeError", stopProgress);
-      router.events.off("routeChangeStart", showProgressBar);
+      Router.events.off("routeChangeComplete", stopProgress);
+      Router.events.off("routeChangeError", stopProgress);
+      Router.events.off("routeChangeStart", showProgressBar);
       timer && clearTimeout(timer);
     };
   }, []);
@@ -100,7 +84,7 @@ export default function App(props) {
   const description = activeRoute && activeRoute.desc;
   const keywords = activeRoute && activeRoute.keywords;
   return (
-    <Container>
+    <>
       <Head>
         <title>{title}</title>
         <meta name="title" content={title} />
@@ -142,7 +126,6 @@ export default function App(props) {
           content="https://tools.w3cub.com/static/logo.png"
         />
       </Head>
-
       <Pane
         display="flex"
         alignItems="center"
@@ -186,7 +169,7 @@ export default function App(props) {
                   <li>
                     <span>{route.category}:</span>
                   </li>
-                  {(route.content as Route[]).map((a: Route) => {
+                  {route.content.map(a => {
                     return (
                       <li key={a.path}>
                         <a
@@ -241,73 +224,16 @@ export default function App(props) {
           Copyright © {new Date().getFullYear()} W3cub All Rights Reserved.
         </div>
       </footer>
-      <style jsx>{`
-        .sitemap {
-          margin-top: 30px;
-          background: #f2f2f2;
-          padding: 30px 15px;
-          font-size: 15px;
-          font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial,
-            sans-serif;
-        }
-
-        .sitemap ul > li {
-          list-style: none;
-          float: left;
-          margin-left: 10px;
-        }
-
-        .sitemap ul > li > span {
-          color: rgb(35, 67, 97);
-        }
-        .sitemap .item {
-          color: rgb(66, 90, 112);
-          color: #666;
-          text-decoration: none;
-        }
-        .footer {
-          background-color: #f4f4f4;
-          padding: 20px 4% 50px;
-          line-height: 30px;
-          text-align: center;
-          box-shadow: 0px -1px 1px #dcdada;
-          .wrap {
-            margin: auto;
-          }
-          .nav {
-            padding-bottom: 20px;
-          }
-          .nav a {
-            padding-right: 8px;
-            margin-right: 8px;
-            color: #000;
-            text-decoration: none;
-          }
-          .copy {
-            border-top: 1px solid #d3d3d3;
-            padding: 20px;
-          }
-          .footer-logo {
-            position: absolute;
-          }
-        }
-        @media (max-width: 768px) {
-          .footer {
-            .footer-logo {
-              display: none;
-            }
-          }
-        }
-      `}</style>
-    </Container>
+    </>
   );
 }
-App.getInitialProps = async ({ Component, ctx }) => {
+EApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
+
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
-  let exts = {} as any;
+  let exts = {};
   if (Component.title) {
     exts.title = Component.title;
   }

@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@md/*": ["./md/*"],
       "@styles/*": ["./styles/*"],
       "@components/*": ["./components/*"],
       "@constants/*": ["./constants/*"],
@@ -33,6 +34,6 @@
     "esModuleInterop": true,
     "isolatedModules": true
   },
-  "exclude": ["static", "public", ".next", "node_modules", "assets"],
+  "exclude": ["public/static", "public", ".next", "node_modules", "assets"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

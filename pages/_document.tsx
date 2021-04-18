@@ -1,5 +1,5 @@
 import React from "react";
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { extractStyles } from "evergreen-ui";
 import flush from "styled-jsx/server";
 
@@ -33,7 +33,7 @@ export default class MyDocument extends Document<DocumentProps> {
   render() {
     const { css, hydrationScript, styles } = this.props;
     return (
-      <html>
+      <Html>
         <Head>
           <meta charSet="utf-8" />
           <link
@@ -63,7 +63,7 @@ export default class MyDocument extends Document<DocumentProps> {
           {hydrationScript}
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

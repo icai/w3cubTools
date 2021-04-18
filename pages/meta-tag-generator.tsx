@@ -15,7 +15,7 @@ import {
   FileField
 } from "@components/JsonschemaCustomUI";
 import Mdloader from "@components/Mdloader";
-import "@styles/meta.less";
+import "@styles/meta.scss";
 
 const rootSchema = {
   schema: {

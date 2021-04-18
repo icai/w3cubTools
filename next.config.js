@@ -1,15 +1,54 @@
-const withCSS = require("@zeit/next-css");
-const webpack = require("webpack");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
-const withLess = require("@zeit/next-less");
-const withFonts = require("next-fonts");
+// const withCSS = require("@zeit/next-css");
+// const withLess = require("@zeit/next-less");
+// const withFonts = require("next-fonts");
 const path = require("path");
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
-});
+const webpack = require("webpack");
+// const withTM = require('next-transpile-modules')(['monaco-editor'])
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 const config = {
   webpack(config, options) {
+
+    const { isServer } = options;
+    const assetPrefix = '';
+    const enableSvg = true;
+    const limit = config.inlineFontLimit || 8192;
+    // let testPattern = /\.(woff(2)?|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)$/;
+    let testPattern = /\.(woff(2)?|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/;
+    if (enableSvg) testPattern = /\.(woff(2)?|eot|ttf|otf|svg)(\?v=\d+\.\d+\.\d+)?$/;
+    config.module.rules.push({
+      test: testPattern,
+      // Next.js already handles url() in css/sass/scss files
+      issuer: /\.\w+(?<!(s?c|sa)ss)$/i,
+      use: [
+        {
+          loader: require.resolve('url-loader'),
+          options: {
+            limit,
+            fallback: require.resolve('file-loader'),
+            publicPath: `${assetPrefix}/_next/static/chunks/fonts/`,
+            outputPath: `${isServer ? "../" : ""}static/chunks/fonts/`,
+            name: '[name]-[hash].[ext]'
+          }
+        }
+      ]
+    });
+
+  //   const rule = config.module.rules
+  //   .find(rule => rule.oneOf)
+  //   .oneOf.find(
+  //     r =>
+  //       // Find the global CSS loader
+  //       r.issuer && r.issuer.include && r.issuer.include.includes("_document")
+  //   );
+  // if (rule) {
+  //   rule.issuer.include = [
+  //     rule.issuer.include,
+  //     // Allow `monaco-editor` to import global CSS:
+  //     /[\\/]node_modules[\\/]monaco-editor[\\/]/
+  //   ];
+  // }
+
     const defaultLoaders = options.defaultLoaders;
     config.node = {
       fs: "empty",
@@ -28,7 +67,7 @@ const config = {
         __DEV__: options.dev
       }),
       new MonacoWebpackPlugin({
-        output: "../../static/monaco",
+        output: "../../public/static/monaco",
         languages: [
           "json",
           "typescript",
@@ -56,42 +95,6 @@ const config = {
       })
     );
 
-    // config.module.rules.push(
-    //   {
-    //     test: /\.css$/,
-    //     use: [
-    //       defaultLoaders.babel,
-    //       {
-    //         loader: require('styled-jsx/webpack').loader,
-    //         options: {
-    //           type: 'global'
-    //         }
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     test: /\.svg$/,
-    //     use: [
-    //       {
-    //         loader: '@svgr/webpack'
-    //       }
-    //     ]
-    //   }
-    // )
-    // config.module.rules.push({
-    //   test: /\.less$/,
-    //   use: [
-    //     defaultLoaders.babel,
-    //     {
-    //       loader: require('styled-jsx/webpack').loader,
-    //       options: {
-    //         type: 'scoped'
-    //       }
-    //     },
-    //     'less-loader'
-    //   ]
-    // })
-
     config.module.rules.unshift({
       test: /\.worker\.ts/,
       use: {
@@ -102,18 +105,11 @@ const config = {
         }
       }
     });
-
     config.module.rules.unshift({
       test: /\.md$/,
       exclude: /node_modules/,
       use: [defaultLoaders.babel, "markdown-to-react-loader"]
     });
-
-    // config.module.rules.unshift({
-    //   test: /\.wiki$/,
-    //   exclude: /node_modules/,
-    //   use: [defaultLoaders.babel, "markdown-to-react-loader", require.resolve('./loaders/jira2md.js')]
-    // });
 
     config.output.globalObject = 'typeof self !== "object" ? self : this';
 
@@ -123,7 +119,6 @@ const config = {
         delete plugin.definitions["typeof window"];
       }
     });
-
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       "@md": path.join(__dirname, "md"),
@@ -140,9 +135,9 @@ const config = {
 
     return config;
   },
-  enableSvg: true,
+  // enableSvg: true,
   // cssModules: true,
   target: "server"
 };
 
-module.exports = withBundleAnalyzer(withCSS(withLess(withFonts(config))));
+module.exports = config;

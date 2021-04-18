@@ -1,12 +1,10 @@
-@import "variables";
-
 @font-face {
-  font-family: "@{icomoon-font-family}";
-  src: url("@{icomoon-font-path}/@{icomoon-font-family}.ttf?smrq5k")
+  font-family: "socialshare";
+  src: url("/fonts/socialshare.ttf?smrq5k")
       format("truetype"),
-    url("@{icomoon-font-path}/@{icomoon-font-family}.woff?smrq5k")
+    url("/fonts/socialshare.woff?smrq5k")
       format("woff"),
-    url("@{icomoon-font-path}/@{icomoon-font-family}.svg?smrq5k#@{icomoon-font-family}")
+    url("/fonts/socialshare.svg?smrq5k#socialshare")
       format("svg");
   font-weight: normal;
   font-style: normal;
@@ -15,7 +13,7 @@
 [class^="icon-"],
 [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "@{icomoon-font-family}" !important;
+  font-family: "socialshare" !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -59,7 +57,7 @@
 
 .icon-digg {
   &:before {
-    content: @icon-digg;
+    content: "\e902";
   }
   color: #2a2a2a;
   border-color: #2a2a2a;
@@ -70,7 +68,7 @@
 }
 .icon-gmail {
   &:before {
-    content: @icon-gmail;
+    content: "\e900";
   }
   color: #d14836;
   border-color: #d14836;
@@ -81,7 +79,7 @@
 }
 .icon-line {
   &:before {
-    content: @icon-line;
+    content: "\e901";
   }
   color: #00c300;
   border-color: #00c300;
@@ -92,7 +90,7 @@
 }
 .icon-reddit {
   &:before {
-    content: @icon-reddit;
+    content: "\e903";
   }
   color: #ff4500;
   border-color: #ff4500;
@@ -103,7 +101,7 @@
 }
 .icon-facebook {
   &:before {
-    content: @icon-facebook;
+    content: "\f03a";
   }
   color: #44619d;
   border-color: #44619d;
@@ -114,7 +112,7 @@
 }
 .icon-twitter {
   &:before {
-    content: @icon-twitter;
+    content: "\f06a";
   }
   color: #55acee;
   border-color: #55acee;
@@ -125,7 +123,7 @@
 }
 .icon-qzone {
   &:before {
-    content: @icon-qzone;
+    content: "\f08a";
   }
   color: #fdbe3d;
   border-color: #fdbe3d;
@@ -136,7 +134,7 @@
 }
 .icon-douban {
   &:before {
-    content: @icon-douban;
+    content: "\f10a";
   }
   color: #33b045;
   border-color: #33b045;
@@ -149,7 +147,7 @@
   color: #ff763b;
   border-color: #ff763b;
   &:before {
-    content: @icon-weibo;
+    content: "\f12a";
   }
   &:hover {
     background: #ff763b;
@@ -158,7 +156,7 @@
 
 .icon-linkedin {
   &:before {
-    content: @icon-linkedin;
+    content: "\f01a";
   }
   color: #0077b5;
   border-color: #0077b5;

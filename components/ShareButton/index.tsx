@@ -1,5 +1,4 @@
 // import QRCode from 'qrcode.react'
-import "./style.less";
 import { useEffect, useState } from "react";
 function getMetaContentByName(name) {
   return ((document.getElementsByName(name)[0] || 0) as any).content;

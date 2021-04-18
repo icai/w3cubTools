@@ -1,6 +1,6 @@
 import { Pane } from "evergreen-ui";
 import { useRouter } from "next/router";
-import "@styles/markdown.css";
+
 
 // @ts-ignore
 const files = require.context("@md/", false, /\.md$/);

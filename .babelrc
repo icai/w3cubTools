@@ -5,7 +5,7 @@
       {
         "styled-jsx": {
           "plugins": [
-            "styled-jsx-plugin-less"
+            "styled-jsx-plugin-sass"
           ]
         }
       }
