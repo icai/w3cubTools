@@ -27,7 +27,7 @@ export default function() {
   const convertZip = () => {
     var zip = new JSZip();
     const proList = accFiles.map(file => {
-      return new Promise(function(resolve) {
+      return new Promise<void>(function(resolve) {
         const reader = new FileReader();
         reader.onabort = () => console.log("file reading was aborted");
         reader.onerror = () => console.log("file reading has failed");

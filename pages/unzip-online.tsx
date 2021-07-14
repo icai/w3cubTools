@@ -66,7 +66,7 @@ export default function() {
       }) // 1) read the Blob
       .then(function(zip) {
         let acFiles = [];
-        zip.forEach(function(_relativePath, zipEntry) {
+        zip.forEach(function(_relativePath, zipEntry: any) {
           if (zipEntry._data.uncompressedSize > 100) {
             zipEntry.checked = true;
           } else {

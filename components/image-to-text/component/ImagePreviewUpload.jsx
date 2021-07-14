@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { checkImageType } from "../tools/imageCommon";
 import { toaster } from "evergreen-ui";
-import "../style/imagePreviewUpload.css";
+// import "../style/imagePreviewUpload.css";
 /**
  * 图片上传预览组件
  *

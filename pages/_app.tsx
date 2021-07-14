@@ -6,6 +6,11 @@ import "@styles/main.css";
 import "@styles/app.scss";
 import "@styles/sharebutton/style.scss";
 import "@styles/markdown.css";
+import "@components/image-to-text/style/modal.css";
+import "@components/image-to-text/style/imagePreviewUpload.css";
+import "@components/image-to-text/style/transformSetting.css";
+
+import "@styles/meta.scss";
 
 import NProgress from "nprogress";
 import Head from "next/head";

@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Divide from "./Divide";
 import { Button, Dialog } from "evergreen-ui";
 import { createImage } from "../tools/imageCreater";
-import "../style/modal.css";
+// import "../style/modal.css";
 
 /**
  * 显示图片转字符结果的模态框
@@ -188,9 +188,9 @@ export default class FramesModal extends React.PureComponent {
             ref={this.outputRef}
           >
             {this.props.frames.length
-              ? this.props.frames[this.state.frameIndex].text.map(
-                  (line, index) => <pre key={index}>{line}</pre>
-                )
+              ? this.props.frames[
+                  this.state.frameIndex
+                ].text.map((line, index) => <pre key={index}>{line}</pre>)
               : null}
           </div>
         </div>

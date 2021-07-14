@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/transformSetting.css";
+// import "../style/transformSetting.css";
 
 export default class TransformSetting extends React.PureComponent {
   static defaultProps = {

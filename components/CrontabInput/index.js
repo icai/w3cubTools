@@ -332,16 +332,13 @@ class CrontabInput extends Component {
             )}
           </div>
         )}
-        <style jsx>{`
-          @primary: rgb(24, 144, 255);
-          @error: red;
-          @gray: #aaa;
+        <style jsx lang="less">{`
           .crontab-input {
             .explanation {
               text-align: center;
               margin: 16px 0 8px;
               font-size: 40px;
-              color: @primary;
+              color: rgb(24, 144, 255);
               min-height: 3em;
               span {
                 background: transparent;
@@ -374,12 +371,12 @@ class CrontabInput extends Component {
               text-align: center;
               width: 100%;
               border-radius: 100px;
-              border: 1px solid @primary;
+              border: 1px solid rgb(24, 144, 255);
               outline: none;
               padding-top: 8px;
               height: 70px;
               &.error {
-                border: 1px solid @error;
+                border: 1px solid red;
               }
             }
 
@@ -392,7 +389,7 @@ class CrontabInput extends Component {
                 cursor: pointer;
                 &.selected {
                   font-weight: bold;
-                  color: @primary;
+                  color: rgb(24, 144, 255);
                 }
               }
             }
@@ -406,7 +403,7 @@ class CrontabInput extends Component {
                 margin: auto;
                 .value,
                 .key {
-                  border-bottom: 1px dashed @gray;
+                  border-bottom: 1px dashed #aaa;
                   padding: 4px;
                 }
                 .key {
