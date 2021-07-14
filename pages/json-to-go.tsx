@@ -5,7 +5,7 @@ import * as React from "react";
 import jsonToGo from "json-to-go";
 import gofmt from "gofmt.js";
 
-export default function() {
+export default function JsonToGo() {
   const transformer = useCallback(({ value }) => {
     return gofmt(jsonToGo(value).go);
   }, []);

@@ -1,5 +1,5 @@
 import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Head, Main, NextScript, Html } from "next/document";
 import { extractStyles } from "evergreen-ui";
 import flush from "styled-jsx/server";
 

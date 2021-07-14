@@ -4,7 +4,7 @@ import * as React from "react";
 //@ts-ignore
 import { compact } from "jsonld";
 
-export default function() {
+export default function JsonldToCompacted() {
   const transformer = useCallback<Transformer>(
     async ({ value, splitEditorValue }) => {
       const jsonLd = await compact(

@@ -44,7 +44,6 @@ const logo = (
   </svg>
 );
 
-
 export default function EApp(props) {
   const { Component, pageProps } = props;
   const router = useRouter();
@@ -233,7 +232,7 @@ EApp.getInitialProps = async ({ Component, ctx }) => {
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
-  let exts = {};
+  let exts = {} as any;
   if (Component.title) {
     exts.title = Component.title;
   }

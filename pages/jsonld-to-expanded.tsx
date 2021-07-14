@@ -4,7 +4,7 @@ import * as React from "react";
 //@ts-ignore
 import { expand } from "jsonld";
 
-export default function() {
+export default function JsonldToExpanded() {
   const transformer = useCallback(async ({ value }) => {
     const jsonLd = await expand(JSON.parse(value));
 

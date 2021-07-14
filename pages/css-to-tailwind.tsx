@@ -1,8 +1,7 @@
 import ConversionPanel, { Transformer } from "@components/ConversionPanel";
 import NoSSR from "@components/NoSSR";
-import { editor } from "monaco-editor";
 import * as React from "react";
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import request from "@utils/request";
 import tailwindCss from "@utils/tailwindcss";
 import { promises as fs } from "fs";
@@ -21,14 +20,14 @@ import {
   Tooltip,
   toaster
 } from "evergreen-ui";
-import tailwindResolve from "tailwindcss/resolveConfig";
+import tailwindResolve from "tailwindcss1/resolveConfig";
 import dynamic from "next/dynamic";
 
 const Monaco = dynamic(() => import("../components/Monaco"), {
   ssr: false
 });
 
-const options: editor.IEditorOptions = {
+const options = {
   fontSize: 14,
   readOnly: false,
   codeLens: false,
@@ -37,7 +36,8 @@ const options: editor.IEditorOptions = {
     enabled: false
   },
   quickSuggestions: false,
-  lineNumbers: "on"
+  lineNumbers: "on",
+  renderValidationDecorations: "off"
 };
 
 const tabs = [
@@ -116,7 +116,7 @@ function CssToTailwindSettings({ open, toggle, onConfirm, settings }) {
                   : setPostCssInputValue
               }
               options={options}
-              height="300"
+              height={300}
             />
           </Pane>
         </Pane>
@@ -207,7 +207,7 @@ ${selector} {
   return `/* ${success.length}/${results.length} base rules are converted successfully. */\n/* Gather results from the console with \`copy(window.cssToTailwindResults)\` */\n\n${content}`;
 }
 
-export default function({ defaultSettings }) {
+export default function CssToTailwind({ defaultSettings }) {
   const [settings, setSettings] = useSettings(
     "css-to-tailwind",
     defaultSettings
@@ -271,7 +271,7 @@ export default function({ defaultSettings }) {
       editorTitle="CSS"
       editorLanguage="css"
       editorDefaultValue="css2"
-      resultTitle="TailwindCSS"
+      resultTitle="TailwindCSS 1"
       resultLanguage={"css"}
       editorProps={{
         settingElement: ({ open, toggle }) => {

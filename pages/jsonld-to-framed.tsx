@@ -4,7 +4,7 @@ import * as React from "react";
 //@ts-ignore
 import { frame } from "jsonld";
 
-export default function() {
+export default function JsonldToFramed() {
   const transformer = useCallback<Transformer>(
     async ({ value, splitEditorValue }) => {
       const jsonLd = await frame(

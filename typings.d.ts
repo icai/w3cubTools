@@ -76,3 +76,5 @@ declare const transPinyin: (a) => string;
 declare const window = {
   FileReader: any
 };
+
+declare module "@khanacademy/flow-to-ts";

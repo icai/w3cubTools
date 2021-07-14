@@ -4,7 +4,7 @@ import * as React from "react";
 //@ts-ignore
 import { jsonToSchema } from "@walmartlabs/json-to-simple-graphql-schema/lib";
 
-export default function() {
+export default function JsonToGraphql() {
   const transformer = useCallback(({ value }) => {
     return jsonToSchema({ jsonInput: value }).value;
   }, []);

@@ -1,54 +1,33 @@
-// const withCSS = require("@zeit/next-css");
-// const withLess = require("@zeit/next-less");
-// const withFonts = require("next-fonts");
 const path = require("path");
 const webpack = require("webpack");
-// const withTM = require('next-transpile-modules')(['monaco-editor'])
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 const config = {
   webpack(config, options) {
-
     const { isServer } = options;
-    const assetPrefix = '';
+    const assetPrefix = "";
     const enableSvg = true;
     const limit = config.inlineFontLimit || 8192;
     // let testPattern = /\.(woff(2)?|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)$/;
     let testPattern = /\.(woff(2)?|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/;
-    if (enableSvg) testPattern = /\.(woff(2)?|eot|ttf|otf|svg)(\?v=\d+\.\d+\.\d+)?$/;
+    if (enableSvg)
+      testPattern = /\.(woff(2)?|eot|ttf|otf|svg)(\?v=\d+\.\d+\.\d+)?$/;
     config.module.rules.push({
       test: testPattern,
       // Next.js already handles url() in css/sass/scss files
       issuer: /\.\w+(?<!(s?c|sa)ss)$/i,
       use: [
         {
-          loader: require.resolve('url-loader'),
+          loader: require.resolve("url-loader"),
           options: {
             limit,
-            fallback: require.resolve('file-loader'),
+            fallback: require.resolve("file-loader"),
             publicPath: `${assetPrefix}/_next/static/chunks/fonts/`,
             outputPath: `${isServer ? "../" : ""}static/chunks/fonts/`,
-            name: '[name]-[hash].[ext]'
+            name: "[name]-[hash].[ext]"
           }
         }
       ]
     });
-
-  //   const rule = config.module.rules
-  //   .find(rule => rule.oneOf)
-  //   .oneOf.find(
-  //     r =>
-  //       // Find the global CSS loader
-  //       r.issuer && r.issuer.include && r.issuer.include.includes("_document")
-  //   );
-  // if (rule) {
-  //   rule.issuer.include = [
-  //     rule.issuer.include,
-  //     // Allow `monaco-editor` to import global CSS:
-  //     /[\\/]node_modules[\\/]monaco-editor[\\/]/
-  //   ];
-  // }
-
     const defaultLoaders = options.defaultLoaders;
     config.node = {
       fs: "empty",
@@ -65,33 +44,6 @@ const config = {
         IS_DEV: options.dev,
         __CLIENT__: !options.isServer,
         __DEV__: options.dev
-      }),
-      new MonacoWebpackPlugin({
-        output: "../../public/static/monaco",
-        languages: [
-          "json",
-          "typescript",
-          "css",
-          "javascript",
-          "html",
-          "sql",
-          "xml",
-          "yaml",
-          "rust",
-          "markdown",
-          "go",
-          "graphql",
-          "scala",
-          "plaintext",
-          "java",
-          "pug"
-        ],
-        features: [
-          "folding",
-          "goToDefinitionMouse",
-          "goToDefinitionCommands",
-          "referenceSearch"
-        ]
       })
     );
 
