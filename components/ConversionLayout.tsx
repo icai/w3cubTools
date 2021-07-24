@@ -1,20 +1,11 @@
 //@ts-ignore
 import { Pane, Alert, Textarea } from "evergreen-ui";
-import EditorPanel, { EditorPanelProps } from "@components/EditorPanel";
+import { EditorPanelProps } from "@components/EditorPanel";
 import * as React from "react";
-import { useEffect, useState } from "react";
-import { Language, useData } from "@hooks/useData";
+import { useState } from "react";
+import { Language } from "@hooks/useData";
 import { useRouter } from "next/router";
-import { activeRouteData } from "@utils/routes";
 import Mdloader from "@components/Mdloader";
-
-function getEditorLanguage(lang: Language) {
-  const mapping = {
-    flow: "typescript"
-  };
-
-  return mapping[lang] || lang;
-}
 
 export type Transformer = (args: {
   value: string;
@@ -44,70 +35,20 @@ export interface ConversionLayoutProps {
   children?: React.ReactNode;
 }
 
-const ConversionPanel: React.FunctionComponent<
-  ConversionLayoutProps
-> = function({
-  // splitEditorProps,
-  // editorProps,
-  // resultEditorProps,
+const ConversionPanel: React.FunctionComponent<ConversionLayoutProps> = function({
   transformer,
   resultRender,
-  // splitLanguage,
-  // splitTitle,
-  // editorLanguage,
-  // editorTitle,
-  // resultLanguage,
-  // resultTitle,
-  // settings,
   flexDirection = "row",
   layoutHeight = "500px",
   defaultValue,
   children
-  // splitEditorDefaultValue
 }) {
-  // const [value, setValue] = useData(editorDefaultValue || editorLanguage);
-  // const [splitValue, setSplitValue] = useData(
-  //   splitEditorDefaultValue || splitLanguage
-  // );
-
   const [value, setValue] = useState(defaultValue);
 
   const [result, setResult] = useState("");
   const [message, setMessage] = useState("");
   const router = useRouter();
 
-  //const route = activeRouteData(router.pathname);
-  // let packageDetails;
-
-  // if (route) {
-  //   const { packageUrl, packageName } = route;
-
-  //   packageDetails =
-  //     packageName && packageUrl
-  //       ? {
-  //           name: packageName,
-  //           url: packageUrl
-  //         }
-  //       : undefined;
-  // }
-
-  // useEffect(() => {
-  //   async function transform() {
-  //     try {
-  //       const result = await transformer({
-  //         value,
-  //         splitEditorValue: splitTitle ? splitValue : undefined
-  //       });
-
-  //       setResult(result);
-  //       setMessage("");
-  //     } catch (e) {
-  //       setMessage(e.message);
-  //     }
-  //   }
-
-  //   transform();
-  // }, [splitValue, value, splitTitle, settings]);
   const defFlexProps = {
     display: "flex",
     flexDirection: "column",

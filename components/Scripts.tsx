@@ -4,12 +4,12 @@ interface ScriptsProps {
   scripts: Array<string>;
 }
 
-export default function({ scripts = [] }: ScriptsProps) {
+export default function Scripts({ scripts = [] }: ScriptsProps) {
   return (
-    <>
+    <React.Fragment>
       {scripts.map((item: string, ix) => {
         return <script key={ix} src={item + "?v=" + __HASHVERSION__}></script>;
       })}
-    </>
+    </React.Fragment>
   );
 }

@@ -1,6 +1,6 @@
 // <script src="https://unpkg.com/react-jsonschema-form/dist/react-jsonschema-form.js"></script>
 
-import React, { Fragment, Component, useReducer } from "react";
+import React, { Fragment, useReducer } from "react";
 import { Pane, Textarea, SideSheet, Button } from "evergreen-ui";
 import Form from "react-jsonschema-form";
 import {
@@ -9,13 +9,10 @@ import {
   CheckboxField,
   InputField,
   TagInputField,
-  SelectField,
-  SearchInputField,
   TextAreaField,
   FileField
 } from "@components/JsonschemaCustomUI";
 import Mdloader from "@components/Mdloader";
-// import "@styles/meta.scss";
 
 const rootSchema = {
   schema: {
@@ -149,7 +146,7 @@ const rootSchema = {
 
 const customWidgets = { CheckboxWidget: CheckboxField, FileWidget: FileField };
 
-export default function() {
+export default function MetaTagGenerator() {
   const [state, setState] = useReducer(
     (state, action) => {
       return {

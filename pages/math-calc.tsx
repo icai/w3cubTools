@@ -3,7 +3,7 @@ import ConversionLayout from "@components/ConversionLayout";
 import React, { useCallback, useState, Fragment, useEffect } from "react";
 import { Button, Pane, FilePicker, Textarea } from "evergreen-ui";
 
-export default function() {
+export default function MathCalc() {
   var conf = {
     questions: 100 //题目数
   };

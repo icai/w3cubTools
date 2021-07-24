@@ -4,9 +4,9 @@ interface LinksProps {
   links: Array<string>;
 }
 
-export default function({ links = [] }: LinksProps) {
+export default function Links({ links = [] }: LinksProps) {
   return (
-    <>
+    <React.Fragment>
       {links.map((item: string, ix) => {
         return (
           <link
@@ -16,6 +16,6 @@ export default function({ links = [] }: LinksProps) {
           />
         );
       })}
-    </>
+    </React.Fragment>
   );
 }

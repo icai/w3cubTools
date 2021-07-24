@@ -366,7 +366,7 @@ declare module "evergreen-ui" {
     onInputChange?: (event: React.ChangeEvent) => void;
     onRemove?: (value: string | React.ReactNode, index: number) => void;
     separator?: string;
-    tagSubmitKey?: "enter" | "space";
+    tagsubmitkey?: "enter" | "space";
     tagProps?: any;
     values?: string[];
   }

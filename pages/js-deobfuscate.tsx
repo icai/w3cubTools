@@ -7,7 +7,7 @@ import { BabelTransforms } from "@constants/babelTransforms";
 import PrettierWorker from "@workers/prettier.worker";
 
 let babelWorker, prettier;
-export default function() {
+export default function JsDeobfuscate() {
   const transformer = useCallback(async ({ value }) => {
     babelWorker = babelWorker || getWorker(BabelWorker);
     prettier = prettier || getWorker(PrettierWorker);

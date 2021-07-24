@@ -9,7 +9,7 @@ sitemap({
   //       fr: 'https://example.fr',
   //   },
   baseUrl: "https://tools.w3cub.com",
-  ignoredPaths: ["admin"],
+  ignoredPaths: ["admin", "api"],
   pagesDirectory: path.resolve(__dirname, "../pages"),
   targetDirectory: "out/"
 });

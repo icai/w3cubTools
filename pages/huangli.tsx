@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { Button, Pane, FilePicker, Textarea } from "evergreen-ui";
 
-export default function() {
+export default function HuangLi() {
   /*
    * 注意：本程序中的“随机”都是伪随机概念，以当前的天为种子。
    */

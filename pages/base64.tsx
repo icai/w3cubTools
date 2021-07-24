@@ -3,7 +3,7 @@ import * as React from "react";
 import { Button } from "evergreen-ui";
 import decode from "@utils/crypto";
 
-export default function() {
+export default function Tbase64() {
   return (
     <ConversionLayout
       flexDirection="column"

@@ -4,7 +4,7 @@ function getMetaContentByName(name) {
   return ((document.getElementsByName(name)[0] || 0) as any).content;
 }
 
-export default function(props) {
+export default function ShareButton(props) {
   const [initProps, setDocumentProps] = useState({
     image: "",
     site: "",
@@ -17,7 +17,7 @@ export default function(props) {
 
   let sites = initProps.sites;
   // let url = initProps.url;
-  const onClick = (e, name) => {
+  const onClick = (_e, name) => {
     let url = initProps.url;
     let title = encodeURIComponent(initProps.title);
     let description = encodeURIComponent(initProps.description);
@@ -42,7 +42,7 @@ export default function(props) {
       twitter: `https://twitter.com/intent/tweet?text=${title}%20${url}&url=${url}&via=${origin}`
     };
     if (templates[name]) {
-      e.currentTarget.href = templates[name];
+      location.href = templates[name];
     }
   };
 
@@ -76,11 +76,9 @@ export default function(props) {
       <a
         key={i}
         className={className}
-        href="javascript:;"
         onClick={e => {
           onClick(e, site);
         }}
-        target="_blank"
       ></a>
     );
   });

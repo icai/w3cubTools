@@ -6,7 +6,7 @@ import { useDropzone } from "react-dropzone";
 import uniqBy from "lodash/uniqBy";
 import { getDate } from "@utils/utils";
 
-export default function() {
+export default function ZipOnline() {
   const controlProps = {
     display: "flex",
     flexDirection: "row" as any,

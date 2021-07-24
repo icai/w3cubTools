@@ -140,7 +140,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
         <Pane
           display="flex"
           flex={1}
-          borderRight
+          borderRight="1px solid #E4E7EB"
           flexDirection="column"
           overflow="hidden"
         >
@@ -158,7 +158,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
           />
 
           {splitTitle && (
-            <Pane display="flex" flex={1} borderTop>
+            <Pane display="flex" flex={1} borderTop="1px solid #E4E7EB">
               <EditorPanel
                 title={splitTitle}
                 defaultValue={splitValue}

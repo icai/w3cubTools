@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import { Pane } from "evergreen-ui";
 import WriteCharactorSearch from "@components/WriteCharactor/WriteCharactorSearch";
-export default function() {
+export default function YoutubeDownloade() {
   const [char, setChar] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState([]);
@@ -25,9 +25,11 @@ export default function() {
             value.player_response.videoDetails.thumbnail.thumbnails[2]
           );
           setTitle(value.player_response.videoDetails.title);
-          setContent(value.formats.filter(
-            item => item.container == "mp4"
-          ) as Array<object>);
+          setContent(
+            value.formats.filter(item => item.container == "mp4") as Array<
+              object
+            >
+          );
         }
       } else {
         setChar(slug);

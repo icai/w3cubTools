@@ -1,6 +1,6 @@
 import { Pane, Button, Textarea } from "evergreen-ui";
 import { useState } from "react";
-export default function() {
+export default function RandomMac() {
   const [result, setResult] = useState("");
   const [howManyResuls, setHowMany] = useState(10 as any);
   var startIp = "00:00:00:00:00:00";

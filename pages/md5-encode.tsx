@@ -2,7 +2,7 @@ import ConversionLayout from "@components/ConversionLayout";
 import * as React from "react";
 import { Button } from "evergreen-ui";
 
-export default function() {
+export default function Md5Encode() {
   return (
     <ConversionLayout
       flexDirection="column"

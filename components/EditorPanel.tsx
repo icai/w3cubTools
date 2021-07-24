@@ -164,7 +164,7 @@ export default function EditorPanel({
         height={40}
         paddingX={10}
         alignItems={"center"}
-        borderBottom
+        borderBottom="1px solid #E4E7EB"
         zIndex={2}
         flexShrink={0}
       >
@@ -255,6 +255,7 @@ export default function EditorPanel({
 
         {hasCopy && (
           <Button
+            appearance="primary"
             marginRight={10}
             iconBefore="duplicate"
             onClick={copyValue}

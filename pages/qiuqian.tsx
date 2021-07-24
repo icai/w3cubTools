@@ -2,7 +2,7 @@ import ConversionLayout from "@components/ConversionLayout";
 import React, { useState } from "react";
 import Tween from "rc-tween-one";
 
-export default function() {
+export default function QiuQian() {
   /*
    * 注意：本程序中的“随机”都是伪随机概念。
    * 第一个种子相对固定，第二个种子相对有更多变化

@@ -11,7 +11,7 @@ import React, {
 } from "react";
 import VoiceComponent from "@components/icons/VoiceComponent";
 
-export default function() {
+export default function ChineseToPinyin() {
   const iframeOne = () => {
     let frame = document.createElement("iframe");
     frame.src = "https://fanyi.baidu.com";

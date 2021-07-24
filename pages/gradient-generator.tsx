@@ -1,6 +1,6 @@
 import Mdloader from "@components/Mdloader";
 
-export default function() {
+export default function GradientGenerator() {
   return (
     <div>
       <Mdloader />

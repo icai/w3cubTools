@@ -1,11 +1,8 @@
 @font-face {
   font-family: "socialshare";
-  src: url("/fonts/socialshare.ttf?smrq5k")
-      format("truetype"),
-    url("/fonts/socialshare.woff?smrq5k")
-      format("woff"),
-    url("/fonts/socialshare.svg?smrq5k#socialshare")
-      format("svg");
+  src: url("/fonts/socialshare.ttf?smrq5k") format("truetype"),
+    url("/fonts/socialshare.woff?smrq5k") format("woff"),
+    url("/fonts/socialshare.svg?smrq5k#socialshare") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -31,6 +28,7 @@
     text-decoration: none;
     margin: 4px;
     display: inline-block;
+    cursor: pointer;
     outline: none;
   }
 }

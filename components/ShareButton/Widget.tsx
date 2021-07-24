@@ -2,7 +2,7 @@ import { Icon, Pane } from "evergreen-ui";
 import React, { useState } from "react";
 import ShareButton from "@components/ShareButton";
 
-export default function() {
+export default function ShareButtonWrap() {
   const [shareall, setShareAll] = useState(false);
   return (
     <div

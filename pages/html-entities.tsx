@@ -1,7 +1,7 @@
 import Mdloader from "@components/Mdloader";
 import entities from "@constants/entities.json";
 
-export default function() {
+export default function HtmlEntities() {
   return (
     <>
       <table className="entitles">

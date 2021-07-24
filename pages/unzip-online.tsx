@@ -7,7 +7,7 @@ import uniqBy from "lodash/uniqBy";
 import { getDate } from "@utils/utils";
 import { access } from "fs";
 
-export default function() {
+export default function UnzipOnline() {
   const controlProps = {
     display: "flex",
     flexDirection: "row" as any,

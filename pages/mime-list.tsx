@@ -11,7 +11,7 @@ if (__CLIENT__) {
 } else {
   lists = mimes;
 }
-export default function() {
+export default function MimeList() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState(lists);
   useEffect(() => {

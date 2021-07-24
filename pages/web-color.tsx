@@ -3,7 +3,7 @@ import hexRgb from "@utils/hexrgb";
 import allcolors from "@constants/color.json";
 import Mdloader from "@components/Mdloader";
 
-export default function() {
+export default function WebColor() {
   const state = {
     colors: allcolors.map(color => {
       return {

@@ -12,7 +12,7 @@ export default function Navigator() {
     <Pane
       width={240}
       height={"calc(100vh - 40px)"}
-      borderRight
+      borderRight="1"
       display="flex"
       flexDirection="column"
       paddingTop={20}
@@ -74,7 +74,7 @@ export default function Navigator() {
         })}
       </Pane>
 
-      <Pane borderTop>
+      <Pane borderTop="1">
         <a href="https://www.buymeacoffee.com/ritz078" target="_blank">
           <img
             src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png"

@@ -3,7 +3,7 @@ import React, { useEffect, useState, Fragment } from "react";
 //@ts-ignore
 import { Button, Pane, FilePicker, Textarea } from "evergreen-ui";
 
-export default function() {
+export default function ImagetoBase64() {
   const defChildProps = {
     display: "flex",
     flexDirection: "column" as any,

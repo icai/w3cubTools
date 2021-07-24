@@ -28,7 +28,7 @@ export default function() {
     try {
       saveAs(blob, name);
     } catch (e) {
-      __DEV__ && console.info(e);
+      // console.info(e);
     }
   };
   const saveImageTo = type => {

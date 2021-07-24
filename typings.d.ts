@@ -70,11 +70,13 @@ declare const _w3cub_reactToVue: (a, b) => [string, object];
 declare const _ckeditor_ckeditor5BuildClassic: any;
 declare const _ckeditor_ckeditor5React: any;
 declare const html2canvas: any;
+declare const minify: any;
 
 declare const transPinyin: (a) => string;
 
 declare const window = {
-  FileReader: any
+  FileReader: any,
+  minify: any
 };
 
 declare module "@khanacademy/flow-to-ts";

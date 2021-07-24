@@ -3,7 +3,7 @@ import * as React from "react";
 import { Button } from "evergreen-ui";
 import * as decode from "@utils/decode";
 
-export default function() {
+export default function UnicodetoAscii() {
   return (
     <ConversionLayout
       flexDirection="column"

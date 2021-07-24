@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { Pane, Tablist, Tab, Text } from "evergreen-ui";
 import VoiceComponent from "@components/icons/VoiceComponent";
-export default function() {
+export default function JapaneseSyllabary() {
   const [state, setState] = useReducer(
     (state, action) => {
       return {

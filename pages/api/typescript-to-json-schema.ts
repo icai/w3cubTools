@@ -6,7 +6,7 @@ import crypto from "crypto";
 import path from "path";
 import fs from "fs";
 
-const tmpDir = os.tmpdir?.();
+const tmpDir = os.tmpdir && os.tmpdir();
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const filePath =

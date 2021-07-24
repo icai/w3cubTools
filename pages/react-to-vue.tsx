@@ -21,7 +21,7 @@ const formFields = [
     label: "Is Flow"
   }
 ];
-export default function() {
+export default function ReactToVue() {
   const name = "React to Vue";
   const [settings, setSettings] = useSettings(name, {
     ts: false,

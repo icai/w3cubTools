@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { categorizedRoutes, Route } from "@utils/routes";
 
-export default function() {
+export default function Index() {
   return (
     <>
       <div className="nav">

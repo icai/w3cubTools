@@ -2,10 +2,6 @@
   "version": 2,
   "redirects": [
     {
-      "source": "/svg-to-jsx",
-      "destination": "/"
-    },
-    {
       "source": "/json-to-flow-types",
       "destination": "/json-to-flow"
     },

@@ -21,7 +21,7 @@ const formFields = [
     label: "Is Single File Components"
   }
 ];
-export default function() {
+export default function VuetoReact() {
   const name = "Vue to React";
   const [settings, setSettings] = useSettings(name, {
     auto: true,

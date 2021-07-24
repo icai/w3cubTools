@@ -15,7 +15,7 @@ import {
   LAYOUT_SIZE
 } from "@components/Gobang/constants";
 
-export default function() {
+export default function Gomoku() {
   function runGame() {
     //拿到画布
     var chess = document.getElementById("canvas") as HTMLCanvasElement;

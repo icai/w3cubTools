@@ -99,7 +99,7 @@ const ColorItem = props => {
   );
 };
 
-export default function() {
+export default function OpenColor() {
   return (
     <div className="color-box">
       <div className="shortcut-wrap">

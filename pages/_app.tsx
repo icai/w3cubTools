@@ -9,8 +9,10 @@ import "@styles/markdown.css";
 import "@components/image-to-text/style/modal.css";
 import "@components/image-to-text/style/imagePreviewUpload.css";
 import "@components/image-to-text/style/transformSetting.css";
+import "@components/image-to-text/style/index.scss";
 
 import "@styles/meta.scss";
+import "@components/g2048/index.scss";
 
 import NProgress from "nprogress";
 import Head from "next/head";
@@ -25,14 +27,6 @@ import {
 import Scripts from "@components/Scripts";
 import Links from "@components/Links";
 import ShareWidget from "@components/ShareButton/Widget";
-
-// let reactGa;
-// if (IN_BROWSER && !IS_DEV) {
-//   reactGa = require("react-ga");
-//   reactGa.initialize("UA-145146877-1", {
-//     debug: IS_DEV
-//   });
-// }
 
 const logo = (
   <svg
@@ -53,13 +47,9 @@ export default function EApp(props) {
   const { Component, pageProps } = props;
   const router = useRouter();
   useEffect(() => {
-    // reactGa && reactGa.pageview(router.pathname);
-
     const startProgress = () => NProgress.start();
-
     let timer;
     const stopProgress = () => {
-      // reactGa && reactGa.pageview(pathname);
       clearTimeout(timer);
       NProgress.done();
     };
@@ -79,8 +69,6 @@ export default function EApp(props) {
       timer && clearTimeout(timer);
     };
   }, []);
-
-  // renderHeadWay();
   const activeRoute = activeRouteData(router.pathname);
   const title =
     ((activeRoute && (activeRoute.title || activeRoute.searchTerm)) ||
@@ -166,14 +154,14 @@ export default function EApp(props) {
       </Pane>
       {router.pathname != "/" && (
         <div className="sitemap hidden-print">
-          {categorizedRoutes.map((route, i) => {
+          {categorizedRoutes.map((route: any, i) => {
             return (
               <Fragment key={i + 1}>
                 <ul className="clearfix ">
                   <li>
                     <span>{route.category}:</span>
                   </li>
-                  {route.content.map(a => {
+                  {route.content.map((a: any) => {
                     return (
                       <li key={a.path}>
                         <a

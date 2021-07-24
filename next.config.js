@@ -3,6 +3,12 @@ const webpack = require("webpack");
 
 const config = {
   webpack(config, options) {
+    config.node = {
+      fs: "empty",
+      module: "empty",
+      net: "mock",
+      tls: "mock"
+    };
     const { isServer } = options;
     const assetPrefix = "";
     const enableSvg = true;
@@ -29,21 +35,14 @@ const config = {
       ]
     });
     const defaultLoaders = options.defaultLoaders;
-    config.node = {
-      fs: "empty",
-      module: "empty",
-      net: "mock",
-      tls: "mock"
-    };
 
     config.plugins.push(
       new webpack.DefinePlugin({
-        __HASHVERSION__: "20190722",
+        __HASHVERSION__: "20210714",
         "process.env.DEV": JSON.stringify(options.dev),
         IN_BROWSER: !options.isServer,
         IS_DEV: options.dev,
-        __CLIENT__: !options.isServer,
-        __DEV__: options.dev
+        __CLIENT__: !options.isServer
       })
     );
 
@@ -80,16 +79,15 @@ const config = {
       "@workers": path.join(__dirname, "workers"),
       "@utils": path.join(__dirname, "utils"),
       "@hooks": path.join(__dirname, "hooks"),
-      "@assets": path.join(__dirname, "assets")
+      "@assets": path.join(__dirname, "assets"),
+      "@static": path.join(__dirname, "static")
     };
 
     config.output.webassemblyModuleFilename = "static/wasm/[modulehash].wasm";
 
     return config;
-  },
-  // enableSvg: true,
-  // cssModules: true,
-  target: "server"
+  }
+  // target: "server"
 };
 
 module.exports = config;

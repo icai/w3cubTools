@@ -53,7 +53,7 @@ const doImages = () => {
   });
 };
 
-export default function() {
+export default function LongWeibo() {
   const generateImage = () => {
     var images = document
       .querySelector(".ck.ck-content")

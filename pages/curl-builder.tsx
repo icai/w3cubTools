@@ -97,7 +97,7 @@ const schema = {
 };
 
 const customWidgets = { CheckboxWidget: CheckboxField };
-export default class extends Component<any, any> {
+export default class CurlBuilder extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {

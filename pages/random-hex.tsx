@@ -1,7 +1,7 @@
 import { Pane, Button, Textarea } from "evergreen-ui";
 import { useState } from "react";
 
-export default function() {
+export default function RandomHex() {
   const [result, setResult] = useState("");
   const [howManyResuls, setHowMany] = useState(10 as any);
   const [howManyDigits, setHowDig] = useState(32 as any);

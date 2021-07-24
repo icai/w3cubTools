@@ -4,8 +4,12 @@ import { useCallback } from "react";
 import { useSettings } from "@hooks/useSettings";
 import Form, { InputType } from "@components/Form";
 import html2pug from "html2pug";
-import minify from "@assets/vendor/html-minifier";
-
+let minify = function minify(s) {
+  return s
+    .replace(/\>[\r\n ]+\</g, "><")
+    .replace(/(<.*?>)|\s+/g, (_m, $1) => ($1 ? $1 : " "))
+    .trim();
+};
 const formFields = [
   {
     key: "tabs",
