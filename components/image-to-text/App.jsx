@@ -12,7 +12,6 @@ import {
 } from "./tools/imageToText";
 import { getImageDatas } from "./tools/imageParser";
 import { DEFAULT_AVAILABLE_TEXTS } from "./tools/constant";
-// import "./style/index.scss";
 
 export default class App extends React.Component {
   constructor() {

@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from "react";
-import { Container } from "next/app";
 import { Button, Pane } from "evergreen-ui";
 
+// global css
 import "@styles/main.css";
 import "@styles/app.scss";
 import "@styles/sharebutton/style.scss";
@@ -10,7 +10,6 @@ import "@components/image-to-text/style/modal.css";
 import "@components/image-to-text/style/imagePreviewUpload.css";
 import "@components/image-to-text/style/transformSetting.css";
 import "@components/image-to-text/style/index.scss";
-
 import "@styles/meta.scss";
 import "@components/g2048/index.scss";
 
@@ -27,6 +26,14 @@ import {
 import Scripts from "@components/Scripts";
 import Links from "@components/Links";
 import ShareWidget from "@components/ShareButton/Widget";
+
+let reactGa;
+if (IN_BROWSER && !IS_DEV) {
+  reactGa = require("react-ga");
+  reactGa.initialize("UA-145146877-1", {
+    debug: IS_DEV
+  });
+}
 
 const logo = (
   <svg
@@ -47,9 +54,12 @@ export default function EApp(props) {
   const { Component, pageProps } = props;
   const router = useRouter();
   useEffect(() => {
+    reactGa && reactGa.pageview(router.pathname);
+
     const startProgress = () => NProgress.start();
     let timer;
     const stopProgress = () => {
+      // reactGa && reactGa.pageview(pathname);
       clearTimeout(timer);
       NProgress.done();
     };
@@ -79,6 +89,25 @@ export default function EApp(props) {
     <>
       <Head>
         <title>{title}</title>
+        <link href="/favicon.ico" rel="icon" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/static/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/static/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/static/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/static/site.webmanifest" />
         <meta name="title" content={title} />
         <meta name="description" content={description} />
         {keywords && <meta name="keywords" content={keywords} />}

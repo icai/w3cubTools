@@ -80,3 +80,18 @@ declare const window = {
 };
 
 declare module "@khanacademy/flow-to-ts";
+
+declare namespace Favicon {
+  export namespace Package {
+    export interface GenerateResult {
+      ico: string;
+      png16: string;
+      png32: string;
+      png150: string;
+      png180: string;
+      png192: string;
+      png512: string;
+    }
+    function generate(s: HTMLCanvasElement): GenerateResult;
+  }
+}

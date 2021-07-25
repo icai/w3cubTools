@@ -343,6 +343,18 @@ export const categorizedRoutes = [
         keywords: "crontab, cron generator, cron examples"
       },
       {
+        label: "Favicon Converter",
+        path: "/favicon-converter",
+        title: "Favicon Converter - Convert Image to Favicon, Faster",
+        desc:
+          "This tool help you convert Image to Favicon, use browser capability implemented, easy to use, no need to download, faster",
+        keywords:
+          "Favicon Converter, Favicon Generator, favicon image, favicon image packages",
+        scripts: [
+          "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
+        ]
+      },
+      {
         label: "Zip Compressor",
         path: "/zip-online",
         title: "Online Zip Compressor, faster",
