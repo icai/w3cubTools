@@ -24,6 +24,8 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@babel/standalone": "^7.5.5",
+    "@ckeditor/ckeditor5-build-classic": "^29.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.2",
     "@graphql-codegen/core": "^1.4.0",
     "@graphql-codegen/flow": "^1.4.0",
     "@graphql-codegen/flow-operations": "^1.4.0",

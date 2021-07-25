@@ -1,12 +1,6 @@
-import React, { useState } from "react";
-import { Button, Pane, Dialog, Switch } from "evergreen-ui";
+import React, { useState, useRef, useEffect } from "react";
+import { Button, Pane, Dialog } from "evergreen-ui";
 
-let ClassicEditor, CKEditor;
-
-if (__CLIENT__) {
-  ClassicEditor = _ckeditor_ckeditor5BuildClassic;
-  CKEditor = _ckeditor_ckeditor5React;
-}
 class MyUploadAdapter {
   loader: any;
   constructor(loader) {
@@ -110,6 +104,20 @@ export default function LongWeibo() {
   const [open, setOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
+
+  const editorRef = useRef();
+  const [editorLoaded, setEditorLoaded] = useState(false);
+  // @ts-ignore: Unreachable code error
+  const { CKEditor, ClassicEditor } = editorRef.current || {};
+
+  useEffect(() => {
+    // @ts-ignore: Unreachable code error
+    editorRef.current = {
+      CKEditor: require("@ckeditor/ckeditor5-react").CKEditor, //Added .CKEditor
+      ClassicEditor: require("@ckeditor/ckeditor5-build-classic")
+    };
+    setEditorLoaded(true);
+  }, []);
   return (
     <div className="box" style={{ width: "700px", margin: "auto" }}>
       <h1>长微博生成器</h1>
@@ -142,7 +150,7 @@ export default function LongWeibo() {
         </div>
       </Dialog>
       <div style={{ minHeight: "600px" }}>
-        {__CLIENT__ && (
+        {editorLoaded && (
           <CKEditor
             editor={ClassicEditor}
             id="editor_box"
@@ -190,19 +198,18 @@ export default function LongWeibo() {
           />
         )}
       </div>
-
       <style>{`
-                .html2canvasreset{
-                    overflow: visible !important;
-                    width: auto !important;
-                    height: auto !important;
-                    max-height: auto !important;
-                    border: 1px solid transparent!important;
-                }
-                .ck-editor__main > .ck-editor__editable {
-                    min-height: 500px;
-                }
-                `}</style>
+        .html2canvasreset{
+            overflow: visible !important;
+            width: auto !important;
+            height: auto !important;
+            max-height: auto !important;
+            border: 1px solid transparent!important;
+        }
+        .ck-editor__main > .ck-editor__editable {
+            min-height: 500px;
+        }
+        `}</style>
     </div>
   );
 }
