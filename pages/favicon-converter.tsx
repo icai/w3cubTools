@@ -102,8 +102,8 @@ export default function ZipOnline() {
 
   const convertZip = () => {
     if (acceptedFiles && acceptedFiles.length) {
-      // canvas = document.createElement("canvas");
-      // ctx = canvas.getContext("2d");
+      canvas = document.createElement("canvas");
+      ctx = canvas.getContext("2d");
       const reader = new FileReader();
       // reader.onabort = () => console.log("file reading was aborted");
       // reader.onerror = () => console.log("file reading has failed");
