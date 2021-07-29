@@ -14,6 +14,7 @@ import "@styles/meta.scss";
 import "@components/g2048/index.scss";
 
 import NProgress from "nprogress";
+import App, { AppProps } from "next/app";
 import Head from "next/head";
 import Router from "next/router";
 import { useRouter } from "next/router";
@@ -50,7 +51,7 @@ const logo = (
   </svg>
 );
 
-export default function EApp(props) {
+export default function EApp(props: AppProps) {
   const { Component, pageProps } = props;
   const router = useRouter();
   useEffect(() => {
@@ -248,7 +249,10 @@ export default function EApp(props) {
     </>
   );
 }
-EApp.getInitialProps = async ({ Component, ctx }) => {
+EApp.getInitialProps = async appContext => {
+  const { Component, ctx } = appContext;
+  const appProps = await App.getInitialProps(appContext);
+
   let pageProps = {};
 
   if (Component.getInitialProps) {
@@ -262,5 +266,5 @@ EApp.getInitialProps = async ({ Component, ctx }) => {
     exts.description = Component.description;
   }
 
-  return { pageProps, ...exts };
+  return { ...appProps, ...pageProps, ...exts };
 };
