@@ -130,7 +130,7 @@
     "imagemin-lint-staged": "^0.4.0",
     "lint-staged": "^9.2.0",
     "markdown-to-react-loader": "^1.2.0",
-    "node-sass": "^4.0.0",
+    "node-sass": "^7.0.0",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.0.0",
     "pretty-quick": "^1.11.1",
