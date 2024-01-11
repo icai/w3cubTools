@@ -284,6 +284,69 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "nasrul21",
+      "name": "Nasrul Faizin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15046792?v=4",
+      "profile": "https://github.com/nasrul21",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jdjfisher",
+      "name": "Jordan Fisher",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43887886?v=4",
+      "profile": "https://github.com/jdjfisher",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "csandman",
+      "name": "Chris Sandvik",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9214195?v=4",
+      "profile": "https://github.com/csandman",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "LemonNekoGH",
+      "name": "LemonNeko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17664845?v=4",
+      "profile": "https://blog.lemonneko.moe",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Pooja444",
+      "name": "Pooja Kulkarni",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24620969?v=4",
+      "profile": "http://poojakulkarni.dev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "SuttonJack",
+      "name": "Jack Sutton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/92991945?v=4",
+      "profile": "https://github.com/SuttonJack",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Jackardios",
+      "name": "Salakhutdinov Salavat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24757335?v=4",
+      "profile": "https://t.me/jackardios",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

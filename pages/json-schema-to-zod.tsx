@@ -6,36 +6,28 @@ import * as React from "react";
 import { useCallback } from "react";
 
 interface Settings {
-  typealias: boolean;
+  rootName: string;
 }
 
 const formFields = [
   {
-    type: InputType.SWITCH,
-    key: "typealias",
-    label: "Create Mono Type"
+    type: InputType.TEXT_INPUT,
+    key: "rootName",
+    label: "Root Schema Name"
   }
 ];
 
-export default function JsonToTypescript() {
-  const name = "JSON to Typescript";
+export default function JsonSchemaToZod() {
+  const name = "JSON Schema to Zod Schema";
 
   const [settings, setSettings] = useSettings(name, {
-    typealias: false
+    rootName: "schema"
   });
 
   const transformer = useCallback(
     async ({ value }) => {
-      const { run } = await import("json_typegen_wasm");
-      return run(
-        "Root",
-        value,
-        JSON.stringify({
-          output_mode: settings.typealias
-            ? "typescript/typealias"
-            : "typescript"
-        })
-      );
+      const { jsonSchemaToZod } = await import("json-schema-to-zod");
+      return jsonSchemaToZod(JSON.parse(value), settings.rootName, true);
     },
     [settings]
   );
@@ -59,9 +51,10 @@ export default function JsonToTypescript() {
   return (
     <ConversionPanel
       transformer={transformer}
-      editorTitle="JSON"
+      editorTitle="JSON Schema"
       editorLanguage="json"
-      resultTitle="TypeScript"
+      editorDefaultValue="jsonSchema"
+      resultTitle="Zod Schema"
       resultLanguage={"typescript"}
       editorSettingsElement={getSettingsElement}
       settings={settings}

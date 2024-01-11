@@ -73,14 +73,14 @@ export const css2 = `.alert {
   .button {
     padding: 0.5rem 1rem;
     width: 100%;
-  } 
+  }
 }
 
 @media (min-width: 1280px) {
   .button {
     padding: 3rem 7rem;
     margin-bottom: 2.4rem;
-  } 
+  }
 }
 
 .username {
@@ -99,7 +99,7 @@ export const css2 = `.alert {
 @media (min-width: 1280px) {
   .username {
     width: 50%;
-  } 
+  }
 }
 
 .footer {
@@ -110,6 +110,62 @@ export const css2 = `.alert {
   flex-direction: row-reverse;
   padding: 2.4rem 3rem;
   border-top: 1px solid #fff5f5;
+}
+`;
+
+export const css3 = `:root {
+  --some-color: #090909;
+}
+
+.foo {
+  padding: 0.875em 256px;
+  margin-left: 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: color, background-color, border-color, text-decoration-color, fill,
+    stroke 200ms cubic-bezier(0, 0, 0.2, 1);
+  animation-delay: 200ms;
+
+  &:hover {
+    filter: blur(4px) brightness(0.5) sepia(100%) contrast(1) hue-rotate(30deg)
+      invert(0) opacity(0.05) saturate(1.5);
+    color: hsl(27, 96%, 61%);
+    font-size: 1.25rem;
+  }
+
+  &[aria-disabled="true"] {
+    width: 25%;
+    color: var(--some-color);
+    font-size: 1em;
+  }
+
+  @media (min-width: 768px) {
+    top: auto;
+    bottom: auto;
+    left: 25%;
+    right: 25%;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    min-width: 100%;
+    margin-right: -24px;
+  }
+
+  @supports (display: grid) {
+    display: grid;
+    grid-column: span 1 / span 1;
+  }
+}
+
+.foo.bar {
+  padding: 0.875rem 256px 15%;
+  transform: translateX(12px) translateY(-0.5em) skew(1deg, 3deg)
+    scale(-0.75, 1.05) rotate(-0.25turn);
+
+  &::after {
+    content: "*";
+    animation: spin 1s linear infinite;
+  }
 }
 `;
 
@@ -279,7 +335,7 @@ export const graphqlMongodb = `type User @entity {
   chats: [Chat!]! @link
 }
 
-type Profile @entity(embedded: true, 
+type Profile @entity(embedded: true,
   additionalFields: [
     { path: "dateOfBirth", type: "string" }
   ]) {
@@ -543,7 +599,7 @@ import { useState, useEffect } from 'react';
 
 export const CounterExample: React.FC<{}> = () => {
   const [count, setCount] = useState(0);
-  
+
   const handleClick = () => setCount(count + 1)
 
   return (
@@ -569,3 +625,44 @@ export interface Props {
   /** Should the name be rendered in bold */
   priority?: boolean
 }`;
+
+export const toml = `userId = 1
+id = 1
+title = "delectus aut autem"
+completed = false
+
+[company]
+id = 12
+name = "Transform Inc"`;
+
+export const cadence = `// Do not remove top level contract
+// Just paste your structs in this contract
+pub contract Example {
+  pub struct ExampleStruct {
+      pub var url: String
+      pub twoCapacityArray: [String;2]
+      pub deeeeepArray: [[[[String]]]]
+
+      pub struct ExampleEmbed {
+        pub var aNumber: Int
+
+        init() {
+          self.aNumber = 0
+        }
+      }
+
+      init() {
+          self.url = ""
+          self.twoCapacityArray = []
+          self.deeeeepArray = []
+      }
+  }
+
+  pub event ExampleEvent(_ name: String, _ aDeeeeeepMap: {String:{String:{String:{String:String}}}})
+
+  // This function will be ignored if 'Generate Interaction Code With Functions' disabled
+  pub fun hello(): String {
+    return "Hello"
+  }
+}
+`;

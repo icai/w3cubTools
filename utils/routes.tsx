@@ -542,10 +542,28 @@ export const categorizedRoutes = [
         packageName: "json_typegen_wasm"
       },
       {
+        label: "to Java",
+        path: "/json-to-java",
+        packageUrl: "https://www.npmjs.com/package/json_typegen_wasm",
+        packageName: "json_typegen_wasm"
+      },
+      {
         label: "to JSON Schema",
         path: "/json-to-json-schema",
         packageUrl: "https://www.npmjs.com/package/json_typegen_wasm",
         packageName: "json_typegen_wasm"
+      },
+      {
+        label: "to TOML",
+        path: "/json-to-toml",
+        packageUrl: "https://www.npmjs.com/package/@iarna/toml",
+        packageName: "@iarna/toml"
+      },
+      {
+        label: "to Zod Schema",
+        path: "/json-to-zod",
+        packageUrl: "https://www.npmjs.com/package/json-to-zod",
+        packageName: "json-to-zod"
       }
     ]
   },
@@ -570,6 +588,12 @@ export const categorizedRoutes = [
         path: "json-schema-to-protobuf",
         packageName: "jsonschema-protobuf",
         packageUrl: "https://github.com/okdistribute/jsonschema-protobuf"
+      },
+      {
+        label: "to Zod Schema",
+        path: "json-schema-to-zod",
+        packageName: "json-schema-to-zod",
+        packageUrl: "https://www.npmjs.com/package/json-schema-to-zod"
       }
     ]
   },
@@ -588,6 +612,12 @@ export const categorizedRoutes = [
         packageUrl:
           "https://github.com/satya164/babel-plugin-object-styles-to-template",
         packageName: "babel-plugin-object-styles-to-template"
+      },
+      {
+        label: "to TailwindCSS",
+        path: "/css-to-tailwind",
+        packageUrl: "https://github.com/Jackardios/css-to-tailwindcss",
+        packageName: "css-to-tailwindcss"
       }
       // {
       //   label: "to TailwindCSS",
@@ -705,6 +735,16 @@ export const categorizedRoutes = [
         path: "/typescript-to-json-schema",
         packageName: "ts-json-schema-generator",
         packageUrl: "https://github.com/vega/ts-json-schema-generator"
+      },
+      {
+        label: "to plain JavaScript",
+        path: "/typescript-to-javascript"
+      },
+      {
+        label: "to Zod Schema",
+        path: "/typescript-to-zod",
+        packageName: "ts-to-zod",
+        packageUrl: "https://www.npmjs.com/package/ts-to-zod"
       }
     ]
   },
@@ -719,6 +759,10 @@ export const categorizedRoutes = [
       {
         label: "to TypeScript Declaration",
         path: "/flow-to-typescript-declaration"
+      },
+      {
+        label: "to plain JavaScript",
+        path: "/flow-to-javascript"
       }
     ]
   },
@@ -732,7 +776,6 @@ export const categorizedRoutes = [
         packageName: "xml-js",
         packageUrl: "https://github.com/nashwaan/xml-js"
       },
-
       {
         label: "YAML to JSON",
         path: "/yaml-to-json",
@@ -740,10 +783,28 @@ export const categorizedRoutes = [
         packageUrl: "https://github.com/tj/js-yaml"
       },
       {
+        label: "YAML to TOML",
+        path: "/yaml-to-toml"
+      },
+      {
         label: "Markdown to HTML",
         path: "/markdown-to-html",
         packageName: "markdown",
         packageUrl: "https://github.com/evilstreak/markdown-js"
+      },
+      {
+        label: "TOML to JSON",
+        path: "/toml-to-json",
+        packageUrl: "https://www.npmjs.com/package/@iarna/toml",
+        packageName: "@iarna/toml"
+      },
+      {
+        label: "TOML to YAML",
+        path: "/toml-to-yaml"
+      },
+      {
+        label: "Cadence to Go",
+        path: "/cadence-to-go"
       }
     ]
   }
@@ -784,6 +845,15 @@ export const routes = flatten(
     })
 );
 
-export function activeRouteData(pathname) {
+export function activeRouteData(
+  pathname
+): {
+  label: string;
+  path: string;
+  searchTerm: string;
+  desc: string;
+  packageUrl?: string;
+  packageName?: string;
+} {
   return find(routes, o => o.path === pathname);
 }

@@ -147,6 +147,16 @@ template {
   display: none;
 }
 
+.dark {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}
+
+.light {
+  -webkit-filter: none;
+  filter: none;
+}
+
 .monaco-editor {
   padding-top: 15px;
 }

@@ -4,38 +4,53 @@ import Form, { InputType } from "@components/Form";
 import { useSettings } from "@hooks/useSettings";
 import * as React from "react";
 import { useCallback } from "react";
+import request from "@utils/request";
 
 interface Settings {
-  typealias: boolean;
+  keepComments: boolean;
+  skipParseJSDoc: boolean;
 }
 
 const formFields = [
   {
     type: InputType.SWITCH,
-    key: "typealias",
-    label: "Create Mono Type"
+    key: "keepComments",
+    label: "Keep TSDoc Comments"
+  },
+  {
+    type: InputType.SWITCH,
+    key: "skipParseJSDoc",
+    label: "Skip the creation of zod validators from JSDoc annotations"
   }
 ];
 
-export default function JsonToTypescript() {
-  const name = "JSON to Typescript";
+export default function TypescriptToZod() {
+  const name = "JSON to Zod Schema";
 
   const [settings, setSettings] = useSettings(name, {
-    typealias: false
+    keepComments: false,
+    skipParseJSDoc: false
   });
 
   const transformer = useCallback(
     async ({ value }) => {
-      const { run } = await import("json_typegen_wasm");
-      return run(
-        "Root",
+      const { keepComments, skipParseJSDoc } = settings;
+      const params = new URLSearchParams({
+        keepComments,
+        skipParseJSDoc
+      }).toString();
+
+      const { schema, error } = await request(
+        `/api/typescript-to-zod?${params}`,
         value,
-        JSON.stringify({
-          output_mode: settings.typealias
-            ? "typescript/typealias"
-            : "typescript"
-        })
+        "text/plain"
       );
+
+      if (error) {
+        throw new Error(error);
+      }
+
+      return schema;
     },
     [settings]
   );
@@ -59,9 +74,10 @@ export default function JsonToTypescript() {
   return (
     <ConversionPanel
       transformer={transformer}
-      editorTitle="JSON"
-      editorLanguage="json"
-      resultTitle="TypeScript"
+      editorTitle="TypeScript"
+      editorLanguage="typescript"
+      editorDefaultValue="typeScriptInterface"
+      resultTitle="Zod Schema"
       resultLanguage={"typescript"}
       editorSettingsElement={getSettingsElement}
       settings={settings}

@@ -1,7 +1,6 @@
 import React, { useEffect, Fragment } from "react";
-import { Button, Pane } from "evergreen-ui";
-
-// global css
+import { Button, IconButton, Pane, Tooltip } from "evergreen-ui";
+import Navigator from "@components/Navigator";
 import "@styles/main.css";
 import "@styles/app.scss";
 import "@styles/sharebutton/style.scss";
@@ -15,9 +14,8 @@ import "@components/g2048/index.scss";
 
 import NProgress from "nprogress";
 import App, { AppProps } from "next/app";
+import Router, { useRouter } from "next/router";
 import Head from "next/head";
-import Router from "next/router";
-import { useRouter } from "next/router";
 import {
   activeRouteData,
   categorizedRoutes,
@@ -27,6 +25,8 @@ import {
 import Scripts from "@components/Scripts";
 import Links from "@components/Links";
 import ShareWidget from "@components/ShareButton/Widget";
+import { Meta } from "@components/Meta";
+import { useDarkMode } from "@hooks/useDarkMode";
 
 let reactGa;
 if (IN_BROWSER && !IS_DEV) {
@@ -35,6 +35,7 @@ if (IN_BROWSER && !IS_DEV) {
     debug: IS_DEV
   });
 }
+
 
 const logo = (
   <svg

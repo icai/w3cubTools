@@ -10,3 +10,5 @@ out
 public/static/monaco/*.worker.js.map
 .tool-versions
 heroku
+
+.vercel
