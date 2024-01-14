@@ -18,6 +18,7 @@ import { TailwindConverter, TailwindConverterConfig } from "css-to-tailwindcss";
 
 import ConversionPanel, { Transformer } from "@components/ConversionPanel";
 import { useSettings } from "@hooks/useSettings";
+import { HelpIcon } from "evergreen-ui";
 
 const Monaco = dynamic(() => import("../components/Monaco"), {
   ssr: false
@@ -106,7 +107,7 @@ function CssToTailwindSettings({
             style={{ verticalAlign: "middle" }}
           >
             <Tooltip content="Open the TailwindCSS docs...">
-              <Icon icon="help" color="info" marginLeft={8} size={16} />
+              <HelpIcon marginLeft={8} size={16} color="info" />
             </Tooltip>
           </a>
         </Heading>
@@ -126,7 +127,7 @@ function CssToTailwindSettings({
             style={{ verticalAlign: "middle" }}
           >
             <Tooltip content="Open the TailwindCSS docs...">
-              <Icon icon="help" color="info" marginLeft={8} size={16} />
+              <HelpIcon marginLeft={8} size={16} color="info" />
             </Tooltip>
           </a>
         </Heading>

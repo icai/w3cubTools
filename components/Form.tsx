@@ -83,6 +83,8 @@ const Form = <T extends object>({
                     ? isDisabled(props.values)
                     : undefined;
 
+                  const value = props.values[key] as any;
+
                   return (
                     <Pane
                       display={"flex"}
@@ -101,16 +103,20 @@ const Form = <T extends object>({
                       >
                         {label}
                       </Heading>
+                      
+                      
+
+                  
+
                       {FormField && (
                         <FormField
-                          value={props.values[key]}
-                          checked={props.values[key]}
+                          value={value}
+                          checked={value}
                           onChange={props.handleChange}
                           name={key}
                           disabled={_isDisabled}
                         />
                       )}
-
                       {select}
                     </Pane>
                   );

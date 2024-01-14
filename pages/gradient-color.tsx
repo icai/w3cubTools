@@ -1,5 +1,5 @@
 import gradients from "@constants/gradients.json";
-import { Icon, toaster } from "evergreen-ui";
+import { CodeIcon, DownloadIcon, Icon, toaster } from "evergreen-ui";
 import AnglePicker from "@components/Gradient/AnglePicker";
 import { useState } from "react";
 import copy from "@utils/copy";
@@ -29,7 +29,7 @@ function GradientItem({ item, copyCode, bgDownload }) {
             data-color-to={item[1]}
             onClick={copyCode}
           >
-            <Icon icon="code" color="white" />
+            <CodeIcon color="white" />
           </a>
           <a
             className="ch-grab"
@@ -38,7 +38,7 @@ function GradientItem({ item, copyCode, bgDownload }) {
             data-color-to={item[1]}
             onClick={bgDownload}
           >
-            <Icon icon="download" color="white" />
+            <DownloadIcon color="white" />
           </a>
         </div>
       </div>

@@ -33,7 +33,7 @@ _self.onmessage = ({ data: { id, payload } }: { data: Data }) => {
       });
     });
   } catch (e) {
-    if (IS_DEV) {
+    if (process.env.dev) {
       console.error(e);
     }
     _self.postMessage({

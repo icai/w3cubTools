@@ -15,7 +15,6 @@ const SearchBox: React.FunctionComponent<{}> = () => {
     <Autocomplete
       onChange={onSearchSelect}
       items={routes.map(a => a.searchTerm)}
-      width="100%"
     >
       {props => {
         const { getInputProps, getRef, inputValue } = props;
@@ -25,7 +24,7 @@ const SearchBox: React.FunctionComponent<{}> = () => {
             marginBottom={10}
             placeholder="Search"
             value={inputValue}
-            innerRef={getRef}
+            ref={getRef}
             {...getInputProps()}
           />
         );

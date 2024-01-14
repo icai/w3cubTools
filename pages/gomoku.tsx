@@ -1,6 +1,6 @@
 import ConversionLayout from "@components/ConversionLayout";
 import { Pane, Button, IconButton } from "evergreen-ui";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import {
   LINE_COLOR,
   POINT_RADIUS,
@@ -304,7 +304,7 @@ export default function Gomoku() {
     };
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     runGame();
   }, []);
 

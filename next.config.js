@@ -2,13 +2,37 @@ const path = require("path");
 const webpack = require("webpack");
 
 const config = {
+  // https://github.com/vercel/next.js/blob/canary/packages/next/src/build/webpack/plugins/define-env-plugin.ts
+  env: {
+    HASHVERSION: "20240114"
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   webpack(config, options) {
-    config.node = {
-      fs: "empty",
-      module: "empty",
-      net: "mock",
-      tls: "mock"
+    // config.node = {
+    //   fs: "empty",
+    //   module: "empty",
+    //   net: "mock",
+    //   tls: "mock"
+    // };
+
+    const customConfig = {
+      resolve: {
+        fallback: {
+          dgram: false,
+          fs: false,
+          net: false,
+          tls: false,
+          child_process: false
+        }
+      }
     };
+    config.resolve = {
+      ...config.resolve,
+      ...customConfig.resolve
+    };
+
     const { isServer } = options;
     const assetPrefix = "";
     const enableSvg = true;
@@ -29,29 +53,34 @@ const config = {
             fallback: require.resolve("file-loader"),
             publicPath: `${assetPrefix}/_next/static/chunks/fonts/`,
             outputPath: `${isServer ? "../" : ""}static/chunks/fonts/`,
-            name: "[name]-[hash].[ext]"
+            filename: "[name]-[fullhash].[ext]"
           }
         }
       ]
     });
     const defaultLoaders = options.defaultLoaders;
 
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        __HASHVERSION__: "20210714",
-        "process.env.DEV": JSON.stringify(options.dev),
-        IN_BROWSER: !options.isServer,
-        IS_DEV: options.dev,
-        __CLIENT__: !options.isServer
-      })
-    );
+    // config.module.rules.push({
+    //   test: /\.scss$|\.css$/,
+    //   use: [
+    //     defaultLoaders.babel,
+    //     {
+    //       loader: require("styled-jsx/webpack").loader,
+    //       options: {
+    //         type: "scoped"
+    //       }
+    //     },
+    //     "sass-loader"
+    //   ]
+    // });
 
     config.module.rules.unshift({
       test: /\.worker\.ts/,
       use: {
-        loader: "worker-loader",
+        // path.resolve(__dirname, "scripts/loader/worker-loader.js"),
+        loader: 'worker-loader',
         options: {
-          name: "static/[hash].worker.js",
+          filename: "static/[chunkhash].worker.js",
           publicPath: "/_next/"
         }
       }
@@ -59,21 +88,20 @@ const config = {
     config.module.rules.unshift({
       test: /\.md$/,
       exclude: /node_modules/,
-      use: [defaultLoaders.babel, "markdown-to-react-loader"]
+      use:[
+        defaultLoaders.babel,
+        {
+          loader: '@mdx-js/loader',
+          /** @type {import('@mdx-js/loader').Options} */
+          options: {}
+      }]
     });
 
-    config.output.globalObject = 'typeof self !== "object" ? self : this';
-
-    // Temporary fix for https://github.com/zeit/next.js/issues/8071
-    config.plugins.forEach(plugin => {
-      if (plugin.definitions && plugin.definitions["typeof window"]) {
-        delete plugin.definitions["typeof window"];
-      }
-    });
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
+      "@": path.join(__dirname),
       "@md": path.join(__dirname, "md"),
-      "@styles": path.join(__dirname, "styles"),
+      // "@styles": path.join(__dirname, "styles"),
       "@components": path.join(__dirname, "components"),
       "@constants": path.join(__dirname, "constants"),
       "@workers": path.join(__dirname, "workers"),

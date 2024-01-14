@@ -1,7 +1,6 @@
 import ConversionLayout from "@components/ConversionLayout";
 import React, {
   useEffect,
-  useLayoutEffect,
   useState,
   useCallback
 } from "react";
@@ -22,7 +21,9 @@ export default function ZipOnline() {
     height: "100%",
     padding: "0px"
   };
-  var canvas, ctx, presult;
+  let canvas;
+  let ctx;
+  let presult;
 
   const id = "favicon-converter";
 
@@ -123,7 +124,7 @@ export default function ZipOnline() {
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (acceptedFiles && acceptedFiles.length) {
       canvas = document.createElement("canvas");
       ctx = canvas.getContext("2d");
@@ -164,7 +165,7 @@ export default function ZipOnline() {
   }
   // highlight code once
   const [highlightCode, setHighlightCode] = useState(value);
-  useLayoutEffect(() => {
+  useEffect(() => {
     setHighlightCode(highlight(value));
   }, [value]);
 
@@ -182,7 +183,6 @@ export default function ZipOnline() {
         <h2>Converter</h2>
         <section className="dragcontainer">
           <div
-            className="dropzone"
             {...getRootProps({ className: "dropzone" })}
           >
             <input {...getInputProps()} />

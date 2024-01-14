@@ -12,7 +12,7 @@ export default function Links({ links = [] }: LinksProps) {
           <link
             rel="stylesheet"
             key={ix}
-            href={item + "?v=" + __HASHVERSION__}
+            href={item + "?v=" + process.env.HASHVERSION}
           />
         );
       })}

@@ -1,7 +1,6 @@
 import ConversionLayout from "@components/ConversionLayout";
 import React, {
   useEffect,
-  useLayoutEffect,
   useState,
   useCallback
 } from "react";
@@ -352,7 +351,7 @@ export default function HuangLi() {
   const [starscore, setStarScore] = useState(star((random(iday, 6) % 5) + 1));
 
   //
-  useLayoutEffect(() => {
+  useEffect(() => {
     setToday(getTodayString());
     setGoods(eventArr.slice(0, numGood));
     setBads(eventArr.slice(numGood));

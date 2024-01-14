@@ -6,8 +6,7 @@ import { converttoNoTone } from "@utils/utils";
 import React, {
   useState,
   useCallback,
-  useEffect,
-  useLayoutEffect
+  useEffect
 } from "react";
 import VoiceComponent from "@components/icons/VoiceComponent";
 

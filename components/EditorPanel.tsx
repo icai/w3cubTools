@@ -1,5 +1,7 @@
 import {
   Button,
+  DuplicateIcon,
+  CogIcon,
   FilePicker,
   Heading,
   HTMLInputEvent,
@@ -8,7 +10,9 @@ import {
   Popover,
   TextInput,
   toaster,
-  Tooltip
+  Tooltip,
+  TrashIcon,
+  UploadIcon
 } from "evergreen-ui";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
@@ -92,7 +96,7 @@ export default function EditorPanel({
       <>
         <Button
           marginRight={10}
-          iconBefore="cog"
+          iconBefore={CogIcon}
           onClick={_toggleSettingsDialog}
           height={28}
         >
@@ -224,7 +228,7 @@ export default function EditorPanel({
             shouldCloseOnExternalClick
           >
             <Tooltip content="Load File">
-              <IconButton height={28} marginRight={10} icon="upload" />
+              <IconButton height={28} marginRight={10} icon={UploadIcon} />
             </Tooltip>
           </Popover>
         )}
@@ -233,11 +237,12 @@ export default function EditorPanel({
           <Tooltip content="Clear">
             <IconButton
               height={28}
-              icon="trash"
+              icon={TrashIcon}
               intent="danger"
               marginRight={10}
               onClick={() => setValue("")}
             />
+            
           </Tooltip>
         )}
 
@@ -259,7 +264,9 @@ export default function EditorPanel({
           <Button
             appearance="primary"
             marginRight={10}
-            iconBefore="duplicate"
+            iconBefore={
+              DuplicateIcon
+            }
             onClick={copyValue}
             height={28}
           >
@@ -289,7 +296,7 @@ export default function EditorPanel({
           options={options}
           onChange={value => {
             setValue(value);
-            onChange(value);
+            onChange && onChange(value);
           }}
         />
       </div>

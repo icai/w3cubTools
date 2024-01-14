@@ -1,4 +1,5 @@
-import { Icon, Pane } from "evergreen-ui";
+import { MoreIcon, Pane } from "evergreen-ui";
+
 import React, { useState } from "react";
 import ShareButton from "@components/ShareButton";
 
@@ -31,7 +32,7 @@ export default function ShareButtonWrap() {
             setShareAll(true);
           }}
         >
-          <Icon icon="more" color="muted" />
+          <MoreIcon color="muted" />
         </Pane>
       )}
     </div>

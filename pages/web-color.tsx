@@ -35,7 +35,7 @@ export default function WebColor() {
                 }}
               >
                 <a
-                  href="javascript:"
+                  href="javascript:void(0);"
                   data-val={item.id + "_colors"}
                   onClick={() => {
                     switchTab(item.id);

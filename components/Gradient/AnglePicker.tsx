@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface AnglePickerProps {
   className?: string;
@@ -62,7 +62,7 @@ export default function AnglePicker(props: AnglePickerProps) {
   };
 
   const [angle, setAngle] = useState(props.angle || 0);
-  useLayoutEffect(() => {
+  useEffect(() => {
     if ("ontouchstart" in document.documentElement) {
       container.current.addEventListener("touchstart", startEvent);
       container.current.addEventListener("touchmove", moveEvent);

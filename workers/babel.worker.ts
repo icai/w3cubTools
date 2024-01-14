@@ -82,7 +82,7 @@ _self.onmessage = ({ data: { id, payload } }: { data: Data }) => {
       deobfuscateCode(value, id);
     }
   } catch (e) {
-    if (IS_DEV) {
+    if (process.env.dev) {
       console.error(e);
     }
     _self.postMessage({

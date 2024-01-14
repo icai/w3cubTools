@@ -110,7 +110,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
         setResult(prettyResult);
         setMessage("");
       } catch (e) {
-        console.error(e);
+        // console.error(e);
         setMessage(e.message);
       }
       toggleUpdateSpinner(false);
@@ -138,9 +138,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
         overflow="hidden"
         flex={1}
         height={layoutHeight}
-        css={{
-          border: "1px solid #E4E7EB"
-        }}
+        border="1px solid #E4E7EB"
       >
         <Pane
           display="flex"
@@ -193,11 +191,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
               right={30}
             >
               <Spinner
-                css={{
-                  "& circle": {
-                    stroke: "#0e7ccf"
-                  }
-                }}
+                color="#0e7ccf"
                 size={32}
               />
             </Pane>

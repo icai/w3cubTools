@@ -1,16 +1,17 @@
 import { useState } from "react";
+// import package.json
 import { version } from "../package.json";
 
 const prefix = `transform:${version}:`;
 
-export function useLocalStorage(key, initialValue) {
+export function useLocalStorage(key: string, initialValue: object) {
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
 
   const [storedValue, setStoredValue] = useState(() => {
     try {
       // Get from local storage by key
-      const item = IN_BROWSER
+      const item: any = typeof window !== "undefined"
         ? window.localStorage.getItem(prefix + key) || initialValue
         : initialValue;
       // Parse stored json or if none return initialValue
@@ -23,7 +24,7 @@ export function useLocalStorage(key, initialValue) {
 
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to sessionStorage.
-  const setValue = value => {
+  const setValue = (value: (arg0: any) => any) => {
     try {
       // Allow value to be a function so we have same API as useState
       const valueToStore =
@@ -31,7 +32,7 @@ export function useLocalStorage(key, initialValue) {
       // Save state
       setStoredValue(valueToStore);
       // Save to local storage
-      if (IN_BROWSER)
+      if (typeof window !== "undefined")
         window.localStorage.setItem(prefix + key, JSON.stringify(valueToStore));
     } catch (error) {
       // A more advanced implementation would handle the error case

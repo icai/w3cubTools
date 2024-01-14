@@ -50,12 +50,8 @@ declare module "*.md";
 
 declare module "*.wiki";
 
-declare const IN_BROWSER: boolean;
-declare const IS_DEV: boolean;
-declare const __HASHVERSION__: string;
+declare module "*.json";
 
-declare const __CLIENT__: boolean;
-declare const __DEV__: boolean;
 declare const importScripts: void;
 declare const Babel;
 declare const CryptoJS;

@@ -1,8 +1,8 @@
-// <script src="https://unpkg.com/react-jsonschema-form/dist/react-jsonschema-form.js"></script>
-
 import React, { Fragment, Component } from "react";
 import { Pane, Textarea } from "evergreen-ui";
-import Form from "react-jsonschema-form";
+import Form from "@rjsf/core";
+import validator from '@rjsf/validator-ajv8';
+import { RJSFSchema } from '@rjsf/utils';
 import {
   KeyValueComponent,
   ArrayField,
@@ -14,7 +14,7 @@ import {
 
 import Mdloader from "@components/Mdloader";
 
-const schema = {
+const schema: RJSFSchema = {
   schema: {
     // title: "Online curl command line builder",
     type: "object",
@@ -165,6 +165,7 @@ export default class CurlBuilder extends Component<any, any> {
             uiSchema={uiSchema}
             formData={formData}
             widgets={customWidgets}
+            validator={validator}
             onChange={this.getResult}
           >
             <fieldset>

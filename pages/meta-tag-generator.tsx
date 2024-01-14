@@ -1,8 +1,8 @@
-// <script src="https://unpkg.com/react-jsonschema-form/dist/react-jsonschema-form.js"></script>
-
 import React, { Fragment, useReducer } from "react";
 import { Pane, Textarea, SideSheet, Button } from "evergreen-ui";
-import Form from "react-jsonschema-form";
+import Form from "@rjsf/core";
+import validator from '@rjsf/validator-ajv8';
+import { RJSFSchema } from '@rjsf/utils';
 import {
   KeyValueComponent,
   ArrayField,
@@ -14,7 +14,7 @@ import {
 } from "@components/JsonschemaCustomUI";
 import Mdloader from "@components/Mdloader";
 
-const rootSchema = {
+const rootSchema: RJSFSchema = {
   schema: {
     type: "object",
     properties: {
@@ -397,6 +397,7 @@ export default function MetaTagGenerator() {
           schema={schema}
           uiSchema={uiSchema}
           formData={formData}
+          validator={validator}
           widgets={customWidgets}
           onChange={getResult}
         >

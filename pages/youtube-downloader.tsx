@@ -1,8 +1,7 @@
 import React, {
   useState,
   useCallback,
-  useEffect,
-  useLayoutEffect
+  useEffect
 } from "react";
 import { Pane } from "evergreen-ui";
 import WriteCharactorSearch from "@components/WriteCharactor/WriteCharactorSearch";

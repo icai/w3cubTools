@@ -1,6 +1,3 @@
-import React, { useEffect, Fragment } from "react";
-import { Button, IconButton, Pane, Tooltip } from "evergreen-ui";
-import Navigator from "@components/Navigator";
 import "@styles/main.css";
 import "@styles/app.scss";
 import "@styles/sharebutton/style.scss";
@@ -11,10 +8,15 @@ import "@components/image-to-text/style/transformSetting.css";
 import "@components/image-to-text/style/index.scss";
 import "@styles/meta.scss";
 import "@components/g2048/index.scss";
+import React, { useEffect, Fragment, createContext } from "react";
+import { Button, IconButton, Pane, Tooltip } from "evergreen-ui";
+import Navigator from "@components/Navigator";
 
 import NProgress from "nprogress";
-import App, { AppProps } from "next/app";
+import NextApp, { AppProps, AppContext } from "next/app";
 import Router, { useRouter } from "next/router";
+import { render } from 'react-dom'
+import { renderToString } from 'react-dom/server'
 import Head from "next/head";
 import {
   activeRouteData,
@@ -28,11 +30,13 @@ import ShareWidget from "@components/ShareButton/Widget";
 import { Meta } from "@components/Meta";
 import { useDarkMode } from "@hooks/useDarkMode";
 
+// https://github.com/vercel/next.js/blob/7b73f1137b21c7b1fb1612c3389caaaadd18da65/test/integration/app-tree/pages/_app.tsx#L11
+
 let reactGa;
-if (IN_BROWSER && !IS_DEV) {
+if (typeof window !== "undefined" && !process.env.dev) {
   reactGa = require("react-ga");
   reactGa.initialize("UA-145146877-1", {
-    debug: IS_DEV
+    debug: process.env.dev
   });
 }
 
@@ -52,7 +56,7 @@ const logo = (
   </svg>
 );
 
-export default function EApp(props: AppProps) {
+export default function App(props: AppProps) {
   const { Component, pageProps } = props;
   const router = useRouter();
   useEffect(() => {
@@ -159,9 +163,7 @@ export default function EApp(props: AppProps) {
         paddingRight={"3%"}
         paddingLeft={"4%"}
         className="hidden-print"
-        css={{
-          boxShadow: "0 2px 2px 0 rgba(0,0,0,.1), 0 1px 0 0 rgba(0,0,0,.1)"
-        }}
+        boxShadow="0 2px 2px 0 rgba(0,0,0,.1), 0 1px 0 0 rgba(0,0,0,.1)"
       >
         <Pane
           flex={1}
@@ -250,9 +252,9 @@ export default function EApp(props: AppProps) {
     </>
   );
 }
-EApp.getInitialProps = async appContext => {
+App.getInitialProps = async appContext => {
   const { Component, ctx } = appContext;
-  const appProps = await App.getInitialProps(appContext);
+  const appProps = await NextApp.getInitialProps(appContext);
 
   let pageProps = {};
 
@@ -269,3 +271,26 @@ EApp.getInitialProps = async appContext => {
 
   return { ...appProps, ...pageProps, ...exts };
 };
+
+// App.getInitialProps = async ({ Component, AppTree, ctx }: AppContext) => {
+//   let pageProps = {}
+
+//   if (Component.getInitialProps) {
+//     pageProps = await Component.getInitialProps(ctx)
+//   }
+
+//   let html: string
+//   const toRender = <AppTree pageProps={pageProps} another="prop" />
+
+//   if (typeof window !== 'undefined') {
+//     const el = document.createElement('div')
+//     document.querySelector('body')?.appendChild(el)
+//     render(toRender, el)
+//     html = el.innerHTML
+//     el.remove()
+//   } else {
+//     html = renderToString(toRender)
+//   }
+
+//   return { pageProps, html }
+// }

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import toOpenApi from "json-schema-to-openapi-schema";
+import toOpenApi from "@openapi-contrib/json-schema-to-openapi-schema";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {

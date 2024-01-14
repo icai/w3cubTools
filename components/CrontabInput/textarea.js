@@ -1,5 +1,5 @@
 var it = {},
-  ds = __CLIENT__ && document.selection;
+  ds = typeof window !== "undefined" && document.selection;
 it.selectionStart = function(oElement) {
   if (!ds) {
     return oElement.selectionStart;

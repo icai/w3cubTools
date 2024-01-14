@@ -1,17 +1,17 @@
 import React, {
   useState,
   useCallback,
-  useEffect,
-  useLayoutEffect
+  useEffect
 } from "react";
 import { Pane } from "evergreen-ui";
 import WriteCharactorSearch from "@components/WriteCharactor/WriteCharactorSearch";
 import chinese from "@constants/chinese.json";
 import { converttoNoTone } from "@utils/utils";
 import VoiceComponent from "@components/icons/VoiceComponent";
+import { BezierCurves } from "@/components/DrawCls/BezierCurves";
 let time = 0;
-let reqFrame;
-let paths = [];
+let reqFrame = 0;
+let strokes = [] as any;
 const BOARD_CELL_SIZE = 298;
 const BOARD_SIZE = 3;
 const PADDING = 2;
@@ -21,22 +21,23 @@ const commonWords = `的一是在不了有和人这中大为上个国我以要�
 export default function WriteChinese() {
   const [char, setChar] = useState("");
   const [pinyin, setPinyin] = useState("");
-  const onSearch = slug => {
+  const onSearch = (slug: string) => {
     if (char && slug == char) {
       location.reload();
     }
     cancelAnimationFrame(reqFrame);
-    paths = [];
+    strokes = [];
 
     if (slug) {
-      slug = slug.slice(0, 1);
-      if (chinese[slug]) {
-        paths = JSON.parse(JSON.stringify(chinese[slug]));
+      slug = slug.slice(0, 1) as string;
+      let charactor = chinese[slug] as Array<any>;
+      if (charactor) {
+        strokes = JSON.parse(JSON.stringify(charactor));
         location.hash = "#/" + slug;
         setChar(slug);
       }
     } else {
-      paths = [];
+      strokes = [];
       if (window.history.pushState) {
         window.history.pushState("", "/", window.location.pathname);
       } else {
@@ -60,15 +61,17 @@ export default function WriteChinese() {
     }
   };
   const draw = startTime => {
-    if (!__CLIENT__) {
+    // only browser
+    if (typeof window === "undefined") {
       return;
     }
+
     var canvas = document.getElementById("canvas") as HTMLCanvasElement;
-    var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineWidth = 4;
     //画田字格
-    var drawBoard = function() {
+    var drawBoard = function () {
       ctx.setLineDash([]);
       ctx.strokeStyle = "red"; // red
       for (var i = 0; i < BOARD_SIZE; i++) {
@@ -103,7 +106,7 @@ export default function WriteChinese() {
       ctx.closePath();
     };
     drawBoard();
-    const drawWord = thepaths => {
+    const drawWord = (thepaths: any) => {
       if (startTime !== time) {
         return;
       }
@@ -114,37 +117,14 @@ export default function WriteChinese() {
         return;
       }
       // calculate incremental points along the path
-      var points = calcWaypoints(vertices);
-      // extend the line from start to finish with animation
-      // calc waypoints traveling along vertices
-      function calcWaypoints(vertices) {
-        var waypoints = [];
-        var fps = 50;
-        var len = vertices.length;
-        if (len > 3) {
-          fps = 40;
-        }
-        for (var i = 1; i < len; i++) {
-          var pt0 = vertices[i - 1];
-          var pt1 = vertices[i];
-          var dx = pt1[0] - pt0[0];
-          var dy = pt1[1] - pt0[1];
-          for (var j = 0; j < fps; j++) {
-            var x = pt0[0] + (dx * j) / fps;
-            var y = pt0[1] + (dy * j) / fps;
-            waypoints.push({
-              x: x,
-              y: y
-            });
-          }
-        }
-        return waypoints;
-      }
+      var points = vertices;
+
+      
       var t = 1;
       function animate() {
         if (startTime !== time) {
           cancelAnimationFrame(reqFrame);
-          return;
+          return
         }
         ctx.lineCap = "round";
         ctx.lineWidth = 15;
@@ -153,7 +133,6 @@ export default function WriteChinese() {
         ctx.moveTo(points[t - 1].x, points[t - 1].y);
         ctx.lineTo(points[t].x, points[t].y);
         ctx.stroke();
-
         if (t < points.length - 1) {
           reqFrame = requestAnimationFrame(animate);
         } else {
@@ -163,10 +142,18 @@ export default function WriteChinese() {
       }
       animate();
     };
-    if (char && paths && paths.length) {
-      drawWord(paths);
+    const smoothValue = 0.6;
+    const numSteps = 50;
+    const resultStrokes = [];
+    if (char && strokes && strokes.length) {
+      for (const stroke of strokes) {
+        const controlPoints = stroke.map((point: any[]) => ({ x: point[0], y: point[1] }));
+        const smoothedPoints = BezierCurves.getPolyline(controlPoints, smoothValue, numSteps, false, true);
+        resultStrokes.push(smoothedPoints);
     }
-  };
+      drawWord(resultStrokes);
+    }
+  }
   let audioRef = React.createRef() as any;
   useEffect(() => {
     time = new Date().getTime();
@@ -180,7 +167,7 @@ export default function WriteChinese() {
       let t = `https://raw.githubusercontent.com/icai/tts-chinese/master/dist/${tone}.mp3`;
       var n = audioRef;
       n.setAttribute("datasrc", t);
-    } catch (e) {}
+    } catch (e) { }
   }, [char]);
 
   useEffect(() => {

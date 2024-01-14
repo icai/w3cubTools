@@ -9,7 +9,7 @@ import Grid from "./grid";
 import { Tile } from "./tile";
 
 let storageManager;
-if (__CLIENT__) {
+if (typeof window !== "undefined") {
   storageManager = new StorageManager();
 }
 
@@ -28,7 +28,7 @@ export default class Container extends Component<any, any> {
     this.keepPlayingfn = this.keepPlayingfn.bind(this);
   }
   componentWillMount() {
-    __CLIENT__ && this.setup();
+    typeof window !== "undefined" && this.setup();
   }
   componentDidMount() {
     this.inputManager = new KeyboardInputManager();
@@ -40,7 +40,7 @@ export default class Container extends Component<any, any> {
   render() {
     return (
       <div className="g-container">
-        {__CLIENT__ && (
+        {typeof window !== "undefined" && (
           <>
             <Heading score={this.state.score} best={this.state.best} />
             <AboveGame />

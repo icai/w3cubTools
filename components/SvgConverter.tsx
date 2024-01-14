@@ -4,7 +4,7 @@ import { EditorPanelProps } from "@components/EditorPanel";
 import Form from "@components/Form";
 import ConversionPanel, { Transformer } from "@components/ConversionPanel";
 import { Alert, Badge, Heading, Pane } from "evergreen-ui";
-import svgToDataUrl from "svg-to-dataurl";
+import svgToDataUrl from "@utils/svgToDataUrl";
 
 interface SvgConverterProps {
   name: string;
@@ -91,7 +91,7 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
                 bottom={10}
                 right={10}
                 color="green"
-                isSolid
+                border="1px solid #fff"
               >
                 Original
               </Badge>
@@ -113,7 +113,7 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
                 bottom={10}
                 right={10}
                 color="green"
-                isSolid
+                border="1px solid #fff"
               >
                 Result
               </Badge>

@@ -1,6 +1,6 @@
 import CrontabInput from "@components/CrontabInput";
 import ConversionLayout from "@components/ConversionLayout";
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Pane } from "evergreen-ui";
 import invert from "lodash/invert";
 
@@ -110,7 +110,7 @@ export default function CronGen() {
     );
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let path = location.hash.slice(1);
     if (examples[path]) {
       onChange({ value1: examples[path] });

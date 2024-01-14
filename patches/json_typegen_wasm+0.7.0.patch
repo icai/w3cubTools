@@ -6,7 +6,7 @@ index 8bbefdb..b6167a1 100644
  
  let cachedTextEncoder = new lTextEncoder('utf-8');
  
-+if (IN_BROWSER && !window.TextEncoder) {
++if (typeof window !== "undefined" && !window.TextEncoder) {
 +        const encoding = require("text-encoding-utf-8");
 +        window.TextEncoder = encoding.TextEncoder;
 +        window.TextDecoder = encoding.TextDecoder;
