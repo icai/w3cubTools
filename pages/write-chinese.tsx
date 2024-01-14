@@ -222,7 +222,7 @@ export default function WriteChinese() {
         {commonWords.split("").map(word => {
           return (
             <a
-              href="javascript:;"
+              href="javascript:void(0);"
               className="word"
               key={word}
               onClick={() => {

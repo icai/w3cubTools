@@ -123,8 +123,14 @@ export default function App(props: AppProps) {
         )}
 
         {activeRoute && activeRoute.scripts && (
-          <Scripts scripts={activeRoute.scripts} />
+          <>
+          { activeRoute.scripts[0] && (<script src={activeRoute.scripts[0]} />)}
+          { activeRoute.scripts[1] && (<script src={activeRoute.scripts[1]} />)}
+          { activeRoute.scripts[2] && (<script src={activeRoute.scripts[2]} />)}
+          { activeRoute.scripts[3] && (<script src={activeRoute.scripts[3]} />)}
+          </>
         )}
+        
         <meta name="viewport" content="width=1024" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="author" content="W3cubTools" />
