@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Pane, Dialog } from "evergreen-ui";
-import Scripts from "@components/Scripts";
 import Script from "next/script";
-import { activeRouteData } from "@utils/routes";
-import { useRouter } from "next/router";
 
 class MyUploadAdapter {
   loader: any;
