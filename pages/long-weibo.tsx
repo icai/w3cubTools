@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Pane, Dialog } from "evergreen-ui";
+import Scripts from "@components/Scripts";
+import Script from "next/script";
+import { activeRouteData } from "@utils/routes";
+import { useRouter } from "next/router";
 
 class MyUploadAdapter {
   loader: any;
@@ -21,7 +25,7 @@ function MyCustomUploadAdapterPlugin(editor) {
 
 function toDataUrl(url, callback) {
   var xhr = new XMLHttpRequest();
-  xhr.onload = function() {
+  xhr.onload = function () {
     callback(xhr.response);
   };
   xhr.open("GET", url);
@@ -35,8 +39,8 @@ const proxyToDataUrl = (url, callback) => {
 
 const doImages = () => {
   var images = document
-    .querySelector(".ck.ck-content")
-    .getElementsByTagName("img");
+  .querySelector(".ck.ck-content")
+  .getElementsByTagName("img");
   [].slice.call(images).forEach((item, _i) => {
     item.removeAttribute("srcset");
     if (/^(https?\:)?\/\//.test(item.src)) {
@@ -47,7 +51,18 @@ const doImages = () => {
   });
 };
 
+const dataURLtoBlob = (dataurl) => {
+  var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n)
+  while(n--){
+      u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new Blob([u8arr], {type:mime})
+}
+
 export default function LongWeibo() {
+  const editorRef = useRef(null);
+  const domRef = useRef(null);
   const generateImage = () => {
     var images = document
       .querySelector(".ck.ck-content")
@@ -86,27 +101,23 @@ export default function LongWeibo() {
       width: el.scrollWidth,
       height: el.scrollHeight + 100
     }).then(canvas => {
-      el.className = data; //old className - Jquery: $(target).removeClass("html2canvasreset");
+      el.className = data;
+      // canvas to base64 
+      const base64data = canvas.toDataURL("image/png");
+      setPreviewImg(base64data as string);
       setOpen(true);
-      canvas.id = "imgcanvas";
-      let div = document.getElementById("cnavas");
-      if (div) {
-        div.append(canvas);
-      }
     });
   };
   const downloadImage = _event => {
-    let canvas = document.getElementById("imgcanvas") as HTMLCanvasElement;
-    canvas.toBlob(function(blob) {
-      saveAs(blob, "longweibo.png");
-    });
+    // download previewImg 
+    var blob = dataURLtoBlob(previewImg);
+    saveAs(blob, "longweibo.png");
   };
   const [open, setOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
-
-  const editorRef = useRef();
   const [editorLoaded, setEditorLoaded] = useState(false);
+  const [previewImg, setPreviewImg] = useState("");
   // @ts-ignore: Unreachable code error
   const { CKEditor, ClassicEditor } = editorRef.current || {};
 
@@ -119,6 +130,9 @@ export default function LongWeibo() {
     setEditorLoaded(true);
   }, []);
   return (
+    <>
+      <Script src="//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"/>
+      <Script src="//cdn.jsdelivr.net/npm/html2canvas@1.1.4/dist/html2canvas.min.js"/>
     <div className="box" style={{ width: "700px", margin: "auto" }}>
       <h1>长微博生成器</h1>
       <Pane marginBottom={15} display="flex">
@@ -146,7 +160,9 @@ export default function LongWeibo() {
           <Button className="save-btn" onClick={downloadImage}>
             Save as Image
           </Button>
-          <div id="cnavas"></div>
+          <div id="cnavas">
+            <img src={previewImg} alt="" />
+          </div>
         </div>
       </Dialog>
       <div style={{ minHeight: "600px" }}>
@@ -198,7 +214,7 @@ export default function LongWeibo() {
           />
         )}
       </div>
-      <style>{`
+      <style jsx>{`
         .html2canvasreset{
             overflow: visible !important;
             width: auto !important;
@@ -211,5 +227,6 @@ export default function LongWeibo() {
         }
         `}</style>
     </div>
+    </>
   );
 }
