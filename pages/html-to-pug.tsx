@@ -3,13 +3,8 @@ import * as React from "react";
 import { useCallback } from "react";
 import { useSettings } from "@hooks/useSettings";
 import Form, { InputType } from "@components/Form";
-import html2pug from "html2pug";
-let minify = function minify(s) {
-  return s
-    .replace(/\>[\r\n ]+\</g, "><")
-    .replace(/(<.*?>)|\s+/g, (_m, $1) => ($1 ? $1 : " "))
-    .trim();
-};
+import request from "@utils/request";
+
 const formFields = [
   {
     key: "tabs",
@@ -59,10 +54,12 @@ export default function HtmlToPug() {
   }, []);
 
   const transformer = useCallback(
-    async ({ value }) => {
-      return html2pug(value, minify, settings);
-    },
-    [settings, minify]
+    ({ value }) =>
+      request("/api/html-to-pug", {
+        value,
+        settings
+      }),
+    [settings]
   );
 
   return (

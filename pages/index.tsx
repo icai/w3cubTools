@@ -17,6 +17,7 @@ export default function Index() {
                         className="item"
                         href={a.path}
                         key={route.category + a.label}
+                        target={a.target ?? "_self"}
                       >
                         {a.label}
                       </a>

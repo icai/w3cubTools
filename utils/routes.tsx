@@ -59,15 +59,34 @@ export const categorizedRoutes = [
         title: "YouTube Downloader",
         desc: "Online download videos from YouTube for FREE to PC, mobile",
         keywords:
-          "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader"
+          "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader",
+          target: "_blank"
       },
       {
-        label: "Youtube Downloader",
+        label: "Savefrom Downloader",
         path: "https://www.savefrom.net/",
-        title: "YouTube Downloader",
+        title: "Savefrom Downloader",
         desc: "Online download videos from YouTube for FREE to PC, mobile",
         keywords:
-          "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader"
+          "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader",
+          target: "_blank"
+      },{
+        label: "Y2mate Downloader",
+        path: "https://www.y2mate.com/",
+        title: "Y2mate Downloader",
+        desc: "Online download videos from YouTube for FREE to PC, mobile",
+        keywords:
+          "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader",
+          target: "_blank"
+      },
+      {
+        label: "Tiktok Downloader",
+        path: "https://www.dlpanda.com/",
+        title: "Tiktok Downloader",
+        desc: "Online download videos from Douyin for FREE to PC, mobile",
+        keywords:
+          "Douyin downloader, Douyin mp4 downloader, fast Douyin downloader, easy Douyin downloader",
+          target: "_blank"
       }
     ]
   },

@@ -7,6 +7,9 @@ dependencies:
   '@babel/plugin-transform-typescript':
     specifier: ^7.16.1
     version: 7.23.6(@babel/core@7.23.7)
+  '@babel/preset-typescript':
+    specifier: ^7.23.3
+    version: 7.23.3(@babel/core@7.23.7)
   '@babel/runtime':
     specifier: ^7.5.5
     version: 7.23.8
@@ -945,6 +948,20 @@ packages:
       '@babel/helper-create-class-features-plugin': 7.23.7(@babel/core@7.23.7)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-typescript': 7.23.3(@babel/core@7.23.7)
+    dev: false
+
+  /@babel/preset-typescript@7.23.3(@babel/core@7.23.7):
+    resolution: {integrity: sha512-17oIGVlqz6CchO9RFYn5U6ZpWRZIngayYCtrPRSgANSwC2V1Jb+iP74nVxzzXJte8b8BYxrL1yY96xfhTBrNNQ==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.23.7
+      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/helper-validator-option': 7.23.5
+      '@babel/plugin-syntax-jsx': 7.23.3(@babel/core@7.23.7)
+      '@babel/plugin-transform-modules-commonjs': 7.23.3(@babel/core@7.23.7)
+      '@babel/plugin-transform-typescript': 7.23.6(@babel/core@7.23.7)
     dev: false
 
   /@babel/runtime@7.23.8:

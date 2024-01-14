@@ -24,6 +24,7 @@
   "dependencies": {
     "@babel/plugin-transform-flow-strip-types": "^7.16.0",
     "@babel/plugin-transform-typescript": "^7.16.1",
+    "@babel/preset-typescript": "^7.23.3",
     "@babel/runtime": "^7.5.5",
     "@babel/standalone": "^7.14.7",
     "@ckeditor/ckeditor5-build-classic": "^40.2.0",
