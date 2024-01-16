@@ -112,6 +112,7 @@ export default function MathCalc() {
   return (
     <ConversionLayout flexDirection="column" layoutHeight="auto">
       <Pane
+        // @ts-ignore
         css={{
           minHeight: "500px"
         }}

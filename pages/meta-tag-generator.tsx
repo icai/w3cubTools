@@ -373,6 +373,7 @@ export default function MetaTagGenerator() {
       </SideSheet>
       <Pane
         display="block"
+        // @ts-ignore
         css={{
           width: "780px",
           padding: "0px 0px",
