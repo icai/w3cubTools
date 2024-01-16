@@ -1,8 +1,8 @@
 import React, { Fragment, useReducer } from "react";
 import { Pane, Textarea, SideSheet, Button } from "evergreen-ui";
 import Form from "@rjsf/core";
-import validator from '@rjsf/validator-ajv8';
-import { RJSFSchema } from '@rjsf/utils';
+import validator from "@rjsf/validator-ajv8";
+import { RJSFSchema } from "@rjsf/utils";
 import {
   KeyValueComponent,
   ArrayField,

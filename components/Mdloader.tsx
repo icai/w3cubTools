@@ -1,7 +1,6 @@
 import { Pane } from "evergreen-ui";
 import { useRouter } from "next/router";
 
-
 // @ts-ignore
 const files = require.context("@md/", false, /\.md$/);
 const modules = {};

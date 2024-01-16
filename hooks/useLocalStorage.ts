@@ -11,9 +11,10 @@ export function useLocalStorage(key: string, initialValue: object) {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       // Get from local storage by key
-      const item: any = typeof window !== "undefined"
-        ? window.localStorage.getItem(prefix + key) || initialValue
-        : initialValue;
+      const item: any =
+        typeof window !== "undefined"
+          ? window.localStorage.getItem(prefix + key) || initialValue
+          : initialValue;
       // Parse stored json or if none return initialValue
       return JSON.parse(item);
     } catch (error) {

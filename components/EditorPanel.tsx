@@ -4,7 +4,6 @@ import {
   CogIcon,
   FilePicker,
   Heading,
-  HTMLInputEvent,
   IconButton,
   Pane,
   Popover,
@@ -210,9 +209,9 @@ export default function EditorPanel({
                     borderBottomRightRadius={0}
                     borderTopRightRadius={0}
                     placeholder="Enter URL"
-                    onChange={(e: HTMLInputEvent) =>
-                      setFetchingUrl(e.target.value)
-                    }
+                    onChange={(e: {
+                      target: { value: React.SetStateAction<string> };
+                    }) => setFetchingUrl(e.target.value)}
                   />
                   <Button
                     borderLeftWidth={0}
@@ -242,7 +241,6 @@ export default function EditorPanel({
               marginRight={10}
               onClick={() => setValue("")}
             />
-            
           </Tooltip>
         )}
 
@@ -264,9 +262,7 @@ export default function EditorPanel({
           <Button
             appearance="primary"
             marginRight={10}
-            iconBefore={
-              DuplicateIcon
-            }
+            iconBefore={DuplicateIcon}
             onClick={copyValue}
             height={28}
           >

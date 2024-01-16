@@ -27,19 +27,19 @@ export class BezierCurves {
       { x: p1.x, y: p1.y },
       {
         x: xm1 + (xc2 - xm1) * smoothValue + p1.x - xm1,
-        y: ym1 + (yc2 - ym1) * smoothValue + p1.y - ym1,
+        y: ym1 + (yc2 - ym1) * smoothValue + p1.y - ym1
       },
       {
         x: xm2 + (xc2 - xm2) * smoothValue + p2.x - xm2,
-        y: ym2 + (yc2 - ym2) * smoothValue + p2.y - ym2,
+        y: ym2 + (yc2 - ym2) * smoothValue + p2.y - ym2
       },
-      { x: p2.x, y: p2.y },
+      { x: p2.x, y: p2.y }
     ];
 
     return outPoints;
   }
 
-  static curve4(points: any[] | { x: any; y: any; }[], numSteps = 20) {
+  static curve4(points: any[] | { x: any; y: any }[], numSteps = 20) {
     const [p0, p1, p2, p3] = points;
 
     const dx1 = p1.x - p0.x;
@@ -93,7 +93,13 @@ export class BezierCurves {
     return result;
   }
 
-  static getPolyline(list: any[], smoothValue: number, numSteps: number, isLoop: boolean, isOpen: boolean) {
+  static getPolyline(
+    list: any[],
+    smoothValue: number,
+    numSteps: number,
+    isLoop: boolean,
+    isOpen: boolean
+  ) {
     const temp = list.slice();
     // if list only as 2 points, then calcWaypoints
     if (list.length === 2) {
@@ -112,7 +118,10 @@ export class BezierCurves {
     }
     const result = [list[0]]; // first point
     for (let i = 0; i < (!isOpen ? list.length : list.length - 1); i++) {
-      const points = BezierCurves.calculateControlPoint(temp.slice(i, i + 4), smoothValue);
+      const points = BezierCurves.calculateControlPoint(
+        temp.slice(i, i + 4),
+        smoothValue
+      );
       result.push(...BezierCurves.curve4(points, numSteps));
     }
     return result;
@@ -133,7 +142,7 @@ export class BezierCurves {
       var dy = pt1.y - pt0.y;
       var distance = Math.sqrt(dx * dx + dy * dy);
       // 200 pixels per second
-      var segmentFps = Math.ceil(distance / 200 * fps);
+      var segmentFps = Math.ceil((distance / 200) * fps);
       segmentFps = Math.max(segmentFps, 10);
       for (var j = 1; j <= segmentFps; j++) {
         var t = j / segmentFps;

@@ -1,18 +1,20 @@
 import React from "react";
 import Document, { Head, Main, NextScript, Html } from "next/document";
 import { extractStyles } from "evergreen-ui";
-import { StyleRegistry, useStyleRegistry, createStyleRegistry } from 'styled-jsx'
+import {
+  StyleRegistry,
+  useStyleRegistry,
+  createStyleRegistry
+} from "styled-jsx";
 
-const registry = createStyleRegistry()
-
+const registry = createStyleRegistry();
 
 function Styles() {
-  const styles = registry.styles() // access styles
+  const styles = registry.styles(); // access styles
   // const registry = useStyleRegistry()
   // const styles = registry.styles()
-  return <>{styles}</>
+  return <>{styles}</>;
 }
-
 
 interface DocumentProps {
   css: string;
@@ -22,34 +24,21 @@ interface DocumentProps {
 // https://github.com/vercel/next.js/blob/7b73f1137b21c7b1fb1612c3389caaaadd18da65/examples/with-styletron/pages/_document.js#L7
 
 
-// export default function MyDocument() {
-//   return (
-//     <Html lang="en">
-//       <Head />
-//       <body>
-//         <Main />
-//         <NextScript />
-//       </body>
-//     </Html>
-//   )
-// }
-
 
 export default class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(context) {
     const renderPage = () =>
       context.renderPage({
-        enhanceApp: (App) => (props) =>
-          (
-            <StyleRegistry registry={registry}>
-              <App {...props} />
-            </StyleRegistry>
-          ),
+        enhanceApp: App => props => (
+          <StyleRegistry registry={registry}>
+            <App {...props} />
+          </StyleRegistry>
+        )
       });
 
     const initialProps = await Document.getInitialProps({
       ...context,
-      renderPage,
+      renderPage
     });
     const { css, hydrationScript } = extractStyles();
     return { ...initialProps, css, hydrationScript };
@@ -63,7 +52,7 @@ export default class MyDocument extends Document<DocumentProps> {
           <style dangerouslySetInnerHTML={{ __html: css }} />
           <Styles />
         </Head>
-        <body style={{ display: 'block'}}>
+        <body>
           <Main />
           {hydrationScript}
           <NextScript />

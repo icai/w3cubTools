@@ -190,10 +190,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
               top={50}
               right={30}
             >
-              <Spinner
-                color="#0e7ccf"
-                size={32}
-              />
+              <Spinner color="#0e7ccf" size={32} />
             </Pane>
           )}
           <EditorPanel

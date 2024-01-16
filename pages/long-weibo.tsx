@@ -22,7 +22,7 @@ function MyCustomUploadAdapterPlugin(editor) {
 
 function toDataUrl(url, callback) {
   var xhr = new XMLHttpRequest();
-  xhr.onload = function () {
+  xhr.onload = function() {
     callback(xhr.response);
   };
   xhr.open("GET", url);
@@ -36,8 +36,8 @@ const proxyToDataUrl = (url, callback) => {
 
 const doImages = () => {
   var images = document
-  .querySelector(".ck.ck-content")
-  .getElementsByTagName("img");
+    .querySelector(".ck.ck-content")
+    .getElementsByTagName("img");
   [].slice.call(images).forEach((item, _i) => {
     item.removeAttribute("srcset");
     if (/^(https?\:)?\/\//.test(item.src)) {
@@ -48,14 +48,17 @@ const doImages = () => {
   });
 };
 
-const dataURLtoBlob = (dataurl) => {
-  var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n)
-  while(n--){
-      u8arr[n] = bstr.charCodeAt(n)
+const dataURLtoBlob = dataurl => {
+  var arr = dataurl.split(","),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
   }
-  return new Blob([u8arr], {type:mime})
-}
+  return new Blob([u8arr], { type: mime });
+};
 
 export default function LongWeibo() {
   const editorRef = useRef(null);
@@ -99,14 +102,14 @@ export default function LongWeibo() {
       height: el.scrollHeight + 100
     }).then(canvas => {
       el.className = data;
-      // canvas to base64 
+      // canvas to base64
       const base64data = canvas.toDataURL("image/png");
       setPreviewImg(base64data as string);
       setOpen(true);
     });
   };
   const downloadImage = _event => {
-    // download previewImg 
+    // download previewImg
     var blob = dataURLtoBlob(previewImg);
     saveAs(blob, "longweibo.png");
   };
@@ -128,15 +131,13 @@ export default function LongWeibo() {
   }, []);
   return (
     <>
-      <Script src="//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"/>
-      <Script src="//cdn.jsdelivr.net/npm/html2canvas@1.1.4/dist/html2canvas.min.js"/>
-    <div className="box" style={{ width: "700px", margin: "auto" }}>
-      <h1>长微博生成器</h1>
-      <Pane marginBottom={15} display="flex">
-        <Button height={50} isLoading={isLoading} onClick={generateImage}>
-          Generate Image
-        </Button>
-        {/* <Pane display="flex" marginLeft={20} >
+      <div className="box" style={{ width: "700px", margin: "auto" }}>
+        <h1>长微博生成器</h1>
+        <Pane marginBottom={15} display="flex">
+          <Button height={50} isLoading={isLoading} onClick={generateImage}>
+            Generate Image
+          </Button>
+          {/* <Pane display="flex" marginLeft={20} >
                    <span style={{lineHeight: '40px', marginRight: '10px'}}>Remove watermark</span>
                    <Switch
                     height={40}
@@ -144,86 +145,86 @@ export default function LongWeibo() {
                     onChange={e => setChecked(e.target.checked)}
                     />
                 </Pane> */}
-      </Pane>
-      <Dialog
-        isShown={open}
-        width={"max-content"}
-        topOffset="30px"
-        title="Image results"
-        onCloseComplete={() => setOpen(false)}
-        hasFooter={false}
-      >
-        <div>
-          <Button className="save-btn" onClick={downloadImage}>
-            Save as Image
-          </Button>
-          <div id="cnavas">
-            <img src={previewImg} alt="" />
+        </Pane>
+        <Dialog
+          isShown={open}
+          width={"max-content"}
+          topOffset="30px"
+          title="Image results"
+          onCloseComplete={() => setOpen(false)}
+          hasFooter={false}
+        >
+          <div>
+            <Button className="save-btn" onClick={downloadImage}>
+              Save as Image
+            </Button>
+            <div id="cnavas">
+              <img src={previewImg} alt="" />
+            </div>
           </div>
-        </div>
-      </Dialog>
-      <div style={{ minHeight: "600px" }}>
-        {editorLoaded && (
-          <CKEditor
-            editor={ClassicEditor}
-            id="editor_box"
-            data="<div id='capture'>Welcome to Long Weibo Generator!</div>"
-            config={{
-              toolbar: [
-                "heading",
-                "|",
-                "bold",
-                "italic",
-                "link",
-                "bulletedList",
-                "numberedList",
-                "imageUpload",
-                "blockQuote",
-                "insertTable",
-                "undo",
-                "redo"
-              ], // "mediaEmbed",
-              extraPlugins: [MyCustomUploadAdapterPlugin],
-              config: {
-                ui: {
-                  width: "500px",
-                  height: "300px"
+        </Dialog>
+        <div style={{ minHeight: "600px" }}>
+          {editorLoaded && (
+            <CKEditor
+              editor={ClassicEditor}
+              id="editor_box"
+              data="<div id='capture'>Welcome to Long Weibo Generator!</div>"
+              config={{
+                toolbar: [
+                  "heading",
+                  "|",
+                  "bold",
+                  "italic",
+                  "link",
+                  "bulletedList",
+                  "numberedList",
+                  "imageUpload",
+                  "blockQuote",
+                  "insertTable",
+                  "undo",
+                  "redo"
+                ], // "mediaEmbed",
+                extraPlugins: [MyCustomUploadAdapterPlugin],
+                config: {
+                  ui: {
+                    width: "500px",
+                    height: "300px"
+                  }
                 }
-              }
-            }}
-            onInit={editor => {
-              // You can store the "editor" and use when it is needed.
-              console.log("Editor is ready to use!", editor);
-            }}
-            onChange={(event, editor) => {
-              const data = editor.getData();
-              setTimeout(() => {
-                doImages();
-              }, 300);
-              console.log({ event, editor, data });
-            }}
-            onBlur={editor => {
-              console.log("Blur.", editor);
-            }}
-            onFocus={editor => {
-              console.log("Focus.", editor);
-            }}
-          />
-        )}
-      </div>
-      <style jsx>{`
-        .html2canvasreset{
+              }}
+              onInit={editor => {
+                // You can store the "editor" and use when it is needed.
+                console.log("Editor is ready to use!", editor);
+              }}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                setTimeout(() => {
+                  doImages();
+                }, 300);
+                console.log({ event, editor, data });
+              }}
+              onBlur={editor => {
+                console.log("Blur.", editor);
+              }}
+              onFocus={editor => {
+                console.log("Focus.", editor);
+              }}
+            />
+          )}
+        </div>
+        <style jsx>{`
+          .html2canvasreset {
             overflow: visible !important;
             width: auto !important;
             height: auto !important;
             max-height: auto !important;
-            border: 1px solid transparent!important;
-        }
-        .ck-editor__main > .ck-editor__editable {
+            border: 1px solid transparent !important;
+          }
+          .ck-editor__main > .ck-editor__editable {
             min-height: 500px;
-        }
+          }
         `}</style>
-    </div>
+      </div>
     </>
   );
 }

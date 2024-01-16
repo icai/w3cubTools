@@ -15,8 +15,8 @@ import Navigator from "@components/Navigator";
 import NProgress from "nprogress";
 import NextApp, { AppProps, AppContext } from "next/app";
 import Router, { useRouter } from "next/router";
-import { render } from 'react-dom'
-import { renderToString } from 'react-dom/server'
+import { render } from "react-dom";
+import { renderToString } from "react-dom/server";
 import Head from "next/head";
 import {
   activeRouteData,
@@ -39,7 +39,6 @@ if (typeof window !== "undefined" && !process.env.dev) {
     debug: process.env.dev
   });
 }
-
 
 const logo = (
   <svg
@@ -124,13 +123,13 @@ export default function App(props: AppProps) {
 
         {activeRoute && activeRoute.scripts && (
           <>
-          { activeRoute.scripts[0] && (<script src={activeRoute.scripts[0]} />)}
-          { activeRoute.scripts[1] && (<script src={activeRoute.scripts[1]} />)}
-          { activeRoute.scripts[2] && (<script src={activeRoute.scripts[2]} />)}
-          { activeRoute.scripts[3] && (<script src={activeRoute.scripts[3]} />)}
+            {activeRoute.scripts[0] && <script src={activeRoute.scripts[0]} />}
+            {activeRoute.scripts[1] && <script src={activeRoute.scripts[1]} />}
+            {activeRoute.scripts[2] && <script src={activeRoute.scripts[2]} />}
+            {activeRoute.scripts[3] && <script src={activeRoute.scripts[3]} />}
           </>
         )}
-        
+
         <meta name="viewport" content="width=1024" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="author" content="W3cubTools" />

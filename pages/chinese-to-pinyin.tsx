@@ -3,11 +3,7 @@
 import ConversionLayout from "@components/ConversionLayout";
 import { Button } from "evergreen-ui";
 import { converttoNoTone } from "@utils/utils";
-import React, {
-  useState,
-  useCallback,
-  useEffect
-} from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import VoiceComponent from "@components/icons/VoiceComponent";
 
 export default function ChineseToPinyin() {

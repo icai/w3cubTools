@@ -60,7 +60,7 @@ export const categorizedRoutes = [
         desc: "Online download videos from YouTube for FREE to PC, mobile",
         keywords:
           "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader",
-          target: "_blank"
+        target: "_blank"
       },
       {
         label: "Savefrom Downloader",
@@ -69,15 +69,16 @@ export const categorizedRoutes = [
         desc: "Online download videos from YouTube for FREE to PC, mobile",
         keywords:
           "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader",
-          target: "_blank"
-      },{
+        target: "_blank"
+      },
+      {
         label: "Y2mate Downloader",
         path: "https://www.y2mate.com/",
         title: "Y2mate Downloader",
         desc: "Online download videos from YouTube for FREE to PC, mobile",
         keywords:
           "youTube downloader, youtube mp4 downloader, fast youtube downloader, easy youtube downloader",
-          target: "_blank"
+        target: "_blank"
       },
       {
         label: "Tiktok Downloader",
@@ -86,7 +87,7 @@ export const categorizedRoutes = [
         desc: "Online download videos from Douyin for FREE to PC, mobile",
         keywords:
           "Douyin downloader, Douyin mp4 downloader, fast Douyin downloader, easy Douyin downloader",
-          target: "_blank"
+        target: "_blank"
       }
     ]
   },

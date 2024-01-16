@@ -5,7 +5,7 @@ import { SearchInput, Pane, toaster } from "evergreen-ui";
 import { useState, useEffect } from "react";
 import { createFuzzyList } from "@utils/fuzzyScore";
 import copy from "@utils/copy";
-let lists = createFuzzyList(mimes)
+let lists = createFuzzyList(mimes);
 export default function MimeList() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState(lists);

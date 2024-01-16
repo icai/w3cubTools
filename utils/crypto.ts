@@ -916,7 +916,7 @@ const D3 = {
     }
     var i,
       r = "",
-      t = typeof x as (typeof x | "array"),
+      t = typeof x as typeof x | "array",
       tab = "";
 
     if (x === null) {

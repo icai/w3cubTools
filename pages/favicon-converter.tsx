@@ -1,9 +1,5 @@
 import ConversionLayout from "@components/ConversionLayout";
-import React, {
-  useEffect,
-  useState,
-  useCallback
-} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Button, Pane, toaster } from "evergreen-ui";
 import JSZip from "jszip";
 import { useDropzone } from "react-dropzone";
@@ -182,9 +178,7 @@ export default function ZipOnline() {
       <Pane className="ibox-section">
         <h2>Converter</h2>
         <section className="dragcontainer">
-          <div
-            {...getRootProps({ className: "dropzone" })}
-          >
+          <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
             <p>Drag n drop your file here or click here to upload.</p>
           </div>

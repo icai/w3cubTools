@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect
-} from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Pane } from "evergreen-ui";
 import WriteCharactorSearch from "@components/WriteCharactor/WriteCharactorSearch";
 import chinese from "@constants/chinese.json";
@@ -71,7 +67,7 @@ export default function WriteChinese() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineWidth = 4;
     //画田字格
-    var drawBoard = function () {
+    var drawBoard = function() {
       ctx.setLineDash([]);
       ctx.strokeStyle = "red"; // red
       for (var i = 0; i < BOARD_SIZE; i++) {
@@ -119,12 +115,11 @@ export default function WriteChinese() {
       // calculate incremental points along the path
       var points = vertices;
 
-      
       var t = 1;
       function animate() {
         if (startTime !== time) {
           cancelAnimationFrame(reqFrame);
-          return
+          return;
         }
         ctx.lineCap = "round";
         ctx.lineWidth = 15;
@@ -147,13 +142,22 @@ export default function WriteChinese() {
     const resultStrokes = [];
     if (char && strokes && strokes.length) {
       for (const stroke of strokes) {
-        const controlPoints = stroke.map((point: any[]) => ({ x: point[0], y: point[1] }));
-        const smoothedPoints = BezierCurves.getPolyline(controlPoints, smoothValue, numSteps, false, true);
+        const controlPoints = stroke.map((point: any[]) => ({
+          x: point[0],
+          y: point[1]
+        }));
+        const smoothedPoints = BezierCurves.getPolyline(
+          controlPoints,
+          smoothValue,
+          numSteps,
+          false,
+          true
+        );
         resultStrokes.push(smoothedPoints);
-    }
+      }
       drawWord(resultStrokes);
     }
-  }
+  };
   let audioRef = React.createRef() as any;
   useEffect(() => {
     time = new Date().getTime();
@@ -167,7 +171,7 @@ export default function WriteChinese() {
       let t = `https://raw.githubusercontent.com/icai/tts-chinese/master/dist/${tone}.mp3`;
       var n = audioRef;
       n.setAttribute("datasrc", t);
-    } catch (e) { }
+    } catch (e) {}
   }, [char]);
 
   useEffect(() => {
