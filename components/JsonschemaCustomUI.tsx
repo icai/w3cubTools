@@ -154,8 +154,7 @@ export function TagInputField(props) {
     <TagInput
       width={"100%"}
       values={values}
-      required={props.required}
-      inputProps={{ placeholder: props.placeholder }}
+      inputProps={{ placeholder: props.placeholder, required: props.required }}
       height={props.options && props.options.height}
       onChange={(values: any) => {
         console.log(values);
