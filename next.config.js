@@ -33,6 +33,12 @@ const config = {
       ...customConfig.resolve
     };
 
+    // experiments.asyncWebAssembly: true
+    config.experiments = {
+      ...config.experiments,
+      asyncWebAssembly: true
+    };
+
     const { isServer } = options;
     const assetPrefix = "";
     const enableSvg = true;
@@ -58,6 +64,16 @@ const config = {
         }
       ]
     });
+
+    // config.module.rules.push({
+    //   test: /\.wasm$/,
+    //   use: [
+    //     {
+    //       loader: 'file-loader',
+    //     },
+    //   ],
+    // })
+
     const defaultLoaders = options.defaultLoaders;
 
     // config.module.rules.push({

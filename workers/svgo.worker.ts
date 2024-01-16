@@ -17,12 +17,12 @@ _self.onmessage = ({ data: { id, payload } }: { data: Data }) => {
 
   const plugins = Object.keys(payload.settings).filter(
     key => payload.settings[key]
-  );
+  ) as any[];
 
   try {
     const result = optimize(payload.value, {
-      plugins
-    })
+      plugins: plugins
+    });
     _self.postMessage({
       id,
       payload: result.data

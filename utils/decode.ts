@@ -1,5 +1,3 @@
-import { func } from "prop-types";
-
 const decodeUnicode = function(str) {
   str = str.replace(/\\u/gi, "%u");
   return unescape(str);
