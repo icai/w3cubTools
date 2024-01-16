@@ -118,7 +118,9 @@ export class BezierCurves {
     }
     const result = [list[0]]; // first point
     for (let i = 0; i < (!isOpen ? list.length : list.length - 1); i++) {
+
       const points = BezierCurves.calculateControlPoint(
+        // @ts-ignore
         temp.slice(i, i + 4),
         smoothValue
       );
