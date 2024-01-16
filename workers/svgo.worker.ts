@@ -1,4 +1,4 @@
-import SVGO from "svgo";
+import { optimize } from "svgo";
 
 const _self: any = self;
 
@@ -20,17 +20,12 @@ _self.onmessage = ({ data: { id, payload } }: { data: Data }) => {
   );
 
   try {
-    const svgo = new SVGO({
-      full: true,
-      // @ts-ignore
+    const result = optimize(payload.value, {
       plugins
-    });
-
-    svgo.optimize(payload.value).then(result => {
-      _self.postMessage({
-        id,
-        payload: result.data
-      });
+    })
+    _self.postMessage({
+      id,
+      payload: result.data
     });
   } catch (e) {
     if (process.env.dev) {
