@@ -835,6 +835,7 @@ export interface Route {
   label: string;
   desc: string;
   beta?: boolean;
+  target?: string;
 }
 
 export const routes = flatten(
@@ -878,6 +879,7 @@ export function activeRouteData(
   title?: string;
   keywords?: string;
   links?: string[];
+  target?: string;
 } {
   return find(routes, o => o.path === pathname);
 }
