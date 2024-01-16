@@ -1,9 +1,10 @@
 {
   "name": "transform",
   "version": "2.0.2",
-  "repository": "https://github.com/ritz078/transform",
-  "author": "ritz078 <rkritesh078@gmail.com>",
+  "repository": "https://github.com/icai/transform",
+  "author": "ritz078 <rkritesh078@gmail.com>, icai <gidcai@gmail.com>",
   "license": "MIT",
+  "packageManager": "pnpm@8.3.1",
   "scripts": {
     "dev:inspect": "NODE_OPTIONS=\"--inspect\" next dev",
     "dev": "next dev",
@@ -15,7 +16,7 @@
     "sitemap": "node scripts/sitemap.js",
     "now-build": "next build",
     "postinstall": "patch-package",
-    "ainstall": "npm install --registry=https://registry.npmmirror.com",
+    "ainstall": "pnpm install --registry=https://registry.npmmirror.com",
     "build:analyze": "ANALYZE=true yarn build"
   },
   "engines": {
