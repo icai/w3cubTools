@@ -1,5 +1,5 @@
 import ConversionLayout from "@components/ConversionLayout";
-import { Pane, Button, IconButton } from "evergreen-ui";
+import { Pane, Button, IconButton, RefreshIcon } from "evergreen-ui";
 import { useEffect } from "react";
 import {
   LINE_COLOR,
@@ -332,7 +332,7 @@ export default function Gomoku() {
           <IconButton
             marginBottom={16}
             height={40}
-            icon="refresh"
+            icon={RefreshIcon}
             onClick={() => {
               location.reload();
             }}
