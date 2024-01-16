@@ -105,7 +105,7 @@ export default class CurlBuilder extends Component<any, any> {
       ...schema
     };
   }
-  getResult = ({ formData }) => {
+  getResult = ({ formData } : any) => {
     const {
       headers,
       verbose,
