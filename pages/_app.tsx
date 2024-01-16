@@ -85,8 +85,7 @@ export default function App(props: AppProps) {
   }, []);
   const activeRoute = activeRouteData(router.pathname);
   const title =
-    ((activeRoute && (activeRoute.title || activeRoute.searchTerm)) ||
-      props.title) + " - W3cubTools";
+    ((activeRoute && (activeRoute.title || activeRoute.searchTerm))) + " - W3cubTools";
   const description = activeRoute && activeRoute.desc;
   const keywords = activeRoute && activeRoute?.keywords;
   return (
