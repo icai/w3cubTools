@@ -53,7 +53,7 @@ export class Wrapper {
     this.worker.onmessage = handleMsg;
   }
 
-  send(str: string): Promise<any> {
+  send(str: string | object): Promise<any> {
     return sendMsg(str, this.worker);
   }
 }
