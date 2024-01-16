@@ -174,7 +174,7 @@ export default function MetaTagGenerator() {
     }
     return result;
   };
-  const getResult = ({ formData }) => {
+  const getResult = ({ formData }: any) => {
     const result = `
     <meta charset="utf-8" />
     <title>${formData.title}</title>
