@@ -256,12 +256,13 @@ export default function CssToTailwind3({ defaultSettings }) {
 }
 
 export async function getStaticProps() {
-  const rawTailwindConfig = await fs.readFile(
-    path.resolve(
-      "./node_modules/css-to-tailwindcss/node_modules/tailwindcss/stubs/simpleConfig.stub.js"
-    ),
-    "utf-8"
-  );
+  const rawTailwindConfig = `module.exports = {
+    content: [],
+    theme: {
+      extend: {},
+    },
+    plugins: [],
+  }`;
 
   return {
     props: {
