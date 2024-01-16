@@ -67,6 +67,7 @@
     "babel-plugin-object-styles-to-template": "^0.2.2",
     "babel-standalone": "^6.26.0",
     "clipboard-copy": "^4.0.1",
+    "classnames": "^2.5.1",
     "cron-converter": "^0.0.12",
     "cronstrue": "^1.81.0",
     "css-to-tailwindcss": "^1.0.4",
