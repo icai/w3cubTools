@@ -8,6 +8,7 @@ class KeyboardInputManager {
   [x: string]: {};
   constructor() {
     this.events = {};
+    // @ts-ignore
     if (window.navigator.msPointerEnabled) {
       //Internet Explorer 10 style
       this.eventTouchstart = "MSPointerDown";
@@ -83,13 +84,14 @@ class KeyboardInputManager {
     var gameContainer = document.getElementsByClassName("game-container")[0];
 
     gameContainer.addEventListener(this.eventTouchstart, function(event: any) {
-      if (
-        (!window.navigator.msPointerEnabled && event.touches.length > 1) ||
+      // @ts-ignore
+      if ((!window.navigator.msPointerEnabled && event.touches.length > 1) ||
         event.targetTouches.length > 1
       ) {
         return; // Ignore if touching with more than 1 finger
       }
 
+      // @ts-ignore
       if (window.navigator.msPointerEnabled) {
         touchStartClientX = event.pageX;
         touchStartClientY = event.pageY;
@@ -108,14 +110,16 @@ class KeyboardInputManager {
     });
 
     gameContainer.addEventListener(this.eventTouchend, function(event: any) {
-      if (
-        (!window.navigator.msPointerEnabled && event.touches.length > 0) ||
+      // @ts-ignore
+      if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||
         event.targetTouches.length > 0
       ) {
         return; // Ignore if still touching with one or more fingers
       }
 
       var touchEndClientX, touchEndClientY;
+
+      // @ts-ignore
 
       if (window.navigator.msPointerEnabled) {
         touchEndClientX = event.pageX;
