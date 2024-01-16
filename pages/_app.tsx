@@ -11,7 +11,6 @@ import "@components/g2048/index.scss";
 import React, { useEffect, Fragment, createContext } from "react";
 import { Button, IconButton, Pane, Tooltip } from "evergreen-ui";
 import Navigator from "@components/Navigator";
-
 import NProgress from "nprogress";
 import NextApp, { AppProps, AppContext } from "next/app";
 import Router, { useRouter } from "next/router";
@@ -89,7 +88,7 @@ export default function App(props: AppProps) {
     ((activeRoute && (activeRoute.title || activeRoute.searchTerm)) ||
       props.title) + " - W3cubTools";
   const description = activeRoute && activeRoute.desc;
-  const keywords = activeRoute && activeRoute.keywords;
+  const keywords = activeRoute && activeRoute?.keywords;
   return (
     <>
       <Head>

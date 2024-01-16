@@ -874,6 +874,10 @@ export function activeRouteData(
   desc: string;
   packageUrl?: string;
   packageName?: string;
+  scripts?: string[];
+  title?: string;
+  keywords?: string;
+  links?: string[];
 } {
   return find(routes, o => o.path === pathname);
 }
