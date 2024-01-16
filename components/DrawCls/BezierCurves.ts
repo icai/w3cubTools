@@ -1,6 +1,6 @@
 // Bezier Curves through N points
 export class BezierCurves {
-  static calculateControlPoint(points: [any, any, any, any], smoothValue: number) {
+  static calculateControlPoint(points: any[], smoothValue: number) {
     const [p0, p1, p2, p3] = points;
 
     const xc1 = (p0.x + p1.x) / 2.0;
@@ -39,7 +39,7 @@ export class BezierCurves {
     return outPoints;
   }
 
-  static curve4(points: [any, any, any, any] | { x: any; y: any; }[], numSteps = 20) {
+  static curve4(points: any[] | { x: any; y: any; }[], numSteps = 20) {
     const [p0, p1, p2, p3] = points;
 
     const dx1 = p1.x - p0.x;
@@ -113,7 +113,6 @@ export class BezierCurves {
     const result = [list[0]]; // first point
     for (let i = 0; i < (!isOpen ? list.length : list.length - 1); i++) {
       const points = BezierCurves.calculateControlPoint(temp.slice(i, i + 4), smoothValue);
-
       result.push(...BezierCurves.curve4(points, numSteps));
     }
     return result;
