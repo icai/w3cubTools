@@ -153,11 +153,9 @@ export default class CurlBuilder extends Component<any, any> {
       <Fragment>
         <Pane
           display="block"
-          css={{
-            width: "780px",
-            padding: "0px 50px",
-            margin: "auto"
-          }}
+          width="780px"
+          padding="0px 50px"
+          margin="auto"
         >
           <h1>Online curl command line builder</h1>
           <Form
