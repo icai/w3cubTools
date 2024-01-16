@@ -58,6 +58,7 @@ export default function Navigator() {
                               ? "3px solid #009688"
                               : "3px solid transparent"
                           }
+                          // @ts-ignore
                           css={{
                             "&:hover": {
                               backgroundColor: "#f5f5f5"
