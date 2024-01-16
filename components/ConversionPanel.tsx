@@ -152,7 +152,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
             onChange={setValue}
             hasLoad
             defaultValue={value}
-            id={1}
+            id={'1'}
             hasCopy={false}
             title={editorTitle}
             settingElement={editorSettingsElement}
@@ -166,7 +166,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
                 title={splitTitle}
                 defaultValue={splitValue}
                 language={getEditorLanguage(splitLanguage)}
-                id={2}
+                id={'2'}
                 hasCopy={false}
                 onChange={setSplitValue}
                 hasLoad
@@ -197,7 +197,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
             title={resultTitle}
             defaultValue={result}
             language={getEditorLanguage(resultLanguage)}
-            id={3}
+            id={'3'}
             editable={false}
             hasPrettier={false}
             settingElement={resultSettingsElement}
