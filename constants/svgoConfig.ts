@@ -19,7 +19,7 @@ export interface Settings {
   removeNonInheritableGroupAttrs: boolean;
   removeUselessStrokeAndFill: boolean;
   removeUnusedNS: boolean;
-  cleanupIDs: boolean;
+  cleanupIds: boolean;
   cleanupNumericValues: boolean;
   moveElemsAttrsToGroup: boolean;
   moveGroupAttrsToElems: boolean;
@@ -65,7 +65,7 @@ export const defaultSettings = {
   removeNonInheritableGroupAttrs: true,
   removeUselessStrokeAndFill: true,
   removeUnusedNS: true,
-  cleanupIDs: true,
+  cleanupIds: true,
   cleanupNumericValues: false,
   moveElemsAttrsToGroup: true,
   moveGroupAttrsToElems: true,
