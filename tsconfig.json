@@ -55,7 +55,13 @@
       "@assets/*": [
         "./assets/*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "typeRoots": [
     "./node_modules/@types",
