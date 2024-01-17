@@ -40,7 +40,7 @@ const ConversionPanel: React.FunctionComponent<ConversionLayoutProps> = function
   resultRender,
   flexDirection = "row",
   layoutHeight = "500px",
-  defaultValue,
+  defaultValue = '',
   children
 }) {
   const [value, setValue] = useState(defaultValue);
@@ -119,7 +119,7 @@ const ConversionPanel: React.FunctionComponent<ConversionLayoutProps> = function
               />
             </Pane>
             <Pane {...controlProps}>
-              {transformer({
+              {transformer && transformer({
                 value,
                 result,
                 setValue,
