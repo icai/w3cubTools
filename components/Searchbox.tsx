@@ -23,7 +23,6 @@ const SearchBox: React.FunctionComponent<{}> = () => {
             width="100%"
             marginBottom={10}
             placeholder="Search"
-            value={inputValue}
             ref={getRef}
             {...getInputProps()}
           />

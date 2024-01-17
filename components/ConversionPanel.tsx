@@ -9,10 +9,10 @@ import PrettierWorker from "@workers/prettier.worker";
 import { getWorker } from "@utils/workerWrapper";
 import Mdloader from "@components/Mdloader";
 
-let prettierWorker;
+let prettierWorker: any; // Add type declaration for prettierWorker
 
 function getEditorLanguage(lang: Language) {
-  const mapping = {
+  const mapping: Record<string, string> = {
     flow: "typescript"
   };
 
@@ -44,7 +44,7 @@ export interface ConversionPanelProps {
   layoutHeight?: string;
 }
 
-const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function({
+const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function ({
   splitEditorProps,
   editorProps,
   resultEditorProps,
@@ -64,7 +64,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
 }) {
   const [value, setValue] = useData(editorDefaultValue || editorLanguage);
   const [splitValue, setSplitValue] = useData(
-    splitEditorDefaultValue || splitLanguage
+    splitEditorDefaultValue || splitLanguage || ''
   );
   const [result, setResult] = useState("");
   const [message, setMessage] = useState("");
@@ -73,7 +73,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
   const router = useRouter();
   const route = activeRouteData(router.pathname);
 
-  let packageDetails;
+  let packageDetails: { name: string; url: string } | undefined;
 
   if (route) {
     const { packageUrl, packageName } = route;
@@ -81,9 +81,9 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
     packageDetails =
       packageName && packageUrl
         ? {
-            name: packageName,
-            url: packageUrl
-          }
+          name: packageName,
+          url: packageUrl
+        }
         : undefined;
   }
 
@@ -165,7 +165,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
               <EditorPanel
                 title={splitTitle}
                 defaultValue={splitValue}
-                language={getEditorLanguage(splitLanguage)}
+                language={getEditorLanguage(splitLanguage || '')}
                 id={'2'}
                 hasCopy={false}
                 onChange={setSplitValue}

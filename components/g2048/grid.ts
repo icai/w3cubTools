@@ -7,10 +7,10 @@ export default function Grid(size, previousState?) {
 
 // Build a grid of the specified size
 Grid.prototype.empty = function() {
-  var cells = [];
+  var cells = [] as any[];
 
   for (var x = 0; x < this.size; x++) {
-    var row = (cells[x] = []);
+    var row = (cells[x] = []) as any[];
 
     for (var y = 0; y < this.size; y++) {
       row.push(null);
@@ -21,10 +21,10 @@ Grid.prototype.empty = function() {
 };
 
 Grid.prototype.fromState = function(state) {
-  var cells = [];
+  var cells = [] as any[];
 
   for (var x = 0; x < this.size; x++) {
-    var row = (cells[x] = []);
+    var row = (cells[x] = []) as any[];
 
     for (var y = 0; y < this.size; y++) {
       var tile = state[x][y];
@@ -45,7 +45,7 @@ Grid.prototype.randomAvailableCell = function() {
 };
 
 Grid.prototype.availableCells = function() {
-  var cells = [];
+  var cells = [] as any[];
 
   this.eachCell(function(x, y, tile) {
     if (!tile) {
@@ -107,7 +107,7 @@ Grid.prototype.withinBounds = function(position) {
 };
 
 Grid.prototype.toString = function() {
-  var ret = [];
+  var ret = [] as any[];
   for (var y = 0; y < this.size; y++) {
     for (var x = 0; x < this.size; x++) {
       ret.push(this.cells[x][y] ? this.cells[x][y].value : "·");
@@ -118,10 +118,10 @@ Grid.prototype.toString = function() {
 };
 
 Grid.prototype.serialize = function() {
-  var cellState = [];
+  var cellState = [] as any[];
 
   for (var x = 0; x < this.size; x++) {
-    var row = (cellState[x] = []);
+    var row = (cellState[x] = []) as any[];
 
     for (var y = 0; y < this.size; y++) {
       row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);

@@ -1,25 +1,33 @@
 import mimes from "@constants/mime.json";
-import Mdloader from "@components/Mdloader";
-// @ts-ignore
 import { SearchInput, Pane, toaster } from "evergreen-ui";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { createFuzzyList } from "@utils/fuzzyScore";
 import copy from "@utils/copy";
-let lists = createFuzzyList(mimes);
+
+interface MimeItem {
+  _cachedScore?: number;
+  score: (query: string) => number;
+  _i: number;
+  [key: string]: any;
+}
+
+let lists: MimeItem[] = createFuzzyList(mimes);
+
 export default function MimeList() {
-  const [query, setQuery] = useState("");
-  const [data, setData] = useState(lists);
+  const [query, setQuery] = useState<string>("");
+  const [data, setData] = useState<MimeItem[]>(lists);
+
   useEffect(() => {
-    let sorted = [];
+    let sorted: MimeItem[] = [];
     if (query) {
       sorted = lists
-        .filter(function(item) {
+        .filter((item) => {
           return (item._cachedScore = item.score(query)) >= 0.5;
         })
-        .sort(function(a, b) {
-          var as = a._cachedScore;
-          var bs = b._cachedScore;
-          return as > bs ? -1 : as == bs && a.i < b.i ? -1 : 1;
+        .sort((a, b) => {
+          var as = a._cachedScore as number;
+          var bs = b._cachedScore as number;
+          return as > bs ? -1 : as === bs && a._i < b._i ? -1 : 1;
         })
         .slice(0, 20);
     } else {
@@ -27,21 +35,25 @@ export default function MimeList() {
     }
     setData(sorted);
   }, [query]);
-  var copyCode = function(item) {
+
+  const copyCode = (item: MimeItem) => {
     const isCopied = copy("." + item[0] + " " + item[1]);
     if (isCopied) {
       toaster.success("Code Copied! 👍", {
-        duration: 2
+        duration: 2,
       });
     }
   };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
   return (
     <Pane margin="auto" width="800px">
       <SearchInput
         placeholder="Typing something"
-        onChange={e => {
-          setQuery(e.target.value);
-        }}
+        onChange={handleInputChange}
         value={query}
         width={"600px"}
         margin={"auto"}

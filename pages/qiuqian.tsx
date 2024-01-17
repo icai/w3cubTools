@@ -2,12 +2,23 @@ import ConversionLayout from "@components/ConversionLayout";
 import React, { useState } from "react";
 import Tween from "rc-tween-one";
 
+interface QiuEvent {
+  name: string;
+  event: number;
+}
+
+interface CardInfo {
+  title: string;
+  desc: string;
+  duration?: number;
+}
+
 export default function QiuQian() {
   /*
    * 注意：本程序中的“随机”都是伪随机概念。
    * 第一个种子相对固定，第二个种子相对有更多变化
    */
-  function random(seed1, seed2) {
+  function random(seed1: number, seed2: number): number {
     var n = seed1 % 11117;
     for (var i = 0; i < 100 + seed2; i++) {
       n = n * n;
@@ -16,8 +27,10 @@ export default function QiuQian() {
     return n;
   }
 
-  var weeks = ["日", "一", "二", "三", "四", "五", "六"];
-  function getTodayString() {
+  const weeks = ["日", "一", "二", "三", "四", "五", "六"];
+
+  function getTodayString(): string {
+    const today = new Date();
     return (
       "今天是" +
       today.getFullYear() +
@@ -29,7 +42,6 @@ export default function QiuQian() {
       weeks[today.getDay()]
     );
   }
-
   var today = new Date();
   var timeseed = today.getMilliseconds();
 
@@ -48,11 +60,11 @@ export default function QiuQian() {
   var descriptions = ["", "", "", "", "", "", "", "", ""];
   var luck_rate = [10, 100, 500, 800, 300, 800, 500, 100, 10]; // 吉凶概率分布，总数为 3120
 
-  function pickRandomWithRate(seed1, seed2) {
-    var result = random(seed1, seed2) % 3120;
-    var addup = 0;
+  function pickRandomWithRate(seed1: number, seed2: number): CardInfo {
+    const result = random(seed1, seed2) % 3120;
+    let addup = 0;
 
-    for (var i = 0; i < luck_rate.length; i++) {
+    for (let i = 0; i < luck_rate.length; i++) {
       addup += luck_rate[i];
       if (result <= addup) {
         return {
@@ -66,25 +78,23 @@ export default function QiuQian() {
       desc: ""
     };
   }
-
-  /////////////////////////////////////////////////////////
-  var selectedEvent = null;
+  var selectedEvent = null as number | null;
 
   // TODO 概率分布
   function getNextCardText(slidecount) {
-    return pickRandomWithRate(timeseed + selectedEvent, slidecount);
+    return pickRandomWithRate(timeseed + (selectedEvent || 0), slidecount);
   }
 
-  const [selected, setSelected] = useState(-1);
-  const [actived, setActived] = useState(false);
-  const [queues, setQueues] = useState([]);
+  const [selected, setSelected] = useState<number>(-1);
+  const [actived, setActived] = useState<boolean>(false);
+  const [queues, setQueues] = useState<CardInfo[]>([]);
 
   function slide() {
-    let slidecount = queues.length;
+    const slidecount = queues.length;
     if (slidecount > 35) {
       return;
     }
-    var duration =
+    const duration =
       slidecount > 33
         ? 1500
         : slidecount > 32
@@ -96,11 +106,11 @@ export default function QiuQian() {
         : slidecount > 15
         ? 150
         : 100;
-    var cardInfo = getNextCardText(slidecount);
+    const cardInfo = getNextCardText(slidecount);
     setQueues([...queues, { ...cardInfo, duration }]);
   }
 
-  const qiuEvents = [
+  const qiuEvents: QiuEvent[] = [
     {
       name: "编码",
       event: 100
@@ -123,7 +133,7 @@ export default function QiuQian() {
     }
   ];
 
-  const onQueueEnd = function() {
+  const onQueueEnd = function () {
     slide();
   };
 
@@ -139,6 +149,7 @@ export default function QiuQian() {
     setActived(true);
     setQueues([]);
   };
+
   return (
     <ConversionLayout flexDirection="column" layoutHeight="auto">
       <div className="q-container">
@@ -157,19 +168,15 @@ export default function QiuQian() {
           <table className="event_table selecttable">
             <tbody>
               <tr>
-                {qiuEvents.map((qiu, ix) => {
-                  return (
-                    <td
-                      key={ix}
-                      onClick={() => {
-                        handleQiu(qiu.event, ix);
-                      }}
-                      className={selected == ix ? "selected" : ""}
-                    >
-                      {qiu.name}
-                    </td>
-                  );
-                })}
+                {qiuEvents.map((qiu, ix) => (
+                  <td
+                    key={ix}
+                    onClick={() => handleQiu(qiu.event, ix)}
+                    className={selected == ix ? "selected" : ""}
+                  >
+                    {qiu.name}
+                  </td>
+                ))}
               </tr>
             </tbody>
           </table>
@@ -190,25 +197,23 @@ export default function QiuQian() {
               <div className="title">求</div>
             </Tween>
           )}
-          {queues.map((item, index) => {
-            return (
-              <Tween
-                className="card"
-                componentProps={{ className: "card" }}
-                key={index}
-                animation={{
-                  top: "-1px",
-                  duration: item.duration,
-                  onComplete: onQueueEnd
-                }}
-              >
-                <div
-                  className="title"
-                  dangerouslySetInnerHTML={{ __html: item.title }}
-                ></div>
-              </Tween>
-            );
-          })}
+          {queues.map((item, index) => (
+            <Tween
+              className="card"
+              componentProps={{ className: "card" }}
+              key={index}
+              animation={{
+                top: "-1px",
+                duration: item.duration,
+                onComplete: onQueueEnd
+              }}
+            >
+              <div
+                className="title"
+                dangerouslySetInnerHTML={{ __html: item.title }}
+              ></div>
+            </Tween>
+          ))}
         </div>
       </div>
       <style jsx global>{`

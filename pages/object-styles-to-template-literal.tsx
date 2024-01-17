@@ -47,7 +47,7 @@ export default function ObjectStylesToTemplateLiteral() {
     [settings]
   );
 
-  const getSettingsPanel = useCallback<EditorPanelProps["settingElement"]>(
+  const getSettingsPanel = useCallback<any>(
     ({ open, toggle }) => (
       <Form<Settings>
         onSubmit={setSettings}

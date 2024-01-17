@@ -51,7 +51,7 @@ export const EscapeConverter: React.FunctionComponent<EscapeConverterProps> = ({
               whiteSpace="nowrap"
               onClick={() => {
                 setResult(value);
-                setValue(result);
+                setValue(result || '');
               }}
             >
               Content Exchange

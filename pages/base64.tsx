@@ -38,7 +38,7 @@ export default function Tbase64() {
               whiteSpace="nowrap"
               onClick={() => {
                 setResult(value);
-                setValue(result);
+                setValue(result || "");
               }}
             >
               Content Exchange

@@ -1,6 +1,7 @@
-export function createFuzzyScorer(text) {
+export function createFuzzyScorer(text: string) {
   var matcher = makeFuzzyRegex(text);
-  return function(query) {
+
+  return function (query: string) {
     var match = matcher.exec(query);
 
     if (!match) return 0;
@@ -18,7 +19,7 @@ export function createFuzzyScorer(text) {
     return score;
   };
 
-  function makeFuzzyRegex(string) {
+  function makeFuzzyRegex(string: string) {
     if (!string) {
       return /^$/;
     }
@@ -40,32 +41,34 @@ export function createFuzzyScorer(text) {
   }
 }
 
-export const createFuzzyList = data => {
-  return data.map(function(aliases, index) {
-    var scorers = [];
+export const createFuzzyList = (data: string[][]) => {
+  return data.map(function (aliases, index) {
+    var scorers: ((query: string) => number)[] = [];
 
     for (var i = 0; i < aliases.length; i++) {
       var alias = aliases[i];
       if (/[\s-_,()]+/.test(alias)) {
-        // Split words into seperate aliases
+        // Split words into separate aliases
         [].push.apply(aliases, alias.split(/[\s-_,()]+/));
       }
       scorers.push(createFuzzyScorer(alias));
     }
-    function score(query) {
+
+    function score(query: string) {
       var s = 0;
       for (var i = 0, l = scorers.length; i < l; i++) {
         s = Math.max(s, scorers[i](query));
       }
       return s;
     }
+
     return {
       score: score,
       _i: index,
       ...aliases,
-      toString: function() {
+      toString: function () {
         return aliases[1];
-      }
+      },
     };
   });
 };

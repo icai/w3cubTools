@@ -1,6 +1,4 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { promises as fs } from "fs";
-import path from "path";
 import dynamic from "next/dynamic";
 
 import {
@@ -73,8 +71,8 @@ function CssToTailwindSettings({
       onCloseComplete={toggle}
       onConfirm={async close => {
         const isSuccess = await onConfirm({
-          tailwindConfig,
-          remInPx,
+          tailwindConfig: tailwindConfig || "",
+          remInPx: remInPx || '',
           arbitraryPropertiesIsEnabled
         });
         if (isSuccess) {
@@ -168,7 +166,7 @@ export default function CssToTailwind3({ defaultSettings }) {
       arbitraryPropertiesIsEnabled: !!rawSettings.arbitraryPropertiesIsEnabled
     };
 
-    if (isNaN(config["remInPx"])) {
+    if (isNaN(config["remInPx"] as number)) {
       toaster.danger(
         "Invalid `REM in PIXELS` value (only `number` or `null` allowed). Fallback to `null` value"
       );
@@ -177,7 +175,7 @@ export default function CssToTailwind3({ defaultSettings }) {
     }
 
     try {
-      config["tailwindConfig"] = evalConfig(rawSettings.tailwindConfig);
+      config["tailwindConfig"] = evalConfig(rawSettings.tailwindConfig || "");
     } catch (e) {
       toaster.danger(
         "Something went wrong trying to resolve TailwindCSS config. Fallback to default tailwind config",

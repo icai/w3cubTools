@@ -94,7 +94,7 @@ export default function TBase64toImage() {
             </div>
           );
         }
-        return null;
+        return <></>;
       }}
     />
   );

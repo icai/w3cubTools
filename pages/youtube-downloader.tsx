@@ -4,7 +4,7 @@ import WriteCharactorSearch from "@components/WriteCharactor/WriteCharactorSearc
 export default function YoutubeDownloade() {
   const [char, setChar] = useState("");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState([]);
+  const [content, setContent] = useState<any>([]);
   const [thumbnail, setThumbnail] = useState({} as any);
   const [res, setRes] = useState({} as any);
   const onSearch = async slug => {
@@ -21,9 +21,7 @@ export default function YoutubeDownloade() {
           );
           setTitle(value.player_response.videoDetails.title);
           setContent(
-            value.formats.filter(item => item.container == "mp4") as Array<
-              object
-            >
+            value.formats.filter(item => item.container == "mp4")
           );
         }
       } else {

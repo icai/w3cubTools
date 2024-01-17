@@ -15,6 +15,8 @@
     "sitemap": "node scripts/sitemap.js",
     "now-build": "next build",
     "postinstall": "patch-package",
+    "check-types": "tsc --noemit",
+    "lint": "npm run check-types && next lint",
     "ainstall": "pnpm install --registry=https://registry.npmmirror.com",
     "build:analyze": "ANALYZE=true pnpm run build"
   },
@@ -135,6 +137,9 @@
     "@types/react-dom": "^18",
     "@types/svgo": "^1.3.3",
     "babel-plugin-module-resolver": "^5.0.0",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.0.4",
+    "eslint-config-prettier": "^9.1.0",
     "file-loader": "^6.2.0",
     "gh-pages": "^2.1.0",
     "husky": "^4.2.5",
@@ -151,10 +156,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "./assets/*/*.svg": [
-      "imagemin-lint-staged"
-    ]
   }
 }

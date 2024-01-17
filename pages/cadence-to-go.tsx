@@ -24,7 +24,7 @@ export default function CadenceToGo() {
     [settings]
   );
 
-  const outputSettingsElement = useCallback<EditorPanelProps["settingElement"]>(
+  const outputSettingsElement = useCallback<any>(
     ({ open, toggle }) => {
       return (
         <Form<Partial<Settings>>

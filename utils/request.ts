@@ -14,7 +14,7 @@ export default async function request(
     cancelToken: cancelTokenSource.token,
     headers: { "Content-Type": contentType }
   });
-
+  // @ts-ignore
   cancelTokenSource = null;
   return res.data;
 }

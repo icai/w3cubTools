@@ -76,7 +76,7 @@ export class BezierCurves {
     let dddfx = tmp2x * pre5;
     let dddfy = tmp2y * pre5;
 
-    const result = [];
+    const result = [] as { x: any; y: any }[];
 
     for (let step = numSteps; step > 0; step--) {
       fx += dfx;
@@ -101,7 +101,7 @@ export class BezierCurves {
     isOpen: boolean
   ) {
     const temp = list.slice();
-    // if list only as 2 points, then calcWaypoints
+    // if list only has 2 points, then calcWaypoints
     if (list.length === 2) {
       return BezierCurves.calcWaypoints(list, 60);
     }
@@ -118,7 +118,6 @@ export class BezierCurves {
     }
     const result = [list[0]]; // first point
     for (let i = 0; i < (!isOpen ? list.length : list.length - 1); i++) {
-
       const points = BezierCurves.calculateControlPoint(
         // @ts-ignore
         temp.slice(i, i + 4),
@@ -129,7 +128,7 @@ export class BezierCurves {
     return result;
   }
   static calcWaypoints(vertices: any[], fps: number) {
-    var waypoints = [];
+    var waypoints = [] as any[];
     var len = vertices.length;
     // Include the start point
     waypoints.push({

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface AnglePickerProps {
   className?: string;
@@ -11,7 +11,7 @@ interface AnglePickerProps {
 export default function AnglePicker(props: AnglePickerProps) {
   const { size = 16, color = "#fff" } = props;
 
-  const container = React.createRef<HTMLDivElement>();
+  const container = useRef<HTMLDivElement>(null);
 
   const proto = {
     x: 0,
@@ -19,7 +19,7 @@ export default function AnglePicker(props: AnglePickerProps) {
     dragging: false
   };
 
-  const startEvent = function(event) {
+  const startEvent = function (event: any) {
     if (/touch/.test(event.type)) {
       event.preventDefault();
       event.stopPropagation();
@@ -28,7 +28,8 @@ export default function AnglePicker(props: AnglePickerProps) {
     proto.y = event.offsetY || event.layerY;
     draw();
   };
-  const moveEvent = function(event) {
+
+  const moveEvent = function (event: any) {
     if (/touch/.test(event.type)) {
       event.preventDefault();
       event.stopPropagation();
@@ -39,7 +40,7 @@ export default function AnglePicker(props: AnglePickerProps) {
     draw();
   };
 
-  const endEvent = function(event) {
+  const endEvent = function (event: any) {
     if (/touch/.test(event.type)) {
       event.preventDefault();
       event.stopPropagation();
@@ -47,7 +48,7 @@ export default function AnglePicker(props: AnglePickerProps) {
     proto.dragging = false;
   };
 
-  var draw = function() {
+  var draw = function () {
     const x2 = proto.x;
     const y2 = proto.y;
     const radians = Math.atan2(y2 - 15, x2 - 15);
@@ -61,31 +62,34 @@ export default function AnglePicker(props: AnglePickerProps) {
     props.callback && props.callback(angle);
   };
 
-  const [angle, setAngle] = useState(props.angle || 0);
+  const [angle, setAngle] = useState<number>(props.angle || 0);
   useEffect(() => {
-    if ("ontouchstart" in document.documentElement) {
-      container.current.addEventListener("touchstart", startEvent);
-      container.current.addEventListener("touchmove", moveEvent);
-      container.current.addEventListener("touchend", endEvent);
-    } else {
-      container.current.addEventListener("mousedown", startEvent);
-      container.current.addEventListener("mousemove", moveEvent);
-      container.current.addEventListener("mouseup", endEvent);
-    }
-    return () => {
+    if (container.current) {
       if ("ontouchstart" in document.documentElement) {
-        container.current.removeEventListener("touchstart", startEvent);
-        container.current.removeEventListener("touchmove", moveEvent);
-        container.current.removeEventListener("touchend", endEvent);
+        container.current.addEventListener("touchstart", startEvent);
+        container.current.addEventListener("touchmove", moveEvent);
+        container.current.addEventListener("touchend", endEvent);
       } else {
-        container.current.removeEventListener("mousedown", startEvent);
-        container.current.removeEventListener("mousemove", moveEvent);
-        container.current.removeEventListener("mouseup", endEvent);
+        container.current.addEventListener("mousedown", startEvent);
+        container.current.addEventListener("mousemove", moveEvent);
+        container.current.addEventListener("mouseup", endEvent);
       }
-    };
-  }, []);
+      return () => {
+        if ("ontouchstart" in document.documentElement && container.current) {
+          container.current.removeEventListener("touchstart", startEvent);
+          container.current.removeEventListener("touchmove", moveEvent);
+          container.current.removeEventListener("touchend", endEvent);
+        } else if (container.current) {
+          container.current.removeEventListener("mousedown", startEvent);
+          container.current.removeEventListener("mousemove", moveEvent);
+          container.current.removeEventListener("mouseup", endEvent);
+        }
+      };
+    }
+  }, [container]);
+
   return (
-    <div className={"angle " + props.className} ref={container}>
+    <div className={"angle " + (props.className || "")} ref={container}>
       <div
         className="angle-center"
         style={{ transform: `translateZ(0px) rotate(${angle}deg)` }}

@@ -9,8 +9,8 @@ function dynamicNode(text) {
 export default function(text) {
   var node = dynamicNode(text);
   document.body.appendChild(node);
-  var selection = getSelection();
-  selection.removeAllRanges();
+  var selection = getSelection() as any;
+  selection.removeAllRanges(); // Add type assertion to ensure 'selection' is not null
   var range = document.createRange();
   range.selectNodeContents(node);
   selection.addRange(range);

@@ -102,7 +102,7 @@ export default function EditorPanel({
           Settings
         </Button>
 
-        {settingElement({
+        {settingElement && settingElement({
           toggle: _toggleSettingsDialog,
           open: showSettingsDialogue
         })}
@@ -118,7 +118,7 @@ export default function EditorPanel({
     reader.readAsText(file, "utf-8");
     reader.onload = () => {
       setValue(reader.result as string);
-      onChange(reader.result as string);
+      onChange && onChange(reader.result as string);
       close();
     };
   }, []);
@@ -149,7 +149,7 @@ export default function EditorPanel({
         setValue(value);
         setFetchingUrl("");
         close();
-        onChange(value);
+        onChange && onChange(value);
       })();
     },
     [fetchingUrl, onChange]

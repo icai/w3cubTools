@@ -24,6 +24,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       plugins: [transformTypescript],
       configFile: false
     };
+    // @ts-ignore
     const { ast: transformedAST } = transformFromAstSync(
       ast,
       req.body,

@@ -32,7 +32,7 @@ export default function JsonToZod() {
     [settings]
   );
 
-  const getSettingsElement = useCallback<EditorPanelProps["settingElement"]>(
+  const getSettingsElement = useCallback<any>(
     ({ open, toggle }) => {
       return (
         <Form<Settings>

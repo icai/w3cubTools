@@ -4,17 +4,18 @@ import { Button, Pane } from "evergreen-ui";
 import { useDropzone } from "react-dropzone";
 import uniqBy from "lodash/uniqBy";
 
-export default function() {
+export default function ImageConverter() {
   const controlProps = {
     display: "flex",
     flexDirection: "row" as any,
     flex: "0 0 5%",
     flexWrap: "wrap" as any,
     height: "100%",
-    padding: "10px"
+    padding: "10px",
   };
+
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
-    accept: "image/*"
+    accept: "image/*",
   });
 
   const [accFiles, setAccFiles] = useState([]);
@@ -24,6 +25,7 @@ export default function() {
       {file.path} - {file.size} bytes
     </li>
   ));
+
   const fileDownloadCB = (blob: Blob, name: string) => {
     try {
       saveAs(blob, name);
@@ -31,25 +33,36 @@ export default function() {
       // console.info(e);
     }
   };
-  const saveImageTo = type => {
-    accFiles.forEach(file => {
+
+  const saveImageTo = (type: string) => {
+    accFiles.forEach((file: any) => {
       const reader = new FileReader();
       reader.onabort = () => console.log("file reading was aborted");
       reader.onerror = () => console.log("file reading has failed");
       reader.onload = () => {
-        var image = new Image();
-        image.onload = function() {
-          var canvas = document.createElement("canvas") as HTMLCanvasElement;
+        const image = new Image();
+        image.onload = function () {
+          const canvas = document.createElement(
+            "canvas"
+          ) as HTMLCanvasElement;
           canvas.width = image.width;
           canvas.height = image.height;
-          canvas.getContext("2d").drawImage(image, 0, 0);
-          canvas.toBlob(function(blob) {
-            var lparenIdx = file.name.lastIndexOf(".");
-            if (-1 != lparenIdx) {
-              var fileName = file.name.substring(0, lparenIdx) + "." + type;
+          const context = canvas?.getContext("2d");
+          if (!context) {
+            console.error("Canvas context is null or undefined");
+            return;
+          }
+          context.drawImage(image, 0, 0);
+          canvas.toBlob((blob) => {
+            const lparenIdx = file.name.lastIndexOf(".");
+            let fileName;
+            if (lparenIdx !== -1) {
+              fileName =
+                file.name.substring(0, lparenIdx) + "." + type;
             } else {
               fileName = file.name + "." + type;
             }
+            // @ts-ignore
             fileDownloadCB(blob, fileName);
           }, "type/" + type);
         };
@@ -60,6 +73,7 @@ export default function() {
   };
 
   useEffect(() => {
+    // @ts-ignore
     setAccFiles(uniqBy([...accFiles, ...acceptedFiles], "name"));
   }, [acceptedFiles]);
 
@@ -69,7 +83,7 @@ export default function() {
         <section className="dragcontainer">
           <div
             className="dropzone"
-            {...getRootProps({ className: "dropzone" })}
+            {...getRootProps()}
           >
             <input {...getInputProps()} />
             <p>Drag 'n' drop some files here, or click to select files</p>

@@ -36,7 +36,7 @@ export default function JsonToFlow() {
 
   const [settings, setSettings] = useSettings(name, defaultSettings);
 
-  const getSettingsElement = useCallback<EditorPanelProps["settingElement"]>(
+  const getSettingsElement = useCallback<any>(
     ({ open, toggle }) => {
       return (
         <Form<Settings>

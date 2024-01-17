@@ -3,7 +3,7 @@ import GridCell from "./grid-cell";
 
 export default class GridRow extends Component<any> {
   getChildren() {
-    var children = [];
+    var children = [] as any;
     for (var i = 0; i < this.props.size; i++)
       children.push(<GridCell key={i} />);
     return children;

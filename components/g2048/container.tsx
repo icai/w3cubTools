@@ -57,7 +57,7 @@ export default class Container extends Component<any, any> {
   }
 
   getRandomTiles() {
-    var ret = [];
+    var ret = [] as { value: number; x: any; y: any; prog: number; }[];
     for (var i = 0; i < this.props.startTiles; i++) {
       ret.push(this.getRandomTile());
     }
@@ -317,7 +317,7 @@ export default class Container extends Component<any, any> {
 
   // Build a list of positions to traverse in the right order
   buildTraversals(vector: { x: number; y: number }) {
-    var traversals = { x: [], y: [] };
+    var traversals = { x: [], y: [] } as { x: any[]; y: any[] };
 
     for (var pos = 0; pos < this.props.size; pos++) {
       traversals.x.push(pos);

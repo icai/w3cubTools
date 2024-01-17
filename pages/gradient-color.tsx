@@ -1,10 +1,21 @@
-import gradients from "@constants/gradients.json";
-import { CodeIcon, DownloadIcon, Icon, toaster } from "evergreen-ui";
+import React, { useState } from "react";
+import { CodeIcon, DownloadIcon, toaster } from "evergreen-ui";
 import AnglePicker from "@components/Gradient/AnglePicker";
-import { useState } from "react";
 import copy from "@utils/copy";
+import gradients from "@constants/gradients.json";
+import { env } from "process";
 
-function GradientItem({ item, copyCode, bgDownload }) {
+interface GradientItemProps {
+  item: string[];
+  copyCode: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  bgDownload: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+const GradientItem: React.FC<GradientItemProps> = ({
+  item,
+  copyCode,
+  bgDownload,
+}) => {
   const [angle, setAngle] = useState(135);
   return (
     <div className="ch-gradient-brick">
@@ -155,17 +166,17 @@ function GradientItem({ item, copyCode, bgDownload }) {
   );
 }
 
-export default function Gradient() {
-  var backgroundImage = "background-image: ";
-  var gradientStart = " 10%, ";
-  var gradientEnd = " 100%)";
+const Gradient: React.FC = () => {
+  const backgroundImage = "background-image: ";
+  const gradientStart = " 10%, ";
+  const gradientEnd = " 100%)";
 
-  var copyCode = function(event) {
-    var eventColorFrom = event.currentTarget.dataset.colorFrom;
-    var eventColorTo = event.currentTarget.dataset.colorTo;
-    var eventColorAngle = event.currentTarget.dataset.colorAngle;
-    var gradientType = `linear-gradient( ${eventColorAngle}deg, `;
-    var eventResult =
+  const copyCode = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const eventColorFrom = event.currentTarget.dataset.colorFrom || "";
+    const eventColorTo = event.currentTarget.dataset.colorTo || "";
+    const eventColorAngle = event.currentTarget.dataset.colorAngle || 0;
+    const gradientType = `linear-gradient( ${eventColorAngle}deg, `;
+    const eventResult =
       backgroundImage +
       gradientType +
       eventColorFrom +
@@ -177,81 +188,90 @@ export default function Gradient() {
     const isCopied = copy(eventResult);
     if (isCopied) {
       toaster.success("CSS3 Code Copied! 👍", {
-        duration: 2
+        duration: 2,
       });
     }
   };
-  var bgDownload = function(event) {
-    //Grab Palette
-    var eventColorFrom = event.currentTarget.dataset.colorFrom;
-    var eventColorTo = event.currentTarget.dataset.colorTo;
-    var eventColorAngle = event.currentTarget.dataset.colorAngle;
-    var canvas = document.createElement("canvas") as HTMLCanvasElement;
+
+  const bgDownload = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const eventColorFrom = event.currentTarget.dataset.colorFrom || "";
+    const eventColorTo = event.currentTarget.dataset.colorTo || "";
+    const eventColorAngle = event.currentTarget.dataset.colorAngle || 0;
+    const canvas = document.createElement("canvas") as HTMLCanvasElement;
     canvas.width = 1000;
     canvas.height = 1000;
-    var ctx = canvas.getContext("2d");
-    var angle = Math.abs(eventColorAngle - 450) % 360;
-    function degreetoPoint(a, b, c) {
-      var d,
-        e,
-        f,
-        g,
-        h = Math.atan(b / a),
-        i = a / 2,
-        j = b / 2;
-      c = Math.abs((360 - c) * (Math.PI / 180));
-      var k = Math.abs(c - Math.PI) < h,
-        l = c > 2 * Math.PI - h || c < h,
-        m = Math.abs(c - Math.PI / 2) <= Math.abs(Math.PI / 2 - h),
-        n = Math.abs(c - (3 * Math.PI) / 2) <= Math.abs(Math.PI / 2 - h),
-        o = (k ? -1 : 0) + (l ? 1 : 0),
-        p = (n ? -1 : 0) + (m ? 1 : 0);
-      return (
-        o
-          ? ((d = i + (a / 2) * o), (e = j + (a / 2) * (Math.tan(c) * o)))
-          : ((d = i + (b / 2) * (p / Math.tan(c))), (e = j + (b / 2) * p)),
-        (d = Math.round(d)),
-        (e = Math.round(e)),
-        (f = a - d),
-        (g = b - e),
-        {
-          x0: f,
-          y0: g,
-          x1: d,
-          y1: e
-        }
-      );
+    const ctx = canvas.getContext("2d")!;
+    // @ts-ignore
+    const angle = Math.abs(eventColorAngle - 450) % 360;
+
+
+    function degreetoPoint(width: number, height: number, angleDegrees: number) {
+      var angleRadians = Math.atan(height / width);
+      var halfWidth = width / 2;
+      var halfHeight = height / 2;
+      
+      angleDegrees = Math.abs((360 - angleDegrees) * (Math.PI / 180));
+      
+      var isCloseTo180 = Math.abs(angleDegrees - Math.PI) < angleRadians;
+      var isCloseTo360 = angleDegrees > 2 * Math.PI - angleRadians || angleDegrees < angleRadians;
+      var isCloseTo90 = Math.abs(angleDegrees - (Math.PI / 2)) <= Math.abs((Math.PI / 2) - angleRadians);
+      var isCloseTo270 = Math.abs(angleDegrees - (3 * Math.PI / 2)) <= Math.abs((Math.PI / 2) - angleRadians);
+      
+      var offsetX = (isCloseTo180 ? -1 : 0) + (isCloseTo360 ? 1 : 0);
+      var offsetY = (isCloseTo270 ? -1 : 0) + (isCloseTo90 ? 1 : 0);
+      
+      var x, y;
+      
+      if (offsetX) {
+        x = halfWidth + (width / 2) * offsetX;
+        y = halfHeight + (width / 2) * (Math.tan(angleDegrees) * offsetX);
+      } else {
+        x = halfWidth + (height / 2) * (offsetY / Math.tan(angleDegrees));
+        y = halfHeight + (height / 2) * offsetY;
+      }
+      
+      x = Math.round(x);
+      y = Math.round(y);
+      
+      var deltaX = width - x;
+      var deltaY = height - y;
+      
+      return {
+        x0: deltaX,
+        y0: deltaY,
+        x1: x,
+        y1: y
+      };
     }
     const points = degreetoPoint(canvas.width, canvas.width, angle);
-    var tempGradient = ctx.createLinearGradient(
+    const tempGradient = ctx.createLinearGradient(
       points.x0,
       points.y0,
       points.x1,
       points.y1
     );
-    // var tempGradient = ctx.createLinearGradient(0, 0, 1000, 1000);
-    tempGradient.addColorStop(0, eventColorFrom);
+    tempGradient.addColorStop(0.1, eventColorFrom);
     tempGradient.addColorStop(1, eventColorTo);
     ctx.fillStyle = tempGradient;
     ctx.fillRect(0, 0, 1000, 1000);
-    var dataURL = canvas.toDataURL();
+
+    const dataURL = canvas.toDataURL();
     event.currentTarget.href = dataURL;
-    var fileName =
+    const fileName =
       "gradient-" + eventColorFrom.slice(1, 7) + "-" + eventColorTo.slice(1, 7);
     event.currentTarget.setAttribute("download", fileName);
   };
+
   return (
     <div className="ch-paper">
-      {gradients.map((item, ix) => {
-        return (
-          <GradientItem
-            item={item}
-            key={ix}
-            copyCode={copyCode}
-            bgDownload={bgDownload}
-          ></GradientItem>
-        );
-      })}
+      {gradients.map((item, ix) => (
+        <GradientItem
+          item={item}
+          key={ix}
+          copyCode={copyCode}
+          bgDownload={bgDownload}
+        />
+      ))}
       <style jsx>{`
         .ch-paper {
           text-align: center;
@@ -262,4 +282,6 @@ export default function Gradient() {
       `}</style>
     </div>
   );
-}
+};
+
+export default Gradient;

@@ -8,6 +8,11 @@ import copy from "clipboard-copy";
 import { Package } from "@assets/vendor/favicon/index";
 import Mdloader from "@components/Mdloader";
 
+interface PreviewItem {
+  key: string;
+  img: string;
+}
+
 export default function ZipOnline() {
   const controlProps = {
     display: "flex",
@@ -37,7 +42,7 @@ export default function ZipOnline() {
     ].join("\n")
   );
 
-  const [preview, setPreview] = useState([]);
+  const [preview, setPreview] = useState<PreviewItem[]>([])
 
   const showPreview = canvas => {
     // Generate package
@@ -178,7 +183,7 @@ export default function ZipOnline() {
       <Pane className="ibox-section">
         <h2>Converter</h2>
         <section className="dragcontainer">
-          <div {...getRootProps({ className: "dropzone" })}>
+          <div  className="dropzone" {...getRootProps()}>
             <input {...getInputProps()} />
             <p>Drag n drop your file here or click here to upload.</p>
           </div>

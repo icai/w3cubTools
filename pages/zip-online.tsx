@@ -1,24 +1,31 @@
-import ConversionLayout from "@components/ConversionLayout";
 import React, { useEffect, useState } from "react";
 import { Button, Pane } from "evergreen-ui";
 import JSZip from "jszip";
 import { useDropzone } from "react-dropzone";
 import uniqBy from "lodash/uniqBy";
 import { getDate } from "@utils/utils";
+import ConversionLayout from "@components/ConversionLayout";
+
+interface FileItem {
+  path: string;
+  size: number;
+  name: string;
+}
 
 export default function ZipOnline() {
-  const controlProps = {
+  const controlProps: any = {
     display: "flex",
-    flexDirection: "row" as any,
+    flexDirection: "row",
     flex: "0 0 5%",
-    flexWrap: "wrap" as any,
+    flexWrap: "wrap",
     height: "100%",
-    padding: "0px"
+    padding: "0px",
   };
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
-  const [accFiles, setAccFiles] = useState([]);
 
-  const files = accFiles.map((file: any) => (
+  const [accFiles, setAccFiles] = useState<FileItem[]>([]);
+
+  const files = accFiles.map((file) => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
     </li>
@@ -26,22 +33,23 @@ export default function ZipOnline() {
 
   const convertZip = () => {
     var zip = new JSZip();
-    const proList = accFiles.map(file => {
-      return new Promise<void>(function(resolve) {
+    const proList = accFiles.map((file) => {
+      return new Promise<void>((resolve) => {
         const reader = new FileReader();
         reader.onabort = () => console.log("file reading was aborted");
         reader.onerror = () => console.log("file reading has failed");
         reader.onload = () => {
-          //   console.info(reader.result);
-          zip.file(file.name, reader.result, { binary: true });
+          const result = reader.result as string | ArrayBuffer;
+          zip.file(file.name, result, { binary: true });
           resolve();
         };
+        // @ts-ignore
         reader.readAsBinaryString(file);
       });
     });
     let time = getDate();
     proList.push(
-      new Promise(function(resolve) {
+      new Promise<void>((resolve) => {
         zip.file(
           "readme.md",
           "Thinks using " + window.location.href + `\n\nGenerate at ${time}`
@@ -50,23 +58,24 @@ export default function ZipOnline() {
       })
     );
     Promise.all(proList).then(() => {
-      zip.generateAsync({ type: "blob" }).then(function(content) {
-        // see FileSaver.js
+      zip.generateAsync({ type: "blob" }).then(function (content) {
         saveAs(content, `w3cubtools.genzip.${time}.zip`);
       });
     });
   };
 
   useEffect(() => {
+    // @ts-ignore
     setAccFiles(uniqBy([...accFiles, ...acceptedFiles], "name"));
   }, [acceptedFiles]);
+
   return (
     <ConversionLayout flexDirection="column" layoutHeight="auto">
       <div className="ibox-section">
         <section className="dragcontainer">
           <div
             className="dropzone"
-            {...getRootProps({ className: "dropzone" })}
+            {...getRootProps()}
           >
             <input {...getInputProps()} />
             <p>Drag 'n' drop some files here, or click to select files</p>

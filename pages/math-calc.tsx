@@ -1,28 +1,39 @@
 import CrontabInput from "@components/CrontabInput";
 import ConversionLayout from "@components/ConversionLayout";
-import React, { useCallback, useState, Fragment, useEffect } from "react";
-import { Button, Pane, FilePicker, Textarea } from "evergreen-ui";
+import React, { useState, useEffect } from "react";
+import { Button, Pane } from "evergreen-ui";
 
-export default function MathCalc() {
-  var conf = {
-    questions: 100 //题目数
+interface Question {
+  A: number;
+  B: number;
+  operator: string;
+}
+
+interface Page {
+  questions: Question[];
+  operators: string[];
+}
+
+interface MathCalcProps {}
+
+const MathCalc: React.FC<MathCalcProps> = () => {
+  const conf: { questions: number } = {
+    questions: 100, //题目数
   };
-
   /**
    * gen a random number between 1 to n or n to m
    * @param {number} n
    * @param {number} m
    * @returns {number}
    */
-  function getRandomNum(n, m) {
+  function getRandomNum(n: number, m: number): number {
     return (Math.random() * (m - n + 1) + n) | 0;
   }
-
   /**
    * select a operators from given operators list
    * @returns {*}
    */
-  function getRandomOperator(operators) {
+  function getRandomOperator(operators: string[]): string {
     return operators[((Math.random() * 10000) | 0) % operators.length];
   }
 
@@ -32,16 +43,15 @@ export default function MathCalc() {
    * @param {number} m
    * @returns {array}
    */
-  function sortNum(n, m) {
+  function sortNum(n: number, m: number): number[] {
     m = m || 1;
     return n < m ? [n, m] : [m, n];
   }
 
-  function getQuestion(operators) {
-    var operator = getRandomOperator(operators),
-      A,
-      B,
-      C;
+  function getQuestion(operators: string[]): Question {
+    const operator = getRandomOperator(operators);
+    let A, B, C;
+
     if (operator === "+") {
       A = getRandomNum(1, 90);
       B = getRandomNum(1, 99 - A);
@@ -64,38 +74,36 @@ export default function MathCalc() {
       C = getRandomNum(1, (99 / B) | 0);
       A = B * C;
     }
-    return {
-      A,
-      B,
-      operator
-    };
+
+    return { A, B, operator };
   }
 
   const [hideFrom, setHideFrom] = useState(false);
   const [showResult, setShowResult] = useState(false);
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState<Page[]>([]);
 
-  function insertPage(operators, nums) {
-    let ps = [];
+  function insertPage(operators: string[], nums: number): void {
+    let ps: Page[] = [];
     for (let index = 0; index < nums; index++) {
-      let quesSet = [];
+      let quesSet: Question[] = [];
       for (var i = 1; i <= conf.questions; i++) {
         quesSet.push(getQuestion(operators));
       }
       ps = ps.concat({
         questions: quesSet,
-        operators: operators
+        operators: operators,
       });
     }
     setPages(ps);
   }
 
-  const onClick = s => {
+  const onClick = (s: string): void => {
     let operators = s.split(" ");
     setHideFrom(true);
     insertPage(operators, 5);
   };
-  const lists = ["+", "-", "×", "÷", "+ -", "× ÷", "+ - ×", "+ - × ÷"];
+
+  const lists: string[] = ["+", "-", "×", "÷", "+ -", "× ÷", "+ - ×", "+ - × ÷"];
 
   const rightctrl = hideFrom ? "widget" : "";
 
@@ -106,15 +114,16 @@ export default function MathCalc() {
       height: "35px",
       font: "20px/25px Verdana Arial",
       borderRadius: "5px",
-      display: "block"
-    }
+      display: "block",
+    },
   };
+
   return (
     <ConversionLayout flexDirection="column" layoutHeight="auto">
       <Pane
         // @ts-ignore
         css={{
-          minHeight: "500px"
+          minHeight: "500px",
         }}
       >
         <div className={"form hidden-print " + rightctrl}>
@@ -261,4 +270,6 @@ export default function MathCalc() {
       </Pane>
     </ConversionLayout>
   );
-}
+};
+
+export default MathCalc;

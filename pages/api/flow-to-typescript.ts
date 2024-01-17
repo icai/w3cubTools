@@ -28,10 +28,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
     host.getSourceFile = filename => {
       if (filename === "file.ts") {
-        return ts.createSourceFile(filename, tsCode, undefined);
+        return ts.createSourceFile(filename, tsCode, ts.ScriptTarget.Latest);
       }
 
-      return ts.createSourceFile(filename, "", undefined);
+      return ts.createSourceFile(filename, "", ts.ScriptTarget.Latest);
     };
 
     host.writeFile = (_name, text) => {

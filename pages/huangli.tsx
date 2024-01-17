@@ -1,28 +1,41 @@
 import ConversionLayout from "@components/ConversionLayout";
-import React, { useEffect, useState, useCallback } from "react";
-import { Button, Pane, FilePicker, Textarea } from "evergreen-ui";
+import React, { useEffect, useState } from "react";
+
+interface Event {
+  name: string;
+  good: string;
+  bad: string;
+  weekend?: boolean;
+}
+
+interface SpecialEvent {
+  date: number;
+  type: string;
+  name: string;
+  description: string;
+}
 
 export default function HuangLi() {
   /*
    * 注意：本程序中的“随机”都是伪随机概念，以当前的天为种子。
    */
-  function random(dayseed, indexseed) {
-    var n = dayseed % 11117;
-    for (var i = 0; i < 100 + indexseed; i++) {
+  function random(dayseed: number, indexseed: number): number {
+    let n = dayseed % 11117;
+    for (let i = 0; i < 100 + indexseed; i++) {
       n = n * n;
-      n = n % 11117; // 11117 是个质数
+      n = n % 11117; // 11117 is a prime number
     }
     return n;
   }
 
-  var today = new Date();
-  var iday =
+  const today = new Date();
+  const iday =
     today.getFullYear() * 10000 +
     (today.getMonth() + 1) * 100 +
     today.getDate();
 
-  var weeks = ["日", "一", "二", "三", "四", "五", "六"];
-  var directions = [
+  const weeks: string[] = ["日", "一", "二", "三", "四", "五", "六"];
+  const directions: string[] = [
     "北方",
     "东北方",
     "东方",
@@ -30,9 +43,10 @@ export default function HuangLi() {
     "南方",
     "西南方",
     "西方",
-    "西北方"
+    "西北方",
   ];
-  var activities = [
+
+  const activities: Event[] = [
     {
       name: "写单元测试",
       good: "写单元测试将减少出错",
@@ -167,16 +181,16 @@ export default function HuangLi() {
     }
   ];
 
-  var specials = [
+  const specials: SpecialEvent[] = [
     {
       date: 20140214,
       type: "bad",
       name: "待在男（女）友身边",
-      description: "脱团火葬场，入团保平安。"
+      description: "脱团火葬场，入团保平安。",
     }
   ];
 
-  var tools = [
+  const tools: string[] = [
     "Eclipse写程序",
     "MSOffice写文档",
     "记事本写程序",
@@ -185,10 +199,10 @@ export default function HuangLi() {
     "MacOS",
     "IE",
     "Android设备",
-    "iOS设备"
+    "iOS设备",
   ];
 
-  var varNames = [
+  const varNames: string[] = [
     "jieguo",
     "huodong",
     "pay",
@@ -203,10 +217,10 @@ export default function HuangLi() {
     "spider",
     "mima",
     "pass",
-    "ui"
+    "ui",
   ];
 
-  var drinks = [
+  const drinks: string[] = [
     "水",
     "茶",
     "红茶",
@@ -221,14 +235,14 @@ export default function HuangLi() {
     "苏打水",
     "运动饮料",
     "酸奶",
-    "酒"
+    "酒",
   ];
 
-  function is_someday() {
-    return today.getMonth() == 5 && today.getDate() == 4;
+  function is_someday(): boolean {
+    return today.getMonth() === 5 && today.getDate() === 4;
   }
 
-  function getTodayString() {
+  function getTodayString(): string {
     return (
       "今天是" +
       today.getFullYear() +
@@ -241,9 +255,9 @@ export default function HuangLi() {
     );
   }
 
-  function star(num) {
-    var result = "";
-    var i = 0;
+  function star(num: number): string {
+    let result = "";
+    let i = 0;
     while (i < num) {
       result += "★";
       i++;
@@ -255,13 +269,11 @@ export default function HuangLi() {
     return result;
   }
 
-  // 去掉一些不合今日的事件
-  function filter(activities) {
-    var result = [];
+  function filter(activities: Event[]): Event[] {
+    let result: Event[] = [];
 
-    // 周末的话，只留下 weekend = true 的事件
     if (isWeekend()) {
-      for (var i = 0; i < activities.length; i++) {
+      for (let i = 0; i < activities.length; i++) {
         if (activities[i].weekend) {
           result.push(activities[i]);
         }
@@ -273,15 +285,15 @@ export default function HuangLi() {
     return activities;
   }
 
-  function isWeekend() {
-    return today.getDay() == 0 || today.getDay() == 6;
+  function isWeekend(): boolean {
+    return today.getDay() === 0 || today.getDay() === 6;
   }
 
   // 从 activities 中随机挑选 size 个
-  function pickRandomActivity(activities, size) {
-    var picked_events = pickRandom(activities, size);
+  function pickRandomActivity(activities: Event[], size: number): Event[] {
+    let picked_events = pickRandom(activities, size);
 
-    for (var i = 0; i < picked_events.length; i++) {
+    for (let i = 0; i < picked_events.length; i++) {
       picked_events[i] = parse(picked_events[i]);
     }
 
@@ -289,15 +301,15 @@ export default function HuangLi() {
   }
 
   // 从数组中随机挑选 size 个
-  function pickRandom(array, size) {
-    var result = [];
+  function pickRandom(array: any[], size: number): any[] {
+    let result: any[] = [];
 
-    for (var i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
       result.push(array[i]);
     }
 
-    for (var j = 0; j < array.length - size; j++) {
-      var index = random(iday, j) % result.length;
+    for (let j = 0; j < array.length - size; j++) {
+      let index = random(iday, j) % result.length;
       result.splice(index, 1);
     }
 
@@ -305,24 +317,24 @@ export default function HuangLi() {
   }
 
   // 解析占位符并替换成随机内容
-  function parse(event) {
-    var result = { name: event.name, good: event.good, bad: event.bad }; // clone
+  function parse(event: Event): Event {
+    let result: Event = { ...event };
 
-    if (result.name.indexOf("%v") != -1) {
+    if (result.name.indexOf("%v") !== -1) {
       result.name = result.name.replace(
         "%v",
         varNames[random(iday, 12) % varNames.length]
       );
     }
 
-    if (result.name.indexOf("%t") != -1) {
+    if (result.name.indexOf("%t") !== -1) {
       result.name = result.name.replace(
         "%t",
         tools[random(iday, 11) % tools.length]
       );
     }
 
-    if (result.name.indexOf("%l") != -1) {
+    if (result.name.indexOf("%l") !== -1) {
       result.name = result.name.replace(
         "%l",
         ((random(iday, 12) % 247) + 30).toString()
@@ -332,21 +344,22 @@ export default function HuangLi() {
     return result;
   }
 
-  var _activities = filter(activities);
-  var numGood = (random(iday, 98) % 3) + 2;
-  var numBad = (random(iday, 87) % 3) + 2;
-  var eventArr = pickRandomActivity(_activities, numGood + numBad);
+  const _activities = filter(activities);
+  const numGood = (random(iday, 98) % 3) + 2;
+  const numBad = (random(iday, 87) % 3) + 2;
+  const eventArr = pickRandomActivity(_activities, numGood + numBad);
 
-  const [goods, setGoods] = useState(eventArr.slice(0, numGood));
-  const [bads, setBads] = useState(eventArr.slice(numGood));
-  const [todaystr, setToday] = useState(getTodayString());
-  const [direction, setDirection] = useState(
+  const [goods, setGoods] = useState<Event[]>(eventArr.slice(0, numGood));
+  const [bads, setBads] = useState<Event[]>(eventArr.slice(numGood));
+  const [todaystr, setToday] = useState<string>(getTodayString());
+  const [direction, setDirection] = useState<string>(
     directions[random(iday, 2) % directions.length]
   );
-  const [drink, setDrink] = useState(pickRandom(drinks, 2).join("，"));
-  const [starscore, setStarScore] = useState(star((random(iday, 6) % 5) + 1));
+  const [drink, setDrink] = useState<string>(pickRandom(drinks, 2).join("，"));
+  const [starscore, setStarScore] = useState<string>(
+    star((random(iday, 6) % 5) + 1)
+  );
 
-  //
   useEffect(() => {
     setToday(getTodayString());
     setGoods(eventArr.slice(0, numGood));

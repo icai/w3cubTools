@@ -76,7 +76,7 @@ export default function UrlEncode() {
               whiteSpace="nowrap"
               onClick={() => {
                 setResult(value);
-                setValue(result);
+                setValue(result || '');
               }}
             >
               Content Exchange

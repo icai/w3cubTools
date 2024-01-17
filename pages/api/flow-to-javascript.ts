@@ -16,6 +16,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       plugins: [transformFlow],
       configFile: false
     };
+    // @ts-ignore
     const { ast: transformedAST } = transformFromAstSync(
       ast,
       req.body,

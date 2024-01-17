@@ -4,6 +4,10 @@ import React, { useState, useEffect } from "react";
 import { Pane } from "evergreen-ui";
 import invert from "lodash/invert";
 
+interface Examples {
+  [key: string]: string;
+}
+
 export default function CronGen() {
   const [crons, setCrons] = useState({ value1: "* * * * *" });
   const onChange = (obj: any) => {
@@ -21,7 +25,7 @@ export default function CronGen() {
       }
     }
   };
-  const examples = {
+  const examples: Examples = {
     "/every-minute": "* * * * *",
     "/every-1-minute": "* * * * *",
     "/every-2-minutes": "*/2 * * * *",
@@ -94,7 +98,7 @@ export default function CronGen() {
     "/every-year": "0 0 1 1 *"
   };
   const examvK = invert(examples);
-  let items = [];
+  let items: JSX.Element[] = [];
   for (const key in examples) {
     items.push(
       <li key={key}>
