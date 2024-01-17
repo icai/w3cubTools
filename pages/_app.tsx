@@ -31,13 +31,13 @@ import { useDarkMode } from "@hooks/useDarkMode";
 
 // https://github.com/vercel/next.js/blob/7b73f1137b21c7b1fb1612c3389caaaadd18da65/test/integration/app-tree/pages/_app.tsx#L11
 
-let reactGa;
-if (typeof window !== "undefined" && !process.env.dev) {
-  reactGa = require("react-ga");
-  reactGa.initialize("UA-145146877-1", {
-    debug: process.env.dev
-  });
-}
+// let reactGa;
+// if (typeof window !== "undefined" && !process.env.dev) {
+//   reactGa = require("react-ga");
+//   reactGa.initialize("G-22GPKX3M7D", {
+//     debug: process.env.dev
+//   });
+// }
 
 const logo = (
   <svg
@@ -58,12 +58,11 @@ export default function App(props: AppProps) {
   const { Component, pageProps } = props;
   const router = useRouter();
   useEffect(() => {
-    reactGa && reactGa.pageview(router.pathname);
+    // reactGa && reactGa.pageview(router.pathname);
 
     const startProgress = () => NProgress.start();
     let timer;
     const stopProgress = () => {
-      // reactGa && reactGa.pageview(pathname);
       clearTimeout(timer);
       NProgress.done();
     };
