@@ -101,7 +101,7 @@ export default function UnzipOnline() {
               {...getRootProps()}
             >
               <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
+              <p>Drag and drop some files here, or click to select files</p>
             </div>
             <aside>
               <h4>Files</h4>

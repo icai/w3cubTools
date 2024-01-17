@@ -23,7 +23,7 @@ class CrontabInput extends Component {
 
   lastCaretPosition = -1;
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.calculateNext();
     this.calculateExplanation();
   }
@@ -184,7 +184,7 @@ class CrontabInput extends Component {
     return locales[this.props.locale];
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       setTimeout(() => {
         this.calculateExplanation(() => {

@@ -14,8 +14,6 @@ import Navigator from "@components/Navigator";
 import NProgress from "nprogress";
 import NextApp, { AppProps, AppContext } from "next/app";
 import Router, { useRouter } from "next/router";
-import { render } from "react-dom";
-import { renderToString } from "react-dom/server";
 import Head from "next/head";
 import {
   activeRouteData,
@@ -23,21 +21,12 @@ import {
   Route,
   routes
 } from "@utils/routes";
-import Scripts from "@components/Scripts";
 import Links from "@components/Links";
 import ShareWidget from "@components/ShareButton/Widget";
 import { Meta } from "@components/Meta";
 import { useDarkMode } from "@hooks/useDarkMode";
 
 // https://github.com/vercel/next.js/blob/7b73f1137b21c7b1fb1612c3389caaaadd18da65/test/integration/app-tree/pages/_app.tsx#L11
-
-// let reactGa;
-// if (typeof window !== "undefined" && !process.env.dev) {
-//   reactGa = require("react-ga");
-//   reactGa.initialize("G-22GPKX3M7D", {
-//     debug: process.env.dev
-//   });
-// }
 
 const logo = (
   <svg

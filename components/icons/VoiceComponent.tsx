@@ -1,4 +1,4 @@
-export default props => (
+const Voice = (props) => (
   <svg
     className="icon"
     viewBox="0 0 1024 1024"
@@ -15,3 +15,5 @@ export default props => (
     />
   </svg>
 );
+
+export default Voice;

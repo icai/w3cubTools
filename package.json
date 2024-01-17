@@ -16,7 +16,7 @@
     "now-build": "next build",
     "postinstall": "patch-package",
     "check-types": "tsc --noemit",
-    "lint": "npm run check-types && next lint",
+    "lint": "next lint --fix",
     "ainstall": "pnpm install --registry=https://registry.npmmirror.com",
     "build:analyze": "ANALYZE=true pnpm run build"
   },

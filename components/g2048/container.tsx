@@ -27,7 +27,7 @@ export default class Container extends Component<any, any> {
     this.restart = this.restart.bind(this);
     this.keepPlayingfn = this.keepPlayingfn.bind(this);
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     typeof window !== "undefined" && this.setup();
   }
   componentDidMount() {
