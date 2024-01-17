@@ -58,7 +58,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
   editorSettingsElement,
   settings,
   editorDefaultValue,
-  splitEditorDefaultValue,
+  splitEditorDefaultValue = '',
   resultSettingsElement,
   layoutHeight
 }) {
