@@ -110,7 +110,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
         setResult(prettyResult);
         setMessage("");
       } catch (e) {
-        // console.error(e);
+        console.error(e);
         setMessage(e.message);
       }
       toggleUpdateSpinner(false);

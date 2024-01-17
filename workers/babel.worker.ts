@@ -69,7 +69,7 @@ function deobfuscateCode(value, id) {
 _self.onmessage = ({ data: { id, payload } }: { data: Data }) => {
   const { value, type, settings } = payload;
 
-  importScripts("https://unpkg.com/@babel/standalone@7.5.4");
+  importScripts("https://unpkg.com/@babel/standalone@7.23.8");
 
   try {
     if (type === BabelTransforms.JSON_TO_PROPTYPES) {

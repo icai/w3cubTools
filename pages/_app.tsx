@@ -254,25 +254,25 @@ export default function App(props: AppProps) {
     </>
   );
 }
-App.getInitialProps = async appContext => {
-  const { Component, ctx } = appContext;
-  const appProps = await NextApp.getInitialProps(appContext);
+// App.getInitialProps = async appContext => {
+//   const { Component, ctx } = appContext;
+//   const appProps = await NextApp.getInitialProps(appContext);
 
-  let pageProps = {};
+//   let pageProps = {};
 
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
-  let exts = {} as any;
-  if (Component.title) {
-    exts.title = Component.title;
-  }
-  if (Component.description) {
-    exts.description = Component.description;
-  }
+//   if (Component.getInitialProps) {
+//     pageProps = await Component.getInitialProps(ctx);
+//   }
+//   let exts = {} as any;
+//   if (Component.title) {
+//     exts.title = Component.title;
+//   }
+//   if (Component.description) {
+//     exts.description = Component.description;
+//   }
 
-  return { ...appProps, ...pageProps, ...exts };
-};
+//   return { ...appProps, ...pageProps, ...exts };
+// };
 
 // App.getInitialProps = async ({ Component, AppTree, ctx }: AppContext) => {
 //   let pageProps = {}

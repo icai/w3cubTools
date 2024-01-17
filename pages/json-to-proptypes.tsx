@@ -6,8 +6,8 @@ import { BabelTransforms } from "@constants/babelTransforms";
 
 export default function JsonToProptypes() {
   const transformer = useCallback<Transformer>(async ({ value }) => {
-    const Worker = require("@workers/babel.worker");
-    return getWorker(Worker).send({
+    const Worker = await import("@workers/babel.worker");
+    return getWorker(Worker.default).send({
       value,
       type: BabelTransforms.JSON_TO_PROPTYPES
     });
