@@ -1,14 +1,14 @@
-import React from "react";
+import React, { HTMLAttributes, ReactNode } from "react";
 import classNames from "classnames";
 
 /**
  * 行组件
  *
  * @export
- * @param {React.HTMLAttributes<HTMLDivElement>} props
+ * @param {HTMLAttributes<HTMLDivElement>} props
  * @returns
  */
-export default function Row(props) {
+export default function Row(props: HTMLAttributes<HTMLDivElement> & { children?: ReactNode }) {
   let { children, className, ...attrs } = props;
   className = classNames(className, "row");
   return (
