@@ -19,7 +19,6 @@ import Links from "@components/Links";
 import ShareWidget from "@components/ShareButton/Widget";
 import { Meta } from "@components/Meta";
 import { useDarkMode } from "@hooks/useDarkMode";
-import { Analytics } from '@vercel/analytics/react';
 
 // https://github.com/vercel/next.js/blob/7b73f1137b21c7b1fb1612c3389caaaadd18da65/test/integration/app-tree/pages/_app.tsx#L11
 
@@ -171,7 +170,6 @@ export default function App(props: AppProps) {
       <Pane className="mainlayout">
         <Component {...pageProps} />
       </Pane>
-      <Analytics />
       {router.pathname != "/" && (
         <div className="sitemap hidden-print">
           {categorizedRoutes.map((route: any, i) => {

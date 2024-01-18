@@ -61,7 +61,6 @@
     "@svgr/core": "^5.5.0",
     "@svgr/plugin-jsx": "^5.5.0",
     "@types/jsonld": "^1.5.5",
-    "@vercel/analytics": "^1.1.1",
     "@walmartlabs/json-to-simple-graphql-schema": "^2.0.4",
     "autoprefixer": "^10.2.6",
     "autoprefixer9": "npm:autoprefixer@9.x.x",

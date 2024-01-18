@@ -112,9 +112,6 @@ dependencies:
   '@types/jsonld':
     specifier: ^1.5.5
     version: 1.5.13
-  '@vercel/analytics':
-    specifier: ^1.1.1
-    version: 1.1.1
   '@walmartlabs/json-to-simple-graphql-schema':
     specifier: ^2.0.4
     version: 2.0.6
@@ -2658,11 +2655,6 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vercel/analytics@1.1.1:
-    resolution: {integrity: sha512-+NqgNmSabg3IFfxYhrWCfB/H+RCUOCR5ExRudNG2+pcRehq628DJB5e1u1xqwpLtn4pAYii4D98w7kofORAGQA==}
-    dependencies:
-      server-only: 0.0.1
-    dev: false
 
   /@walmartlabs/json-to-simple-graphql-schema@2.0.6:
     resolution: {integrity: sha512-M8EVmkLgQ4zff7ALWClz0z8BEqL+5x5UECDd4GdBZ1v/FJXT8rlWIxnln5wXvoZ6ddZdDXgodaBYX+Li995Z3A==}
