@@ -7,27 +7,15 @@ import React, { useState, useCallback, useEffect } from "react";
 import VoiceComponent from "@components/icons/VoiceComponent";
 
 export default function ChineseToPinyin() {
-  const iframeOne = () => {
-    let frame = document.createElement("iframe");
-    frame.src = "https://fanyi.baidu.com";
-    frame.style.display = "none";
-    document.body.appendChild(frame);
-    frame.onload = () => {
-      document.body.removeChild(frame);
-    };
-  };
   let audioRef = React.createRef() as any;
   const pinyinVoice = useCallback((value: string) => {
-    let t = `https://fanyi.baidu.com/gettts?lan=zh&text=${encodeURI(
+    let t = `https://fanyi.w3cub.com/?text=${encodeURI(
       value
-    )}&spd=5&source=web`;
+    )}`;
     var n = audioRef;
     n.src = t;
     n.loop = false;
     n.play();
-  }, []);
-  useEffect(() => {
-    iframeOne();
   }, []);
   return (
     <>
