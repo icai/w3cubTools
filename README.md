@@ -22,7 +22,7 @@
 Remember that the tools and features on the website can change over time, so it's a good idea to explore the site directly to see what is currently available. Always use tools and resources from reputable sources and be cautious when entering sensitive information online.
 
 
-fork form [transform](https://github.com/ritz078/transform).
+Fork from [transform](https://github.com/ritz078/transform).
 
 ## Features
 
