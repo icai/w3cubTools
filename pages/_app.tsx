@@ -19,6 +19,7 @@ import Links from "@components/Links";
 import ShareWidget from "@components/ShareButton/Widget";
 import { Meta } from "@components/Meta";
 import { useDarkMode } from "@hooks/useDarkMode";
+import { Analytics } from '@vercel/analytics/react';
 
 // https://github.com/vercel/next.js/blob/7b73f1137b21c7b1fb1612c3389caaaadd18da65/test/integration/app-tree/pages/_app.tsx#L11
 
@@ -170,6 +171,7 @@ export default function App(props: AppProps) {
       <Pane className="mainlayout">
         <Component {...pageProps} />
       </Pane>
+      <Analytics />
       {router.pathname != "/" && (
         <div className="sitemap hidden-print">
           {categorizedRoutes.map((route: any, i) => {
@@ -237,45 +239,4 @@ export default function App(props: AppProps) {
     </>
   );
 }
-// App.getInitialProps = async appContext => {
-//   const { Component, ctx } = appContext;
-//   const appProps = await NextApp.getInitialProps(appContext);
 
-//   let pageProps = {};
-
-//   if (Component.getInitialProps) {
-//     pageProps = await Component.getInitialProps(ctx);
-//   }
-//   let exts = {} as any;
-//   if (Component.title) {
-//     exts.title = Component.title;
-//   }
-//   if (Component.description) {
-//     exts.description = Component.description;
-//   }
-
-//   return { ...appProps, ...pageProps, ...exts };
-// };
-
-// App.getInitialProps = async ({ Component, AppTree, ctx }: AppContext) => {
-//   let pageProps = {}
-
-//   if (Component.getInitialProps) {
-//     pageProps = await Component.getInitialProps(ctx)
-//   }
-
-//   let html: string
-//   const toRender = <AppTree pageProps={pageProps} another="prop" />
-
-//   if (typeof window !== 'undefined') {
-//     const el = document.createElement('div')
-//     document.querySelector('body')?.appendChild(el)
-//     render(toRender, el)
-//     html = el.innerHTML
-//     el.remove()
-//   } else {
-//     html = renderToString(toRender)
-//   }
-
-//   return { pageProps, html }
-// }

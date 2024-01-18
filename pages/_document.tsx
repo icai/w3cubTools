@@ -2,7 +2,6 @@ import React from "react";
 import Document, { Head, Main, NextScript, Html } from "next/document";
 import { extractStyles } from "evergreen-ui";
 import { Ga4 } from "@/components/analytics";
-import { Analytics } from '@vercel/analytics/react';
 import {
   StyleRegistry,
   useStyleRegistry,
@@ -58,7 +57,6 @@ export default class MyDocument extends Document<DocumentProps> {
         <body>
           <Main />
           {hydrationScript}
-          <Analytics />
           <NextScript />
         </body>
       </Html>
