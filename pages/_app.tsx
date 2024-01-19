@@ -19,6 +19,7 @@ import Links from "@components/Links";
 import ShareWidget from "@components/ShareButton/Widget";
 import { Meta } from "@components/Meta";
 import { useDarkMode } from "@hooks/useDarkMode";
+import Sitemap from "@/components/Sitemap";
 
 // https://github.com/vercel/next.js/blob/7b73f1137b21c7b1fb1612c3389caaaadd18da65/test/integration/app-tree/pages/_app.tsx#L11
 
@@ -170,35 +171,7 @@ export default function App(props: AppProps) {
       <Pane className="mainlayout">
         <Component {...pageProps} />
       </Pane>
-      {router.pathname != "/" && (
-        <div className="sitemap hidden-print">
-          {categorizedRoutes.map((route: any, i) => {
-            return (
-              <Fragment key={i + 1}>
-                <ul className="clearfix ">
-                  <li>
-                    <span>{route.category}:</span>
-                  </li>
-                  {route.content.map((a: any) => {
-                    return (
-                      <li key={a.path}>
-                        <a
-                          href={a.path}
-                          className="item"
-                          key={route.category + a.label}
-                        >
-                          {a.label}{" "}
-                          {a.beta && <span className="beta">Beta</span>}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </Fragment>
-            );
-          })}
-        </div>
-      )}
+      {router.pathname != "/" && (<Sitemap></Sitemap>)}
       <footer className="footer hidden-print">
         <div className="footer-logo">
           <svg width="149" height="19">

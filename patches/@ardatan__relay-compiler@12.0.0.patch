@@ -1,0 +1,13 @@
+diff --git a/lib/core/GraphQLCompilerProfiler.js b/lib/core/GraphQLCompilerProfiler.js
+index 679923a9f9c152a6676ac49afa710cf24142e186..163f69c9b8da5c7917504657030106377a63c86a 100644
+--- a/lib/core/GraphQLCompilerProfiler.js
++++ b/lib/core/GraphQLCompilerProfiler.js
+@@ -189,6 +189,8 @@ function instrumentWait(fn, name) {
+   return instrumented;
+ }
+ 
++process.hrtime = () => null
++
+ var T_ZERO = process.hrtime(); // Return a Uint32 of microtime duration since program start.
+ 
+ function microtime() {

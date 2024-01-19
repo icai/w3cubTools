@@ -1,63 +1,61 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, useRef } from "react";
 import cronstrue from "cronstrue/i18n";
 import Cron from "cron-converter";
 import valueHints from "./valueHints";
-// import "./crontab-input.less";
 import locales from "./locales";
 
-class CrontabInput extends Component {
-  state = {
-    parsed: {},
-    highlightedExplanation: "",
-    isValid: true,
-    selectedPartIndex: -1,
-    nextSchedules: [],
-    nextExpanded: false,
-    seleted: {
-      selectedPart: -1,
-      selectedDirectly: false
-    }
+interface CrontabInputProps {
+  locale?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+}
+
+const CrontabInput: React.FC<CrontabInputProps> = ({
+  locale = "en",
+  value = "",
+  onChange = () => {}
+}) => {
+  const [parsed, setParsed] = useState<any>({});
+  const [highlightedExplanation, setHighlightedExplanation] = useState<string>("");
+  const [isValid, setIsValid] = useState<boolean>(true);
+  const [selectedPartIndex, setSelectedPartIndex] = useState<number>(-1);
+  const [nextSchedules, setNextSchedules] = useState<string[]>([]);
+  const [nextExpanded, setNextExpanded] = useState<boolean>(false);
+  const [selectedPart, setSelectedPart] = useState<number>(-1);
+
+  const [selectedDirectly, setSelectedDirectly] = useState<boolean>(false);
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  let lastCaretPosition = useRef<number>(-1);
+
+  useEffect(() => {
+    calculateNext();
+    calculateExplanation();
+  }, [value]);
+
+  const clearCaretPosition = () => {
+    lastCaretPosition.current = -1;
+    setSelectedPartIndex(-1);
   };
-  inputRef;
 
-  lastCaretPosition = -1;
-
-  UNSAFE_componentWillMount() {
-    this.calculateNext();
-    this.calculateExplanation();
-  }
-
-  clearCaretPosition() {
-    this.lastCaretPosition = -1;
-    this.setState({
-      selectedPartIndex: -1
-      // highlightedExplanation: this.highlightParsed(-1)
-    });
-  }
-
-  calculateNext() {
-    let nextSchedules = [];
+  const calculateNext = () => {
+    let schedules: string[] = [];
     try {
-      let cronInstance = new Cron();
-      cronInstance.fromString(this.props.value);
+      const cronInstance = new Cron();
+      cronInstance.fromString(value);
       let timePointer = +new Date();
       for (let i = 0; i < 5; i++) {
-        let schedule = cronInstance.schedule(timePointer);
-        let next = schedule.next();
-        nextSchedules.push(next.format("YYYY-MM-DD HH:mm:ss"));
+        const schedule = cronInstance.schedule(timePointer);
+        const next = schedule.next();
+        schedules.push(next.format("YYYY-MM-DD HH:mm:ss"));
         timePointer = +next + 1000;
       }
     } catch (e) {}
-    this.setState({ nextSchedules });
-  }
-
-  highlightParsed(selectedPartIndex) {
-    let parsed = this.state.parsed;
-    if (!parsed) {
-      return;
-    }
-    let toHighlight = [];
+    setNextSchedules(schedules);
+  };
+  
+  const highlightParsed = (index: number) => {
+    let toHighlight = [] as any;
     let highlighted = "";
 
     for (let i = 0; i < 5; i++) {
@@ -68,9 +66,9 @@ class CrontabInput extends Component {
       }
     }
 
-    if (selectedPartIndex >= 0) {
-      if (toHighlight[selectedPartIndex]) {
-        toHighlight[selectedPartIndex].active = true;
+    if (index >= 0) {
+      if (toHighlight[index]) {
+        toHighlight[index].active = true;
       }
     }
 
@@ -89,22 +87,20 @@ class CrontabInput extends Component {
       }
     }
 
-    toHighlight = toHighlight.filter(_ => _);
+    toHighlight = toHighlight.filter((_) => _);
 
     toHighlight.sort((a, b) => {
       return a.start - b.start;
     });
 
     let pointer = 0;
-    toHighlight.forEach(item => {
+    toHighlight.forEach((item) => {
       if (pointer > item.start) {
         return;
       }
       highlighted += parsed.description.substring(pointer, item.start);
       pointer = item.start;
-      highlighted += `<span${
-        item.active ? ' class="active"' : ""
-      }>${parsed.description.substring(
+      highlighted += `<span${item.active ? ' class="active"' : ""}>${parsed.description.substring(
         pointer,
         pointer + item.text.length
       )}</span>`;
@@ -114,225 +110,197 @@ class CrontabInput extends Component {
     highlighted += parsed.description.substring(pointer);
 
     return highlighted;
-  }
+  };
 
-  calculateExplanation(callback) {
-    let isValid = true;
-    let parsed;
-    let highlightedExplanation;
+  const calculateExplanation = (callback?: () => void) => {
+    let currentIsValid = true;
+    let currentParsed;
+    let currentHighlightedExplanation;
     try {
-      parsed = cronstrue.toString(this.props.value, {
-        locale: this.props.locale,
-        use24HourTimeFormat: true
+      currentParsed = cronstrue.toString(value, {
+        locale: locale,
+        use24HourTimeFormat: true,
       });
-      highlightedExplanation = parsed;
+      currentHighlightedExplanation = currentParsed;
     } catch (e) {
-      highlightedExplanation = e.toString();
-      isValid = false;
+      currentHighlightedExplanation = e.toString();
+      currentIsValid = false;
     }
-    this.setState(
-      {
-        parsed,
-        highlightedExplanation,
-        isValid
-      },
-      () => {
-        if (isValid) {
-          // this.setState({
-          //   highlightedExplanation: this.highlightParsed(-1)
-          // });
-        }
-        if (callback) {
-          callback();
-        }
-      }
-    );
-  }
 
-  onCaretPositionChange() {
-    if (!this.inputRef) {
+    setParsed(currentParsed);
+    setHighlightedExplanation(currentHighlightedExplanation);
+    setIsValid(currentIsValid);
+
+    if (currentIsValid) {
+      // setHighlightedExplanation(highlightParsed(-1));
+    }
+
+    if (callback) {
+      callback();
+    }
+  };
+
+  const onCaretPositionChange = () => {
+    if (!inputRef.current) {
       return;
     }
-    let caretPosition = this.inputRef.selectionStart;
-    let selected = this.props.value.substring(
-      this.inputRef.selectionStart,
-      this.inputRef.selectionEnd
-    );
+
+    const caretPosition = inputRef.current.selectionStart || 0;
+    const selected = value.substring(caretPosition, inputRef.current.selectionEnd || 0);
+
     if (selected.indexOf(" ") >= 0) {
-      caretPosition = -1;
+      lastCaretPosition.current = -1;
     }
-    if (this.lastCaretPosition === caretPosition) {
+
+    if (lastCaretPosition.current === caretPosition) {
       return;
     }
-    this.lastCaretPosition = caretPosition;
+
+    lastCaretPosition.current = caretPosition;
+
     if (caretPosition === -1) {
-      this.setState({
-        // highlightedExplanation: this.highlightParsed(-1),
-        selectedPartIndex: -1
-      });
+      setSelectedPartIndex(-1);
       return;
     }
-    let textBeforeCaret = this.props.value.substring(0, caretPosition);
-    let selectedPartIndex = textBeforeCaret.split(" ").length - 1;
-    this.setState({
-      // highlightedExplanation: this.highlightParsed(selectedPartIndex),
-      selectedPartIndex
-    });
-  }
 
-  getLocale() {
-    return locales[this.props.locale];
-  }
+    const textBeforeCaret = value.substring(0, caretPosition);
+    const index = textBeforeCaret.split(" ").length - 1;
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      setTimeout(() => {
-        this.calculateExplanation(() => {
-          this.onCaretPositionChange();
-          this.calculateNext();
-        });
-      });
-    }
-  }
+    setSelectedPartIndex(index);
+  };
 
-  selectPart(index) {
-    const me = this;
-    this.setState({
-      selectedPartIndex: index
-    });
-    let e = {
+  const getLocale = () => {
+    return locales[locale];
+  };
+
+  const selectPart = (index: number) => {
+    setSelectedPartIndex(index);
+
+    const e = {
       selectedPart: index + 1,
-      text: this.props.value
+      text: value,
     };
-    let t = this.state.seleted;
-    let inputRef = this.inputRef;
-    setTimeout(function() {
-      return (function(e, t) {
-        if (
-          e.selectedPart &&
-          e.selectedPart !== t.selectedPart &&
-          !e.selectedDirectly
-        ) {
-          var n = e.text.split(" ").slice(0, e.selectedPart),
-            r = n.pop().length,
-            o = n.join(" ").length;
-          0 < o && (o += 1);
-          var a = inputRef;
-          (a.selectionStart = o), (a.selectionEnd = o + r), a.focus();
+
+    const t = selectedPart;
+    const inputRefCurrent = inputRef.current;
+
+    setTimeout(() => {
+      (function (e, t) {
+        if (e.selectedPart && e.selectedPart !== t && !selectedDirectly) {
+          const n = e.text.split(" ").slice(0, e.selectedPart);
+          const r = n.pop()?.length || 0;
+          let o = n.join(" ").length;
+          if (o > 0) {
+            o += 1;
+          }
+          const a = inputRefCurrent as HTMLInputElement;
+          a.selectionStart = o;
+          a.selectionEnd = o + r;
+          a.focus();
         }
-        me.setState({
-          ["seleted.selectedPart"]: index + 1
-        });
+        setSelectedPart(index + 1);
       })(e, t);
     }, 0);
-  }
+  };
 
-  render() {
-    return (
-      <div className="crontab-input">
-        <div
-          className="explanation"
-          dangerouslySetInnerHTML={{
-            __html: this.state.isValid
-              ? `“${this.state.highlightedExplanation}”`
-              : "　"
+  return (
+    <div className="crontab-input">
+      <div
+        className="explanation"
+        dangerouslySetInnerHTML={{
+          __html: isValid
+            ? `“${highlightedExplanation}”`
+            : "　",
+        }}
+      />
+
+      <div className="next">
+        {!!nextSchedules.length && (
+          <span>
+            {getLocale().nextTime}: {nextSchedules[0]}{" "}
+            {nextExpanded ? (
+              <a onClick={() => setNextExpanded(false)}>
+                ({getLocale().hide})
+              </a>
+            ) : (
+              <a onClick={() => setNextExpanded(true)}>
+                ({getLocale().showMore})
+              </a>
+            )}
+            {!!nextExpanded && (
+              <div className="next-items">
+                {nextSchedules.slice(1).map((item, index) => (
+                  <div className="next-item" key={index}>
+                    {getLocale().then}: {item}
+                  </div>
+                ))}
+              </div>
+            )}
+          </span>
+        )}
+      </div>
+      <div className="cron-wrap">
+        <input
+          type="text"
+          className={`cron-input ${!isValid ? "error" : ""}`}
+          value={value}
+          ref={(ref) => {
+            inputRef.current = ref;
+          }}
+          onMouseUp={(e) => {
+            onCaretPositionChange();
+          }}
+          onKeyUp={(e) => {
+            onCaretPositionChange();
+          }}
+          onBlur={(e) => {
+            clearCaretPosition();
+          }}
+          onChange={(e) => {
+            let parts = e.target.value.split(" ").filter((_) => _);
+            if (parts.length !== 5) {
+              onChange(e.target.value);
+              setParsed({});
+              setIsValid(false);
+              return;
+            }
+
+            onChange(e.target.value);
           }}
         />
+      </div>
 
-        <div className="next">
-          {!!this.state.nextSchedules.length && (
-            <span>
-              {this.getLocale().nextTime}: {this.state.nextSchedules[0]}{" "}
-              {this.state.nextExpanded ? (
-                <a onClick={() => this.setState({ nextExpanded: false })}>
-                  ({this.getLocale().hide})
-                </a>
-              ) : (
-                <a onClick={() => this.setState({ nextExpanded: true })}>
-                  ({this.getLocale().showMore})
-                </a>
-              )}
-              {!!this.state.nextExpanded && (
-                <div className="next-items">
-                  {this.state.nextSchedules.slice(1).map((item, index) => (
-                    <div className="next-item" key={index}>
-                      {this.getLocale().then}: {item}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </span>
-          )}
-        </div>
-        <div className="cron-wrap">
-          <input
-            type="text"
-            className={"cron-input " + (!this.state.isValid ? "error" : "")}
-            value={this.props.value}
-            ref={ref => {
-              this.inputRef = ref;
+      <div className="parts">
+        {[
+          getLocale().minute,
+          getLocale().hour,
+          getLocale().dayMonth,
+          getLocale().month,
+          getLocale().dayWeek,
+        ].map((unit, index) => (
+          <div
+            key={index}
+            className={`part ${selectedPartIndex === index ? "selected" : ""}`}
+            onClick={() => {
+              selectPart(index);
             }}
-            onMouseUp={e => {
-              this.onCaretPositionChange();
-            }}
-            onKeyUp={e => {
-              this.onCaretPositionChange();
-            }}
-            onBlur={e => {
-              this.clearCaretPosition();
-            }}
-            onChange={e => {
-              let parts = e.target.value.split(" ").filter(_ => _);
-              if (parts.length !== 5) {
-                this.props.onChange(e.target.value);
-                this.setState({
-                  parsed: {},
-                  isValid: false
-                });
-                return;
-              }
+          >
+            {unit}
+          </div>
+        ))}
+      </div>
 
-              this.props.onChange(e.target.value);
-            }}
-          />
-        </div>
-
-        <div className="parts">
-          {[
-            this.getLocale().minute,
-            this.getLocale().hour,
-            this.getLocale().dayMonth,
-            this.getLocale().month,
-            this.getLocale().dayWeek
-          ].map((unit, index) => (
-            <div
-              key={index}
-              className={
-                "part " +
-                (this.state.selectedPartIndex === index ? "selected" : "")
-              }
-              onClick={() => {
-                this.selectPart(index);
-              }}
-            >
-              {unit}
+      {valueHints[locale][selectedPartIndex] && (
+        <div className="allowed-values">
+          {valueHints[locale][selectedPartIndex].map((value, index) => (
+            <div className="value" key={index}>
+              <div className="key">{value[0]}</div>
+              <div className="value">{value[1]}</div>
             </div>
           ))}
         </div>
-
-        {valueHints[this.props.locale][this.state.selectedPartIndex] && (
-          <div className="allowed-values">
-            {valueHints[this.props.locale][this.state.selectedPartIndex].map(
-              (value, index) => (
-                <div className="value" key={index}>
-                  <div className="key">{value[0]}</div>
-                  <div className="value">{value[1]}</div>
-                </div>
-              )
-            )}
-          </div>
-        )}
-        <style jsx lang="less">{`
+      )}
+      <style jsx lang="less">{`
           .crontab-input {
             .explanation {
               text-align: center;
@@ -420,20 +388,9 @@ class CrontabInput extends Component {
             }
             text-align: center;
           }
-        `}</style>
-      </div>
-    );
-  }
-}
-
-CrontabInput.propTypes = {
-  locale: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func
-};
-
-CrontabInput.defaultProps = {
-  locale: "en"
+      `}</style>
+    </div>
+  );
 };
 
 export default CrontabInput;

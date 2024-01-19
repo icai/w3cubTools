@@ -14,7 +14,6 @@
     "deploy": "node scripts/gh-pages.js",
     "sitemap": "node scripts/sitemap.js",
     "now-build": "next build",
-    "postinstall": "patch-package",
     "check-types": "tsc --noemit",
     "lint": "next lint --fix",
     "ainstall": "pnpm install --registry=https://registry.npmmirror.com",
@@ -144,7 +143,6 @@
     "husky": "^4.2.5",
     "imagemin-lint-staged": "^0.5.1",
     "lint-staged": "^15.2.0",
-    "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
     "typescript": "5.3.3",
     "url-loader": "^4.1.1",
@@ -154,6 +152,15 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
+    }
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "json_typegen_wasm@0.7.0": "patches/json_typegen_wasm@0.7.0.patch",
+      "@khanacademy/flow-to-ts@0.5.2": "patches/@khanacademy__flow-to-ts@0.5.2.patch",
+      "json-schema-to-typescript@10.1.4": "patches/json-schema-to-typescript@10.1.4.patch",
+      "htmltojsx@0.3.0": "patches/htmltojsx@0.3.0.patch",
+      "@ardatan/relay-compiler@12.0.0": "patches/@ardatan__relay-compiler@12.0.0.patch"
     }
   }
 }

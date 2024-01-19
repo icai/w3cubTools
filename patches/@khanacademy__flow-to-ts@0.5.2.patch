@@ -1,0 +1,4 @@
+diff --git a/dist/convert.bundle.js b/dist/convert.js
+similarity index 100%
+rename from dist/convert.bundle.js
+rename to dist/convert.js

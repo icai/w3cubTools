@@ -1,7 +1,7 @@
-diff --git a/node_modules/htmltojsx/src/htmltojsx.js b/node_modules/htmltojsx/src/htmltojsx.js
-index afe4c85..960e450 100644
---- a/node_modules/htmltojsx/src/htmltojsx.js
-+++ b/node_modules/htmltojsx/src/htmltojsx.js
+diff --git a/src/htmltojsx.js b/src/htmltojsx.js
+index afe4c852c7d8f1bb953124ce97abab7a953b41a9..960e45048a3a58b262775e52a366729503ebe61c 100644
+--- a/src/htmltojsx.js
++++ b/src/htmltojsx.js
 @@ -326,19 +326,9 @@ HTMLtoJSX.prototype = {
    convert: function(html) {
      this.reset();
