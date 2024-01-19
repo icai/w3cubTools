@@ -247,13 +247,13 @@ const CrontabInput: React.FC<CrontabInputProps> = ({
           ref={(ref) => {
             inputRef.current = ref;
           }}
-          onMouseUp={(e) => {
+          onMouseUp={() => {
             onCaretPositionChange();
           }}
-          onKeyUp={(e) => {
+          onKeyUp={() => {
             onCaretPositionChange();
           }}
-          onBlur={(e) => {
+          onBlur={() => {
             clearCaretPosition();
           }}
           onChange={(e) => {
