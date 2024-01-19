@@ -129,6 +129,9 @@ dependencies:
   '@types/jsonld':
     specifier: ^1.5.5
     version: 1.5.13
+  '@w3cub/json-to-go':
+    specifier: ^1.0.0
+    version: registry.npmjs.org/@w3cub/json-to-go@1.0.0
   '@walmartlabs/json-to-simple-graphql-schema':
     specifier: ^2.0.4
     version: 2.0.6
@@ -204,9 +207,6 @@ dependencies:
   json-schema-to-zod:
     specifier: ^0.1.2
     version: 0.1.5
-  json-to-go:
-    specifier: gist:0d0b8324131c80eeb7e1df20001be32f
-    version: gist.github.com/0d0b8324131c80eeb7e1df20001be32f/3c19dec6061daff466b13783fea94c49e4f62e86
   json-to-zod:
     specifier: ^1.1.2
     version: 1.1.2
@@ -11266,8 +11266,8 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
 
-  gist.github.com/0d0b8324131c80eeb7e1df20001be32f/3c19dec6061daff466b13783fea94c49e4f62e86:
-    resolution: {commit: 3c19dec6061daff466b13783fea94c49e4f62e86, repo: git+ssh://git@gist.github.com/0d0b8324131c80eeb7e1df20001be32f.git, type: git}
-    name: json-to-go
+  registry.npmjs.org/@w3cub/json-to-go@1.0.0:
+    resolution: {integrity: sha512-xdV54ynIKa78qQS1blBpNUkbkVh0tA26/KjCuuAzDZwlKncAWJAIHdW5UyNFZRP2Esuc+4NqeQt/VSYbwdc6jw==, registry: https://registry.npmmirror.com/, tarball: https://registry.npmjs.org/@w3cub/json-to-go/-/json-to-go-1.0.0.tgz}
+    name: '@w3cub/json-to-go'
     version: 1.0.0
     dev: false
