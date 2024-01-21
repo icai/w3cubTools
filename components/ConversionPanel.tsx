@@ -127,7 +127,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function 
     ) {
       layoutHeight = "700px";
     } else {
-      layoutHeight = "500px";
+      layoutHeight = "700px";
     }
   }
   return (
