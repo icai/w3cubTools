@@ -11,7 +11,7 @@ patchedDependencies:
     hash: 6hdxkq4vbgy4gte55ygcd3zxk4
     path: patches/htmltojsx@0.3.0.patch
   json-schema-to-typescript@10.1.4:
-    hash: nkrttnr6uol7yvuimutqzb3ifa
+    hash: cckwp67b5h46feqbbd526nuvmu
     path: patches/json-schema-to-typescript@10.1.4.patch
   json_typegen_wasm@0.7.0:
     hash: 4t2bwpfiukupapwsubajbvcfby
@@ -203,7 +203,7 @@ dependencies:
     version: 4.4.0
   json-schema-to-typescript:
     specifier: 10.1.4
-    version: 10.1.4(patch_hash=nkrttnr6uol7yvuimutqzb3ifa)
+    version: 10.1.4(patch_hash=cckwp67b5h46feqbbd526nuvmu)
   json-schema-to-zod:
     specifier: ^0.1.2
     version: 0.1.5
@@ -6957,7 +6957,7 @@ packages:
       '@apidevtools/json-schema-ref-parser': 9.0.9
     dev: false
 
-  /json-schema-to-typescript@10.1.4(patch_hash=nkrttnr6uol7yvuimutqzb3ifa):
+  /json-schema-to-typescript@10.1.4(patch_hash=cckwp67b5h46feqbbd526nuvmu):
     resolution: {integrity: sha512-HWm23Z6Fnj3rnm4FKZh3sMz70hNoA+AfqVuV+ZcwFIhq6v76YVUMZSLlonrw7GI5yIoiuuJjB5rqakIYRCLlsg==}
     engines: {node: '>=10.0.0'}
     hasBin: true

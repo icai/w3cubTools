@@ -1,3 +1,22 @@
+diff --git a/dist/src/formatter.js b/dist/src/formatter.js
+index a9362fa6b28b7481f060ac746ff2481cd55e8aca..b634352a52659b0f1ec69d2e3a2cf6c971eb8c20 100644
+--- a/dist/src/formatter.js
++++ b/dist/src/formatter.js
+@@ -12,12 +12,11 @@ var __assign = (this && this.__assign) || function () {
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.format = void 0;
+-var prettier_1 = require("prettier");
+ function format(code, options) {
+     if (!options.format) {
+         return code;
+     }
+-    return prettier_1.format(code, __assign({ parser: 'typescript' }, options.style));
++    return code
+ }
+ exports.format = format;
+ //# sourceMappingURL=formatter.js.map
+\ No newline at end of file
 diff --git a/dist/src/index.js b/dist/src/index.js
 index f880f172f805d06109f57a0b7b1e485c41b6c0fb..d1815e270a1594571cbdf701c11a2830e45b02de 100644
 --- a/dist/src/index.js
