@@ -13,7 +13,7 @@ import {
   FileField
 } from "@components/JsonschemaCustomUI";
 import Mdloader from "@components/Mdloader";
-import "@styles/meta.scss";
+
 
 const rootSchema: RJSFSchema = {
   schema: {

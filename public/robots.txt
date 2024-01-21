@@ -1,4 +1,9 @@
+# *
 User-agent: *
-Disallow: 
+Allow: /
 
+# Host
+Host: https://tools.w3cub.com
+
+# Sitemaps
 Sitemap: https://tools.w3cub.com/sitemap.xml

@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import "../style/transformSetting.css";
 
 interface TransformSettingProps {
   label?: string;

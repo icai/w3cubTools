@@ -2,7 +2,6 @@ import React, { forwardRef, useRef, useState, ChangeEvent, DragEvent, useImperat
 import classNames from "classnames";
 import { checkImageType } from "../tools/imageCommon";
 import { toaster } from "evergreen-ui";
-import "../style/imagePreviewUpload.css";
 
 interface ImagePreviewUploadProps {
   className?: string;

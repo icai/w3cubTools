@@ -11,7 +11,6 @@ import {
 } from "./tools/imageToText";
 import { getImageDatas } from "./tools/imageParser";
 import { DEFAULT_AVAILABLE_TEXTS } from "./tools/constant";
-import "./style/index.scss";
 
 const App: React.FC = () => {
   const [transformWidth, setTransformWidth] = useState<string>("");

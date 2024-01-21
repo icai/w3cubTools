@@ -10,12 +10,6 @@ const config = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   webpack(config, options) {
-    // config.node = {
-    //   fs: "empty",
-    //   module: "empty",
-    //   net: "mock",
-    //   tls: "mock"
-    // };
 
     const customConfig = {
       resolve: {

@@ -3,7 +3,6 @@ import classNames from "classnames";
 import Divide from "./Divide";
 import { Button, Dialog } from "evergreen-ui";
 import { createImage } from "../tools/imageCreater";
-import "../style/modal.css";
 
 interface FramesModalProps {
   frames: Array<{

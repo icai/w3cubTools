@@ -1,5 +1,3 @@
-import React, { PureComponent, Fragment } from "react";
-
 import Container from "@components/g2048/container";
 import ConversionLayout from "@components/ConversionLayout";
 export default function Game2048() {
