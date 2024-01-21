@@ -121,9 +121,7 @@ const MathCalc: React.FC<MathCalcProps> = () => {
     <ConversionLayout flexDirection="column" layoutHeight="auto">
       <Pane
         // @ts-ignore
-        css={{
-          minHeight: "500px",
-        }}
+        minHeight="500px"
       >
         <div className={"form hidden-print " + rightctrl}>
           {lists.map((el, ix) => {

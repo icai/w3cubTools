@@ -375,11 +375,8 @@ export default function MetaTagGenerator() {
       <Pane
         display="block"
         // @ts-ignore
-        css={{
-          width: "780px",
-          padding: "0px 0px",
-          margin: "auto"
-        }}
+        width="780px"
+        margin="auto"
       >
         <h1>Meta Tag Generator</h1>
         <Button

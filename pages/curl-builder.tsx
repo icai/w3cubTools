@@ -154,7 +154,7 @@ export default class CurlBuilder extends Component<any, any> {
         <Pane
           display="block"
           width="780px"
-          padding="0px 50px"
+          paddingX="10px"
           margin="auto"
         >
           <h1>Online curl command line builder</h1>
