@@ -1,6 +1,10 @@
 import ConversionLayout from "@components/ConversionLayout";
 import * as React from "react";
 import { Button } from "evergreen-ui";
+import {
+  MD5,
+  SHA1
+} from "crypto-js";
 
 export default function Md5Encode() {
   return (
@@ -15,7 +19,7 @@ export default function Md5Encode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(CryptoJS.MD5(value))}
+              onClick={() => setResult(MD5(value))}
             >
               MD5 Encode
             </Button>
@@ -25,7 +29,7 @@ export default function Md5Encode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(CryptoJS.SHA1(value))}
+              onClick={() => setResult(SHA1(value))}
             >
               SHA1 Encode
             </Button>

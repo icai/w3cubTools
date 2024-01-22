@@ -1,26 +1,19 @@
 import colors from "@constants/open-color.json";
-import useClipboard from "@hooks/useCopyClipboard";
-import { useEffect } from "react";
+import useClipboard from "@/hooks/useClipboard";
 const colorsIndex = Object.keys(colors);
 const ColorItem = props => {
   const { color, i, co } = props;
-  const [isCopied, setCopied] = useClipboard(co);
-  useEffect(() => {
-    isCopied &&
-      setTimeout(() => {
-        setCopied(false);
-      }, 800);
-  }, [isCopied]);
+  const { hasCopied, onCopy } = useClipboard(co, { timeout: 800 });
   return (
     <div className="color-chip" id={`${color}-${i}`}>
       <div
         className={`color-chip-bg bg-${color}-${i}`}
         onClick={() => {
-          setCopied(true);
+          onCopy()
         }}
         style={{ backgroundColor: co }}
       >
-        {isCopied && <div className="copy-text">{co}</div>}
+        {hasCopied && <div className="copy-text">{co}</div>}
       </div>
       <div className="color-name">{`${color} ${i}`}</div>
       <input className="color-hex" type="text" readOnly value={co} />

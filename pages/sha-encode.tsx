@@ -1,6 +1,11 @@
 import ConversionLayout from "@components/ConversionLayout";
 import * as React from "react";
 import { Button } from "evergreen-ui";
+import {
+  SHA1,
+  SHA256,
+  SHA512
+} from "crypto-js";
 export default function ShaEncode() {
   return (
     <ConversionLayout
@@ -14,7 +19,7 @@ export default function ShaEncode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(CryptoJS.SHA1(value))}
+              onClick={() => setResult(SHA1(value))}
             >
               SHA1 Encode
             </Button>
@@ -24,7 +29,7 @@ export default function ShaEncode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(CryptoJS.SHA256(value))}
+              onClick={() => setResult(SHA256(value))}
             >
               SHA256 Encode
             </Button>
@@ -34,7 +39,7 @@ export default function ShaEncode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(CryptoJS.SHA512(value))}
+              onClick={() => setResult(SHA512(value))}
             >
               SHA512 Encode
             </Button>

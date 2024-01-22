@@ -37,8 +37,8 @@ export default function MimeList() {
   }, [query]);
 
   const copyCode = (item: MimeItem) => {
-    const isCopied = copy("." + item[0] + " " + item[1]);
-    if (isCopied) {
+    const hasCopied = copy("." + item[0] + " " + item[1]);
+    if (hasCopied) {
       toaster.success("Code Copied! 👍", {
         duration: 2,
       });

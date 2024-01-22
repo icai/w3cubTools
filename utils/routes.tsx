@@ -215,7 +215,6 @@ export const categorizedRoutes = [
         title: "MD5 encode",
         desc:
           "This tool help you generate MD5 encode string and sha1 encode string, fast and easy to use.",
-        scripts: ["/static/crypto/sha1.js", "/static/crypto/md5.js"],
         keywords: "MD5 encode, sha1 encode, hex generator"
       },
       {
@@ -224,12 +223,28 @@ export const categorizedRoutes = [
         title: "SHA encode",
         desc:
           "This tool help you generate SHA encode, support sha1, sha256, sha512",
-        scripts: [
-          "/static/crypto/sha1.js",
-          "/static/crypto/sha256.js",
-          "/static/crypto/sha512.js"
-        ],
         keywords: "sha1 encode, sha256 encode, sha512 encode, hex generator"
+      },
+      {
+        label: 'Hash text',
+        path: '/hash-text',
+        description:
+          'Hash a text string using the function you need : MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 or RIPEMD160',
+        keywords: [
+          'hash',
+          'digest',
+          'crypto',
+          'security',
+          'text',
+          'MD5',
+          'SHA1',
+          'SHA256',
+          'SHA224',
+          'SHA512',
+          'SHA384',
+          'SHA3',
+          'RIPEMD160',
+        ]
       }
     ]
   },

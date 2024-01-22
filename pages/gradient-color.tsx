@@ -185,8 +185,8 @@ const Gradient: React.FC = () => {
       gradientEnd +
       ";";
 
-    const isCopied = copy(eventResult);
-    if (isCopied) {
+    const hasCopied = copy(eventResult);
+    if (hasCopied) {
       toaster.success("CSS3 Code Copied! 👍", {
         duration: 2,
       });

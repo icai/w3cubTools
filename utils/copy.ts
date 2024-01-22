@@ -6,7 +6,7 @@ function dynamicNode(text) {
   return node;
 }
 
-export default function(text) {
+export default function(text, _options = {}) {
   var node = dynamicNode(text);
   document.body.appendChild(node);
   var selection = getSelection() as any;

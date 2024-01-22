@@ -76,7 +76,11 @@ export default function App(props: AppProps) {
   const title =
     ((activeRoute && (activeRoute.title || activeRoute.searchTerm))) + " - W3cubTools";
   const description = activeRoute && activeRoute.desc;
-  const keywords = activeRoute && activeRoute?.keywords;
+  let keywords = activeRoute && activeRoute?.keywords as string[] | string;
+  // if keywords is Array, convert to string
+  if (keywords instanceof Array) {
+    keywords = keywords.join(",");
+  }
   return (
     <>
       <Head>

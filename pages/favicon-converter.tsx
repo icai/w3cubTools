@@ -4,7 +4,7 @@ import { Button, Pane, toaster } from "evergreen-ui";
 import JSZip from "jszip";
 import { useDropzone } from "react-dropzone";
 
-import copy from "clipboard-copy";
+import copy from "@utils/copy";
 import { Package } from "@assets/vendor/favicon/index";
 import Mdloader from "@components/Mdloader";
 

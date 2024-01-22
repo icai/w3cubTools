@@ -54,7 +54,6 @@ declare module "*.json";
 
 declare const importScripts: void;
 declare const Babel;
-declare const CryptoJS;
 declare const $;
 
 declare const saveAs: (a, b) => void;

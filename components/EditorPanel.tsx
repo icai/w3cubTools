@@ -15,7 +15,7 @@ import {
 } from "evergreen-ui";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import copy from "clipboard-copy";
+import copy from "@utils/copy";
 import Npm from "@assets/svgs/Npm";
 import { useDropzone } from "react-dropzone";
 
