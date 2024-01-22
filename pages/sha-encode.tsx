@@ -19,7 +19,7 @@ export default function ShaEncode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(SHA1(value))}
+              onClick={() => setResult(SHA1(value).toString())}
             >
               SHA1 Encode
             </Button>
@@ -29,7 +29,7 @@ export default function ShaEncode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(SHA256(value))}
+              onClick={() => setResult(SHA256(value).toString())}
             >
               SHA256 Encode
             </Button>
@@ -39,7 +39,7 @@ export default function ShaEncode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(SHA512(value))}
+              onClick={() => setResult(SHA512(value).toString())}
             >
               SHA512 Encode
             </Button>

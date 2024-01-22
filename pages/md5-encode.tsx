@@ -19,7 +19,7 @@ export default function Md5Encode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(MD5(value))}
+              onClick={() => setResult(MD5(value).toString())}
             >
               MD5 Encode
             </Button>
@@ -29,7 +29,7 @@ export default function Md5Encode() {
               margin="5px"
               display="block"
               whiteSpace="nowrap"
-              onClick={() => setResult(SHA1(value))}
+              onClick={() => setResult(SHA1(value).toString())}
             >
               SHA1 Encode
             </Button>
