@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import CryptoJS, { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, enc } from 'crypto-js';
 import { useQueryParam } from "@hooks/useQueryParam";
-import { Card, Textarea, SelectField, TextInput, Button, Select, Group, Pane } from 'evergreen-ui';
+import { Card, Textarea, SelectField, TextInput, Button, Group } from 'evergreen-ui';
 import Divider from "@components/Divider";
-import { useRouter } from 'next/router';
 import InputCopyable from '@/components/IconCopyable';
 
 const algos = {
@@ -44,16 +43,11 @@ const HashGenerator: React.FC = () => {
   const [clearText, setClearText] = useState<string>('');
   const [queryValue, setQueryValue] = useQueryParam<Encoding>({ defaultValue: 'Hex', name: 'encoding' });
 
-  const router = useRouter();
-  const { query } = router;
-
-
   const hashText = (algo: AlgoNames, value: string) => {
     // @ts-ignore
     return formatWithEncoding(algos[algo](value), queryValue);
   }
     
-
   return (
     <div>
       <Card width="720px" margin="auto">
@@ -64,10 +58,13 @@ const HashGenerator: React.FC = () => {
           height={120}
           width="100%"
         />
-        <Divider />
+        <Divider />      
         <SelectField
+          // @ts-ignore
           value={queryValue}
+          // @ts-ignore
           defaultValue={queryValue}
+          // @ts-ignore
           onChange={(e) => setQueryValue(e.target.value as Encoding)}
           marginBottom={16}
           width="100%"

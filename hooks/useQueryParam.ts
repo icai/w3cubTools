@@ -24,18 +24,20 @@ function useQueryParam<T>({ name, defaultValue }: { name: string; defaultValue: 
 
   const proxy = useMemo(() => {
     const queryParams = router.query;
-    const queryValue = queryParams[name] as string;
-    const initialValue = queryValue !== undefined ? transformer.fromQuery(queryValue) : defaultValue;
-    function setQueryValue(newValue: never) {
+    const queryValue = queryParams[name] as string | undefined;
+    const initialValue = (queryValue !== undefined ? transformer.fromQuery(queryValue) : defaultValue) as T;
+    function setQueryValue(newValue: T) {
       // if the new value is the same as the default value, remove the query param
       if (newValue === defaultValue) {
         const { [name]: _, ...newQueryParams } = queryParams;
         router.push({ query: newQueryParams });
-        return;
+        return defaultValue;
       }
+      // @ts-ignore
       const newQueryValue = transformer.toQuery(newValue);
       const newQueryParams = { ...queryParams, [name]: newQueryValue };
       router.push({ query: newQueryParams });
+      return newQueryValue;
     }
     return [initialValue, setQueryValue];
   }, [router.query, name, defaultValue, transformer]);
