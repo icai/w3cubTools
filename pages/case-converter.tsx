@@ -12,7 +12,7 @@ import {
 } from 'change-case';
 import { Card, TextInput, Group, Button } from 'evergreen-ui';
 import Divider from '@/components/ui/Divider';
-import InputCopyable from '@/components/IconCopyable';
+import IconCopyable from '@/components/IconCopyable';
 
 const BaseConfig = {
   split: (input: String) => input.trim().split(/[^A-Za-zÀ-ÖØ-öø-ÿ]+/gi)
@@ -49,16 +49,16 @@ const Mockingcase = (input: string) =>
     .map((char, index) => (index % 2 === 0 ? char.toUpperCase() : char.toLowerCase()))
     .join('');
 
-const InputCopyableList = ({ formats }: { formats: { label: string; value: string }[] }) => (
+const IconCopyableList = ({ formats }: { formats: { label: string; value: string }[] }) => (
   <>
     {formats.map((format) => (
-      <div key={format.label} style={{ margin: '5px 0' }}>
+      <div key={format.label} style={{ margin: '10px 0' }}>
         <Group flex="1 0 auto" width="100%">
           <Button intent="none" flex="0 0 120px" display="flex" alignItems="center">
             {format.label}
           </Button>
           <TextInput flex="max-content" placeholder='Input text' value={format.value} readOnly />
-          <InputCopyable key={format.label} value={format.value} />
+          <IconCopyable key={format.label} value={format.value} />
         </Group>
       </div>
     ))}
@@ -94,8 +94,8 @@ const CaseConverter = () => {
       value: dotCase(input, BaseConfig),
     },
     {
-        label: 'Titlecase:',
-        value: titleCase(input, BaseConfig),
+      label: 'Titlecase:',
+      value: titleCase(input, BaseConfig),
     },
     {
       label: 'Nocase:',
@@ -144,7 +144,7 @@ const CaseConverter = () => {
         {...inputLabelAlignmentConfig}
       />
       <Divider />
-      <InputCopyableList formats={formats} />
+      <IconCopyableList formats={formats} />
     </Card>
   );
 };

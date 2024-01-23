@@ -250,7 +250,7 @@ export const categorizedRoutes = [
     ]
   },
   {
-    category: "Web Tools",
+    category: "Web",
     content: [
       {
         label: "Deobfuscate",
@@ -374,6 +374,14 @@ export const categorizedRoutes = [
           "Image ascii art, Image ascii art converter, Image ascii converter"
       },
       {
+        label: 'QR Code generator',
+        path: '/qrcode-generator',
+        title: 'QR Code generator',
+        description:
+          'Generate and download QR-code for an url or just a text and customize the background and foreground colors.',
+        keywords: ['qr', 'code', 'generator', 'square', 'color', 'link', 'low', 'medium', 'quartile', 'high', 'transparent'],
+      },
+      {
         label: "Long Weibo",
         path: "/long-weibo",
         title: "Long Social Post Generator",
@@ -415,6 +423,24 @@ export const categorizedRoutes = [
         desc:
           "This tool help you generate cron schedule expressions, easy to use. No sign-up required.",
         keywords: "crontab, cron generator, cron examples"
+      },
+      {
+        label: 'Chmod calculator',
+        path: '/chmod-calculator',
+        title: 'Chmod calculator',
+        description: 'Compute your chmod permissions and commands with this online chmod calculator.',
+        keywords: [
+          'chmod',
+          'calculator',
+          'file',
+          'permission',
+          'files',
+          'directory',
+          'folder',
+          'recursive',
+          'generator',
+          'octal',
+        ],
       },
       {
         label: "Favicon Converter",
@@ -907,7 +933,7 @@ export const routes = flatten(
           ...x,
           category: a.category,
           searchTerm: _label,
-          desc: x.desc || `Online convert ${_label}, automatically faster`
+          desc: (x.desc || x.description) || `Online convert ${_label}, automatically faster`
         };
       })
     )

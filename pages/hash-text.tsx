@@ -3,7 +3,7 @@ import CryptoJS, { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, e
 import { useQueryParam } from "@hooks/useQueryParam";
 import { Card, Textarea, SelectField, TextInput, Button, Group } from 'evergreen-ui';
 import Divider from "@/components/ui/Divider";
-import InputCopyable from '@/components/IconCopyable';
+import IconCopyable from '@/components/IconCopyable';
 
 const algos = {
   MD5,
@@ -83,7 +83,7 @@ const HashGenerator: React.FC = () => {
               {algo}
               </Button>
               <TextInput flex="max-content" value={hashText(algo, clearText)} readOnly />
-              <InputCopyable value={hashText(algo, clearText)} />
+              <IconCopyable value={hashText(algo, clearText)} />
             </Group>
           </div>
         ))}
