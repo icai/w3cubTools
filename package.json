@@ -1,5 +1,5 @@
 {
-  "name": "transform",
+  "name": "w3cubtools",
   "version": "2.0.2",
   "repository": "https://github.com/icai/transform",
   "author": "ritz078 <rkritesh078@gmail.com>, icai <gidcai@gmail.com>",
@@ -69,6 +69,7 @@
     "babel-plugin-json-to-proptypes": "^0.1.0",
     "babel-plugin-object-styles-to-template": "^0.2.2",
     "babel-standalone": "^6.26.0",
+    "change-case": "^5.4.2",
     "classnames": "^2.5.1",
     "cron-converter": "^0.0.12",
     "cronstrue": "^1.81.0",
@@ -122,6 +123,7 @@
     "ts-json-schema-generator": "^0.93.0",
     "ts-to-zod": "^1.11.0",
     "ui-box": "5.4.1",
+    "usehooks-ts": "^2.9.5",
     "xml-js": "^1.6.11",
     "yaml": "^1.10.2"
   },

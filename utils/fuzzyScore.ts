@@ -41,12 +41,12 @@ export function createFuzzyScorer(text: string) {
   }
 }
 
-export const createFuzzyList = (data: string[][]) => {
+export const createFuzzyList = (data: string[][], key?: string) => {
   return data.map(function (aliases, index) {
     var scorers: ((query: string) => number)[] = [];
 
     for (var i = 0; i < aliases.length; i++) {
-      var alias = aliases[i];
+      var alias = key ? aliases[i]?.[key] : aliases[i];
       if (/[\s-_,()]+/.test(alias)) {
         // Split words into separate aliases
         [].push.apply(aliases, alias.split(/[\s-_,()]+/));

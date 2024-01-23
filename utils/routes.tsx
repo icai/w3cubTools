@@ -250,7 +250,7 @@ export const categorizedRoutes = [
     ]
   },
   {
-    category: "Encode",
+    category: "Web Tools",
     content: [
       {
         label: "Deobfuscate",
@@ -289,6 +289,46 @@ export const categorizedRoutes = [
         title: "Unicode to Ascii",
         desc: "you can use this tool converting Unicode to Ascii",
         keywords: "Unicode, Ascii, Unicode converter"
+      },
+      {
+        label: 'Device information',
+        path: '/device-information',
+        title: 'Device information',
+        description: 'Get information about your current device (screen size, pixel-ratio, user agent, ...)',
+        keywords: [
+          'device',
+          'information',
+          'screen',
+          'pixel',
+          'ratio',
+          'status',
+          'data',
+          'computer',
+          'size',
+          'user',
+          'agent',
+        ],
+      },
+      {
+        label: 'Case converter',
+        path: '/case-converter',
+        title: 'Case converter',
+        description: 'Change the case of a string and chose between different formats',
+        keywords: [
+          'case',
+          'converter',
+          'camelCase',
+          'capitalCase',
+          'constantCase',
+          'dotCase',
+          'headerCase',
+          'noCase',
+          'paramCase',
+          'pascalCase',
+          'pathCase',
+          'sentenceCase',
+          'snakeCase',
+        ],
       }
     ]
   },
