@@ -73,8 +73,11 @@ export default function App(props: AppProps) {
     };
   }, []);
   const activeRoute = activeRouteData(router.pathname);
-  const title =
-    ((activeRoute && (activeRoute.title || activeRoute.searchTerm))) + " - W3cubTools";
+
+    const title =
+    ((activeRoute && (activeRoute.title || activeRoute.searchTerm)) ||
+    // @ts-ignore
+    Component.title) + " - W3cubTools";
   const description = activeRoute && activeRoute.desc;
   let keywords = activeRoute && activeRoute?.keywords as string[] | string;
   // if keywords is Array, convert to string

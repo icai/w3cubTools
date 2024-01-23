@@ -7,4 +7,4 @@ export default function PP() {
   );
 }
 
-PP.title = "Privacy Policy of W3cub";
+PP.title = "Privacy Policy";
