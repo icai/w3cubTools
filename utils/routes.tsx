@@ -382,6 +382,14 @@ export const categorizedRoutes = [
         keywords: ['qr', 'code', 'generator', 'square', 'color', 'link', 'low', 'medium', 'quartile', 'high', 'transparent'],
       },
       {
+        label: 'WiFi QR Code generator',
+        path: '/wifi-qrcode-generator',
+        title: 'WiFi QR Code generator',
+        description:
+          'Generate and download QR-codes for quick connections to WiFi networks.',
+        keywords: ['qr', 'code', 'generator', 'square', 'color', 'link', 'low', 'medium', 'quartile', 'high', 'transparent', 'wifi'],
+      },
+      {
         label: "Long Weibo",
         path: "/long-weibo",
         title: "Long Social Post Generator",

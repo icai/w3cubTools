@@ -2,15 +2,7 @@ import { useState, useRef } from 'react';
 import { useQRCode } from 'next-qrcode';
 import { Card, Textarea, SelectField, Button, Pane } from 'evergreen-ui';
 import ColorPicker from '@/components/ui/ColorPicker';
-const downloadFromRef = (ref: any, filename: string) => {
-  if (ref.current) {
-    const imageTags = ref.current.querySelector('img')
-    const link = document.createElement('a');
-    link.href = imageTags.src;
-    link.download = filename;
-    link.click();
-  }
-}
+import { downloadImage } from '@/utils/downloadImage';
 const QRCodeGenerator: React.FC = () => {
   const [foreground, setForeground] = useState<string>('#000000');
   const [background, setBackground] = useState<string>('#ffffff');
@@ -79,7 +71,7 @@ const QRCodeGenerator: React.FC = () => {
             }}
             />
             <Button onClick={() => {
-                downloadFromRef(qrcodeRef, 'qrcode.jpeg');
+                downloadImage(qrcodeRef.current, 'qrcode.jpeg');
             }}>
               Download qr-code
             </Button>

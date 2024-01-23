@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { TextInput, IconButton, Tooltip, DuplicateIcon, IconButtonOwnProps } from 'evergreen-ui';
+import { IconButton, Tooltip, DuplicateIcon, IconButtonOwnProps } from 'evergreen-ui';
 import useClipboard from "@/hooks/useClipboard";
 
 export type IconCopyableProps = IconButtonOwnProps & {
