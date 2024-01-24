@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useQRCode } from 'next-qrcode';
-import { Card, Textarea, SelectField, Button, Pane } from 'evergreen-ui';
+import { Card, Textarea, SelectField, Button, Pane, TextInputField, FilePicker } from 'evergreen-ui';
 import ColorPicker from '@/components/ui/ColorPicker';
 import { downloadImage } from '@/utils/downloadImage';
 const QRCodeGenerator: React.FC = () => {
@@ -10,8 +10,18 @@ const QRCodeGenerator: React.FC = () => {
   const [text, setText] = useState<string>('https://tools.w3cub.com');
   const errorCorrectionLevels = ['low', 'medium', 'quartile', 'high'];
   const qrcodeRef = useRef<HTMLImageElement>(null);
+  const [qrcodeWidth, setQrcodeWidth] = useState<number>(200);
+  const [base64, setBase64] = useState("");
+  const [logoWidth, setLogoWidth] = useState<number>(40);
+  const readFile = (files: any) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = function() {
+      setBase64(this.result as any);
+    };
+  };
 
-  const { Image } = useQRCode();
+  const { Canvas } = useQRCode();
   return (
     <Card width="600px" margin="auto">
       <div className="grid">
@@ -48,6 +58,21 @@ const QRCodeGenerator: React.FC = () => {
                 <option key={value} value={value}>{value}</option>
               ))}
             </SelectField>
+            <TextInputField value={qrcodeWidth} onChange={(e) => {
+                setQrcodeWidth(e.target.value);
+            }} label="QRCode width:" width="100%" marginBottom={6} />
+            <FilePicker
+              multiple={false}
+              name="img-base64"
+              placeholder='Upload logo'
+              width="100%"
+              marginTop={12}
+              marginBottom={6}
+              onChange={files => readFile(files)}
+            />
+            <TextInputField type='number' value={logoWidth} onChange={(e) => {
+              setLogoWidth(e.target.value);
+            }} label="Logo width:" width="100%" marginBottom={6} />
           </div>
         </div>
         <Pane className="image-section">
@@ -55,19 +80,23 @@ const QRCodeGenerator: React.FC = () => {
           flexDirection="column"
             alignItems="center"
             gap={6} ref={qrcodeRef}>
-          <Image
+          <Canvas
             text={text}
             options={{
-                type: 'image/jpeg',
-                quality: 0.3,
-                errorCorrectionLevel: errorCorrectionLevel,
-                margin: 3,
-                scale: 4,
-                width: 200,
-                color: {
-                    dark: foreground,
-                    light: background,
-                },
+              errorCorrectionLevel: errorCorrectionLevel,
+              margin: 3,
+              scale: 4,
+              width: Math.max(qrcodeWidth, 124),
+              color: {
+                  dark: foreground,
+                  light: background,
+              },
+            }}
+            logo={{
+                src: base64,
+                options: {
+                  width: Math.max(logoWidth, 20),
+                }
             }}
             />
             <Button onClick={() => {
