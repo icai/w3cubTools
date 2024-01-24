@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Pane, Dialog } from "evergreen-ui";
 import { proxyToDataUrl } from '@/utils/proxyToDataUrl'
+import { dataURLtoBlob } from '@/utils/dataURLtoBlob'
 
 class MyUploadAdapter {
   loader: any;
@@ -34,18 +35,6 @@ const doImages = () => {
       });
     }
   });
-};
-
-const dataURLtoBlob = (dataurl) => {
-  var arr = dataurl.split(","),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]),
-    n = bstr.length,
-    u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new Blob([u8arr], { type: mime });
 };
 
 export default function LongWeibo() {
@@ -125,7 +114,7 @@ export default function LongWeibo() {
 
   const downloadImage = (_event) => {
     // download previewImg
-    var blob = dataURLtoBlob(previewImg);
+    const blob = dataURLtoBlob(previewImg);
     saveAs(blob, "longweibo.png");
   };
 
