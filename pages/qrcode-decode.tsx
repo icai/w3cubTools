@@ -39,6 +39,7 @@ const QRCodeDecoder = () => {
 
   const handleDecodeFile = async () => {
     try {
+      // @ts-ignore
       setPreviewImg(URL.createObjectURL(file))
       setLoading(true)
       const result = await readBarcodesFromImageFile(file);
