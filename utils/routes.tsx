@@ -390,6 +390,14 @@ export const categorizedRoutes = [
         keywords: ['qr', 'code', 'generator', 'square', 'color', 'link', 'low', 'medium', 'quartile', 'high', 'transparent', 'wifi'],
       },
       {
+        label: 'Qrcode Decode',
+        path: '/qrcode-decode',
+        title: 'Qrcode Decode',
+        description:
+          'Decode Qrcode from file or url',
+        keywords: ['qr', 'code', 'decode', 'decoder', 'qrcode decode', 'qrcode decoder'],
+      },
+      {
         label: "Long Weibo",
         path: "/long-weibo",
         title: "Long Social Post Generator",

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Pane, Dialog } from "evergreen-ui";
+import { proxyToDataUrl } from '@/utils/proxyToDataUrl'
 
 class MyUploadAdapter {
   loader: any;
@@ -19,19 +20,6 @@ function MyCustomUploadAdapterPlugin(editor) {
   };
 }
 
-function toDataUrl(url, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function () {
-    callback(xhr.response);
-  };
-  xhr.open("GET", url);
-  xhr.send();
-}
-
-const proxyToDataUrl = (url, callback) => {
-  url = "https://helloacm.com/api/image-to-base64/?url=" + url;
-  return toDataUrl(url, callback);
-};
 
 const doImages = () => {
   // @ts-ignore

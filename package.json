@@ -125,7 +125,8 @@
     "ui-box": "5.4.1",
     "usehooks-ts": "^2.9.5",
     "xml-js": "^1.6.11",
-    "yaml": "^1.10.2"
+    "yaml": "^1.10.2",
+    "zxing-wasm": "^1.2.1"
   },
   "devDependencies": {
     "@mdx-js/loader": "^3.0.0",
