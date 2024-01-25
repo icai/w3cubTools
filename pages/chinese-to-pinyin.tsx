@@ -9,7 +9,7 @@ import VoiceComponent from "@components/icons/VoiceComponent";
 export default function ChineseToPinyin() {
   let audioRef = React.createRef() as any;
   const pinyinVoice = useCallback((value: string) => {
-    let t = `https://fanyi.w3cub.com/?text=${encodeURI(
+    let t = `https://s1-hono.w3cub.com/api/fanyi?text=${encodeURI(
       value
     )}`;
     var n = audioRef;
