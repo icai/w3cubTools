@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const proxyUrl = "https://helloacm.com/api/image-to-base64/?url=";
+export const proxyUrl = "https://s1.w3cub.com/?url=";
 
 export const toDataUrl = (url: string, callback: (data: string) => void) => {
   axios.get(url)

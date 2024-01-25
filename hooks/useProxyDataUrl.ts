@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-
 import { proxyUrl } from "@/utils/proxyToDataUrl";
-export const useProxyDataUrl = (url: string) => {
+export const useProxyDataUrl = (iurl: string) => {
+  const [url, setUrl] = useState<string>(iurl || '');
   const [dataUrl, setUpdateUrl] = useState<string>('');
 
   const setDataUrl = useCallback((url: string) => {
+    setUrl(url);
     try {
       let nurl = url;
       const x = new URL(nurl, location.origin);
@@ -13,7 +14,12 @@ export const useProxyDataUrl = (url: string) => {
       } else {
         nurl = x.href;
       }
-      setUpdateUrl(nurl);
+      // make sure url is image url
+      if (nurl.match(/\.(jpeg|jpg|gif|png)$/)) {
+        setUpdateUrl(nurl);
+      } else {
+        setUpdateUrl('');
+      }
     } catch (error) {
       console.error("Invalid URL:", error);
     }
@@ -21,5 +27,5 @@ export const useProxyDataUrl = (url: string) => {
   useEffect(() => {
     setDataUrl(url);
   }, [url]);
-  return { url, dataUrl, setDataUrl };
+  return { url, dataUrl, setUpdateUrl, setDataUrl };
 }

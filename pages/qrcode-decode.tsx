@@ -1,6 +1,6 @@
 
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useLayoutEffect } from 'react';
 import { FilePicker, TextInput, Button, Pane, Text, Pre, Spinner } from 'evergreen-ui';
 import {
   readBarcodesFromImageFile
@@ -70,11 +70,9 @@ const QRCodeDecoder = () => {
     }
   }, [file]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (dataUrl) {
-        handleDecodeUrl()
-      }
+  useLayoutEffect(() => {
+    if (dataUrl) {
+      handleDecodeUrl()
     }
   }, [dataUrl]);
 
