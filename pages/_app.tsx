@@ -195,14 +195,14 @@ export default function App(props: AppProps) {
           <div className="nav">
             <a href="/privacy-policy">Privacy Policy</a>
             <a
-              href="https://github.com/w3cub/w3cubtools-md/issues"
+              href="https://github.com/icai/w3cubTools/issues"
               target="_blank"
               className="mr-5"
             >
               Issues
             </a>
             <a
-              href="https://github.com/w3cub/w3cubtools-md"
+              href="https://github.com/icai/w3cubTools"
               className=""
               target="_blank"
             >

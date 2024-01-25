@@ -390,7 +390,7 @@ export const categorizedRoutes = [
         keywords: ['qr', 'code', 'generator', 'square', 'color', 'link', 'low', 'medium', 'quartile', 'high', 'transparent', 'wifi'],
       },
       {
-        label: 'QR Code Decode, QR Code Decoder',
+        label: 'QR Code Decoder',
         path: '/qrcode-decode',
         title: 'QR Code Decoder',
         description:

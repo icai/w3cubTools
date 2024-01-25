@@ -227,7 +227,7 @@ export default function WriteChinese() {
       </Pane>
       <div className="text-right">
         <a
-          href="https://github.com/w3cub/w3cubtools-md/issues"
+          href="https://github.com/icai/w3cubTools/issues"
           target="_blank"
           className="word"
         >
