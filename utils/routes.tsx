@@ -509,6 +509,13 @@ export const categorizedRoutes = [
           "This tool help you convert React code to Vue code Online Converter, use AST transformation to implemented.",
         keywords: "react to vue converter, react converter, vue converter",
         scripts: ["/static/bundle/react-to-vue@1.2.1.js"]
+      },
+      {
+        label: "IP Lookup",
+        path: "/ip-lookup",
+        title: "IP Address Lookup",
+        desc: "Free IP address lookup tool to find your IP address and its geolocation. Verify an IP address, it's Hostname, and ISP to help check for malicious activity",
+        keywords: "IP Lookup, IP address information"
       }
     ]
   },

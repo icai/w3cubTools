@@ -141,7 +141,7 @@ export default function Gomoku() {
             computerWin[k] = 6;
 
             if (myWin[k] === 5) {
-              alert("Unbelievable 你赢啦！");
+              alert("Unbelievable ! You Win !");
               over = true;
             }
           }
@@ -282,7 +282,8 @@ export default function Gomoku() {
           if (computerWin[k] === 5) {
             over = true;
             setTimeout(() => {
-              alert("你输啦，还要继续努力噢");
+              // 你输啦，还要继续努力噢
+              alert("You Lose ! Try Again !");
             });
           }
         }
