@@ -76,7 +76,7 @@ const QRCodeGenerator: React.FC = () => {
           </div>
         </div>
         <Pane className="image-section">
-          <Pane display="flex" 
+          {text && (<Pane display="flex" 
           flexDirection="column"
             alignItems="center"
             gap={6} ref={qrcodeRef}>
@@ -104,7 +104,7 @@ const QRCodeGenerator: React.FC = () => {
             }}>
               Download qr-code
             </Button>
-          </Pane>
+          </Pane>)}
         </Pane>
       </div>
       <style jsx>{`
