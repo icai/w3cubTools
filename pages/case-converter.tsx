@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   camelCase,
   capitalCase,
@@ -66,7 +66,16 @@ const IconCopyableList = ({ formats }: { formats: { label: string; value: string
 );
 
 const CaseConverter = () => {
-  const [input, setInput] = useState<string>('lorem ipsum dolor sit amet');
+  const [input, setConvertInput] = useState<string>('');
+  const [boxInput, setTextboxInput] = useState<string>('lorem ipsum dolor sit amet');
+  // add input to filter calback
+  const setInput = useCallback((input: string) => {
+    setTextboxInput(input);
+    // remove special characters
+    input = input.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ]+/gi, ' ');
+    setConvertInput(input);
+  }, []);
+  
   // input not null undefined
   const formats = [
     {
@@ -79,7 +88,7 @@ const CaseConverter = () => {
     },
     {
       label: 'Camelcase:',
-      value: camelCase(input, BaseConfig),
+      value: input ? camelCase(input, BaseConfig) : '',
     },
     {
       label: 'Capitalcase:',
@@ -131,10 +140,15 @@ const CaseConverter = () => {
 
   };
 
+
+  useEffect(() => {
+    setInput(boxInput);
+  }, []);
+
   return (
     <Card width="720px" margin="auto">
       <TextInput
-        value={input}
+        value={boxInput}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Your string..."
         width="100%"
