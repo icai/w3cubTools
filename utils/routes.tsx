@@ -710,13 +710,13 @@ export const categorizedRoutes = [
       },
       {
         label: "to Protobuf",
-        path: "json-schema-to-protobuf",
+        path: "/json-schema-to-protobuf",
         packageName: "jsonschema-protobuf",
         packageUrl: "https://github.com/okdistribute/jsonschema-protobuf"
       },
       {
         label: "to Zod Schema",
-        path: "json-schema-to-zod",
+        path: "/json-schema-to-zod",
         packageName: "json-schema-to-zod",
         packageUrl: "https://www.npmjs.com/package/json-schema-to-zod"
       }
