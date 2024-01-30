@@ -171,6 +171,9 @@ dependencies:
   css-to-tailwindcss:
     specifier: ^1.0.4
     version: 1.0.5
+  date-fns:
+    specifier: ^3.3.1
+    version: 3.3.1
   evergreen-ui:
     specifier: ^7.1.9
     version: 7.1.9(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
@@ -285,9 +288,6 @@ dependencies:
   sass:
     specifier: ^1.69.7
     version: 1.69.7
-  sha1:
-    specifier: ^1.1.1
-    version: 1.1.1
   stringify-object:
     specifier: ^3.3.0
     version: 3.3.0
@@ -4237,6 +4237,10 @@ packages:
   /data-uri-to-buffer@3.0.1:
     resolution: {integrity: sha512-WboRycPNsVw3B3TL559F7kuBUM4d8CgMEvk6xEJlOp7OBPjt6G7z8WMWlD2rOFZLk6OYfFIUGsCOWzcQH9K2og==}
     engines: {node: '>= 6'}
+    dev: false
+
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
     dev: false
 
   /debug@3.2.7:

@@ -329,6 +329,20 @@ export const categorizedRoutes = [
           'sentenceCase',
           'snakeCase',
         ],
+      },
+      {
+        label: 'Date-time converter',
+        path: '/date-converter',
+        title: 'Date-time converter',
+        description: 'Convert date and time into the various different formats',
+        keywords: ['date', 'time', 'converter', 'iso', 'utc', 'timezone', 'year', 'month', 'day', 'minute', 'seconde'],
+      },
+      {
+        label: 'Integer base converter',
+        path: '/base-converter',
+        title: 'Integer base converter',
+        description: 'Convert number between different bases (decimal, hexadecimal, binary, octal, base64, ...)',
+        keywords: ['integer', 'number', 'base', 'conversion', 'decimal', 'hexadecimal', 'binary', 'octal', 'base64'],
       }
     ]
   },
