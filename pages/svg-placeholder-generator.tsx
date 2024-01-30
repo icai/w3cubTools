@@ -28,7 +28,6 @@ const SvgGenerator: React.FC = () => {
   const [fgColor, setFgColor] = useState('#333333');
   const [useExactSize, setUseExactSize] = useState(true);
   const [customText, setCustomText] = useState('');
-  const [base64, setBase64] = useState('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgMzUwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjM1MCI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9IiNjY2NjY2MiPjwvcmVjdD4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIyNnB4IiBmaWxsPSIjMzMzMzMzIj42MDB4MzUwPC90ZXh0PiAgIAo8L3N2Zz4=');
 
   const svgString = useMemo(() => {
     const w = width || 'null';
@@ -45,9 +44,8 @@ const SvgGenerator: React.FC = () => {
   }, [width, height, customText, useExactSize, fontSize, bgColor, fgColor]);
 
 
-  useLayoutEffect(() => {
-    const base64 = `data:image/svg+xml;base64,${textToBase64(svgString)}`
-    setBase64(base64);
+  const base64 = useMemo(() => {
+    return `data:image/svg+xml;base64,${textToBase64(svgString)}`
   }, [svgString]);
 
 
