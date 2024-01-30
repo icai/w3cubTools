@@ -423,6 +423,13 @@ export const categorizedRoutes = [
           "//cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js",
           "//cdn.jsdelivr.net/npm/html2canvas@1.1.4/dist/html2canvas.min.js"
         ]
+      },
+      {
+        label: 'SVG placeholder generator',
+        path: '/svg-placeholder-generator',
+        title: 'SVG placeholder generator',
+        description: 'Generate svg images to use as placeholder in your applications.',
+        keywords: ['svg', 'placeholder', 'generator', 'image', 'size', 'mockup'],
       }
     ]
   },

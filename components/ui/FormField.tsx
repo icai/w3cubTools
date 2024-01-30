@@ -6,7 +6,7 @@ interface CustomFormFieldProps extends PaneProps {
   labelWidth?: number | string;
   children?: ReactNode;
   labelPlacement?: 'left' | 'top';
-  marginBottom: number;
+  marginBottom?: number;
 }
 
 const FormField: React.FC<CustomFormFieldProps> = ({
