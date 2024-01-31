@@ -347,7 +347,7 @@ export const categorizedRoutes = [
     ]
   },
   {
-    category: "Images",
+    category: "Image",
     content: [
       {
         label: "Image to Base64",
@@ -434,7 +434,7 @@ export const categorizedRoutes = [
     ]
   },
   {
-    category: "Tools",
+    category: "Tool",
     content: [
       {
         label: "Meta Tag Generator",
@@ -530,13 +530,32 @@ export const categorizedRoutes = [
           "This tool help you convert React code to Vue code Online Converter, use AST transformation to implemented.",
         keywords: "react to vue converter, react converter, vue converter",
         scripts: ["/static/bundle/react-to-vue@1.2.1.js"]
-      },
+      }
+    ]
+  },
+  {
+    category: "Network",
+    content: [
       {
         label: "IP Lookup",
         path: "/ip-lookup",
         title: "IP Address Lookup",
         desc: "Free IP address lookup tool to find your IP address and its geolocation. Verify an IP address, it's Hostname, and ISP to help check for malicious activity",
         keywords: "IP Lookup, IP address information"
+      },
+      {
+        label: 'IPv4 subnet calculator',
+        path: '/ipv4-subnet-calculator',
+        title: 'IPv4 subnet calculator',
+        description: 'Parse your IPv4 CIDR blocks and get all the info you need about your sub network.',
+        keywords: ['ipv4', 'subnet', 'calculator', 'mask', 'network', 'cidr', 'netmask', 'bitmask', 'broadcast', 'address'],
+      },
+      {
+        label: 'Ipv4 address converter',
+        path: '/ipv4-address-converter',
+        title: 'IPv4 address converter',
+        description: 'Convert an ip address into decimal, binary, hexadecimal or event in ipv6',
+        keywords: ['ipv4', 'address', 'converter', 'decimal', 'hexadecimal', 'binary', 'ipv6'],
       }
     ]
   },

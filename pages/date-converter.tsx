@@ -16,6 +16,8 @@ import _ from 'lodash';
 import { Pane, Group, Button, TextInput, Select } from 'evergreen-ui';
 import Divider from '@/components/ui/Divider';
 import IconCopyable from '@/components/IconCopyable';
+import { withDefaultOnError } from '@/utils/utils';
+import useValidation from '@/hooks/useValidation';
 
 const ISO8601_REGEX
   = /^([+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24:?00)([.,]\d+(?!:))?)?(\17[0-5]\d([.,]\d+)?)?([zZ]|([+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/;
@@ -75,45 +77,9 @@ interface ToDateMapper {
   (date: string): Date;
 }
 
-interface ValidationRule {
-  message: string;
-  validator: (value: string) => boolean;
-}
-
-interface ValidationProps {
-  source: string;
-  watch: any[];
-  rules: ValidationRule[];
-}
 
 const toDate: ToDateMapper = date => new Date(date);
 
-
-const withDefaultOnError = (callback: () => any, defaultValue: any) => {
-  try {
-    return callback();
-  } catch (error) {
-    return defaultValue;
-  }
-};
-
-const useValidation = ({ source, watch, rules }: ValidationProps) => {
-  const [isValid, setIsValid] = useState(true);
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    const validation = rules.find(({ validator }) => !validator(source));
-    if (validation) {
-      setIsValid(false);
-      setMessage(validation.message);
-    } else {
-      setIsValid(true);
-      setMessage('');
-    }
-  }, [source, ...watch]);
-
-  return { isValid, message };
-}
 
 
 const DateConverter: React.FC = () => {

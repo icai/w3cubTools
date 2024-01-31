@@ -61,3 +61,48 @@ export const converttoNoTone = s => {
   });
   return s;
 };
+
+
+
+export function withDefaultOnError<A, B>(cb: () => A, defaultValue: B): A | B {
+  try {
+    return cb();
+  }
+  catch (_) {
+    return defaultValue;
+  }
+}
+
+
+export function isNotThrowing(cb: () => unknown): boolean {
+  try {
+    cb();
+    return true;
+  }
+  catch (_) {
+    return false;
+  }
+}
+
+
+export function convertBase({ value, fromBase, toBase }: { value: string; fromBase: number; toBase: number }) {
+  const range = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/'.split('');
+  const fromRange = range.slice(0, fromBase);
+  const toRange = range.slice(0, toBase);
+  let decValue = value
+    .split('')
+    .reverse()
+    .reduce((carry: number, digit: string, index: number) => {
+      if (!fromRange.includes(digit)) {
+        throw new Error(`Invalid digit "${digit}" for base ${fromBase}.`);
+      }
+      return (carry += fromRange.indexOf(digit) * fromBase ** index);
+    }, 0);
+  let newValue = '';
+  while (decValue > 0) {
+    newValue = toRange[decValue % toBase] + newValue;
+    decValue = (decValue - (decValue % toBase)) / toBase;
+  }
+  return newValue || '0';
+}
+

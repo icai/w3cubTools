@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useMemo, useLayoutEffect, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Textarea,
   Pane,
-  TextInputField,
-  TextareaField,
   Switch,
   Button,
-  Paragraph,
   Label,
   Heading,
   majorScale,
