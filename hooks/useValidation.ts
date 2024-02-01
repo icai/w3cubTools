@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface ValidationRule {
   message: string;
@@ -9,13 +9,13 @@ interface ValidationRule {
 interface ValidationProps {
   source: string;
   watch?: any[];
-  rules: ValidationRule[];
+  rules: Array<ValidationRule>;
 }
 const useValidation = ({ source, watch = [], rules }: ValidationProps) => {
-  const [isValid, setIsValid] = useState(true);
-  const [message, setMessage] = useState('');
+  const [isValid, setIsValid] = useState<boolean>(true);
+  const [message, setMessage] = useState<string>('');
 
-  useEffect(() => {
+  useMemo(() => {
     const validation = rules.find(({ validator }) => !validator(source));
     if (validation) {
       setIsValid(false);

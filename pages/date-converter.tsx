@@ -15,7 +15,7 @@ import {
 import _ from 'lodash';
 import { Pane, Group, Button, TextInput, Select } from 'evergreen-ui';
 import Divider from '@/components/ui/Divider';
-import IconCopyable from '@/components/IconCopyable';
+import IconCopyable from '@/components/ui/IconCopyable';
 import { withDefaultOnError } from '@/utils/utils';
 import useValidation from '@/hooks/useValidation';
 

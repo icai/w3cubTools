@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Alert, TextInput, Pane, PaneProps } from 'evergreen-ui';
 import Divider from '@/components/ui/Divider';
-import IconCopyable from '@/components/IconCopyable';
+import IconCopyable from '@/components/ui/IconCopyable';
 import FormField from '@/components/ui/FormField';
 import { convertBase } from '@/utils/utils';
 import _ from 'lodash';

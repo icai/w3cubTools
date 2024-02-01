@@ -556,6 +556,21 @@ export const categorizedRoutes = [
         title: 'IPv4 address converter',
         description: 'Convert an ip address into decimal, binary, hexadecimal or event in ipv6',
         keywords: ['ipv4', 'address', 'converter', 'decimal', 'hexadecimal', 'binary', 'ipv6'],
+      },
+      {
+        label: 'IPv4 range expander',
+        path: '/ipv4-range-expander',
+        title: 'IPv4 range expander',
+        description:
+          'Given a start and an end IPv4 address this tool calculates a valid IPv4 network with its CIDR notation.',
+        keywords: ['ipv4', 'range', 'expander', 'subnet', 'creator', 'cidr'],
+      },
+      {
+        label: 'IPv6 ULA generator',
+        path: '/ipv6-ula-generator',
+        title: 'IPv6 ULA generator',
+        description: 'Generate your own local, non-routable IP addresses on your network according to RFC4193.',
+        keywords: ['ipv6', 'ula', 'generator', 'rfc4193', 'network', 'private'],
       }
     ]
   },

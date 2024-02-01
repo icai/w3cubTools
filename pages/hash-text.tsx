@@ -3,7 +3,7 @@ import CryptoJS, { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, e
 import { useQueryParam } from "@hooks/useQueryParam";
 import { Card, Textarea, SelectField, TextInput, Button, Group } from 'evergreen-ui';
 import Divider from "@/components/ui/Divider";
-import IconCopyable from '@/components/IconCopyable';
+import IconCopyable from '@/components/ui/IconCopyable';
 
 const algos = {
   MD5,

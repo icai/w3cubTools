@@ -8,7 +8,7 @@ import {
 } from "zxing-wasm/reader";
 import { proxyToDataUrlPromise } from '@/utils/proxyToDataUrl'
 import { dataURLtoBlob } from '@/utils/dataURLtoBlob'
-import IconCopyable from '@/components/IconCopyable';
+import IconCopyable from '@/components/ui/IconCopyable';
 import Divider from '@/components/ui/Divider';
 import { useProxyDataUrl } from '@/hooks/useProxyDataUrl';
 const QRCodeDecoder = () => {

@@ -12,7 +12,7 @@ import {
 } from 'change-case';
 import { Card, TextInput, Group, Button } from 'evergreen-ui';
 import Divider from '@/components/ui/Divider';
-import IconCopyable from '@/components/IconCopyable';
+import IconCopyable from '@/components/ui/IconCopyable';
 
 const BaseConfig = {
   split: (input: String) => input.trim().split(/[^A-Za-zÀ-ÖØ-öø-ÿ]+/gi)

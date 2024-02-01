@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Table, TextInput, Group, Checkbox, Pane } from 'evergreen-ui';
-import IconCopyable from '@/components/IconCopyable';
+import IconCopyable from '@/components/ui/IconCopyable';
 import _ from 'lodash';
 
 export type Scope = 'read' | 'write' | 'execute';
