@@ -24,6 +24,8 @@ Remember that the tools and features on the website can change over time, so it'
 
 Fork from [transform](https://github.com/ritz078/transform).
 
+Some tools picked from [it-tools](https://github.com/CorentinTh/it-tools/).
+
 ## Features
 
 - [x] **Math Category**
