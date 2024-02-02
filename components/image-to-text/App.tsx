@@ -71,7 +71,7 @@ const App: React.FC = () => {
   return (
     <div className="imt-container">
       <header className="clear">
-        <h1 className="text-center">Image to Ascii Art(图片转字符画)</h1>
+        <h1 className="text-center">Image to Ascii Art</h1>
       </header>
       <Divide />
       <Row className="transform-settings-wrapper">

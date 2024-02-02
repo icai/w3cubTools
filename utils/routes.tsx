@@ -381,9 +381,9 @@ export const categorizedRoutes = [
       {
         label: "Image to Ascii Art",
         path: "/image-to-text",
-        title: "online image to ascii art code, 在线图片转字符画",
+        title: "online image to ascii art code converter",
         desc:
-          "This tool help you convert Image to ascii art code online. 在线图片转字符画",
+          "This tool help you convert Image to ascii art code online. faster and easy to copy",
         keywords:
           "Image ascii art, Image ascii art converter, Image ascii converter"
       },
