@@ -41,17 +41,40 @@ export function createFuzzyScorer(text: string) {
   }
 }
 
-export const createFuzzyList = (data: string[][], key?: string) => {
-  return data.map(function (aliases, index) {
+export const createFuzzyList = (data: any[], scoreKeys: any[] = []) => {
+  return data.map(function (aliases: any, index) {
     var scorers: ((query: string) => number)[] = [];
 
-    for (var i = 0; i < aliases.length; i++) {
-      var alias = key ? aliases[i]?.[key] : aliases[i];
-      if (/[\s-_,()]+/.test(alias)) {
-        // Split words into separate aliases
-        [].push.apply(aliases, alias.split(/[\s-_,()]+/));
+    // if aliases is an array, the first element is the primary alias
+    if (Array.isArray(aliases)) {
+      for (let i = 0; i < aliases.length; i++) {
+        let alias = aliases[i];
+        if (/[\s-_,()]+/.test(alias)) {
+          // Split words into separate aliases
+          [].push.apply(aliases, alias.split(/[\s-_,()]+/));
+        }
+        scorers.push(createFuzzyScorer(alias));
       }
-      scorers.push(createFuzzyScorer(alias));
+    } else if (typeof aliases === "object") {
+      // if aliases is an object, the first property is the primary alias
+      let aliasValues = [] as any;
+      let index = 0;
+      for (let alias in aliases) {
+        // add scoreKeys values to the list of aliases
+        if (scoreKeys.indexOf(alias) !== -1) {
+          // if the value is an array, add each element to the list of aliases
+          if (Array.isArray(aliases[alias])) {
+            [].push.apply(aliasValues, aliases[alias]);
+          } else if (/[\s-_,()]+/.test(aliases[alias])) {
+            // Split words into separate aliases
+            [].push.apply(aliasValues, aliases[alias].split(/[\s-_,()]+/));
+          } else {
+            aliasValues.push(aliases[alias]);
+          }
+          scorers.push(createFuzzyScorer(aliasValues[index]));
+          index++;
+        }
+      }
     }
 
     function score(query: string) {

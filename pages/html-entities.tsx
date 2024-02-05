@@ -1,12 +1,64 @@
 import Mdloader from "@components/Mdloader";
 import entities from "@constants/entities.json";
+import { SearchInput } from "evergreen-ui";
+import { useState, useEffect, ChangeEvent } from "react";
+import { createFuzzyList } from "@utils/fuzzyScore";
+
+
+interface EntitiesItem {
+  _cachedScore?: number;
+  score: (query: string) => number;
+  _i: number;
+  [key: string]: any;
+}
+
+
+let lists: EntitiesItem[] = createFuzzyList(entities, ["category", "entities", "title", "block"]);
 
 export default function HtmlEntities() {
+
+  const [query, setQuery] = useState<string>("");
+  const [data, setData] = useState<EntitiesItem[]>(lists);
+
+  useEffect(() => {
+    let sorted: EntitiesItem[] = [];
+    if (query) {
+      sorted = lists
+        .filter((item) => {
+          return (item._cachedScore = item.score(query)) >= 0.5;
+        })
+        .sort((a, b) => {
+          var as = a._cachedScore as number;
+          var bs = b._cachedScore as number;
+          return as > bs ? -1 : as === bs && a._i < b._i ? -1 : 1;
+        })
+        .slice(0, 20);
+    } else {
+      sorted = lists;
+    }
+    setData(sorted);
+  }, [query]);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
   return (
     <>
+      <SearchInput
+        placeholder="Typing something"
+        onChange={handleInputChange}
+        value={query}
+        width={"600px"}
+        margin={"auto"}
+        marginY="100px"
+        marginBottom="150px"
+        display="block"
+        height={80}
+      />
       <table className="entitles">
         <tbody>
-          {entities.map((item, ix) => {
+          {data.map((item, ix) => {
             return (
               <tr
                 key={ix}
@@ -33,6 +85,13 @@ export default function HtmlEntities() {
               </tr>
             );
           })}
+          {!data.length && (
+            <tr className="empty">
+              <td colSpan={4} style={{ fontSize: "30px", padding: "100px" }}>
+                No Results
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
       <Mdloader />
@@ -50,6 +109,10 @@ export default function HtmlEntities() {
             margin: 0.5em;
             padding: 1px;
             position: relative;
+          }
+          .empty {
+            width: 100%;
+            height: 100%;
           }
           td {
             display: block;
