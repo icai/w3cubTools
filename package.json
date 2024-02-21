@@ -65,7 +65,7 @@
     "@walmartlabs/json-to-simple-graphql-schema": "^2.0.4",
     "autoprefixer": "^10.2.6",
     "autoprefixer9": "npm:autoprefixer@9.x.x",
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "babel-plugin-json-to-proptypes": "^0.1.0",
     "babel-plugin-object-styles-to-template": "^0.2.2",
     "babel-standalone": "^6.26.0",
