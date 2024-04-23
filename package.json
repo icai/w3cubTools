@@ -145,7 +145,7 @@
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "file-loader": "^6.2.0",
-    "gh-pages": "^2.1.0",
+    "gh-pages": "^5.0.0",
     "husky": "^4.2.5",
     "imagemin-lint-staged": "^0.5.1",
     "lint-staged": "^15.2.0",
